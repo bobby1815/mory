@@ -8,22 +8,30 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-dependencies/org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.aop-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.asm-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.aspects-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.beans-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.context-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.core-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.expression-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.jdbc-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.transaction-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.web.portlet-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.web.servlet-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads/006_ojdbc6/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads/008_JSTL/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Downloads/008_JSTL/standard-1.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/spring-framework-3.0.2.RELEASE-with-docs/dist/org.springframework.web-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_131"/>
+	<classpathentry kind="lib" path="C:/morylibraries/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.aop-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.asm-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.aspects-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.beans-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.context.support-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.context-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.core-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.expression-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.instrument.tomcat-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.instrument-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.jdbc-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.jms-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.orm-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.oxm-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.test-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.transaction-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web.portlet-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web.servlet-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web.struts-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/standard-1.1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
