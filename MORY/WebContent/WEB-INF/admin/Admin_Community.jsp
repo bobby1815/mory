@@ -71,17 +71,16 @@
 					<th class="col-xs-5 col-md-5">커뮤니티 코드</th>
 					<th class="col-xs-5 col-md-5">커뮤니티 명</th>
 				</tr>
-			<c:if test="${!empty result}">
-				 <c:forEach items="${result}" var="result">
+			<c:if test="${!empty list}">
+				 <c:forEach items="${list}" var="result">
 					<tr>
-						<td>${result.USER_ID}</td>
-						<td>${result.USER_BIRTH}</td>
-						<td>${result.USER_TEL}</td>
+						<td>${result.num }</td>
+						<td>${result.community_type_code}</td>
+						<td>${result.community_type_name}</td>
 					</tr>
 				</c:forEach>
 			</c:if>
 			
-			<c:if test="${empty result}"><td>신고리스트가 없습니다.</td></c:if>	
 				
 			</table>
 		</div>

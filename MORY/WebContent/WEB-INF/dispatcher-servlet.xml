@@ -145,9 +145,14 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<!-- 	<property name="dao" ref="User"></property> -->
  	</bean> 
  	
+ 	<!-- 커뮤니티 dao -->
+ 	<bean id="communityDao" class="com.kh.mory.Dao.Admin_CommunityDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	
  	<!-- 커뮤니티 조회-->
  	<bean name="/community.do" class="com.kh.mory.Controller.Admin_CommunityController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
+ 		<property name="communityDao" ref="communityDao"></property>
  	</bean>
  	
  	
