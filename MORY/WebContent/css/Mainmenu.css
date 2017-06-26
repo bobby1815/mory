@@ -1,0 +1,12 @@
+#mainMemu ul
+{
+	list-style-type: none;
+}
+
+#mainMemu ul li
+{
+	display: inline-block;
+	margin: 10px 5%;
+}
+
+

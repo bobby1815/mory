@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="morymaster"></property>
+	<property name="password" value="mory2017"></property>
+	</bean>
+	<!-- RemoteData -->
+	<!--
+	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.11:1521:xe"></property>
+	<property name="username" value="scott"></property>
+	<property name="password" value="tiger"></property>
+	</bean>
+	
+	  -->
+
+
+	<!--Database Connection-->
+	<!-- 		
+	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="morymaster"></property>
+	<property name="password" value="mory2017"></property>
+		 -->
+
+		<bean name="/setmain.do"          class="com.kh.mory.SetupController.Setup_Main_Controller"></bean>
+		
+		
+		<bean name="/setmenual.do"        class="com.kh.mory.SetupController.Setup_Menual_Controller"></bean>
+		
+		
+		<bean name="/setcscenter.do"      class="com.kh.mory.SetupController.Setup_Customer_Center_Controller"></bean>
+		
+		
+		<bean name="/setprofile.do"       class="com.kh.mory.SetupController.Setup_Profile_Controller"></bean>
+		
+		
+		<bean name="/setrhmanagement.do"  class="com.kh.mory.SetupController.Setup_Realation_Management_Controller"></bean>
+
+		
+		<bean name="/setreportlist.do"    class="com.kh.mory.SetupController.Setup_Report_List_Controller"></bean>
+		
+		<bean name="/setfmmanagement.do"  class="com.kh.mory.SetupController.Setup_Famliy_Management_Controller"></bean>
+		
+		<bean name="/setcsfna.do"		  class="com.kh.mory.SetupController.Setup_Fna_Controller"></bean>
+		
+		<bean name="/setcsqna.do"  		  class="com.kh.mory.SetupController.Setup_Qna_Controller"></bean>
+		
+		<bean name="/setcsmyqna.do"       class="com.kh.mory.SetupController.Setup_MyQna_Controller"></bean>
+		
+		<bean name="/jusopopup.do"       class="com.kh.mory.SetupController.Setup_Address_Finder"></bean>
+<!-- 환경 설정 끝  -->
+
+	<bean id="userDao" class="com.kh.mory.join.Signup_UserDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean>
+	
+	<bean id="PwquestionDAO" class="com.kh.mory.main.Main_PwquestionDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean>
+	
+	<!-- 메인 컨트롤러 -->
+	<bean name="/*main.do" class="com.kh.mory.main.Main_MainController">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 회원가입 컨트롤러 -->
+	<bean name="/join*.do" class="com.kh.mory.join.Signup_JoinController">
+		<property name="userDao" ref="userDao"></property>
+		<property name="pwDao" ref="PwquestionDAO"></property>		
+	</bean>
+	
+	<!-- 중복확인 컨트롤러 -->
+	<bean name="/*check.do" class="com.kh.mory.join.Signup_JoinCheckController">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+
+	<!-- 뉴스피드 컨트롤러 -->
+	<bean name="/newspeed*.do" class="com.kh.mory.newspeed.Newsfeed_NewsfeedController">
+		
+	</bean>
+	
+<!-- 아영이 끝  -->
+
+<!-- 관리자 신지섭  -->
+<!-- User DAO 생성  -->
+	 <bean id="Admin_userDAO" class="com.kh.mory.Dao.Admin_UserDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean> 
+
+	<!-- 유저조회Controller  -->
+ 	<bean name="/userlist.do" class="com.kh.mory.Controller.Admin_UserListController">
+ 	 	<property name="dao" ref="Admin_userDAO"></property>
+ 	</bean> 
+ 	
+ 	<!-- UserSearchController(이름,닉네임,아이디,계정상태) -->
+ 	<bean name="/adminsearch.do" class="com.kh.mory.Controller.Admin_UserSeachController">
+ 			<property name="dao" ref="Admin_userDAO"></property>
+ 	</bean> 
+ 	
+ 	
+ 	<!-- 유저상세조회  -->
+ 	<bean name="/detailuserlist.do" class="com.kh.mory.Controller.Admin_DetailUserListController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean> 
+ 	
+ 	
+ 	<!-- 신고조회 뉴스피드 -->
+ 	<bean name="/declarationnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DeclarationNewSpeedUserListController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean> 
+ 	<!-- 상세신고조회 뉴스피드 -->
+ 	<bean name="/detailnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DetailNewSpeedUserListController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean> 
+ 	
+ 	
+ 	<!-- 블라인드 조회-->
+ 	<bean name="/bliduser.do" class="com.kh.mory.Controller.Admin_BlidUserController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean> 
+ 	
+ 	<!-- 1:1문의 조회-->
+ 	<bean name="/question.do" class="com.kh.mory.Controller.Admin_QuestionController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean> 
+ 	
+ 	<!-- 작성1:1문의 조회-->
+ 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_QuestionDeatilController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean> 
+ 	
+ 	<!-- 커뮤니티 조회-->
+ 	<bean name="/community.do" class="com.kh.mory.Controller.Admin_CommunityController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean>
+ 	
+ 	
+ 	<!-- 시스템 설정-->
+ 	<bean name="/system.do" class="com.kh.mory.Controller.Admin_SystemController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	</bean>  
+ 	<!-- 관리자 끝 -->
+ 	
+ 	<!--김민준 김진호  -->
+ 		<bean id="diaryDAO" class="com.mory.dao.DiaryDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean>
+	
+	
+	<bean name="/diary.do" class="com.mory.controller.DiaryListController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+ 	
+ 	
+ 	<!-- 이용진 커퓨니티  -->
+ 	
+    <bean id="communityDAO" class="com.kh.mory.CommunityDAO">
+      <property name="dataSource" ref="localDataSource"></property>
+   </bean>
+   
+   
+    <bean name="/communitymain.do" class="com.kh.mory.CommunityMainController">
+      <property name="dao" ref="communityDAO"></property>
+    </bean> 
+    
+    
+    <bean name="/communityinput.do" class="com.kh.mory.CommunityInputController">
+    	<property name="dao" ref="communityDAO"></property>
+    </bean>
+ 	
+</beans>

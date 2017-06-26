@@ -1,0 +1,210 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta  content="charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<title>이웃/기웃/가족</title>
+
+<script type="text/javascript">
+
+
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+</script>
+<style type="text/css">
+
+
+#setup_th
+{
+width: 200px;
+	height: 80px;
+	font-size: 25px;
+	font-weight: bold;
+	font-family: 맑은고딕; 
+}
+
+#setup_th:HOVER {
+		color: lightpink;
+	
+}
+</style>
+
+</head>
+<body>
+<div class="container"  id="container">
+      <div class="row " id="all0">
+      <div class="col-xs-1  col-md-1"  id="h1"></div>
+      <div class="col-xs-10 col-md-10" id="h2" >
+            <div class="col-xs-2 col-md-2">
+               <button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
+               class="btn btn-primary" onclick="location.href='loginmain.do'" >뉴스피드</button>
+            </div>
+            <div class="col-xs-2 col-md-2">   
+               <button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
+               class="btn btn-primary"  onclick="location.href='diary.do'">다이어리</button>
+            </div>
+            <div class="col-xs-4 col-md-4"style="text-align: center;">   
+               <a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+                     <img src="img/Mory_logo.png" width="100"/>
+                       <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
+                   </a>
+               </div>
+               <div class="col-xs-2 col-md-2" style="">    
+                   <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;"
+                    class="btn btn-primary" onclick="location.href='communitymain.do'">커뮤니티</button>
+               </div>  
+               <div class="col-xs-2 col-md-2">
+               <button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;"
+                class="btn btn-primary" onclick="location.href='setmain.do'">환경설정</button>
+            </div>
+            
+      </div>
+            <div class="col-xs-1 col-md-1"  id="h3"></div>
+</div>       
+      
+   <!--   Center  --> 
+      <div class="row " id="Center">
+      
+      <!-- Center_left  -->
+            <div class="col-xs-1 col-md-1"  id="b1"></div>
+            <div class="col-xs-10 col-md-10" id="b2" style="height: 800px;">                  	
+           <div class="col-md-3" id="b2_left" style="width: 25%; height: 700px;  ">
+     		 <table>
+            <tr>
+	           	<th id="setup_th"><p onclick="location.href='setprofile.do'">PROFILE</p></th>
+	           </tr>
+	           <tr>
+	           	<th id="setup_th"><p onclick="location.href='setcscenter.do'">COSTUMER CENTER</p></th>
+	           </tr>
+	           <tr>
+	           	<th id="setup_th"><p onclick="location.href='setrhmanagement.do'">REALATION MANAGEMET</p></th>
+	           </tr>
+	           <tr>
+	           	<th id="setup_th"><p onclick="location.href='setreportlist.do'">REPORT LIST</p></th>
+	           </tr>
+	           <tr>
+	           	<th id="setup_th"><p onclick="location.href='setmenual.do'">MENUAL</p></th>
+	           </tr>
+           </table>
+           </div> 
+          
+          <!-- Center middle -->
+           <div class="col-md-6" id="b2_center" style="width: 50%; height: 700px;">
+          	
+          	<div class="col-md-12" style="  margin-top: 100px; width: 100%;" >
+          	<h2 style="text-align: center;"> 가족 관리</h2>
+          	<div class="col-md-12" style="width: 100%;">
+          	<input type="text" value="search" style="width: 60%;" />
+          	<span class="glyphicon glyphicon-search btn-lg" style="width: 30%;" onclick="alert(1);">
+          	</span>
+          	</div>
+          	
+          	
+          	<div class="col-md-12">
+          	<table style="border:1px solid gray; width: 100%">
+          		<tr>
+          			<th>닉네임&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          			<th>메일주소&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          		</tr>
+          		
+          	</table>
+          	</div>
+          	
+          	</div>
+         
+          	<div class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
+          	 	<h1>이웃이웃</h1>
+         	 <ul class="list-group">
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영</li>
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 민혜</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 임 재균</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민</li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용</li>
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎 </li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 오 동연 </li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 동건 </li>
+			    
+			  </ul>
+          	</div>
+
+			     	
+          	<div class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
+          	<h1>기웃기웃</h1>     
+          	<ul class="list-group">
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민</li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용</li>
+			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎 </li>
+			  </ul>
+          	</div>
+          	</div>
+          	
+          	<!--Center-middle right  -->
+          	 <div class="col-md-3" style="width: 25%; height: 700px; ">
+           <!-- Acordian Action -->
+           <p class="listTitle">With custom options</p>
+			<input type="checkbox" id="switch7" checked="checked" /><br />
+			<span class="lightgrey">With &laquo; thin &raquo; class and labels set to false</span>
+			<br /><br />
+			
+           </div>
+          
+           
+         
+           
+           <!--Center middle End  -->
+            </div>
+
+			<!--Center right  -->
+            <div class="col-xs-1 col-md-1"  id="b3">
+		
+			 
+			 </div>
+
+<!-- Center_body End -->
+      </div>    
+      
+      
+      
+      <!-- 세번째 row  -->
+      <div class="row " id="Footer">
+            <div class="col-xs-1 col-md-1"  id="f1">f1</div>
+            
+            <div class="col-xs-10 col-md-10"  id="f2">f2</div>
+            
+            <div class="col-xs-1 col-md-1"  id="f3">f3</div>
+      </div>      
+ 
+</div>
+</body>
+</html>
