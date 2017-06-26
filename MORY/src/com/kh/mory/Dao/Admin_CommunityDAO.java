@@ -56,22 +56,90 @@ public class Admin_CommunityDAO	implements Admin_ICommunityDAO
 		{
 			System.out.println(e.toString());
 		}
+		return res;
+	}
+	
+	@Override
+	public Admin_CommunityDTO searchList(String community_type_code)
+	{
+		Admin_CommunityDTO res = new Admin_CommunityDTO();
 		
+		try
+		{
+			Connection connection = dataSource.getConnection();
+			
+			String sql = "SELECT COMMUNITY_TYPE_CODE, COMMUNITY_TYPE_NAME FROM TBL_COMMUNITY_TYPE WHERE COMMUNITY_TYPE_CODE = ?";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next())
+			{
+				res.setCommunity_type_code(resultSet.getString("COMMUNITY_TYPE_CODE"));
+				res.setCommunity_type_name(resultSet.getString("COMMUNITY_TYPE_NAME"));
+			}
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return res;
+	}	
+
+	// 커뮤니티 이름 수정
+	@Override
+	public int modify(Admin_CommunityDTO dto)
+	{
+		int res = 0;
+		
+		try
+		{
+			Connection connection = dataSource.getConnection();
+			
+			String sql = "UPDATE TBL_COMMUNITY_TYPE SET COMMUNITY_TYPE_NAME = ? WHERE COMMUNITY_TYPE_CODE = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, dto.getCommunity_type_name());
+			preparedStatement.setString(2, dto.getCommunity_type_name());
+			
+			res = preparedStatement.executeUpdate();
+			
+			preparedStatement.close();
+			connection.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
 		return res;
 	}
 
+	// 커뮤니티 삭제
 	@Override
-	public int modify()
+	public int delete(String community_type_code)
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		int res = 0;
+		
+		try
+		{
+			Connection connection = dataSource.getConnection();
+			
+			String sql = "DELETE FROM TBL_COMMUNITY_TYPE WHERE COMMUNITY_TYPE_CODE = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, community_type_code);
+			
+			res = preparedStatement.executeUpdate();
+			
+			preparedStatement.close();
+			connection.close();
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		return res;
 	}
 
-	@Override
-	public int delete()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
 }

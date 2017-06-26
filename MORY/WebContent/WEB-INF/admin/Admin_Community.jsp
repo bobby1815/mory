@@ -25,6 +25,15 @@
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
+<script type="text/javascript">
+
+	function detailSearch(num)
+	{
+		//alert(num);
+		$.post("");
+	}	
+
+</script>
 </head>
 <body>
 
@@ -73,7 +82,7 @@
 				</tr>
 			<c:if test="${!empty list}">
 				 <c:forEach items="${list}" var="result">
-					<tr>
+					<tr style="cursor: pointer;" onclick="detailSearch('${result.community_type_code}')">
 						<td>${result.num }</td>
 						<td>${result.community_type_code}</td>
 						<td>${result.community_type_name}</td>
@@ -91,7 +100,7 @@
 						커뮤니티 코드
 					</div>
 					<div class="col-xs-4 col-md-3">
-						<input type="text" class="form-control" style="width: 200px;">
+						<input type="text" class="form-control" style="width: 200px;" readonly="readonly">
 					</div>
 				
 				</div>

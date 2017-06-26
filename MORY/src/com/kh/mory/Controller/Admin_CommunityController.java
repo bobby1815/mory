@@ -26,9 +26,9 @@ public class Admin_CommunityController implements Controller
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		
-		if (request.getRequestURL().indexOf("community.do") > -1 )
+		if (request.getRequestURL().indexOf("communitylist.do") > -1 )
 		{
-			System.out.println("community.do");
+			System.out.println("communitylist.do");
 			
 			ArrayList<Admin_CommunityDTO> lists = new ArrayList<Admin_CommunityDTO>();
 			

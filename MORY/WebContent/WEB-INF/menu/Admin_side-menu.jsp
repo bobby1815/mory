@@ -49,7 +49,7 @@
                     <div class="drop-menu"><h4>커뮤니티 관리</h4></div>
                 </a>
                 <div id="com" class="collapse">
-                    <a href="community.do">
+                    <a href="communitylist.do">
                         <div class="drop-menu">
                             <h5>└ 커뮤니티 관리</h5>
                         </div>
