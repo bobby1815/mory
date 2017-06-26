@@ -126,11 +126,10 @@ public class CommunityDAO implements ICommunityDAO
 				+ " ON C.WRITE_SEQ = U.WRITE_SEQ "
 				+ " LEFT JOIN TBL_COMMUNITY_TYPE T"
 				+ " ON C.COMMUNITY_TYPE_CODE = T.COMMUNITY_TYPE_CODE "
-				+ " WHERE WRITE_SEQ = ?"
 				+ " ORDER BY COMMUNITY_LOVE_CNT DESC";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, dto.getWrite_seq());
+
 		
 		ResultSet rs = pstmt.executeQuery();
 		
