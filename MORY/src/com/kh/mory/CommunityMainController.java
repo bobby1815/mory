@@ -25,11 +25,11 @@ public class CommunityMainController implements Controller
 			
 		ModelAndView modelAndView = new ModelAndView();
 		
-		ArrayList<CommunityDTO> communitydtoo = new ArrayList<CommunityDTO>();
+		ArrayList<CommunityDTO> communitydto = new ArrayList<CommunityDTO>();
 		try 
 		{
 			
-			communitydtoo = dao.list();
+			communitydto = dao.list();
 			
 			
 
@@ -39,7 +39,7 @@ public class CommunityMainController implements Controller
 		}
 		
 
-		modelAndView.addObject("communitydtoo", communitydtoo);
+		modelAndView.addObject("communitydto", communitydto);
 		modelAndView.setViewName("/WEB-INF/community/CommunityMain.jsp");
 		return modelAndView;
 		

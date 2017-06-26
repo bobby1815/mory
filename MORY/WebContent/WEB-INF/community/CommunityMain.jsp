@@ -91,6 +91,15 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function() 
+{
+	$("#mam")	
+});
+
+
+
+
+
 
 
 
@@ -196,35 +205,33 @@ function previewImage(targetObj, divPeedPhoto)
 
 
 <div class="container"  id="container">
-      <div class="row " id="all0">
-      <div class="col-xs-1  col-md-1"  id="h1"></div>
-      <div class="col-xs-10 col-md-10" id="h2" >
-            <div class="col-xs-2 col-md-2">
-               <button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
-               class="btn btn-primary" onclick="location.href='loginmain.do'" >뉴스피드</button>
-            </div>
-            <div class="col-xs-2 col-md-2">   
-               <button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
-               class="btn btn-primary"  onclick="location.href='diary.do'">다이어리</button>
-            </div>
-            <div class="col-xs-4 col-md-4"style="text-align: center;">   
-               <a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-                     <img src="img/Mory_logo.png" width="100"/>
-                       <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
-                   </a>
-               </div>
-               <div class="col-xs-2 col-md-2" style="">    
-                   <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;"
-                    class="btn btn-primary" onclick="location.href='communitymain.do'">커뮤니티</button>
-               </div>  
-               <div class="col-xs-2 col-md-2">
-               <button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;"
-                class="btn btn-primary" onclick="location.href='setmain.do'">환경설정</button>
-            </div>
-            
-      </div>
-            <div class="col-xs-1 col-md-1"  id="h3"></div>
-</div>   
+	<!-- 첫번째 row  -->
+		<div class="row " id="all0">
+		<div class="col-xs-1  col-md-1"  id="h1"></div>
+		<div class="col-xs-10 col-md-10" id="h2" >
+				<div class="col-xs-2 col-md-2">
+					<button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary" >뉴스피드</button>
+				</div>
+				<div class="col-xs-2 col-md-2">	
+					<button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
+				</div>
+				<div class="col-xs-4 col-md-4"style="text-align: center;">	
+					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+	                  <img src="img/logo.png" width="100"/>
+	                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
+	                </a>
+	            </div>
+	            <div class="col-xs-2 col-md-2" style="">    
+	                <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
+	            </div>  
+	            <div class="col-xs-2 col-md-2">
+					<button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
+				</div>
+				
+		</div>
+				<div class="col-xs-1 col-md-1"  id="h3"></div>
+		</div>		
+		
 		
 	<!-- 	두번째 row  --> 
 	<div class="row " id="all1">
@@ -260,8 +267,8 @@ function previewImage(targetObj, divPeedPhoto)
 									<div id="ingi mam"  class="col-xs-12 col-md-12 container " style=" height: 200px; margin-top: 10px; border: 1px solid;">
 									
 										<table id="mam" >
-										
-										 <c:forEach var="communitydto" items="${communitydto}">
+											
+									 <c:forEach var="communitydto" items="${communitydto}">
 										<tr>
 										<td>${communitydto.write_seq }</td>
 										<td>${communitydto.community_type_code }</td>
@@ -273,7 +280,7 @@ function previewImage(targetObj, divPeedPhoto)
 										<td>${communitydto.uplo_loca }</td>
 										<td>${communitydto.community_type_name }</td>
 										</tr>
-										</c:forEach>  
+									</c:forEach>  
 									
 									<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
 								    Indicators
@@ -452,7 +459,7 @@ function previewImage(targetObj, divPeedPhoto)
          <div id="Demo1" class="w3-container w3-hide">
           <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user "></span></button><br />
           <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal1" ><span class="glyphicon glyphicon-time"></span></button><br />
-            <button type="button" onclick="location.href='communityinput.do'"><span  class="glyphicon glyphicon-pencil btn-lg"></span></button><br />
+            <button type="button" onclick="location.href='communityinput.do'"><span  class="glyphicon glyphicon-pencil"></span></button><br />
            
          </div>
          
