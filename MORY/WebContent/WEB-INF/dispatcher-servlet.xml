@@ -8,23 +8,24 @@ http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
+<!-- 
 	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
 	</bean>
+	 -->
 	<!-- RemoteData -->
-	<!--
+	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-	<property name="url" value="jdbc:oracle:thin:@192.168.30.11:1521:xe"></property>
-	<property name="username" value="scott"></property>
-	<property name="password" value="tiger"></property>
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
+	<property name="username" value="mory_ay"></property>
+	<property name="password" value="mory2017"></property>
 	</bean>
 	
-	  -->
+	 
 
 
 	<!--Database Connection-->
@@ -65,11 +66,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <!-- 환경 설정 끝  -->
 
 	<bean id="userDao" class="com.kh.mory.join.Signup_UserDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
 	<bean id="PwquestionDAO" class="com.kh.mory.main.Main_PwquestionDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
 	<!-- 메인 컨트롤러 -->
@@ -99,7 +100,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <!-- 관리자 신지섭  -->
 <!-- User DAO 생성  -->
 	 <bean id="Admin_userDAO" class="com.kh.mory.Dao.Admin_UserDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean> 
 
 	<!-- 유저조회Controller  -->
@@ -158,7 +159,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	<!--김민준 김진호  -->
  		<bean id="diaryDAO" class="com.mory.dao.DiaryDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
 	
@@ -170,7 +171,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<!-- 이용진 커퓨니티  -->
  	
     <bean id="communityDAO" class="com.kh.mory.CommunityDAO">
-      <property name="dataSource" ref="localDataSource"></property>
+      <property name="dataSource" ref="remoteDataSource"></property>
    </bean>
    
    

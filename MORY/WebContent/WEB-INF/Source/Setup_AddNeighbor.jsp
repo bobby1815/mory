@@ -5,8 +5,5 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String user_Id = request.getParameter("user_Id");
-	
-	
-
 
 %>
