@@ -1,16 +1,12 @@
 package com.kh.mory.Dao;
-/*package com.mory.Dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mory.Model.UserDTO;
-import com.mory.Model.WriteDTO;
+import com.kh.mory.Model.Admin_DeclarationUserDTO;
 
-public interface IDeclarationUserDAO
+public interface Admin_IDeclarationUserDAO
 {
-	public WriteDTO ReportUser(String Write_Seq) throws SQLException;
-	public ArrayList<WriteDTO>ReportList(String Page_Code) throws SQLException;
-	public WriteDTO ReportSearch(String Write_Reg_Dtm) throws SQLException;
+	public ArrayList<Admin_DeclarationUserDTO> DeclarationSearchList(String ing ,String Id,String select) throws SQLException;
+	
 }
-*/

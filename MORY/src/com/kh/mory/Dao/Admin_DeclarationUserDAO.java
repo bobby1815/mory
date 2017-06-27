@@ -1,18 +1,17 @@
 package com.kh.mory.Dao;
-/*package com.mory.Dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
-import com.mory.Model.UserDTO;
-import com.mory.Model.WriteDTO;
+import com.kh.mory.Model.Admin_DeclarationUserDTO;
 
-public class DeclarationUserDAO implements IDeclarationUserDAO
+
+public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 {
 	// 인터페이스 자료형 구성
 	private DataSource dataSource;
@@ -22,79 +21,85 @@ public class DeclarationUserDAO implements IDeclarationUserDAO
 	{
 		this.dataSource = dataSource;
 	}
-	
 
-	//--신고자아이디 조회
 	@Override
-	public WriteDTO ReportUser(String Write_User_Id) throws SQLException
+	public ArrayList<Admin_DeclarationUserDTO> DeclarationSearchList(String term, String Id, String select)
+			throws SQLException
 	{
-		Connection conn= dataSource.getConnection();
-		String sql = "SELECT WRITE_USER_ID FROM TBL_WRITE WHERE WRITE_USER_Id=?";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		WriteDTO dto = new WriteDTO();
-		ResultSet rs = pstmt.executeQuery();
-		while (rs.next())
-		{
-			dto.setWrite_User_Id(rs.getString("Write_User_Id"));
-		//	dto.set
-		}
-		pstmt.close();
-		conn.close();
-		rs.close();
-		return null;
-	}
-	
-	
-	//신고당한 뉴스피드,커뮤니티 리스트조회
-	@Override
-	public ArrayList<WriteDTO> ReportList(String Page_Code)throws SQLException
-	{
-		ArrayList<UserDTO> list = new ArrayList<UserDTO>();
 		Connection conn = dataSource.getConnection();
-		String sql = "SELECT USER_ID,WRITE_CONT,WRITE_REG_DTM"//--테이블조인해야댐
-				+ " FROM TBL_WRITE WHERE PAGE_CODE=?";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		WriteDTO wdto = new WriteDTO();
-		while (rs.next())
+		ArrayList<Admin_DeclarationUserDTO> result = new ArrayList<Admin_DeclarationUserDTO>();
+		Statement stmt = conn.createStatement();
+		String sql=" ";
+		
+		
+		//--term박스 가 1일이면 뉴스피드 조회
+		if (term.equals("1"))
 		{
-			
-			wdto.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
-			wdto.setWrite_Cont(rs.getString("WRITE_CONT"));
-			wdto.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
-			//신고횟수넣어야함
-			//처리화면
-			//list.add(wdto);
+			//뉴스피드 신고 조회
+			sql= String.format(
+					" SELECT W.WRITE_USER_ID AS WRITE_USER_ID , W.WRITE_CONT,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
+					+" (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ "
+					+" ) AS REPO_COUNT "  
+					+" FROM TBL_USER U JOIN TBL_WRITE W "
+					+" ON U.USER_ID=W.WRITE_USER_ID " 
+					+" JOIN TBL_NEWSPEED N "
+					+" ON W.WRITE_SEQ=N.PEED_SEQ "
+					+" JOIN TBL_PAGE P ON P.PAGE_CODE=W.PAGE_CODE " 
+					+" WHERE W.PAGE_CODE='N' AND W.WRITE_USER_ID LIKE '%%"+Id+"%%' AND W.WRITE_REG_DTM LIKE '%%"+select+"%%'");
+					
 		}
 		
-		pstmt.close();
-		conn.close();
-		rs.close();
-		return null;
-	}
-
-	
-	
-	//--검색기간
-	@Override
-	public WriteDTO ReportSearch(String Write_Reg_Dtm) throws SQLException
-	{
-		Connection conn = dataSource.getConnection();
-		String sql = " FROM TBL_WRITE WHERE WRITE_REG_DTM LIKE %?% ";
-		WriteDTO dto = new WriteDTO();
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,dto.getWrite_Reg_Dtm());
-		ResultSet rs =pstmt.executeQuery();
+		else if(term.equals("2"))
+		{
+			//커뮤니티 신고 조회
+			sql= String.format(
+					" SELECT W.WRITE_USER_ID AS WRITE_USER_ID,B.COMMUNITY_TYPE_NAME AS COMMUNITY_TYPE_NAME "
+					+" ,C.COMMUNITY_TITLE AS COMMUNITY_TITLE ,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
+					+" (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ "
+					+" ) AS REPO_COUNT " 
+					+" FROM TBL_WRITE W  JOIN TBL_COMMUNITY C "
+					+" ON W.WRITE_SEQ = C.WRITE_SEQ "
+					+" JOIN TBL_COMMUNITY_TYPE B "
+					+" ON B.COMMUNITY_TYPE_CODE = C.COMMUNITY_TYPE_CODE "
+					+" WHERE W.WRITE_USER_ID LIKE '%%"+Id+"%%' ");
+			
+		}	
+		
+		System.out.println(sql);
+		ResultSet rs =  stmt.executeQuery(sql);
+		
+		
+		
 		while (rs.next())
 		{
-			dto.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
+			Admin_DeclarationUserDTO admin_DeclarationUserDTO = new Admin_DeclarationUserDTO();
 			
+			//-- 커뮤니티일때
+			if (term.equals("2"))
+			{
+				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
+				admin_DeclarationUserDTO.setCommunity_Type_Name(rs.getString("COMMUNITY_TYPE_NAME"));
+				admin_DeclarationUserDTO.setCommunity_Title(rs.getString("COMMUNITY_TITLE"));
+				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
+				admin_DeclarationUserDTO.setRepo_Count(rs.getString("REPO_COUNT"));
+			}
+			//-- 뉴스피드일때
+			else if(term.equals("1"))
+			{
+				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
+				admin_DeclarationUserDTO.setWrite_Cont(rs.getString("WRITE_CONT"));
+				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
+				admin_DeclarationUserDTO.setRepo_Count(rs.getString("REPO_COUNT"));
+			}
+			
+			result.add(admin_DeclarationUserDTO);
 		}
-		pstmt.close();
+		
 		conn.close();
+		stmt.close();
 		rs.close();
-		return dto;
+		
+		return result;
 	}
 
 }
-*/

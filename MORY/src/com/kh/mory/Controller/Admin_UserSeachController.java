@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.kh.mory.Dao.Admin_IUserDAO;
 import com.kh.mory.Model.Admin_UserDTO;
 
+//--유저 검색 아이디,닉네임 ,이름,계정상태 Controller
 public class Admin_UserSeachController implements Controller
 {
 	private Admin_IUserDAO dao;
@@ -26,12 +27,10 @@ public class Admin_UserSeachController implements Controller
 		ModelAndView modelAndView = new ModelAndView();
 		String value = request.getParameter("value");
 		String name = request.getParameter("name");
-		System.out.println(value);
-		System.out.println(name);
 		
 		ArrayList<Admin_UserDTO> userList =  dao.QueryUser(value, name);
 		
-		modelAndView.addObject("userList", userList);
+		modelAndView.addObject("result", userList);
 		modelAndView.setViewName("WEB-INF/admin/Admin_UserList.jsp");
 		
 		return modelAndView;

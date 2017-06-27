@@ -22,8 +22,10 @@
 	{
 		$("#list").click(function() 
 		{
-			$("#lista").show();
-		});	
+			$("#lista").fadeToggle();
+		});
+		
+		
 	});
 </script>
 <style>
@@ -58,7 +60,7 @@
 <div class="col-xs-12 col-md-9">
 		<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
 			<div class="col-xs-3 col-md-3" style="padding: 0px; margin-right: 15px; text-align:right">
-				<select class="form-control" style="width:100%;" name="value">
+				<select class="form-control" style="width:100%;" name="value" id="value1">
 					<option value="1">아이디</option>
 					<option value="2">이름</option>
 					<option value="3">닉네임</option>
@@ -66,10 +68,10 @@
 				</select>
 			</div>
 			<div class="col-xs-3 col-md-3" style="padding: 0px;">
-				<input type="text" class="form-control" style="width: 250px;" name="name">
+				<input type="text" class="form-control" style="width: 250px;" name="name" id="name">
 			</div>
 			<div class="col-xs-3 col-md-1 text-right">
-				<button class="btn btn-default" type="submit">검색</button>
+				<button class="btn btn-default" type="submit" id="searchBtn">검색</button>
 			</div>
 			
 		</div>
@@ -85,36 +87,28 @@
 					<th class="col-xs-2 col-md-3">계정상태</th>
 				</tr>
 				
-				<c:forEach var="user" items="${userList }">
-							<%-- 	<tr>
-									<td>${user.user_Name }</td>
-									<td>${user.user_Id }</td>
-									<td>${user.user_Name }</td>
-									<td>${user.user_Nic }</td>
-									<td>${user.user_Tel}</td>
-									<td>${user.basic_Addr }</td>
-									<td>${user.sanc_Type_Name }</td>
-								</tr> --%>
-								<tr id="list">
-										<td>${user.user_Id }</td>
-										<td>${user.user_Id }</td>
-										<td>${user.user_Name }</td>
-										<td>${user.user_Nic }</td>
-										<td>${user.user_Tel }</td>
-										<td>${user.basic_Addr}</td>
-										<td>${user.sanc_Type_Name }</td>
+				<c:forEach   var="result"   items="${result}">
+								<tr id="list" style="text-align: center;">
+										<td>번호</td>
+										<td>${result.user_Id }</td>
+										<td>${result.user_Name }</td>
+										<td>${result.user_Nic }</td>
+										<td>${result.user_Tel }</td>
+										<td>${result.basic_Addr }</td>
+										<td>${result.sanc_Type_Name }</td>
+										
 								</tr>
 				</c:forEach>
 			</table>
 		</div>
 	</div>
 	<!-- 데이터 상세조회  -->
-	<div id="lista" class="row" >
-
+	<div id="lista" class="row"  style="display: none;">
+			<c:import url="/WEB-INF/menu/Admin_Detail.jsp"></c:import>
 	</div>
 </div>	
 </head>
-
+<body>
 </form>
 </body>
 </html>

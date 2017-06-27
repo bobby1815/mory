@@ -1,5 +1,6 @@
 package com.kh.mory.Controller;
 
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +12,8 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.kh.mory.Dao.Admin_DeclarationUserDAO;
 import com.kh.mory.Model.Admin_DeclarationUserDTO;
 
-public class Admin_DetailNewSpeedUserListController implements Controller
+public class Admin_DeclarationCommunityUserListController implements Controller
 {
-	
 	private Admin_DeclarationUserDAO dao;
 	//setter
 	public void setDao(Admin_DeclarationUserDAO dao)
@@ -22,7 +22,9 @@ public class Admin_DetailNewSpeedUserListController implements Controller
 	}
 	
 	
-
+	
+	
+	//-- 조건문에서 커뮤니티로 넘어올때 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
@@ -32,24 +34,12 @@ public class Admin_DetailNewSpeedUserListController implements Controller
 		String id = request.getParameter("id");
 		String term = request.getParameter("term");
 		
-		ArrayList<Admin_DeclarationUserDTO> declarationuser = dao.DeclarationSearchList(value, id, term);
+		ArrayList<Admin_DeclarationUserDTO> 	declarationuser = dao.DeclarationSearchList(value, id, term);
 		
 		modelAndView.addObject("declarationuser",declarationuser);
-		
-		//-- 1번이면 뉴스피드jsp로 이동 
-		//-- 2번이면 커뮤니티jsp로 이동
-		
-		if (value.equals("1"))
-		{
-			modelAndView.setViewName("WEB-INF/admin/Admin_DeclarationNewSpeedUserList.jsp");
-		}
-		else if(value.equals("2"))
-		{
-			modelAndView.setViewName("/declarationcommunity.do");
-		}
+		modelAndView.setViewName("WEB-INF/admin/Admin_DeclarationCommunityUserList.jsp");
 		
 		return modelAndView;
 	}
 
-	
 }

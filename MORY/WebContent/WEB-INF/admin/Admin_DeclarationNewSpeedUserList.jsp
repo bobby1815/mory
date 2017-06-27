@@ -16,6 +16,18 @@
 <script src="assets/jquery.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() 
+		{
+			$("#list").click(function() 
+			{
+				$("#lista").fadeToggle();
+			});
+			
+		});
+</script>
 <style>
     a{color:black;}
     .drop-menu{border: 1px solid grey;}
@@ -28,99 +40,90 @@
 </head>
 <body>
 
+<form action="./declaration.do" method="post">
 <div class="container">
-<!-- 헤더시작  -->
-<div class="row " id="all0">
-		<div class="col-xs-1  col-md-1"  id="h1"></div>
-		<div class="col-xs-10 col-md-10" id="h2" >
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary" >뉴스피드</button>
+	<div class="container">
+	<!-- 헤더시작  -->
+	<div class="row " id="all0">
+			<div class="col-xs-1  col-md-1"  id="h1"></div>
+			<div class="col-xs-10 col-md-10" id="h2" >
+					<div class="col-xs-12col-md-12"style="text-align: center;">	
+						<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+		                  <img src="./logo.png"width="100"/>
+		                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
+		                </a>
+		            </div>
+			</div>
+			</div>
+					<div class="col-xs-1 col-md-1"  id="h3"></div>
+			</div>		
+	
+	
+	
+	<!--사이드 시작  -->
+	<c:import url="/menu/Admin_side-menu.jsp"></c:import>
+	<!-- 본문시작  -->
+	<div class="col-xs-12 col-md-9">
+			<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
+				<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
+					<h5>검색기간</h5>
 				</div>
-				<div class="col-xs-2 col-md-2">	
-					<button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
+				<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
+					<input type="text" class="form-control" name="term" placeholder="ex)170215">
 				</div>
-				<div class="col-xs-4 col-md-4"style="text-align: center;">	
-					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-	                  <img src="img/logo.png" width="100"/>
-	                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
-	                </a>
-	            </div>
-	            <div class="col-xs-2 col-md-2" style="">    
-	                <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
-	            </div>  
-	            <div class="col-xs-2 col-md-2">
-					<button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
+				<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
+					<h5>조회유형</h5>
+				</div>
+				<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
+					<select class="form-control" style="width: 160px;" name="value" >
+						<option>선택하세요&lt;필수&gt;</option>
+						<option value="1">뉴스피드</option>
+						<option value="2">커뮤니티</option>
+					</select>
+				</div>
+			<div class="row ">	
+				<div class=" col-xs-12 col-md-1 text-center" style="padding: 0px;">
+					<h5>아이디</h5>
+				</div>
+				<div class="col-xs-12 col-md-2" style="padding: 0px;">
+					<input type="text" class="form-control"  name="id">
 				</div>
 				
-		</div>
-				<div class="col-xs-1 col-md-1"  id="h3"></div>
-		</div>		
-
-
-
-<!--사이드 시작  -->
-<c:import url="/menu/Admin_side-menu.jsp"></c:import>
-<!-- 본문시작  -->
-<div class="col-xs-12 col-md-9">
-		<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
-			<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
-				<h5>검색기간</h5>
-			</div>
-			<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-				<input type="text" class="form-control">
-			</div>
-			<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
-				<h5>조회유형</h5>
-			</div>
-			<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-				<select class="form-control" style="width: 160px;">
-					<option>선택하세요&lt;필수&gt;</option>
-					<option>뉴스피드</option>
-					<option>커뮤니티</option>
-				</select>
-			</div>
-		<div class="row ">	
-			<div class=" col-xs-12 col-md-1 text-center" style="padding: 0px;">
-				<h5>아이디</h5>
-			</div>
-			<div class="col-xs-12 col-md-2" style="padding: 0px;">
-				<input type="text" class="form-control">
-			</div>
-			
-			<div class="col-xs-12 col-md-1 text-center">
-				<button class="btn btn-default">검색</button>
-			</div>
-		</div>	
-		<!-- 피드신고목록  -->
-		<div class="row" style="padding: 30px 0px;">
-			<table class="col-xs-12 text-center">
-				<tr>
-					<th class="col-xs-1 col-md-1">No</th>
-					<th class="col-xs-1 col-md-1">아이디</th>
-					<th class="col-xs-1 col-md-1">피드내용</th>
-					<th class="col-xs-1 col-md-1">전화번호</th>
-					<th class="col-xs-1 col-md-1">작성일</th>
-					<th class="col-xs-1 col-md-1">신고횟수</th>
-					<th class="col-xs-1 col-md-1">처리결과</th>
-				</tr>
-			<c:if test="${!empty result}">
-				 <c:forEach items="${result}" var="result">
+				<div class="col-xs-12 col-md-1 text-center">
+					<button class="btn btn-default" type="submit">검색</button>
+				</div>
+			</div>	
+			<!-- 피드신고목록  -->
+			<div class="row" style="padding: 30px 0px;">
+				<table class="col-xs-12 text-center">
 					<tr>
-						<td>${result.USER_ID}</td>
-						<td>${result.USER_BIRTH}</td>
-						<td>${result.USER_TEL}</td>
+						<th class="col-xs-1 col-md-1">No</th>
+						<th class="col-xs-1 col-md-1">아이디</th>
+						<th class="col-xs-1 col-md-1">피드내용</th>
+						<th class="col-xs-1 col-md-1">작성일</th>
+						<th class="col-xs-1 col-md-1">신고횟수</th>
+						<th class="col-xs-1 col-md-1">처리결과</th>
 					</tr>
+				<c:forEach  var="result"  items="${declarationuser}">
+						<tr id="list">
+							<td>번호</td>
+							<td>${result.write_User_Id}</td>
+							<td>${result.write_Cont}</td>
+							<td>${result.write_Reg_Dtm }</td>
+							<td>${result.repo_Count}</td>
+							<td>처리결과</td>
+						</tr>
 				</c:forEach>
-			</c:if>
-			
-			<c:if test="${empty result}"><td>신고리스트가 없습니다.<td><a href="WEB-INF/admin/Admin_DeclarationNewSpeedUserList.jsp">커뮤니티목록</a></td></td></c:if>	
-				
-			</table>
+				</table>
+			</div>
+			</div>
 		</div>
-		</div>
+		<!-- 데이터 상세조회  -->
+	<div id="lista" class="row"  style="display: none;">
+			<c:import url="/WEB-INF/menu/Admin_futter.jsp"></c:import>
 	</div>
-</div>
-
+</div>		
+</form>
 
 </body>
 </html>

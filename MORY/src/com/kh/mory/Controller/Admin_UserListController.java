@@ -26,11 +26,12 @@ public class Admin_UserListController implements Controller
 		ModelAndView modelAndView = new ModelAndView();
 		ArrayList<Admin_UserDTO>  result = new ArrayList<Admin_UserDTO>();
 		
-		
 		//유저조회 페이지로 이동
+		
 		result = dao.UserList();
 		
 		modelAndView.addObject("result" ,result);
+		
 		modelAndView.setViewName("WEB-INF/admin/Admin_UserList.jsp");
 		return modelAndView;
 	}
