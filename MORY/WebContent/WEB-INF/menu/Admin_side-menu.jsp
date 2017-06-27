@@ -1,7 +1,7 @@
 <%@ page  contentType="text/html; charset=UTF-8" %>
 <!-- 사이드 메뉴 start -->
         <div class="col-xs-12 col-md-3 text-center">
-            <h2><label class="label label-success">관리자 환경설정</label></h2>
+            <h2><label class="label label-success">관리자 환경설정aaaaaaa</label></h2>
             <div class="col-xs-10 col-xs-offset-1 text-center">
 
                 <div class="drop-menu-top">
@@ -49,7 +49,7 @@
                     <div class="drop-menu"><h4>커뮤니티 관리</h4></div>
                 </a>
                 <div id="com" class="collapse">
-                    <a href="community.do">
+                    <a href="communitylist.do">
                         <div class="drop-menu">
                             <h5>└ 커뮤니티 관리</h5>
                         </div>
