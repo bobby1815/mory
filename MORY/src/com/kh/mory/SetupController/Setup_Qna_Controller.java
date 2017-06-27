@@ -16,7 +16,7 @@ public class Setup_Qna_Controller implements Controller
 		ModelAndView modelAndView = new ModelAndView();
 		
 		
-		modelAndView.setViewName("WEB-INF/Source/Resource/Setup_CS_QnA.jsp");
+		modelAndView.setViewName("WEB-INF/Source/Setup_CS_QnA.jsp");
 			
 		
 		return modelAndView;

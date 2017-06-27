@@ -15,7 +15,7 @@ public class Setup_Fna_Controller implements Controller
 	{
 		ModelAndView modelandview = new ModelAndView();
 		
-		modelandview.setViewName("WEB-INF/Source/Resource/Setup_CS_FnA.jsp");		
+		modelandview.setViewName("WEB-INF/Source/Setup_CS_FnA.jsp");		
 		return modelandview;
 	}
 
