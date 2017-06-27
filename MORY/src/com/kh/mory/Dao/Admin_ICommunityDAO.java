@@ -15,4 +15,5 @@ public interface Admin_ICommunityDAO
 	public Admin_CommunityDTO searchList(String community_type_code);
 	public int modify(Admin_CommunityDTO dto);
 	public int delete(String community_type_code);
+	public int seqSearch();
 }

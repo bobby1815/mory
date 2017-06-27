@@ -59,6 +59,7 @@ public class Admin_CommunityDAO	implements Admin_ICommunityDAO
 		return res;
 	}
 	
+	// 커뮤니티 상세 조회
 	@Override
 	public Admin_CommunityDTO searchList(String community_type_code)
 	{
@@ -71,7 +72,9 @@ public class Admin_CommunityDAO	implements Admin_ICommunityDAO
 			String sql = "SELECT COMMUNITY_TYPE_CODE, COMMUNITY_TYPE_NAME FROM TBL_COMMUNITY_TYPE WHERE COMMUNITY_TYPE_CODE = ?";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, community_type_code);
 			ResultSet resultSet = preparedStatement.executeQuery();
+			
 			
 			if (resultSet.next())
 			{
@@ -141,5 +144,39 @@ public class Admin_CommunityDAO	implements Admin_ICommunityDAO
 		}
 		return res;
 	}
+
+	@Override
+	public int seqSearch()
+	{
+		int res=0;
+		
+		try
+		{
+			Connection connection = dataSource.getConnection();
+			
+			String sql = "SELECT MAX(COMMUNITY_TYPE_CODE) AS SEQCNT FROM TBL_COMMUNITY_TYPE";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			
+			if (resultSet.next())
+			{
+				res = resultSet.getInt("SEQCNT");
+			}
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return res;
+	}
+	
+	// 커뮤니티 현재 시퀀스 조회
+	
 
 }

@@ -13,7 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <!-- jquery 다운받아서 경로잡고 지정해줘야함 -->
-<script src="assets/jquery.js"></script>
+<!-- <script src="assets/jquery.js"></script> -->
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
@@ -30,8 +30,39 @@
 	function detailSearch(num)
 	{
 		//alert(num);
-		$.post("");
+		// 커뮤니티 코드 상세조회
+		$.post("communitysearch.do",{community_type_code:num},function(data){
+			var array = data.split(",");
+			$("#community_code").attr("value",array[0]);
+			$("#community_name").attr("value",array[1]);
+		});
+		
+		$("#community_code").attr("value",)
 	}	
+	
+	
+	$(document).ready(function()
+	{
+		// 신규버튼 클릭
+		$("#newBtn").click(function()
+		{
+			var cnt = $("#communityTbl tr").length;
+			var seq = 0;
+			$.post("communityseqsearch.do",function(data){
+				seq=Number(data)+1;
+				$("#communityTbl > tbody:last").append('<tr style="cursor: pointer;"><td>'+cnt+'</td><td>'+seq+'</td><td id="comm_name"></td></tr>');
+				$("#community_code").attr("value",seq);
+			});
+		});
+		
+		// 커뮤니티명 변경시 td 변경
+		$("#community_name").keyup(function()
+		{
+			$("#comm_name").html($("#community_name").val());
+		});
+		
+		
+	});
 
 </script>
 </head>
@@ -72,9 +103,8 @@
 <!-- 본문시작  -->
 <div class="col-xs-12 col-md-9">
 <h1>커뮤니티 관리</h1>
-		<!-- 피드신고목록  -->
 		<div class="row" style="padding: 30px 0px;">
-			<table class="col-xs-12 text-center">
+			<table class="col-xs-12 text-center" id="communityTbl">
 				<tr>
 					<th class="col-xs-2 col-md-2">No</th>
 					<th class="col-xs-5 col-md-5">커뮤니티 코드</th>
@@ -85,9 +115,10 @@
 					<tr style="cursor: pointer;" onclick="detailSearch('${result.community_type_code}')">
 						<td>${result.num }</td>
 						<td>${result.community_type_code}</td>
-						<td>${result.community_type_name}</td>
+						<td id="tdid${result.community_type_code}">${result.community_type_name}</td>
 					</tr>
 				</c:forEach>
+				<tbody></tbody>
 			</c:if>
 			
 				
@@ -100,7 +131,7 @@
 						커뮤니티 코드
 					</div>
 					<div class="col-xs-4 col-md-3">
-						<input type="text" class="form-control" style="width: 200px;" readonly="readonly">
+						<input type="text" class="form-control" style="width: 200px;" readonly="readonly" id="community_code">
 					</div>
 				
 				</div>
@@ -109,7 +140,7 @@
 						커뮤니티 명
 					</div>
 					<div class="col-xs-6 col-md-3">
-						<input type="text" class="form-control" style="width: 200px; text-align: left;">
+						<input type="text" class="form-control" style="width: 200px; text-align: left;" id="community_name">
 					</div>
 				
 				</div>
@@ -119,7 +150,7 @@
 					<div class="col-md-6"></div>
 					<div class="col-md-6" style="margin-top: 60px;">
 						<div class="col-xs-3 col-md-3"></div>
-						<div class="col-xs-3 col-md-3 text-right"><button class="btn btn-default" style="width: 70px;">신규</button></div>
+						<div class="col-xs-3 col-md-3 text-right"><button class="btn btn-default" style="width: 70px;" id="newBtn" type="button">신규</button></div>
 						<div class="col-xs-3 col-md-3 text-right"><button class="btn btn-default" style="width: 70px;">저장</button></div>
 						<div class="col-xs-3 col-md-3 text-right"><button class="btn btn-default" style="width: 70px;">취소</button></div>
 					</div>
