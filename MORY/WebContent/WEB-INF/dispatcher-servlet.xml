@@ -15,7 +15,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
 	</bean>
-	 -->
+ -->
 	<!-- RemoteData -->
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
@@ -104,11 +104,20 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <!-- 아영이 끝  -->
 
 <!-- 관리자 신지섭  -->
+
 <!-- User DAO 생성  -->
 	 <bean id="Admin_userDAO" class="com.kh.mory.Dao.Admin_UserDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean> 
-
+<!-- Declaration DAO 생성  -->
+	<bean id="Admin_DeclarationuserDAO" class="com.kh.mory.Dao.Admin_DeclarationUserDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>	
+	
+	
+	<!-- DAO 생성 부분 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+	
+	<!-- 계정관리 카테고리  -->
 	<!-- 유저조회Controller  -->
  	<bean name="/userlist.do" class="com.kh.mory.Controller.Admin_UserListController">
  	 	<property name="dao" ref="Admin_userDAO"></property>
@@ -119,22 +128,25 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  			<property name="dao" ref="Admin_userDAO"></property>
  	</bean> 
  	
- 	
- 	<!-- 유저상세조회  -->
- 	<bean name="/detailuserlist.do" class="com.kh.mory.Controller.Admin_DetailUserListController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
- 	</bean> 
- 	
- 	
  	<!-- 신고조회 뉴스피드 -->
  	<bean name="/declarationnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DeclarationNewSpeedUserListController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
- 	</bean> 
- 	<!-- 상세신고조회 뉴스피드 -->
- 	<bean name="/detailnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DetailNewSpeedUserListController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>   
+ 	
+ 	
+ 	
+ 	<!-- DeclarationUser뉴스피드 검색(검색기간 , 아이디 ,조회유형) -->
+	<bean name="/declaration.do" class="com.kh.mory.Controller.Admin_DetailNewSpeedUserListController">
+ 				<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
  	</bean> 
  	
+ 	<!-- 	DeclarationUser커뮤니티 검색(검색기간 , 아이디 ,조회유형) -->
+	<bean name="/declarationcommunity.do" class="com.kh.mory.Controller.Admin_DeclarationCommunityUserListController">
+ 				<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- 고객센터 카테고리  -->
  	
  	<!-- 블라인드 조회-->
  	<bean name="/bliduser.do" class="com.kh.mory.Controller.Admin_BlidUserController">
@@ -167,6 +179,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<!-- 	<property name="dao" ref="User"></property> -->
  	</bean>  
  	<!-- 관리자 끝 -->
+ 	
+ 	
+ 	
+ 	
  	
  	<!--김민준 김진호  -->
  		<bean id="diaryDAO" class="com.mory.dao.DiaryDAO">
