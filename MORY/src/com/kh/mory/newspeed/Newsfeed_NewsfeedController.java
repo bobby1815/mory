@@ -27,7 +27,7 @@ public class Newsfeed_NewsfeedController implements Controller
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if (request.getRequestURI().indexOf("newspeedinsert.do") > -1)
+		if (request.getRequestURI().indexOf("newsfeedinsert.do") > -1)
 		{
 			request.setCharacterEncoding("UTF-8");
 			
@@ -45,16 +45,16 @@ public class Newsfeed_NewsfeedController implements Controller
 			try
 			{
 				req = new MultipartRequest(request, path, maxFileSize, encType, new DefaultFileRenamePolicy());
-				
 				String write_cont = request.getParameter("write_cont");
-				
-				
 			} catch (Exception e)
 			{
 				System.out.println(e.toString());
 			}
-			
-			
+
+		}
+		else if (request.getRequestURI().indexOf("newsfeedlist.do") > -1)
+		{
+			mav.setViewName("WEB-INF/newsfeed/NewsFeed_Input.jsp");
 		}
 		
 		return mav;

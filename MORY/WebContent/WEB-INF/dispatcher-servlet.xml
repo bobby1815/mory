@@ -97,7 +97,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
 	<!-- 뉴스피드 컨트롤러 -->
-	<bean name="/newspeed*.do" class="com.kh.mory.newspeed.Newsfeed_NewsfeedController">
+	<bean name="/newsfeed*.do" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedController">
 		
 	</bean>
 	
