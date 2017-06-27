@@ -84,7 +84,7 @@ width: 200px;
 </head>
 <body>
 <div class="container"  id="container">
-      <div class="row " id="all0">
+      <!-- <div class="row " id="all0">
       <div class="col-xs-1  col-md-1"  id="h1"></div>
       <div class="col-xs-10 col-md-10" id="h2" >
             <div class="col-xs-2 col-md-2">
@@ -112,7 +112,8 @@ width: 200px;
             
       </div>
             <div class="col-xs-1 col-md-1"  id="h3"></div>
-</div>       
+</div>        -->
+	<c:import url="../main/Mainmenu.jsp" />
       
    <!--    Center  --> 
       <div class="row " id="Center">

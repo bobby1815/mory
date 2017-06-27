@@ -15,7 +15,6 @@
 
 <script type="text/javascript">
 
-
 function myFunction(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
@@ -23,6 +22,18 @@ function myFunction(id) {
     } else { 
         x.className = x.className.replace(" w3-show", "");
     }
+}
+
+function searchId()
+{
+	var search = document.getElementById("search").value;
+	if(search=="")
+		{
+		alert("검색할 닉네임을 입력해 주세요");
+		return;
+		}
+	
+	return ; 
 }
 
 </script>
@@ -47,36 +58,9 @@ width: 200px;
 </head>
 <body>
 <div class="container"  id="container">
-      <div class="row " id="all0">
-      <div class="col-xs-1  col-md-1"  id="h1"></div>
-      <div class="col-xs-10 col-md-10" id="h2" >
-            <div class="col-xs-2 col-md-2">
-               <button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
-               class="btn btn-primary" onclick="location.href='loginmain.do'" >뉴스피드</button>
-            </div>
-            <div class="col-xs-2 col-md-2">   
-               <button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
-               class="btn btn-primary"  onclick="location.href='diary.do'">다이어리</button>
-            </div>
-            <div class="col-xs-4 col-md-4"style="text-align: center;">   
-               <a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-                     <img src="img/Mory_logo.png" width="100"/>
-                       <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
-                   </a>
-               </div>
-               <div class="col-xs-2 col-md-2" style="">    
-                   <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;"
-                    class="btn btn-primary" onclick="location.href='communitymain.do'">커뮤니티</button>
-               </div>  
-               <div class="col-xs-2 col-md-2">
-               <button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;"
-                class="btn btn-primary" onclick="location.href='setmain.do'">환경설정</button>
-            </div>
-            
-      </div>
-            <div class="col-xs-1 col-md-1"  id="h3"></div>
-</div>   
-      
+<!--Header  -->   
+	<c:import url="../main/Mainmenu.jsp" />    
+ <!--Header End--> 
    <!--   Center  --> 
       <div class="row " id="Center">
       
@@ -109,27 +93,32 @@ width: 200px;
           
           <!-- Center middle -->
            <div class="col-md-6" id="b2_center" style="width: 50%; height: 700px;">
+        	<div style="padding-left:20px;" align="middle">
+        	<img src="img/hihi.png" width="150px" alt="" />&nbsp;&nbsp;<img src="img/heyhey.png" alt="" width="150px" />
+        	</div>  			          	
+          	<div class="col-md-12" style="overflow:scroll;  margin-top: 100px; width: 100%;" >          		
+          		<form action="">	          	
+	          	
+	          	<div class="col-md-12" style="width: 100%;">
+	          	<input type="text" style="width: 60%;" placeholder="search" />
+	          	<span id="search" class="glyphicon glyphicon-search btn-lg" style="width: 30%;" onclick="searchId();">
+	          	</span>
+	          	</div>
+	          	
+	          	
+	          	<div class="col-md-12">
+	          	<table style=" width: 100%">
+	          		<tr>
+	          			<th>닉네임&nbsp;&nbsp;&nbsp;&nbsp;</th>
+	          			<th>메일주소&nbsp;&nbsp;&nbsp;&nbsp;</th>
+	          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
+	          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
+	          		</tr>
+	          		
+	          	</table>
+	          	</div>
           	
-          	<div class="col-md-12" style="  margin-top: 100px; width: 100%;" >
-          	<h2 style="text-align: center;">이웃 관리 가족 관리</h2>
-          	<div class="col-md-12" style="width: 100%;">
-          	<input type="text" value="search" style="width: 60%;" />
-          	<span class="glyphicon glyphicon-search btn-lg" style="width: 30%;" onclick="alert(1);">
-          	</span>
-          	</div>
-          	
-          	
-          	<div class="col-md-12">
-          	<table style="border:1px solid gray; width: 100%">
-          		<tr>
-          			<th>닉네임&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>메일주소&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          		</tr>
-          		
-          	</table>
-          	</div>
+          		</form>
           	
           	</div>
          
@@ -211,11 +200,11 @@ width: 200px;
       
       <!-- 세번째 row  -->
       <div class="row " id="Footer">
-            <div class="col-xs-1 col-md-1"  id="f1">f1</div>
+            <div class="col-xs-1 col-md-1"  id="f1"></div>
             
-            <div class="col-xs-10 col-md-10"  id="f2">f2</div>
+            <div class="col-xs-10 col-md-10"  id="f2"></div>
             
-            <div class="col-xs-1 col-md-1"  id="f3">f3</div>
+            <div class="col-xs-1 col-md-1"  id="f3"></div>
       </div>      
  
 </div>
