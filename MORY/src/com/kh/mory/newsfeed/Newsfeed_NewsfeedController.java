@@ -54,7 +54,7 @@ public class Newsfeed_NewsfeedController implements Controller
 		}
 		else if (request.getRequestURI().indexOf("newsfeedlist.do") > -1)
 		{
-			mav.setViewName("WEB-INF/newsfeed/NewsFeed_Input.jsp");
+			mav.setViewName("WEB-INF/newsfeed/NewsFeed_List.jsp");
 		}
 		
 		return mav;
