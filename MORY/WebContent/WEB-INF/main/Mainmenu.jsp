@@ -20,7 +20,7 @@
       <div class="col-xs-10 col-md-10" id="h2" >
             <div class="col-xs-2 col-md-2">
                <button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
-               class="btn btn-primary" onclick="location.href='loginmain.do'" >뉴스피드</button>
+               class="btn btn-primary" onclick="location.href='newsfeedlist.do'" >뉴스피드</button>
             </div>
             <div class="col-xs-2 col-md-2">   
                <button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 

@@ -51,8 +51,6 @@ public class Signup_UserDAO implements Signup_IUserDAO
 			
 			CallableStatement preparedStatement = connection.prepareCall(sql);
 			
-			System.out.println(dto.getUser_birth());
-			
 			preparedStatement.setString(1, dto.getUser_id());
 			preparedStatement.setString(2, dto.getGen_code());
 			preparedStatement.setString(3, dto.getUser_pw());

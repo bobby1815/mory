@@ -123,6 +123,15 @@ input
 			}
 		}
 	}
+	
+	$(document).ready(function()
+	{
+		$("#saveBtn").click(function()
+		{
+			$("#form").submit();
+		});
+	});
+	
 </script>
 
 
@@ -142,7 +151,7 @@ input
 
 
 		<!-- 	두번째 row  -->
-		<form action="newspeedinsert.do" method="post" enctype="multipart/form-data">
+		<form action="newsfeedinsert.do" method="post" enctype="multipart/form-data" id="form">
 		<div class="row " id="all1">
 			<div class="col-xs-1 col-md-1" id="b1">body1</div>
 
@@ -159,7 +168,7 @@ input
 	
 
 				<div>
-					<button type="button">작성완료</button>
+					<button type="button" id="saveBtn">작성완료</button>
 				</div>
 				<input type="file" name="profile_pt" id="profile_pt"onchange="previewImage(this,'divPeedPhoto')">
 
