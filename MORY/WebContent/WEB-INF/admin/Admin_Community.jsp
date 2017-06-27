@@ -36,10 +36,7 @@
 			$("#community_code").attr("value",array[0]);
 			$("#community_name").attr("value",array[1]);
 		});
-		
-		$("#community_code").attr("value",)
 	}	
-	
 	
 	$(document).ready(function()
 	{
@@ -60,8 +57,6 @@
 		{
 			$("#comm_name").html($("#community_name").val());
 		});
-		
-		
 	});
 
 </script>
