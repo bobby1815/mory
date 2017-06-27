@@ -1,4 +1,4 @@
-package com.kh.mory.newspeed;
+package com.kh.mory.newsfeed;
 
 import java.io.File;
 
