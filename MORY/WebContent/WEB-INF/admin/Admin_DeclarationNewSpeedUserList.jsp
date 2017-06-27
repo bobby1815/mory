@@ -106,12 +106,18 @@ $(document).ready(function()
 					</tr>
 				<c:forEach  var="result"  items="${declarationuser}">
 						<tr id="list">
-							<td>번호</td>
+							<td>${result.num }</td>
 							<td>${result.write_User_Id}</td>
 							<td>${result.write_Cont}</td>
 							<td>${result.write_Reg_Dtm }</td>
 							<td>${result.repo_Count}</td>
-							<td>처리결과</td>
+						<c:if test="${result.repo_Count >= '5' }">	
+							<td>블라인드 처리</td>
+						</c:if>
+						<c:if test="${result.repo_Count <= '5' }">	
+							<td>미처리</td>
+						</c:if>
+							
 						</tr>
 				</c:forEach>
 				</table>

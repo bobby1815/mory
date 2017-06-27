@@ -29,7 +29,8 @@ public class Admin_UserSeachController implements Controller
 		String name = request.getParameter("name");
 		
 		ArrayList<Admin_UserDTO> userList =  dao.QueryUser(value, name);
-		
+
+		System.out.println(userList.size());
 		modelAndView.addObject("result", userList);
 		modelAndView.setViewName("WEB-INF/admin/Admin_UserList.jsp");
 		

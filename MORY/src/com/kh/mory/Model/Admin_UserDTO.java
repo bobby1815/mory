@@ -20,6 +20,7 @@ public class Admin_UserDTO
 	private String zip_Code;			//우편번호
 	private String basic_Addr; 		//기본주소
 	private String detail_Addr;		 //상세주소
+	private int num;				//번호
 	
 	
 	//---사용자제재이력 주요변수 구성(TBL_USER_SANCTION)
@@ -242,5 +243,16 @@ public class Admin_UserDTO
 	{
 		this.acc_State_Name = acc_State_Name;
 	}
+
+	public int getNum()
+	{
+		return num;
+	}
+
+	public void setNum(int num)
+	{
+		this.num = num;
+	}
+	
 
 }

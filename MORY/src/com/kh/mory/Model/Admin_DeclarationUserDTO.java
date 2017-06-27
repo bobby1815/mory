@@ -11,6 +11,7 @@ public class Admin_DeclarationUserDTO
 	private String page_Code;
 	private String write_Cont;
 	private String write_Reg_Dtm;
+	private int num;
 	
 	
 	//TBL_뉴스피드---------------------------------------------------------------------
@@ -42,7 +43,7 @@ public class Admin_DeclarationUserDTO
 	private String repo_User_Id;
 	private String repo_Reason;
 	private String reg_Dtm;
-	private String repo_Count;
+	private int repo_Count;
 	
 	//TBL_신고 유형 구분--------------------------------------------------------------------
 	private String repo_Type_Name;
@@ -161,9 +162,15 @@ public class Admin_DeclarationUserDTO
 		return reg_Dtm;
 	}
 
-	public String getRepo_Count()
+
+	public int getRepo_Count()
 	{
 		return repo_Count;
+	}
+
+	public void setRepo_Count(int repo_Count)
+	{
+		this.repo_Count = repo_Count;
 	}
 
 	public String getRepo_Type_Name()
@@ -281,14 +288,19 @@ public class Admin_DeclarationUserDTO
 		this.reg_Dtm = reg_Dtm;
 	}
 
-	public void setRepo_Count(String repo_Count)
-	{
-		this.repo_Count = repo_Count;
-	}
-
 	public void setRepo_Type_Name(String repo_Type_Name)
 	{
 		this.repo_Type_Name = repo_Type_Name;
+	}
+
+	public int getNum()
+	{
+		return num;
+	}
+
+	public void setNum(int num)
+	{
+		this.num = num;
 	}
 	
 	

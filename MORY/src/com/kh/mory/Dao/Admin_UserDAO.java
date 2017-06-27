@@ -54,7 +54,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		
 
 		String sql =	
-			" SELECT  U.USER_ID AS USER_ID, U.USER_NAME AS USER_NAME , U.USER_NIC  AS USER_NIC,U.USER_EMAIL AS USER_EMAIL " 
+			" SELECT ROWNUM AS NUM, U.USER_ID AS USER_ID, U.USER_NAME AS USER_NAME , U.USER_NIC  AS USER_NIC,U.USER_EMAIL AS USER_EMAIL " 
 			+" ,U.USER_TEL AS USER_TEL , U.BASIC_ADDR AS BASIC_ADDR "  
 			+"  ,U.DETAIL_ADDR AS DETAIL_ADDR , " 
 			+" U.USER_BIRTH AS USER_BIRTH, "
@@ -71,6 +71,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 			while (rs.next())
 			{
 				Admin_UserDTO userDTO=new Admin_UserDTO();
+				userDTO.setNum(rs.getInt("NUM"));
 				userDTO.setUser_Id(rs.getString("USER_ID"));
 				userDTO.setUser_Name(rs.getString("USER_NAME"));
 				userDTO.setUser_Nic(rs.getString("USER_NIC"));

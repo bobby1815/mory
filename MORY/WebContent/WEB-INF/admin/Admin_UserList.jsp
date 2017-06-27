@@ -88,16 +88,26 @@
 				</tr>
 				
 				<c:forEach   var="result"   items="${result}">
-								<tr id="list" style="text-align: center;">
-										<td>번호</td>
-										<td>${result.user_Id }</td>
-										<td>${result.user_Name }</td>
-										<td>${result.user_Nic }</td>
-										<td>${result.user_Tel }</td>
-										<td>${result.basic_Addr }</td>
-										<td>${result.sanc_Type_Name }</td>
-										
-								</tr>
+					<c:choose>
+						<c:when test="${result >='1'}">
+							<tr id="list" style="text-align: center;">
+								<td>${result.num }</td>
+								<td>${result.user_Id }</td>
+								<td>${result.user_Name }</td>
+								<td>${result.user_Nic }</td>
+								<td>${result.user_Tel }</td>
+								<td>${result.basic_Addr }</td>
+								<td>${result.sanc_Type_Name }</td>
+							</tr>
+						</c:when>	
+						<c:when test="${result=='0'}">
+							<tr>
+								<td colspan="7">
+										<p>조회하신 목록이 없습니다.</p>
+								</td>
+							<tr>
+						</c:when>
+					</c:choose>
 				</c:forEach>
 			</table>
 		</div>

@@ -37,13 +37,13 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		{
 			//뉴스피드 신고 조회
 			sql= String.format(
-					" SELECT W.WRITE_USER_ID AS WRITE_USER_ID , W.WRITE_CONT,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
+					" SELECT ROWNUM AS NUM,W.WRITE_USER_ID AS WRITE_USER_ID , W.WRITE_CONT,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
 					+" (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ "
 					+" ) AS REPO_COUNT "  
 					+" FROM TBL_USER U JOIN TBL_WRITE W "
 					+" ON U.USER_ID=W.WRITE_USER_ID " 
-					+" JOIN TBL_NEWSPEED N "
-					+" ON W.WRITE_SEQ=N.PEED_SEQ "
+					+" JOIN TBL_NEWSFEED N "
+					+" ON W.WRITE_SEQ=N.FEED_SEQ "
 					+" JOIN TBL_PAGE P ON P.PAGE_CODE=W.PAGE_CODE " 
 					+" WHERE W.PAGE_CODE='N' AND W.WRITE_USER_ID LIKE '%%"+Id+"%%' AND W.WRITE_REG_DTM LIKE '%%"+select+"%%'");
 					
@@ -53,7 +53,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		{
 			//커뮤니티 신고 조회
 			sql= String.format(
-					" SELECT W.WRITE_USER_ID AS WRITE_USER_ID,B.COMMUNITY_TYPE_NAME AS COMMUNITY_TYPE_NAME "
+					" SELECT ROWNUM AS NUM ,W.WRITE_USER_ID AS WRITE_USER_ID,B.COMMUNITY_TYPE_NAME AS COMMUNITY_TYPE_NAME "
 					+" ,C.COMMUNITY_TITLE AS COMMUNITY_TITLE ,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
 					+" (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ "
 					+" ) AS REPO_COUNT " 
@@ -65,7 +65,6 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 			
 		}	
 		
-		System.out.println(sql);
 		ResultSet rs =  stmt.executeQuery(sql);
 		
 		
@@ -77,19 +76,21 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 			//-- 커뮤니티일때
 			if (term.equals("2"))
 			{
+				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
 				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
 				admin_DeclarationUserDTO.setCommunity_Type_Name(rs.getString("COMMUNITY_TYPE_NAME"));
 				admin_DeclarationUserDTO.setCommunity_Title(rs.getString("COMMUNITY_TITLE"));
 				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
-				admin_DeclarationUserDTO.setRepo_Count(rs.getString("REPO_COUNT"));
+				admin_DeclarationUserDTO.setRepo_Count(rs.getInt("REPO_COUNT"));
 			}
 			//-- 뉴스피드일때
 			else if(term.equals("1"))
 			{
+				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
 				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
 				admin_DeclarationUserDTO.setWrite_Cont(rs.getString("WRITE_CONT"));
 				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
-				admin_DeclarationUserDTO.setRepo_Count(rs.getString("REPO_COUNT"));
+				admin_DeclarationUserDTO.setRepo_Count(rs.getInt("REPO_COUNT"));
 			}
 			
 			result.add(admin_DeclarationUserDTO);
