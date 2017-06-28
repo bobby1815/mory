@@ -28,7 +28,6 @@ function myFunction(id) {
 </script>
 <style type="text/css">
 
-
 #setup_th
 {
 width: 200px;
@@ -80,75 +79,82 @@ width: 200px;
 	           </tr>
            </table>
            </div> 
-          
+          				
           <!-- Center middle -->
            <div class="col-md-6" id="b2_center" style="width: 50%; height: 700px;">
           	
-          	<div class="col-md-12" style="  margin-top: 100px; width: 100%;" >
-          	<h2 style="text-align: center;">이웃 관리 가족 관리</h2>
-          	<div class="col-md-12" style="width: 100%;">
-          	<input type="text" value="search" style="width: 60%;" />
-          	<span class="glyphicon glyphicon-search btn-lg" style="width: 30%;" onclick="alert(1);">
-          	</span>
+          	<div class="col-md-12" style="  margin-top: 10px; width: 100%;" >
+          	<div align="middle" style="margin-bottom: 50px;">
+          		<img src="img/searchUser.png" align="middle" width="200px" />
           	</div>
+          	<form action="searchuser.do" method="post">
+          		
+          	<div class="col-md-12" style="width: 100%;">
+          	<input type="text" name="user_Id" style="width: 60%;" placeholder="search" />
+          	<button type="submit" class="btn btn-default">검색</button>
+          	</div>
+          	</form>
           	
           	
           	<div class="col-md-12">
-          	<table style="border:1px solid gray; width: 100%">
+          	<table style="width: 100%" >
+          		
+          		<tbody>
+          		<c:forEach var="list" items="${userlist }">
           		<tr>
-          			<th>닉네임&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>메일주소&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          		<td><img src="img/1497890377_female-silhouette-sunglasses.png"  width="30px"/></td>
+          			<td>${list.user_id }</td>
+          			<td style="color:gray;">${list.user_nic }</td>
+          			<td><img src="img/neighbor_non.png" width="30px" onclick="location.href='hi.do'"/></td>
           		</tr>
           		
+          		</c:forEach>
+          		
+          		</tbody>
+         		
           	</table>
           	</div>
           	
           	</div>
          
           	<div id="Neighbor_other" class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
-          	 	<h1>이웃이웃</h1>
-         	 <ul class="list-group">
-			    <c:forEach var="neighbor" items="${neighberlist }">
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> ${neighbor.user_id } </li>
-			    
-			    
-			    
-			    
-			    <!-- <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영</li>
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 민혜</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 임 재균</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용</li>
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎 </li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 오 동연 </li>
-			     -->
-			    </c:forEach>
+          	 <div align="middle">
+          		<img src="img/hi.png"  width="100px" />
+          		</div>
+         	 <ul class="list-group" style="margin-top: 10px;">
+			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영 <img src="img/neighbor_hihey.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 민혜 <img src="img/neighbor_hihey.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 임 재균  <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준 <img src="img/neighbor_hihey.png" width="20px"/></li>
+			   <!--  <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호 <img src="img/neighbor_hihey.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용 <img src="img/neighbor_hi.png" width="20px"/></li>
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎<img src="img/neighbor_hi.png" width="20px"/> </li>
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 오 동연<img src="img/neighbor_hi.png" width="20px"/> </li> -->
 			  </ul>
           	</div>
 
 			     	
           	<div id="Neigher_me" class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
-          	<h1>기웃기웃</h1>     
-          	<ul class="list-group">
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민</li>
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용</li>
-			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎 </li>
+          		<div align="middle">
+          		<img src="img/hey.png"  width="100px" />
+          		</div>
+          	<ul class="list-group" style="margin-top: 10px;">
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준 <img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용<img src="img/neighbor_hey.png" width="20px"/></li>
+			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎<img src="img/neighbor_hey.png" width="20px"/> </li>
 			  </ul>
           	</div>
           	</div>

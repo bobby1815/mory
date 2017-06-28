@@ -52,7 +52,7 @@ public class Newsfeed_NewsfeedController implements Controller
 			String root = request.getServletContext().getRealPath("/");
 			String path = root + "newsfeedupload";
 			
-			//System.out.println(path);
+			 System.out.println(path);
 			// C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload
 			
 			// 저장 디렉터리(폴더)가 존재하지 않으면 생성
