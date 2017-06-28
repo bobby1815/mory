@@ -47,7 +47,7 @@ p
 			<c:forEach var="dto" items="${list }">
 				<div class="col-xs-12 col-md-12" style="text-align: center;">
 					<p id="user_id">${dto.write_user_id } </p>
-					<img class="uplo" src="/MORY/newsfeedupload/${dto.uplo_loca }">
+					<img class="uplo" src="/newsfeedupload/${dto.uplo_loca }">
 					<p>${dto.write_cont }</p>
 					<p>${dto.feed_love_cnt }</p>
 					<p>댓글염</p>
