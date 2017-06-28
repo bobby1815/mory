@@ -110,7 +110,13 @@ width: 200px;
           	<div id="Neighbor_other" class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
           	 	<h1>이웃이웃</h1>
          	 <ul class="list-group">
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영</li>
+			    <c:forEach var="neighbor" items="${neighberlist }">
+			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> ${neighbor.user_id } </li>
+			    
+			    
+			    
+			    
+			    <!-- <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영</li>
 			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 민혜</li>
 			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 임 재균</li>
 			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
@@ -124,8 +130,8 @@ width: 200px;
 			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용</li>
 			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎 </li>
 			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 오 동연 </li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 동건 </li>
-			    
+			     -->
+			    </c:forEach>
 			  </ul>
           	</div>
 
