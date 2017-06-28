@@ -84,19 +84,20 @@
 			
 				<tr>
 					<th class="col-xs-1 col-md-1">No</th>
+					<th class="col-xs-1 col-md-1">커뮤니티</th>
 					<th class="col-xs-1 col-md-1">아이디</th>
 					<th class="col-xs-1 col-md-1">내용</th>
 					<th class="col-xs-1 col-md-1">작성일</th>
 					<th class="col-xs-1 col-md-1">신고횟수</th>
 				</tr>
-				
-			<c:forEach var="lists" items="${lists }">	
+			<c:forEach var="lists" items="${lists}">	
 				<tr>
-					<td>${lists.num}</td>
-					<td>${lists.write_User_Id }</td>
-					<td>${lists.write_Cont }</td>
-					<td>${lists.write_Reg_Dtm }</td>
-					<td>${lists.repo_Count }</td>
+					<td>${lists.num }</td>
+					<td>${lists.community_Type_Name }</td>
+					<td>${lists.write_User_Id}</td>
+					<td>${lists.write_Cont}</td>
+					<td>${lists.write_Reg_Dtm}</td>
+					<td>${lists.repo_Count}</td>
 				</tr>
 			</c:forEach> 
 			</table>

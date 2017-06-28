@@ -15,7 +15,16 @@
 <link rel="stylesheet" href="../css/Mainmenu.css" />
 <style type="text/css">
 
-
+.uplo
+{
+	width: 100%;
+	height: auto;
+	background-size: contain;
+} 
+p
+{
+	text-align: left;
+}
 </style>
 </head>
 <body>
@@ -29,27 +38,27 @@
 
 
 		<!-- 	두번째 row  -->
-		<form action="newspeedlist.do" method="post" enctype="multipart/form-data">
 		<div class="row " id="all1">
 			<div class="col-xs-1 col-md-1" id="b1">body1</div>
 
 			<div class="col-xs-10 col-md-10" id="b2">
-				
-			<div>
-				<div><p id="user_id" >작성자</p></div>
-				<div><p id="photo">사진</p></div>
-				<div><p>내용</p></div>
-				<div><p>사랑해욧ㅇ</p></div>
-				<div><p>댓글염</p></div>
-			</div>
+			<a href="newsfeedinsertform.do">게시물작성</a>
 			
+			<c:forEach var="dto" items="${list }">
+				<div class="col-xs-12 col-md-12" style="text-align: center;">
+					<p id="user_id">${dto.write_user_id } </p>
+					<img class="uplo" src="/MORY/newsfeedupload/${dto.uplo_loca }">
+					<p>${dto.write_cont }</p>
+					<p>${dto.feed_love_cnt }</p>
+					<p>댓글염</p>
+				</div>
+			</c:forEach>
 
 
 			</div>
 
 			<div class="col-xs-1 col-md-1" id="b3">body3</div>
 		</div>
-		</form>
 
 
 

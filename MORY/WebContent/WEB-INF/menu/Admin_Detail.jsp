@@ -13,20 +13,43 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+		function detailsearch(user_Id) 
+		{
+			$.post("usersearch.do",{user_Id:user_Id},function(data){
+				//alert(data);
+				var array =data.split(",");
+				$("#user_id").attr("value",array[0])
+				$("#user_name").attr("value",array[1])
+				$("#user_nic").attr("value",array[2])
+				$("#user_basic").attr("value",array[3])
+				$("#user_detail").attr("value",array[4])
+				$("#user_tel").attr("value",array[5])
+				$("#user_mail").attr("value",array[6])
+				$("#user_birth").attr("value",array[7])
+				$("#user_astate").attr("value",array[8])
+				$("#user_sstate").attr("value",array[9])
+			});
+			$("#lista").fadeToggle();	
+			
+		}
+	
+</script>
 </head>
 <body>
 
 <div class="container">
 		<div class="col-md-12" style="margin-top: 20px;">
 				<div class="col-md-8">
-						<div class="col-xs-2 col-md-2">아이디 </div>
-						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" style="" readonly="readonly"></div>
+						<div class="col-xs-2 col-md-2" >아이디 </div>
+						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" id="user_id"  readonly="readonly"></div>
 						<div class="row col-xs-2 col-md-2">이름 </div>
-						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" style="" readonly="readonly"></div>
+						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" id="user_name" readonly="readonly"></div>
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<div class="col-xs-4 col-md-4">닉네임 </div>
-					<div class="col-xs-8 col-md-8"><input type="text" class="form-control" style="width: " readonly="readonly"></div>
+					<div class="col-xs-8 col-md-8"><input type="text" class="form-control" id="user_nic" readonly="readonly"></div>
 				</div>
 		</div>
 		
@@ -35,13 +58,13 @@
 		
 			<div class="col-xs-8 col-md-8">
 				<div class="col-xs-2 col-md-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주소</div>
-				<div class="col-xs-1 col-md-4"><input type="text" class="form-control" style="margin-left: 15px;" readonly="readonly"></div>
-				<div class="col-xs-1 col-md-6"><input type="text" class="form-control" style="width: 300px;" readonly="readonly"></div>
+				<div class="col-xs-1 col-md-4"><input type="text" class="form-control" id="user_basic"  style="margin-left: 15px;" readonly="readonly"></div>
+				<div class="col-xs-1 col-md-6"><input type="text" class="form-control" id="user_detail"  style="width: 310px;" readonly="readonly"></div>
 			</div>
 			
 			<div class="col-xs-2 col-md-4" >
-					<div class="col-xs-4 col-md-4">닉네임 </div>
-					<div class="col-xs-5 col-md-8"><input type="text" class="form-control" style="margin-left: 15px;" readonly="readonly"></div>
+					<div class="col-xs-4 col-md-4">전화번호</div>
+					<div class="col-xs-5 col-md-8"><input type="text" class="form-control" id="user_tel" style="margin-left: 15px;" readonly="readonly"></div>
 				</div>
 			
 		</div>
@@ -49,9 +72,9 @@
 		<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
 				<div class="col-xs-8 col-md-8">
 						<div class="col-xs-2 col-md-2">이메일 </div>
-						<div class="col-xs-4 col-md-4"><input type="text" class="form-control" style="" readonly="readonly"></div>
+						<div class="col-xs-4 col-md-4"><input type="text" class="form-control" id="user_mail" readonly="readonly"></div>
 						<div class="row col-xs-2 col-md-2">생년월일 </div>
-						<div class="col-xs-4 col-md-4"><input type="text" class="form-control" style="" readonly="readonly"></div>
+						<div class="col-xs-4 col-md-4"><input type="text" class="form-control" id="user_birth" readonly="readonly"></div>
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<div class="col-xs-4 col-md-4">제재상태</div>
@@ -70,21 +93,18 @@
 						<div class="col-xs-2 col-md-7"></div>
 						<div class="row col-xs-3  col-md-2">계정상태 </div>
 						<div class="col-xs-1 col-md-3">
-							<select class="form-control" style="width:210px;">
+						<!-- 	<select class="form-control" style="width:210px;" id="user_astate">
 								<option>3일 정지</option>
 								<option>5일 정지</option>
 								<option>영구 정지</option>
-							</select>
+							</select> -->
+							<input type="text" id="user_astate" class="form-control" readonly="readonly"style="margin-left: 10px;">
 						</div>
 				</div>
 				<div class="col-xs-5 col-md-5">
 					<div class="col-xs-4 col-md-5 text-right" >제재이전상태</div>
 					<div class="col-xs-4 col-md-6 text-left">
-						<select class="form-control" style="margin-left:25px; width: 190px;">
-								<option>활동 중</option>
-								<option>회원탈퇴</option>
-								<option>탈퇴유예</option>
-						</select>
+						<input type="text" class="form-control" id="user_sstate" style="margin-left: 25px;" readonly="readonly">
 					</div>
 				</div>
 		</div>

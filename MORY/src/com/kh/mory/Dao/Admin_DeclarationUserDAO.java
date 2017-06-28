@@ -1,6 +1,7 @@
 package com.kh.mory.Dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,6 +23,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		this.dataSource = dataSource;
 	}
 
+	//-- 신고목록 조회
 	@Override
 	public ArrayList<Admin_DeclarationUserDTO> DeclarationSearchList(String term, String Id, String select)
 			throws SQLException
@@ -66,7 +68,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		}	
 		
 		ResultSet rs =  stmt.executeQuery(sql);
-		
+		System.out.println(sql);
 		
 		
 		while (rs.next())
@@ -102,5 +104,96 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		
 		return result;
 	}
+
+	//-- 신고 Ajax 조회
+	@Override
+	public Admin_DeclarationUserDTO AjaxSearchUser(String userid) throws SQLException
+	{
+		Connection conn = dataSource.getConnection();
+		Admin_DeclarationUserDTO dto = new Admin_DeclarationUserDTO();
+		String sql = 
+				"";
+		
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, userid);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next())
+		{
+				
+				
+				
+				
+				
+			
+		}
+		
+		return dto;
+	}
+	
+
+	//-- 블라인드 조회
+	@Override
+	public ArrayList<Admin_DeclarationUserDTO> BlindSearchList(String term, String Id, String select) throws SQLException
+	{
+		Connection conn =dataSource.getConnection();
+		ArrayList<Admin_DeclarationUserDTO> result = new ArrayList<Admin_DeclarationUserDTO>();
+		Statement stmt = conn.createStatement();
+		String sql=" ";
+		
+		if (select.equals("1"))
+		{
+			sql = "select ROWNUM AS NUM ,WRITE_USER_ID,WRITE_CONT,TO_CHAR( WRITE_REG_DTM,'YY-MM-DD') AS WRITE_REG_DTM,REPO_COUNT "
+				+ " FROM DNEWSFEEDVIEW "
+				+" WHERE PAGE_CODE='N' AND WRITE_USER_ID LIKE '%%"+Id+"%%' AND WRITE_REG_DTM LIKE '%%"+term+"%%' AND REPO_COUNT >5 "; 
+			
+		}
+		else if (select.equals("2"))
+		{
+			
+			sql ="SELECT ROWNUM AS NUM , COMMUNITY_TYPE_NAME,WRITE_USER_ID,WRITE_CONT,TO_CHAR( WRITE_REG_DTM,'YY-MM-DD') AS WRITE_REG_DTM,REPO_COUNT "
+				+" FROM DCOMMUNITYVIEW "
+				+" WHERE REPO_COUNT > 10   AND write_user_id LIKE '%%"+Id+"%%' ";
+		}
+		ResultSet rs = stmt.executeQuery(sql);
+		while (rs.next())
+		{
+			Admin_DeclarationUserDTO admin_DeclarationUserDTO = new Admin_DeclarationUserDTO();
+			
+			//--뉴스피드일때
+			if (select.equals("1"))
+			{
+				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
+				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
+				admin_DeclarationUserDTO.setWrite_Cont(rs.getString("WRITE_CONT"));
+				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
+				admin_DeclarationUserDTO.setRepo_Count(rs.getInt("REPO_COUNT"));
+				
+			
+				result.add(admin_DeclarationUserDTO);
+			}
+			
+			//--커뮤니티 일때
+			else if (select.equals("2"))
+			{
+				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
+				admin_DeclarationUserDTO.setCommunity_Type_Name(rs.getString("COMMUNITY_TYPE_NAME"));
+				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
+				admin_DeclarationUserDTO.setWrite_Cont(rs.getString("WRITE_CONT"));
+				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
+				admin_DeclarationUserDTO.setRepo_Count(rs.getInt("REPO_COUNT"));
+				
+				result.add(admin_DeclarationUserDTO);
+			}
+		}
+		conn.close();
+		stmt.close();
+		rs.close();
+		
+		return result;
+	}
+	
+	
 
 }

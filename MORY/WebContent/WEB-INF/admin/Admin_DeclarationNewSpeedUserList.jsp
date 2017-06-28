@@ -19,14 +19,14 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() 
+/* $(document).ready(function() 
 		{
 			$("#list").click(function() 
 			{
 				$("#lista").fadeToggle();
 			});
 			
-		});
+		}); */
 </script>
 <style>
     a{color:black;}
@@ -105,7 +105,7 @@ $(document).ready(function()
 						<th class="col-xs-1 col-md-1">처리결과</th>
 					</tr>
 				<c:forEach  var="result"  items="${declarationuser}">
-						<tr id="list">
+						<tr id="list" style="text-align: center;" onclick="declaration('${result.write_User_Id}')">
 							<td>${result.num }</td>
 							<td>${result.write_User_Id}</td>
 							<td>${result.write_Cont}</td>

@@ -79,6 +79,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
+	<bean id="feedDao" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
 	<!-- 메인 컨트롤러 -->
 	<bean name="/*main.do" class="com.kh.mory.main.Main_MainController">
 		<property name="userDao" ref="userDao"></property>
@@ -98,7 +102,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- 뉴스피드 컨트롤러 -->
 	<bean name="/newsfeed*.do" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedController">
-		
+		<property name="feedDao" ref="feedDao"></property>
 	</bean>
 	
 <!-- 아영이 끝  -->
@@ -107,11 +111,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 <!-- User DAO 생성  -->
 	 <bean id="Admin_userDAO" class="com.kh.mory.Dao.Admin_UserDAO">
-		<property name="dataSource" ref="remoteDataSource"></property>
+			<property name="dataSource" ref="remoteDataSource"></property>
 	</bean> 
 <!-- Declaration DAO 생성  -->
 	<bean id="Admin_DeclarationuserDAO" class="com.kh.mory.Dao.Admin_DeclarationUserDAO">
-		<property name="dataSource" ref="remoteDataSource"></property>
+			<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>	
 	
 	
@@ -120,29 +124,42 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- 계정관리 카테고리  -->
 	<!-- 유저조회Controller  -->
  	<bean name="/userlist.do" class="com.kh.mory.Controller.Admin_UserListController">
- 	 	<property name="dao" ref="Admin_userDAO"></property>
+ 	 		<property name="dao" ref="Admin_userDAO"></property>
  	</bean> 
+ 	
+ 	<!-- 계정Detail검색  -->
+ 	<bean name="/usersearch.do" class="com.kh.mory.Controller.Admin_UserlistSearchController">
+ 			<property name="dao" ref="Admin_userDAO"></property>
+ 	</bean>
  	
  	<!-- UserSearchController(이름,닉네임,아이디,계정상태) -->
  	<bean name="/adminsearch.do" class="com.kh.mory.Controller.Admin_UserSeachController">
  			<property name="dao" ref="Admin_userDAO"></property>
  	</bean> 
+
+ 	
+ 	
  	
  	<!-- 신고조회 뉴스피드 -->
  	<bean name="/declarationnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DeclarationNewSpeedUserListController">
  		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
  	</bean>   
  	
- 	
- 	
  	<!-- DeclarationUser뉴스피드 검색(검색기간 , 아이디 ,조회유형) -->
 	<bean name="/declaration.do" class="com.kh.mory.Controller.Admin_DetailNewSpeedUserListController">
  				<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
  	</bean> 
  	
+ 	<!-- 신고계정 Detail검색(뉴스피드)  -->
+ 	<bean name="/declarationuser.do" class="com.kh.mory.Controller.Admin_DeclarationUserSeachController">
+ 	
+ 	</bean>
+ 	
+ 	
+ 	
  	<!-- 	DeclarationUser커뮤니티 검색(검색기간 , 아이디 ,조회유형) -->
 	<bean name="/declarationcommunity.do" class="com.kh.mory.Controller.Admin_DeclarationCommunityUserListController">
- 				<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 			<property name="dao" ref="Admin_DeclarationuserDAO"></property>
  	</bean>
  	
  	
@@ -150,8 +167,19 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	<!-- 블라인드 조회-->
  	<bean name="/bliduser.do" class="com.kh.mory.Controller.Admin_BlidUserController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
+ 		<!--  <property name="dao" ref="Admin_DeclarationuserDAO"></property>  -->
  	</bean> 
+ 	
+ 	<!-- 블라인드 뉴스피드 검색(검색기간 , 아이디 ,조회유형) -->
+ 	<bean name="/bliddetail.do" class="com.kh.mory.Controller.Admin_BlidDetailUserController">
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
+ 		<!-- 블라인드 커뮤니티 검색(검색기간 , 아이디 ,조회유형) -->
+ 	<bean name="/bliddetailcommunity.do" class="com.kh.mory.Controller.Admin_BlidDetailCommunityController">
+ 			<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
  	
  	<!-- 1:1문의 조회-->
  	<bean name="/question.do" class="com.kh.mory.Controller.Admin_QuestionController">
