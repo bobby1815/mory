@@ -12,6 +12,20 @@ public class Newsfeed_NewsfeedDTO
 	// 주요 속성 구성
 	private String whrite_seq, write_user_id, page_code, write_cont, write_reg_dtm, feed_seq, feed_love_cnt;
 
+	private String uplo_seq, write_seq, uplo_loca;
+	
+	private String user_nic;
+	
+	public String getUser_nic()
+	{
+		return user_nic;
+	}
+
+	public void setUser_nic(String user_nic)
+	{
+		this.user_nic = user_nic;
+	}
+
 	// getter / setter 구성
 	public String getWhrite_seq()
 	{
@@ -81,5 +95,36 @@ public class Newsfeed_NewsfeedDTO
 	public void setFeed_love_cnt(String feed_love_cnt)
 	{
 		this.feed_love_cnt = feed_love_cnt;
+	}
+	
+	// getter / setter 구성
+	public String getUplo_seq()
+	{
+		return uplo_seq;
+	}
+
+	public void setUplo_seq(String uplo_seq)
+	{
+		this.uplo_seq = uplo_seq;
+	}
+
+	public String getWrite_seq()
+	{
+		return write_seq;
+	}
+
+	public void setWrite_seq(String write_seq)
+	{
+		this.write_seq = write_seq;
+	}
+
+	public String getUplo_loca()
+	{
+		return uplo_loca;
+	}
+
+	public void setUplo_loca(String uplo_loca)
+	{
+		this.uplo_loca = uplo_loca;
 	}
 }

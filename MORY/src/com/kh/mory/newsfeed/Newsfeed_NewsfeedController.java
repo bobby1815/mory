@@ -37,13 +37,12 @@ public class Newsfeed_NewsfeedController implements Controller
 		HttpSession session = request.getSession();
 		// 세션에 저장된 사용자 ID
 		String user_id = (String)session.getAttribute("user_id");
-		System.out.println(user_id);
 		
-		if (request.getRequestURI().indexOf("newsfeed.do") > -1)
+		if (request.getRequestURI().indexOf("newsfeedinsertform.do") > -1)
 		{
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_Input.jsp");
 		}
-		
+		// 뉴스피드 인서트
 		else if (request.getRequestURI().indexOf("newsfeedinsert.do") > -1)
 		{
 			request.setCharacterEncoding("UTF-8");
@@ -53,19 +52,17 @@ public class Newsfeed_NewsfeedController implements Controller
 			String root = request.getServletContext().getRealPath("/");
 			String path = root + "newsfeedupload";
 			
-			System.out.println(path);
+			//System.out.println(path);
 			// C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload
 			
 			// 저장 디렉터리(폴더)가 존재하지 않으면 생성
 			File dir = new File(path);
-			if(!dir.exists())
-				dir.mkdirs();
+			if(!dir.exists()) dir.mkdirs();
 			
 			String encType = "UTF-8";	//-- 인코딩 박싱
 			int maxFileSize = 5*1024*1024;	//-- 전송 최대 사이즈
 			
 			MultipartRequest req = null;
-
 			try
 			{
 				req = new MultipartRequest(request, path, maxFileSize, encType, new DefaultFileRenamePolicy());
@@ -86,8 +83,12 @@ public class Newsfeed_NewsfeedController implements Controller
 				System.out.println(e.toString());
 			}
 		}
+		// 뉴스피드 조회
 		else if (request.getRequestURI().indexOf("newsfeedlist.do") > -1)
 		{
+			
+			mav.addObject("list",feedDao.newsFeedLists(user_id));
+			
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_List.jsp");
 		}
 		

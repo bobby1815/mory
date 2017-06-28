@@ -15,7 +15,16 @@
 <link rel="stylesheet" href="../css/Mainmenu.css" />
 <style type="text/css">
 
-
+.uplo
+{
+	width: 100%;
+	height: auto;
+	background-size: contain;
+} 
+p
+{
+	text-align: left;
+}
 </style>
 </head>
 <body>
@@ -33,16 +42,17 @@
 			<div class="col-xs-1 col-md-1" id="b1">body1</div>
 
 			<div class="col-xs-10 col-md-10" id="b2">
-				
-			<div>
-				<div><p id="user_id" >작성자</p></div>
-				<div><img alt="" src="C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload\KakaoTalk_20170624_152034872.jpg"></div>
-				<div><p>내용</p></div>
-				<div><p>사랑해욧ㅇ</p></div>
-				<div><p>댓글염</p></div>
-			</div>
-			<img src="C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload\KakaoTalk_20170624_152034872.jpg">
+			<a href="newsfeedinsertform.do">게시물작성</a>
 			
+			<c:forEach var="dto" items="${list }">
+				<div class="col-xs-12 col-md-12" style="text-align: center;">
+					<p id="user_id">${dto.write_user_id } </p>
+					<img class="uplo" src="/MORY/newsfeedupload/${dto.uplo_loca }">
+					<p>${dto.write_cont }</p>
+					<p>${dto.feed_love_cnt }</p>
+					<p>댓글염</p>
+				</div>
+			</c:forEach>
 
 
 			</div>
