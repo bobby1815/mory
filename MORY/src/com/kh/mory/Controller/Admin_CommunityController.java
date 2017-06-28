@@ -39,6 +39,7 @@ public class Admin_CommunityController implements Controller
 			
 			System.out.println(lists.size());
 			
+			
 			modelAndView.addObject("list", lists);
 			
 			modelAndView.setViewName("WEB-INF/admin/Admin_Community.jsp");

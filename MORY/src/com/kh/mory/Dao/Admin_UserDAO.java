@@ -27,7 +27,6 @@ public class Admin_UserDAO implements Admin_IUserDAO
 
 
 	// -- 계정조회(이름,닉네임,계정상태)조회
-	@SuppressWarnings("null")
 	@Override
 	public ArrayList<Admin_UserDTO> QueryUser(String user_Value, String user_Search) throws SQLException
 	{
@@ -162,7 +161,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		String sql =
 				" SELECT U.USER_ID AS USER_ID  ,U.USER_NAME AS USER_NAME "
 			       		+" ,U.USER_NIC AS USER_NIC  ,U.BASIC_ADDR AS BASIC_ADDR ,U.DETAIL_ADDR AS DETAIL_ADDR "
-			       		+" ,U.USER_TEL AS USER_TEL  ,U.USER_EMAIL AS USER_EMAIL  ,U.USER_BIRTH AS USER_BIRTH "
+			       		+" ,U.USER_TEL AS USER_TEL  ,U.USER_EMAIL AS USER_EMAIL  ,TO_CHAR(U.USER_BIRTH,'YY-MM-DD')AS USER_BIRTH "
 			       		+" ,ST.ACC_STATE_NAME AS ACC_STATE_NAME ,T.SANC_TYPE_NAME AS SANC_TYPE_NAME "
 				+" FROM TBL_USER U JOIN TBL_USER_SANCTION S"
 		                +" ON U.USER_ID = S.USER_ID" 
@@ -171,9 +170,10 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		                +" JOIN TBL_ACC_STATE ST"
 		                +" ON U.ACC_STATE_CODE=ST.ACC_STATE_CODE"
 				+" WHERE U.USER_ID=?";
+		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		Admin_UserDTO userDTO = new Admin_UserDTO();
-		pstmt.setString(1, userDTO.getUser_Id());
+		pstmt.setString(1, User_Id);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next())
 		{

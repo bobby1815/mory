@@ -13,33 +13,46 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<style type="text/css">
+<script type="text/javascript">
+	
+		function declaration(write_User_Id) 
+		{
+			//테스트
+			alert("헤헷");
+			 $.post("declarationuser.do",{write_User_Id:write_User_Id},function(data){
+				
+			});	  
+			
+			$("#lista").fadeToggle();
+		}
 
-</style>
+
+
+</script>
 </head>
 <body>
 <div class="container">
 		<div class="col-md-12" style="margin-top: 20px;">
 				<div class="col-md-6">
 					<div class="col-xs-1 col-md-3 text-center">신고자</div>
-					<div class="col-xs-2 col-md-3"><input type="text" class="form-control"style="width: 170px; "></div>
+					<div class="col-xs-2 col-md-3"><input type="text" class="form-control"  id="declaration_id" style="width: 170px; "></div>
 						
 				</div>
 				<div class="col-md-6">
 					<div class="col-xs-1 col-md-3 text-center">신고날짜</div>
-					<div class="col-xs-2 col-md-3"><input type="text" class="form-control"style="width: 170px; "></div>
+					<div class="col-xs-2 col-md-3"><input type="text" class="form-control" id="declaration_day"style="width: 170px; "></div>
 				</div>		
 		</div>
 		
 		<div class="col-md-12" style="margin-top: 20px;">
 				<div class="col-md-6">
 					<div class="col-xs-1 col-md-3 text-center">내용</div>
-					<div class="col-xs-2 col-md-3"><textarea rows="2" cols="40"></textarea> </div>
+					<div class="col-xs-2 col-md-3"><textarea rows="2" cols="40" id="declaration_"></textarea> </div>
 				</div>
 			
 				<div class="col-md-6">
 					<div class="col-xs-1 col-md-3 text-center">신고사유</div>
-					<div class="col-xs-2 col-md-3"><textarea rows="2" cols="40"></textarea> </div>
+					<div class="col-xs-2 col-md-3"><textarea rows="2" cols="40" id="declaration_"></textarea> </div>
 				</div>
 		</div>
 		
@@ -56,7 +69,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="col-xs-1 col-md-3 text-center">신고날짜</div>
-					<div class="col-xs-2 col-md-3"><input type="text" class="form-control"style="width: 170px; "></div>
+					<div class="col-xs-2 col-md-3"><input type="text" class="form-control" id="declaration_" style="width: 170px; "></div>
 				</div>		
 		</div>
 </div>
