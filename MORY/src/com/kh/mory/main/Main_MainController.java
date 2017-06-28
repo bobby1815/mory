@@ -78,7 +78,8 @@ public class Main_MainController implements Controller
 				session.setAttribute("page_code", userDto.getPage_code());
 				
 				modelAndView.addObject("userDto",userDto);
-				modelAndView.setViewName("WEB-INF/newsfeed/NewsFeed_Input.jsp");
+				modelAndView.setViewName("redirect:newsfeedlist.do");
+				//modelAndView.setViewName("redirect:newsfeed.do");
 			}
 			else	// 로그인 실패 
 			{

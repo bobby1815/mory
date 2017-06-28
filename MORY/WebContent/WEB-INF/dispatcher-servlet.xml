@@ -79,6 +79,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
+	<bean id="feedDao" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
 	<!-- 메인 컨트롤러 -->
 	<bean name="/*main.do" class="com.kh.mory.main.Main_MainController">
 		<property name="userDao" ref="userDao"></property>
@@ -98,7 +102,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- 뉴스피드 컨트롤러 -->
 	<bean name="/newsfeed*.do" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedController">
-		
+		<property name="feedDao" ref="feedDao"></property>
 	</bean>
 	
 <!-- 아영이 끝  -->

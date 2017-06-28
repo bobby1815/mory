@@ -29,7 +29,6 @@
 
 
 		<!-- 	두번째 row  -->
-		<form action="newspeedlist.do" method="post" enctype="multipart/form-data">
 		<div class="row " id="all1">
 			<div class="col-xs-1 col-md-1" id="b1">body1</div>
 
@@ -37,11 +36,12 @@
 				
 			<div>
 				<div><p id="user_id" >작성자</p></div>
-				<div><p id="photo">사진</p></div>
+				<div><img alt="" src="C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload\KakaoTalk_20170624_152034872.jpg"></div>
 				<div><p>내용</p></div>
 				<div><p>사랑해욧ㅇ</p></div>
 				<div><p>댓글염</p></div>
 			</div>
+			<img src="C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload\KakaoTalk_20170624_152034872.jpg">
 			
 
 
@@ -49,7 +49,6 @@
 
 			<div class="col-xs-1 col-md-1" id="b3">body3</div>
 		</div>
-		</form>
 
 
 
