@@ -221,15 +221,34 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	
  	<!--김민준 김진호  -->
- 		<bean id="diaryDAO" class="com.mory.dao.DiaryDAO">
-		<property name="dataSource" ref="remoteDataSource"></property>
+	<bean id="diaryDAO" class="com.kh.mory.DiaryDAO.DiaryDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean>
+	<bean id="commentDAO" class="com.kh.mory.DiaryDAO.CommentDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean>
+	<bean id="recommentDAO" class="com.kh.mory.DiaryDAO.RecommentDAO">
+		<property name="dataSource" ref="localDataSource"></property>
 	</bean>
 	
 	
-	<bean name="/diary.do" class="com.mory.controller.DiaryListController">
+	<bean name="/diary.do" class="com.kh.mory.Diarycontroller.Diary_ListController">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
- 	
+	
+	<bean name="/diaryinsert.do" class="com.kh.mory.Diarycontroller.Diary_InsertFormController">
+	</bean>
+	
+	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<bean name="/diarypost.do" class="com.kh.mory.Diarycontroller.Diary_ContentController">
+		<property name="dao" ref="diaryDAO"></property>
+		<property name="commentdao" ref="commentDAO" ></property>
+		<property name="recommentdao" ref="recommentDAO" ></property>
+		
+	</bean>
  	
  	<!-- 이용진 커퓨니티  -->
  	
