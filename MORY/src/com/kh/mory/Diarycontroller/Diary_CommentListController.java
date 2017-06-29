@@ -42,7 +42,7 @@ public class Diary_CommentListController implements Controller
 				
 				modelAndView.addObject(commentList);
 
-				modelAndView.setViewName("WEB-INF/Diary/DiaryPost.do?write_seq="+write_seq);
+				modelAndView.setViewName("WEB-INF/diary/DiaryPost.do?write_seq="+write_seq);
 
 			} catch (Exception e)
 			{

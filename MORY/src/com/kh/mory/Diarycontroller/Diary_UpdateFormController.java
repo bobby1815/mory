@@ -35,7 +35,7 @@ public class Diary_UpdateFormController implements Controller
 			
 			maAndView.addObject(diary);
 			
-			maAndView.setViewName("DiaryUpdateForm.jsp");
+			maAndView.setViewName("WEB-INF/diary/DiaryUpdateForm.jsp");
 			
 		} catch (Exception e)
 		{
