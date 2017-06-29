@@ -36,7 +36,6 @@ public class Admin_BlidDetailCommunityController implements Controller
 		
 		
 		
-		System.out.println(cblid);
 		modelAndView.addObject("lists",cblid);
 		modelAndView.setViewName("WEB-INF/admin/Admin_BlidCommunityUser.jsp");
 		return modelAndView;

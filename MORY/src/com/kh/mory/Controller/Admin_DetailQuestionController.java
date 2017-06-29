@@ -38,6 +38,7 @@ public class Admin_DetailQuestionController implements Controller
 		
 		ArrayList<Admin_QuestionDTO> list = dao.QueSearch(term, select, id);
 
+		System.out.println(list);
 		modelAndView.addObject("list",list);
 		modelAndView.setViewName("WEB-INF/admin/Admin_Question.jsp");
 		

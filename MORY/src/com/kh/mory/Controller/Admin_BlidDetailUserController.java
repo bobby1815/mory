@@ -43,12 +43,10 @@ public class Admin_BlidDetailUserController implements Controller
 		if (select.equals("1"))
 		{
 			modelAndView.setViewName("WEB-INF/admin/Admin_BlidUser.jsp");
-			System.out.println(1);
 			
 		}
 		else if (select.equals("2"))
 		{
-			System.out.println(2);
 			modelAndView.setViewName("bliddetailcommunity.do");
 		}
 		

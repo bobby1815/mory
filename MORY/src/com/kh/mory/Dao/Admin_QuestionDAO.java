@@ -1,6 +1,7 @@
 package com.kh.mory.Dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -92,10 +93,32 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 	}
 
 	//-- 1:1문의 Ajax처리를 위한 사용자검색기능
+
 	@Override
-	public Admin_QuestionDTO AjaxSearch(String id) throws SQLException
+	public Admin_QuestionDTO AjaxSearch(String term, String select, String id) throws SQLException
 	{
-		// TODO Auto-generated method stub
+		Connection conn=dataSource.getConnection();
+		
+		String sql =String.format(""
+				
+				
+				
+				
+				
+				
+				
+				);
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		while (rs.next())
+		{
+			Admin_QuestionDTO dto = new Admin_QuestionDTO();
+
+			
+		}
+		
+		
+		
 		return null;
 	}
 	

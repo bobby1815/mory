@@ -125,6 +125,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="Admin_DeclarationuserDAO" class="com.kh.mory.Dao.Admin_DeclarationUserDAO">
 			<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>	
+<!-- QuestionDAO 생성  -->
+	<bean id="Admin_QuestionDAO" class="com.kh.mory.Dao.Admin_QuestionDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>		
 	
 	
 	<!-- DAO 생성 부분 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
@@ -191,8 +195,19 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	<!-- 1:1문의 조회-->
  	<bean name="/question.do" class="com.kh.mory.Controller.Admin_QuestionController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
  	</bean> 
+ 	
+ 	<!--1:1문의 목록리스트뿌리기  -->
+ 	<bean name="/detailquestion.do" class="com.kh.mory.Controller.Admin_QuestionSearchController">
+ 	<property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	</bean> 
+ 	
+ 	
+ 	<!--1:1작성문의 Ajax처리  -->
+ 	<bean name="/questionAjax.do" class="com.kh.mory.Controller.Admin_UserlistSearchController">
+ 			<!-- <property name="dao" ref="Admin_userDAO"></property> -->
+ 	</bean>
+ 	 
  	
  	<!-- 작성1:1문의 조회-->
  	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_QuestionDeatilController">
