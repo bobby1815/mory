@@ -9,7 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/morylibraries/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/morylibraries/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/morylibraries/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.aop-3.0.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.asm-3.0.2.RELEASE.jar"/>
@@ -31,7 +30,8 @@
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web.servlet-3.0.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web.struts-3.0.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web-3.0.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/morylibraries/standard-1.1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/morylibraries/jstl.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/standard.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
