@@ -222,13 +222,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	<!--김민준 김진호  -->
 	<bean id="diaryDAO" class="com.kh.mory.DiaryDAO.DiaryDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	<bean id="commentDAO" class="com.kh.mory.DiaryDAO.CommentDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	<bean id="recommentDAO" class="com.kh.mory.DiaryDAO.RecommentDAO">
-		<property name="dataSource" ref="localDataSource"></property>
+		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
 	
