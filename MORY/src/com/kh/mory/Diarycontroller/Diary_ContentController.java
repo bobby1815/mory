@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -51,6 +52,9 @@ public class Diary_ContentController implements Controller
 		String write_seq = request.getParameter("write_seq");
 		
 		
+		HttpSession session = request.getSession();
+		
+		
 		
 		
 		try
@@ -76,6 +80,8 @@ public class Diary_ContentController implements Controller
 			modelAndView.addObject("recommentList",recommentList);		
 			modelAndView.addObject("commentList",commentList);		
 			modelAndView.setViewName("WEB-INF/Diary/DiaryPost.jsp");
+			
+			
 		} catch (Exception e)
 		{
 			System.out.println(e.toString());

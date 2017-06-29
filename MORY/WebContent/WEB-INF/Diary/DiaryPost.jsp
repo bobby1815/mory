@@ -300,7 +300,7 @@
 									<!-- 댓글내용입력 -->
 									<textarea rows="3" name="commentupdatecont${comment.comment_seq }" id="commentupdatecont${comment.comment_seq }"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"><%=cont %></textarea>
 									<!-- 댓글달기버튼 -->
-									<input type="button" id="commentupdatebtn${comment.comment_seq }"name="commentupdatebtn${comment.comment_seq }" value="수정" style="width: 20%; min-height: 40px; vertical-align: middle;">
+									<button id="commentupdatebtn${comment.comment_seq }"name="commentupdatebtn${comment.comment_seq }"  style="width: 20%; min-height: 40px; vertical-align: middle;">수정</button>
 								</div>
 							</div>
 							
@@ -314,7 +314,9 @@
 									<!-- 댓글내용입력 -->
 									<textarea rows="3" name="addrecommentcont${comment.comment_seq }" id="addrecommentcont${comment.comment_seq }"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"></textarea>
 									<!-- 댓글달기버튼 -->
-									<input type="button" id="addrecommentbtn${comment.comment_seq }" name="addrecommentbtn${comment.comment_seq }" value="답글달기" style="width: 20%; height: 40px; ">
+									<a href="">
+										<button id="addrecommentbtn${comment.comment_seq }" name="addrecommentbtn${comment.comment_seq }" style="width: 20%; height: 40px; ">답글달기</button>
+									</a>
 								</div>
 							</div>
 							
@@ -344,9 +346,9 @@
 													<div style="text-align:left; width: 100%; min-height:  40px; " ><pre><%=recont %></pre>
 													</div>
 													<!-- 수정버튼 -->
-													<input type="button" id="recomentupdate${recoment.reco_seq }" name="recomentupdate${recoment.reco_seq }" value="수정" style="width: 50px; height: 40px; ">
+													<button id="recomentupdate${recoment.reco_seq }" name="recomentupdate${recoment.reco_seq }"  style="width: 50px; height: 40px; ">수정</button>
 													<!-- 삭제버튼 -->
-													<input type="button" id="recomentdelete${recoment.reco_seq }" name="recomentdelete${recoment.reco_seq }" value="삭제" style="width: 50px; height: 40px;">
+													<button id="recomentdelete${recoment.reco_seq }" name="recomentdelete${recoment.reco_seq }"  style="width: 50px; height: 40px;">삭제</button>
 												</div>
 											</div>
 											<!-- 답글 수정폼 -->
@@ -380,10 +382,12 @@
 						<!-- 답글달기 (숨겨줌) -->
 						<input type="hidden" name="recomment" value="답글">
 						<div style="min-height: 40px;">
-							<!-- 댓글내용입력 -->
-							<textarea rows="3" name="comment"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"></textarea>
-							<!-- 댓글달기버튼 -->
-							<input type="submit" name="cancle" value="댓글달기" style="width: 100px; min-height: 40px; vertical-align: middle;">
+							<form action="" method="post" onsubmit="">
+								<!-- 댓글내용입력 -->
+								<textarea rows="3" name="commentinsertcont" id="commentinsertcont"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"></textarea>
+								<!-- 댓글달기버튼 -->
+								<input type="submit" name="cancle" value="댓글달기" style="width: 100px; min-height: 40px; vertical-align: middle;">
+							</form>
 						</div>
 					</div>
 				</div>
