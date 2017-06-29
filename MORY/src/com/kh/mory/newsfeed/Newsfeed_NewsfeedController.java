@@ -4,8 +4,8 @@ import java.io.File;
 
 /* ==========================================================
 
-	작성자 : 박아영
-	최초작성일 : 2017-06-18
+	�옉�꽦�옄 : 諛뺤븘�쁺
+	理쒖큹�옉�꽦�씪 : 2017-06-18
 	
 
 ========================================================== */
@@ -35,19 +35,19 @@ public class Newsfeed_NewsfeedController implements Controller
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
-		// 세션에 저장된 사용자 ID
+		// �꽭�뀡�뿉 ���옣�맂 �궗�슜�옄 ID
 		String user_id = (String)session.getAttribute("user_id");
 		
 		if (request.getRequestURI().indexOf("newsfeedinsertform.do") > -1)
 		{
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_Input.jsp");
 		}
-		// 뉴스피드 인서트
+		// �돱�뒪�뵾�뱶 �씤�꽌�듃s
 		else if (request.getRequestURI().indexOf("newsfeedinsert.do") > -1)
 		{
 			request.setCharacterEncoding("UTF-8");
 			
-			// 저장 경로
+			// ���옣 寃쎈줈
 			//String path = "D:\\MORY\\mory_ay\\WebContent\\uploads";
 			String root = request.getServletContext().getRealPath("/");
 			String path = root + "newsfeedupload";
@@ -55,12 +55,12 @@ public class Newsfeed_NewsfeedController implements Controller
 			 System.out.println(path);
 			// C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload
 			
-			// 저장 디렉터리(폴더)가 존재하지 않으면 생성
+			// ���옣 �뵒�젆�꽣由�(�뤃�뜑)媛� 議댁옱�븯吏� �븡�쑝硫� �깮�꽦
 			File dir = new File(path);
 			if(!dir.exists()) dir.mkdirs();
 			
-			String encType = "UTF-8";	//-- 인코딩 박싱
-			int maxFileSize = 5*1024*1024;	//-- 전송 최대 사이즈
+			String encType = "UTF-8";	//-- �씤肄붾뵫 諛뺤떛
+			int maxFileSize = 5*1024*1024;	//-- �쟾�넚 理쒕� �궗�씠利�
 			
 			MultipartRequest req = null;
 			try
@@ -72,7 +72,7 @@ public class Newsfeed_NewsfeedController implements Controller
 				//newsfeed_NewsfeedDTO.setWrite_cont(req.getParameter("write_cont"));
 				newsfeed_NewsfeedDTO.setWrite_user_id(user_id);
 				
-				// 저장경로
+				// ���옣寃쎈줈
 				String uplo_loca = req.getFilesystemName("profile_pt");
 				int res = feedDao.newsFeedInsert(newsfeed_NewsfeedDTO, uplo_loca);
 
@@ -83,7 +83,7 @@ public class Newsfeed_NewsfeedController implements Controller
 				System.out.println(e.toString());
 			}
 		}
-		// 뉴스피드 조회
+		// �돱�뒪�뵾�뱶 議고쉶
 		else if (request.getRequestURI().indexOf("newsfeedlist.do") > -1)
 		{
 			

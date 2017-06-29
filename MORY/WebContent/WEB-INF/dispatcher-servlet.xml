@@ -246,5 +246,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <bean name="/communityinput.do" class="com.kh.mory.CommunityInputController">
     	<property name="dao" ref="communityDAO"></property>
     </bean>
+    
+    <bean name="/communityinputform.do" class="com.kh.mory.CommunityInputFormController">
+    <property name="dao" ref="communityDAO"></property>
+    
+    </bean>
  	
 </beans>
