@@ -378,7 +378,7 @@
 							
 						</c:forEach>	
 	
-					<div onsubmit=""  id="commentinsert"  style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">
+					<div onsubmit="commentinsert.do"  id="commentinsert"  style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">
 						<!-- 답글달기 (숨겨줌) -->
 						<input type="hidden" name="recomment" value="답글">
 						<div style="min-height: 40px;">

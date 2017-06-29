@@ -76,6 +76,8 @@ public class Diary_ContentController implements Controller
 			recommentList = recommentdao.recommentList(write_seq);
 			commentList= commentdao.commentList(write_seq);
 			
+			modelAndView.addObject("write_seq",write_seq);
+			modelAndView.addObject("diaryDTO",diaryDTO);
 			modelAndView.addObject("diaryDTO",diaryDTO);
 			modelAndView.addObject("recommentList",recommentList);		
 			modelAndView.addObject("commentList",commentList);		
