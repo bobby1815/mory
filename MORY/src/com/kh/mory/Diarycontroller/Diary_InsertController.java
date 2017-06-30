@@ -36,6 +36,9 @@ public class Diary_InsertController implements Controller
 			dao.add(diary);
 			mav.setViewName("redirect:WEB-INF/diary/Diary.jsp");
 			
+			mav.setViewName("redirect:diary.do");
+			mav.setViewName("redirect:WEB-INF/diary/Diary.jsp");
+			
 		} catch (Exception e)
 		{
 			System.out.println(e.toString());
