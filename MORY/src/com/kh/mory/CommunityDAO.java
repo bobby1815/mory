@@ -25,7 +25,6 @@ public class CommunityDAO implements ICommunityDAO
 		int result = 0;
 		Connection conn = dataSource.getConnection();
 		
-<<<<<<< HEAD
 		String sql = "{CALL PRC_COMMUNITYINSERT(?,?,?,?)}";	
 		CallableStatement cstmt = conn.prepareCall(sql);
 		cstmt.setString(1, community.getWrite_user_id());
@@ -34,8 +33,6 @@ public class CommunityDAO implements ICommunityDAO
 		cstmt.setString(4, community.getCommunity_title());
 		result = cstmt.executeUpdate();
 		cstmt.close();
-=======
-		String sql = " EXEC PRC_COMMUNITY_INSERT(?,?,?,?)";
 			
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -49,7 +46,6 @@ public class CommunityDAO implements ICommunityDAO
 		result = pstmt.executeUpdate();
 		
 		pstmt.close();
->>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 		conn.close();
 		
 		return result;
