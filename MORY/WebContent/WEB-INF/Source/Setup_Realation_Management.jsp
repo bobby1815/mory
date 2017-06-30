@@ -105,7 +105,7 @@ width: 200px;
           		<td><img src="img/1497890377_female-silhouette-sunglasses.png"  width="30px"/></td>
           			<td>${list.user_id }</td>
           			<td style="color:gray;">${list.user_nic }</td>
-          			<td><img src="img/neighbor_non.png" width="30px" onclick="location.href='hi.do'"/></td>
+          			<td><img src="img/neighbor_non.png" width="30px" onclick="location.href='hi.do?nei_user_id=${list.user_id}'"/></td>
           		</tr>
           		
           		</c:forEach>
