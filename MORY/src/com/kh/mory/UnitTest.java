@@ -1,11 +1,24 @@
 package com.kh.mory;
 
-import java.sql.SQLException;
 
-public class UnitTest 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+public class UnitTest implements Controller
 {
-	public static void main(String[] args) throws SQLException 
+	//@RequestMapping("/test.do")
+	
+	
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception 
 	{
+		ModelAndView mav = new ModelAndView();
+		
+		int result = 0;
+		
 		CommunityDTO dto = new CommunityDTO();
 		dto.setCommunity_title("커뮤니티");
 		dto.setCommunity_type_code(30);
@@ -14,12 +27,13 @@ public class UnitTest
 		
 		CommunityDAO dao = new CommunityDAO();
 		
-		int result = 0;
-				
 		result = dao.add(dto);
 		
 		System.out.println(result);
 		
+		mav.setViewName("Test.jsp");
+			
+		return mav;
 	}
 
 }
