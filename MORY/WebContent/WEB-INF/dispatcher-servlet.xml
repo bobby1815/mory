@@ -20,14 +20,15 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>	
+	<!-- 
 	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
 	<property name="username" value="mory_ay"></property>
 	<property name="password" value="mory2017"></property>
-	<!-- 
+	 -->
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="scott"></property>
 	<property name="password" value="TIGER"></property> 
-	 -->
+	
 	</bean>
 	
 	 
@@ -244,8 +245,25 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	
  	<!-- 시스템 설정-->
- 	<bean name="/system.do" class="com.kh.mory.Controller.Admin_SystemController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	
+ 	<bean id="blindDao" class="com.kh.mory.Dao.Admin_BlindSetupDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	<bean id="sanctionDao" class="com.kh.mory.Dao.Admin_SanctionTypeDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	<bean id="blindsanctionDao" class="com.kh.mory.Dao.Admin_BlindSanctionDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	<bean id="leaveDao" class="com.kh.mory.Dao.Admin_LeaveDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	
+ 	<bean name="/system*.do" class="com.kh.mory.Controller.Admin_SystemController">
+ 		<property name="blindDao" ref="blindDao"></property>
+ 		<property name="sanctionDao" ref="sanctionDao"></property>
+ 		<property name="blindsanctionDao" ref="blindsanctionDao"></property>
+ 		<property name="leaveDao" ref="leaveDao"></property>
  	</bean>  
  	<!-- 관리자 끝 -->
  	
