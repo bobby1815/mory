@@ -43,7 +43,7 @@ public class Diary_ListController implements Controller
 			
 			
 			modelAndView.addObject("diaryList",diaryList);			
-			modelAndView.setViewName("WEB-INF/Diary/Diary.jsp");
+			modelAndView.setViewName("WEB-INF/diary/Diary.jsp");
 		} catch (Exception e)
 		{
 			System.out.println(e.toString());

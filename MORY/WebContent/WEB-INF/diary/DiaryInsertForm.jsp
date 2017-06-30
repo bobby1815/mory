@@ -77,15 +77,12 @@ $(document).ready(function()
 		<!-- 첫번째 row  -->
 		<div class="row " id="all0">
 			<div class="col-xs-1 col-md-1" id="h1"></div>
-			<div class="col-xs-10 col-md-10" id="h2"
-				style="margin-bottom: 30px; ">
+			<div class="col-xs-10 col-md-10" id="h2" style="margin-bottom: 30px; ">
 				<div class="col-xs-2 col-md-2">
-					<button type="button" value="뉴스피드"
-						style="height: 40px; width: 100px;" class="btn btn-primary">뉴스피드</button>
+					<button type="button" value="뉴스피드" style="height: 40px; width: 100px;" class="btn btn-primary">뉴스피드</button>
 				</div>
 				<div class="col-xs-2 col-md-2">
-					<button type="button" value="다이어리"
-						style="height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
+					<button type="button" value="다이어리" style="height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
 				</div>
 				<div class="col-xs-4 col-md-4" style="text-align: center;">
 					<a href="*" style="margin: 0px 20px; color: black;">
@@ -93,12 +90,10 @@ $(document).ready(function()
 					</a>
 				</div>
 				<div class="col-xs-2 col-md-2">
-					<button type="button" value="커뮤니티"
-						style="height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
+					<button type="button" value="커뮤니티" style="height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
 				</div>
 				<div class="col-xs-2 col-md-2">
-					<button type="button" value="환경설정"
-						style="height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
+					<button type="button" value="환경설정" style="height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
 				</div>
 			</div>
 			<div class="col-xs-1 col-md-1" id="h3"></div>
@@ -109,12 +104,10 @@ $(document).ready(function()
 			<div class="col-xs-1 col-md-1" id="b1">b1</div>
 			<div class="col-xs-10 col-md-10" id="b2">
 				<div>
-					<input type="text" class="form-control" value="민준이의 다이어리"
-						style="text-align: center"  readonly="readonly" >
+					<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center"  readonly="readonly" >
 				</div>
 				<div>
-					<input type="text" class="form-control" value="다이어리 작성"
-						style="text-align: center" readonly="readonly" >
+					<input type="text" class="form-control" value="다이어리 작성" style="text-align: center" readonly="readonly" >
 				</div>
 				<div class="col-xs-12 col-md-12"  style="background-color: aqua;">
 					<div class="col-xs-6 col-md-6" align="left">
@@ -127,14 +120,15 @@ $(document).ready(function()
 					</div>
 				</div>
 				<div>
-					<textarea class="form-control" id="write_cont" class="write_cont" name="write_cont"
-						style="min-height: 450px; height:100%;" placeholder="내용을 이이이입려어어역하아아세요"></textarea>
-					<div  class="col-xs-12 col-md-12">
-						<input type="submit" name = "submitBtn" id="submitBtn" value="작성완료" class="col-xs-2 col-md-2"> 
+					<textarea class="form-control" id="write_cont" class="write_cont" name="write_cont"	style="min-height: 450px; height:100%;" placeholder="내용을 입력하세요."></textarea>
+					<div class="col-xs-12 col-md-12">
+						<input type="submit" name = "submitBtn" id="submitBtn" value="작성완료" class="col-xs-2 col-md-2" onclick="location.href='diary.do'"> 
 						<input type="file"	value="" class="col-xs-8 col-md-8" > 
-						<a href="http://localhost:8090/mory22/diary.do"><input type="button" value="취소" class="col-xs-2 col-md-2"  ></a>
+						<a href="http://localhost:8090/diary.do">
+							<input type="button" value="취소" class="col-xs-2 col-md-2"  >
+						</a>
 					</div>
-				</div>
+				</div>				
 			</div>
 
 			<div class="col-xs-1 col-md-1" id="b3">b3</div>
