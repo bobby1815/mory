@@ -16,6 +16,17 @@
 <script src="assets/jquery.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+	function moves() 
+	{
+		alert("헤헷");
+		var url ="/questionAjax.do";
+		$.post("url",{})
+	} 
+
+
+</script>
 <style>
     a{color:black;}
     .drop-menu{border: 1px solid grey;}
@@ -28,30 +39,18 @@
 </head>
 <body>
 
+<form action="/detailquestion.do" method="post">
 <div class="container">
 <!-- 헤더시작  -->
 <div class="row " id="all0">
 		<div class="col-xs-1  col-md-1"  id="h1"></div>
 		<div class="col-xs-10 col-md-10" id="h2" >
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary" >뉴스피드</button>
-				</div>
-				<div class="col-xs-2 col-md-2">	
-					<button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
-				</div>
-				<div class="col-xs-4 col-md-4"style="text-align: center;">	
+				<div class="col-xs-12col-md-12"style="text-align: center;">	
 					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-	                  <img src="img/logo.png" width="100"/>
+	                  <img src="./logo.png"width="100"/>
 	                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
 	                </a>
 	            </div>
-	            <div class="col-xs-2 col-md-2" style="">    
-	                <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
-	            </div>  
-	            <div class="col-xs-2 col-md-2">
-					<button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
-				</div>
-				
 		</div>
 				<div class="col-xs-1 col-md-1"  id="h3"></div>
 		</div>		
@@ -63,19 +62,20 @@
 <!-- 본문시작  -->
 <div class="col-xs-12 col-md-9">
 		<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
-			<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
+			<div class="col-xs-12 col-md-2 text-center" style="padding: 0px;">
 				<h5>검색기간</h5>
 			</div>
-			<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-				<input type="text" class="form-control">
+			<div class="col-xs-12 col-md-1" style="padding: 0px; margin-right: 10px;">
+				<input type="text" class="form-control" placeholder="ex)170215" style="width: 110px;" name="term">
 			</div>
-			<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
+			<div class="col-xs-12 col-md-2 text-center" style="padding: 0px; margin-left: 10px;">
 				<h5>답변 여부</h5>
 			</div>
 			<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-				<select class="form-control">
-					<option>완료</option>
-					<option>미완료</option>
+				<select class="form-control" name="select">
+					<option value="1">전체</option>
+					<option value="2">미완료</option>
+					<option value="3">완료</option>
 				</select>
 			</div>
 		<div class="row ">	
@@ -83,11 +83,11 @@
 				<h5>아이디</h5>
 			</div>
 			<div class="col-xs-12 col-md-2" style="padding: 0px;">
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" name="id">
 			</div>
 			
 			<div class="col-xs-12 col-md-1 text-center">
-				<button class="btn btn-default">검색</button>
+				<button class="btn btn-default" type="submit">검색</button>
 			</div>
 		</div>	
 		<!-- 피드신고목록  -->
@@ -96,27 +96,25 @@
 				<tr>
 					<th class="col-xs-1 col-md-1">No</th>
 					<th class="col-xs-1 col-md-1">아이디</th>
-					<th class="col-xs-1 col-md-1">제목</th>
+					<th class="col-xs-1 col-md-3">제목</th>
 					<th class="col-xs-1 col-md-1">작성일</th>
 					<th class="col-xs-1 col-md-1">답변여부</th>
 				</tr>
-			<c:if test="${!empty result}">
-				 <c:forEach items="${result}" var="result">
-					<tr>
-						<td>${result.USER_ID}</td>
-						<td>${result.USER_BIRTH}</td>
-						<td>${result.USER_BIRTH}</td>
-					</tr>
-				</c:forEach>
-			</c:if>
-			
-			<c:if test="${empty result}"><td>신고리스트가 없습니다.</td> <td><a href="questiondeatil.do">Test용</a></td></c:if>	
-				
+				<!-- 제목,작성자,작성일,답변자,답변일,내용,답글  -->
+			<c:forEach var="lists" items="${list}">	
+				<tr id="list" onclick="moves('${lists.ques_User_Id}')" >
+					<td>${lists.num}</td>
+					<td>${lists.ques_User_Id}</td>
+					<td>${lists.ques_Title}</td>
+					<td>${lists.ques_Reg_Dtm}</td>
+					<td>${lists.checks}</td>
+				</tr>
+			</c:forEach> 
 			</table>
 		</div>
 	</div>
 </div>
-
+</form>
 
 </body>
 </html>

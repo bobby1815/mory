@@ -68,7 +68,6 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		}	
 		
 		ResultSet rs =  stmt.executeQuery(sql);
-		System.out.println(sql);
 		
 		
 		while (rs.next())

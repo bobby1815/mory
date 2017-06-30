@@ -11,34 +11,27 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.kh.mory.Dao.Admin_QuestionDAO;
 import com.kh.mory.Model.Admin_QuestionDTO;
 
-public class Admin_DetailQuestionController implements Controller
+public class Admin_QuestionSearchController implements Controller
 {
-	
-	
 	private Admin_QuestionDAO dao;
-		
-		public void setDao(Admin_QuestionDAO dao)
-		{
-			this.dao = dao;
-		}
+	
+
+	public void setDao(Admin_QuestionDAO dao)
+	{
+		this.dao = dao;
+	}
+
 
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		
 		ModelAndView modelAndView = new ModelAndView();
-
-		//값받아오기
-		request.setCharacterEncoding("UTF-8");
-		String select = request.getParameter("select");
-		String term =request.getParameter("term");
+		String term = request.getParameter("term");
 		String id = request.getParameter("id");
-		
-		
+		String select = request.getParameter("select");
 		ArrayList<Admin_QuestionDTO> list = dao.QueSearch(term, select, id);
-
-		System.out.println(list);
+		
 		modelAndView.addObject("list",list);
 		modelAndView.setViewName("WEB-INF/admin/Admin_Question.jsp");
 		
