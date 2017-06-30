@@ -162,8 +162,7 @@ input
 				<br><br>
 		
 				<div id="divPeedContent">
-					<textarea rows="5" cols="" id="write_cont" name="write_cont" placeholder="피드 내용을 작성하세요">
-					</textarea>
+					<textarea class="form-control" rows="5" cols="" id="write_cont" name="write_cont" placeholder="피드 내용을 작성하세요"></textarea>
 				</div>
 	
 

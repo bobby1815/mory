@@ -26,6 +26,16 @@
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
+<script type="text/javascript">
+
+	function setDetail(blind_cnt, sanc_type_code, blind_sanc_seq)
+	{
+		$("#blind_cnt").attr("value", blind_cnt);
+		$("#sanc_type_code").
+		
+	}
+	
+</script>
 </head>
 <body>
 
@@ -67,36 +77,33 @@
 			<div class="col-xs-12" style="margin-top:20px; text-align: left;">
 					<h3>탈퇴 유예기간 설정</h3>
 			</div>
+			<form action="systemleavesetup.do?leave_seq=${leave_seq }" method="post">
 			<div class="row col-xs-12 col-md-12"style="height: 50px;background-color: lightgray;">
-					<div class="col-xs-4 col-md-4">현재 유예기간 <input type="text" style="width:60px; height: 40px;" readonly="readonly">일 </div>
-					<div class="col-xs-4 col-md-4">변경 유예기간 <input type="text"style="width:60px; height: 40px;">일</div>
-					<div class="col-xs-3 col-md-3"><butto style="width:90px;" class="btn btn-default md">저장</butto></div>
+					<div class="col-xs-4 col-md-4">현재 유예기간 <input type="text" style="width:60px; height: 40px;" readonly="readonly" value="${leave_code}">일 </div>
+					<div class="col-xs-4 col-md-4">변경 유예기간 <input type="text"style="width:60px; height: 40px;" name="leave_code">일</div>
+					<div class="col-xs-3 col-md-3"><button type="submit" style="width:90px;" class="btn btn-default md" >저장</button></div>
 			</div>
+			</form>
 			
-			
-		
+			<c:forEach var="dto" items="${blindList }">
 			<div class="col-xs-12">
-				<h3 >뉴스피드 블라인드 처리 설정</h3>
+				<c:choose>
+					<c:when test="${dto.page_code eq 'N' }">
+						<h3 >뉴스피드 블라인드 처리 설정</h3>
+					</c:when>
+					<c:otherwise>
+						<h3 >게시물 블라인드 처리 설정</h3>
+					</c:otherwise>
+				</c:choose>
+				<form action="systemblindsetup.do?page_code=${dto.page_code }&setup_seq=${dto.setup_seq}" method="post" >
+					<div class="row col-xs-12 col-md-12"style=" height: 50px;background-color: lightgray;">
+						<div class="col-xs-4 col-md-4">신고 횟수<input type="text"style="width:60px; height: 40px; margin-left: 30px;"readonly="readonly" value="${dto.decl_cnt }">건 </div>
+						<div class="col-xs-4 col-md-4">변경 횟수<input type="text"style="width:60px; height: 40px; margin-left: 30px;" name="decl_cnt">건</div>
+						<div class="col-xs-3 col-md-3"><button type="submit" style="width:90px;" class="btn btn-default md">저장</button></div>
+					</div>
+				</form>
 			</div>
-		
-			<div class="row col-xs-12 col-md-12"style=" height: 50px;background-color: lightgray;">
-					<div class="col-xs-4 col-md-4">신고 횟수<input type="text"style="width:60px; height: 40px; margin-left: 30px;"readonly="readonly">일 </div>
-					<div class="col-xs-4 col-md-4">변경 횟수 <input type="text"style="width:60px; height: 40px; margin-left: 30px;">일</div>
-					<div class="col-xs-3 col-md-3"><butto style="width:90px;" class="btn btn-default md">저장</butto></div>
-			</div>
-			
-			<div class="col-xs-12">
-				<h3>게시물 블라인드 처리 설정</h3>
-			</div>
-		
-			<div class="row col-xs-12 col-md-12"style="height: 50px;background-color: lightgray;">
-					<div class="col-xs-4 col-md-4">신고 횟수<input type="text"style="width:60px; height: 40px; margin-left: 30px;" readonly="readonly">일 </div>
-					<div class="col-xs-4 col-md-4">변경 횟수 <input type="text"style="width:60px; height: 40px; margin-left: 30px;">일</div>
-					<div class="col-xs-3 col-md-3"><butto style="width:90px;" class="btn btn-default md">저장</butto></div>
-			</div>
-			
-			
-			
+			</c:forEach>
 			
 			<div class="col-xs-12">
 				<h3>상태 설정</h3>
@@ -104,49 +111,39 @@
 		
 			<div class="row col-xs-12 col-md-12"style="height: 200px;background-color: lightgray;">
 					<div class="col-xs-5 col-md-5">
-						<table border="1px;"style="margin-top: 15px;background-color: white;">
-							<th>d</th>
-							<th>블라인드 피드 수</th>
-							<th>계정 상태</th>
+						<table border="1px;" style="margin-top: 15px;background-color: white;">
 							<tr>
-								<td><input type="checkbox"></td>
-								<td>5</td>
-								<td>3일 정지</td>							
+								<th>블라인드 피드 수</th>
+								<th>계정 상태</th>
 							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>7</td>
-								<td>7일 정지</td>							
+							<c:forEach var="dto" items="${blindSanctionList }">
+							<tr style="cursor: pointer;" onclick="setDetail('${dto.blind_cnt}','${dto.sanc_type_code }','${dto.blind_sanc_seq }')">
+								<td>${ dto.blind_cnt}</td>
+								<td>${dto.sanc_type_name}</td>							
 							</tr>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>10</td>
-								<td>영구 정지</td>							
-							</tr>
+							</c:forEach>
 						</table>
 					</div>
 					<div class="col-xs-6 col-md-6">
-								블라인드 피드 수 <input type="text" style="width:60px; height: 40px; margin-left: 30px; margin-top:15px;">
+								블라인드 피드 수 <input type="text" id="blind_cnt" style="width:60px; height: 40px; margin-left: 30px; margin-top:15px;">
 					</div>
 					
 					<div class="row col-xs-6 col-md-6" style="margin-top: 20px;">
-					
-								<div class="col-xs-5 col-md-5">계졍 상태</div>
-								
-								<div class="col-xs-3 col-md-3">
-										<select class="form-control" style="width:150px;">
-												<option>3일 정지</option>
-												<option>5일 정지</option>
-												<option>영구 정지</option>
-										</select>
-								</div>		
+						<div class="col-xs-5 col-md-5">계정 상태</div>
+						<div class="col-xs-3 col-md-3">
+							<select class="form-control" id="sanc_type_code" style="width:150px;">
+							<c:forEach var="dto" items="${sanctionList }">
+								<option value="${dto.sanc_type_code }">${dto.sanc_type_name}</option>
+							</c:forEach>
+							</select>
+						</div>		
 					</div>
 					<div class="col-xs-12 col-md-12">
-								<div class="col-xs-6 col-md-6"></div>
-								<div class="col-xs-2 col-md-2 text-right"> <button class="btn btn-default" style="width: 70px;">추가</button></div>
-								<div class="col-xs-2 col-md-2 text-right"> <button class="btn btn-default" style="width: 70px;">수정</button></div>
-								<div class="col-xs-2 col-md-2 text-right"> <button class="btn btn-default" style="width: 70px;">삭제</button></div>
-						</div>
+						<div class="col-xs-6 col-md-6"></div>
+						<div class="col-xs-2 col-md-2 text-right"> <button class="btn btn-default" style="width: 70px;">추가</button></div>
+						<div class="col-xs-2 col-md-2 text-right"> <button class="btn btn-default" style="width: 70px;">수정</button></div>
+						<div class="col-xs-2 col-md-2 text-right"> <button class="btn btn-default" style="width: 70px;">삭제</button></div>
+					</div>
 					
 
 			</div>

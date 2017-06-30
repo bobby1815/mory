@@ -86,9 +86,7 @@ public class Newsfeed_NewsfeedController implements Controller
 		// 뉴스피드 조회
 		else if (request.getRequestURI().indexOf("newsfeedlist.do") > -1)
 		{
-			
 			mav.addObject("list",feedDao.newsFeedLists(user_id));
-			
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_List.jsp");
 		}
 		
