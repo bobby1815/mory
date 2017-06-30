@@ -314,6 +314,36 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="commentdao" ref="commentDAO" ></property>
 		<property name="recommentdao" ref="recommentDAO" ></property>
 	</bean>
+	
+	<!-- 댓글 입력 -->
+ 	<bean name="/commentinsert.do" class="com.kh.mory.Diarycontroller.Diary_CommentInsertController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	<!-- 댓글 삭제 -->
+ 	<bean name="/commentdelete.do" class="com.kh.mory.Diarycontroller.Diary_CommentDeleteController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	<!-- 댓글 수정 -->
+ 	<bean name="/commentupdate.do" class="com.kh.mory.Diarycontroller.Diary_CommentUpdateController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	
+	<!-- 답글 입력 -->
+ 	<bean name="/recommentinsert.do" class="com.kh.mory.Diarycontroller.Diary_RecommentInsertController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 답글 삭제 -->
+ 	<bean name="/recommentdelete.do" class="com.kh.mory.Diarycontroller.Diary_RecommentDeleteController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 답글 수정 -->
+ 	<bean name="/recommentupdate.do" class="com.kh.mory.Diarycontroller.Diary_RecommentUpdateController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	
+ 	
+	
+		<!--김민준 김진호 끝 -->
  	
   <!-- 이용진 커퓨니티  -->
  	

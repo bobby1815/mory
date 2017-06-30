@@ -7,21 +7,21 @@ import com.kh.mory.DiaryDTO.DiaryDTO;
 
 public interface IDiaryDAO
 {
-	// ´ÙÀÌ¾î¸® Ãâ·Â
+	// ï¿½ï¿½ï¿½Ì¾î¸® ï¿½ï¿½ï¿½
 	
-	// °øÀ¯ ´ÙÀÌ¾î¸®
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î¸®
 	
-	// °Ô½Ã±Û ¸®½ºÆ®
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	
-	// °Ô½Ã±Û ³»¿ë
+	// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
-	// ´ñ±Û,´ä±Û´ä±â
+	// ï¿½ï¿½ï¿½,ï¿½ï¿½Û´ï¿½ï¿½
 	
-	//°Ô½Ã±Û ÀÛ¼º
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½
 	
-	// ¸â¹ö ÃÊ´ë
+	// ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½
 	
-	// ÀÌ¿ô Ãß°¡
+	// ï¿½Ì¿ï¿½ ï¿½ß°ï¿½
 	
 	public ArrayList<DiaryDTO> list(String diary_seq) throws SQLException;
 	
@@ -46,5 +46,6 @@ public interface IDiaryDAO
 	public int diaryname(DiaryDTO diary) throws SQLException;
 	
 	public int couplediaryname(DiaryDTO diary) throws SQLException;
-
+	
+	public DiaryDTO mydiary(String user_id) throws SQLException;
 }

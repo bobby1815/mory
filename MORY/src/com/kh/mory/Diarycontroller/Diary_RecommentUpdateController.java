@@ -1,6 +1,6 @@
 /*==================================
    RecommentUpdateController.java
-   - »ç¿ëÀÚ Á¤ÀÇ ÄÁÆ®·Ñ·¯ Å¬·¡½º.
+   - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
 ==================================*/
 
 package com.kh.mory.Diarycontroller;
@@ -17,14 +17,15 @@ import com.kh.mory.DiaryIDAO.IRecommentDAO;
 
 public class Diary_RecommentUpdateController implements Controller
 {
-   // DAO ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ¸â¹ö ±¸¼º
-   private IRecommentDAO dao;
+   // DAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   private IRecommentDAO recommentdao;
 
-   // setter ±¸¼º
-   public void setDao(IRecommentDAO dao)
+   // setter ï¿½ï¿½ï¿½ï¿½
+   public void setRecommentdao(IRecommentDAO recommentdao)
    {
-      this.dao = dao;
+   	this.recommentdao = recommentdao;
    }
+      
 
    @Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -34,20 +35,18 @@ public class Diary_RecommentUpdateController implements Controller
 		ModelAndView modelAndView = new ModelAndView();
 
 		String reco_cont = request.getParameter("reco_cont");
-		String reco_reg_dtm = request.getParameter("reco_reg_dtm");
-		String user_id = request.getParameter("id");
+		String reco_seq = request.getParameter("reco_seq");
 		String write_seq = request.getParameter("write_seq");
-
+		
+		
 		try
 		{
 			DiaryDTO diary = new DiaryDTO();
 			
 			diary.setReco_cont(reco_cont);
-			diary.setReco_reg_dtm(reco_reg_dtm);
-			diary.setUser_id(user_id);
-			
-			dao.recommentUpdate(diary);
-			modelAndView.setViewName("DiaryPost.do?write_seq="+write_seq);
+			diary.setReco_seq(reco_seq);
+			recommentdao.recommentUpdate(diary);
+			modelAndView.setViewName("redirect:diarypost.do?write_seq="+write_seq);
 
 		} catch (Exception e)
 		{
@@ -57,7 +56,8 @@ public class Diary_RecommentUpdateController implements Controller
 		return modelAndView;
       
    }
-   
+
+
    
    
 

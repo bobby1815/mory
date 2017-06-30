@@ -1,6 +1,6 @@
 /*====================================
    CommentDeleteController.java
-   - »ç¿ëÀÚ Á¤ÀÇ ÄÁÆ®·Ñ·¯ Å¬·¡½º.
+   - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
 ====================================*/
 
 package com.kh.mory.Diarycontroller;
@@ -15,16 +15,18 @@ import com.kh.mory.DiaryIDAO.ICommentDAO;
 
 public class Diary_CommentDeleteController implements Controller
 {
-   // DAO ÀÎÅÍÆäÀÌ½º ±¸¼º
-   private ICommentDAO dao;
+   // DAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   private ICommentDAO commentdao;
 
-   // setter ±¸¼º
-   public void setDao(ICommentDAO dao)
-   {
-      this.dao = dao;
-   }
+   // setter ï¿½ï¿½ï¿½ï¿½
+  
 
-   @Override
+   public void setCommentdao(ICommentDAO commentdao)
+{
+	this.commentdao = commentdao;
+}
+
+@Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
    {
       ModelAndView modelAndView = new ModelAndView();
@@ -32,9 +34,12 @@ public class Diary_CommentDeleteController implements Controller
       String comment_seq = request.getParameter("comment_seq");
       String write_seq = request.getParameter("write_seq");
       
-      dao.commentDelete(comment_seq);
+      int result = commentdao.commentDelete(comment_seq);
       
-      modelAndView.setViewName("diarypost.do?write_seq="+write_seq);
+      System.out.println(result);
+      
+      
+      modelAndView.setViewName("redirect:diarypost.do?write_seq="+write_seq);
       
       return modelAndView;
       

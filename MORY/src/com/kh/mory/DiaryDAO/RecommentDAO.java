@@ -1,12 +1,12 @@
 /*===========================================
    RecommentDAO.java
-   - µ¥ÀÌÅÍº£ÀÌ½º ¾×¼Ç Ã³¸® Å¬·¡½º.
-   - ´ä±Û ÀÛ¼º ¾×¼Ç Ã³¸®.
-   - ´ä±Û ¼öÁ¤ ¾×¼Ç Ã³¸®.
-   - ´ä±Û »èÁ¦ ¾×¼Ç Ã³¸®.
-   - ´ä±Û ¸®½ºÆ® Ãâ·Â ¾×¼Ç Ã³¸®.
-   - Connection °´Ã¼¿¡ ´ëÇÑ ÀÇÁ¸¼º ÁÖÀÔ.
-     ¡æ setter ¸Þ¼Òµå
+   - ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - Connection ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+     ï¿½ï¿½ setter ï¿½Þ¼Òµï¿½
 ===========================================*/
 
 package com.kh.mory.DiaryDAO;
@@ -24,16 +24,16 @@ import com.kh.mory.DiaryIDAO.IRecommentDAO;
 
 public class RecommentDAO implements IRecommentDAO
 {
-	// ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ±¸¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private DataSource dataSource;
 
-	// setter ¸Þ¼Òµå ±¸¼º
+	// setter ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void setDataSource(DataSource dataSource)
 	{
 		this.dataSource = dataSource;
 	}
 
-	// ´ä±Û ¸®½ºÆ® Ãâ·Â
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
 	@Override
 	public ArrayList<DiaryDTO> recommentList(String write_seq) throws SQLException
 	{
@@ -76,7 +76,7 @@ public class RecommentDAO implements IRecommentDAO
 		return result;
 	}
 
-	// ´ä±Û ÀÔ·Â
+	// ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 	@Override
 	public int recommentInsert(DiaryDTO diaryDto) throws SQLException
 	{
@@ -93,7 +93,7 @@ public class RecommentDAO implements IRecommentDAO
 		try
 		{
 			preparedStatement.setString(1, diaryDto.getReco_seq());
-			preparedStatement.setString(2, diaryDto.getComment_seq());
+			preparedStatement.setString(2, diaryDto.getReco_cont());
 			preparedStatement.setString(3, diaryDto.getReco_cont());
 			preparedStatement.setString(4, diaryDto.getUser_id());
 			
@@ -109,7 +109,7 @@ public class RecommentDAO implements IRecommentDAO
 		return result;
 	}
 
-	// ´ä±Û ¼öÁ¤
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int recommentUpdate(DiaryDTO diaryDto) throws SQLException
 	{
@@ -118,12 +118,14 @@ public class RecommentDAO implements IRecommentDAO
 		Connection connection = dataSource.getConnection();
 
 		String sql = "UPDATE TBL_RECOMMENT"
-				+ " SET COMMENT_CONT = ? WHERE RECO_SEQ = ?";
-
+				+ " SET RECO_CONT = ? WHERE RECO_SEQ = ?";
+		System.out.println(diaryDto.getReco_cont());
+		System.out.println(diaryDto.getReco_seq());
 		try
 		{
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, diaryDto.getComment_cont());
+			preparedStatement.setString(1, diaryDto.getReco_cont());
+			
 			preparedStatement.setString(2, diaryDto.getReco_seq());
 			
 			result = preparedStatement.executeUpdate();
@@ -138,7 +140,7 @@ public class RecommentDAO implements IRecommentDAO
 		return result;
 	}
 
-	// ´ä±Û »èÁ¦
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int recommentDelete(String reco_seq) throws SQLException
 	{
