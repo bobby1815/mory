@@ -31,7 +31,7 @@
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web.struts-3.0.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="C:/morylibraries/org.springframework.web-3.0.2.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/morylibraries/jstl.jar"/>
-	<classpathentry kind="lib" path="C:/morylibraries/standard.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/morylibraries/standard-1.1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
