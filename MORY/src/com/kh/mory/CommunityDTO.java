@@ -1,13 +1,18 @@
-package com.kh.mory;
+ï»¿package com.kh.mory;
 
 public class CommunityDTO 
 {
 	 
-		private	int community_type_code, community_love_cnt, community_hits; // ÀÛ¼º¹øÈ£ , Ä¿¹Â´ÏÆ¼ À¯ÇüÄÚµå , »ç¶ûÇØ¿ä ¼ö , Á¶È¸¼ö
+		private	int community_type_code, community_love_cnt, community_hits; // ì‘ì„±ë²ˆí˜¸ , ì»¤ë®¤ë‹ˆí‹° ìœ í˜•ì½”ë“œ , ì‚¬ë‘í•´ìš” ìˆ˜ , ì¡°íšŒìˆ˜
 		private String write_user_id , page_code 
-		, write_cont, write_reg_dtm , community_title, community_type_name;    // »ç¿ëÀÚ ID ,ÆäÀÌÁö±¸ºĞÄÚµå, ÀÛ¼º³»¿ë, ÀÛ¼ºÀÏ½Ã,Á¦¸ñ, Ä¿¹Â´ÏÆ¼À¯Çü¸í
-		private int uplo_seq;  //Ã·ºÎÆÄÀÏ ¹øÈ£
-		private String uplo_loca ,write_seq  ;// ÆÄÀÏ°æ·Î
+		, write_cont, write_reg_dtm , community_title, community_type_name;    // ì‚¬ìš©ì ID ,í˜ì´ì§€êµ¬ë¶„ì½”ë“œ, ì‘ì„±ë‚´ìš©, ì‘ì„±ì¼ì‹œ,ì œëª©, ì»¤ë®¤ë‹ˆí‹°ìœ í˜•ëª…
+		private int uplo_seq;  //ì²¨ë¶€íŒŒì¼ ë²ˆí˜¸
+		private String uplo_loca ,write_seq  ;// íŒŒì¼ê²½ë¡œ
+	
+		
+		
+		
+		
 		public int getCommunity_type_code() {
 			return community_type_code;
 		}

@@ -37,6 +37,8 @@ public class Main_MainController implements Controller
 			String user_id = request.getParameter("user_id");
 			String user_pw = request.getParameter("user_pw");
 			
+			
+			
 			Signup_UserDTO userDto = userDao.userLogin(user_id, user_pw);
 			/*
 			System.out.println(userDto.getGen_code());
@@ -71,11 +73,17 @@ public class Main_MainController implements Controller
 			{
 				System.out.println("로그인 성공");
 				HttpSession session = request.getSession();
+		
+
+
 				session.setAttribute("userDto", userDto);
 				session.setAttribute("user_id", userDto.getUser_id());
 				session.setAttribute("acc_grade_code", userDto.getAcc_grade_code());
 				session.setAttribute("page_code", userDto.getPage_code());
-				
+				session.setAttribute("user_id", userDto.getUser_id());
+                
+			    // 세션 유지시간 1시간
+			    session.setMaxInactiveInterval(60*60);
 				modelAndView.addObject("userDto",userDto);
 				modelAndView.setViewName("redirect:newsfeedlist.do");
 				//modelAndView.setViewName("redirect:newsfeed.do");

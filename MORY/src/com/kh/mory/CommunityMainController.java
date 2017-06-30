@@ -22,27 +22,42 @@ public class CommunityMainController implements Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception 
 	{
+		request.setCharacterEncoding("UTF-8");
+
 			
-		ModelAndView modelAndView = new ModelAndView();
-		
+		ModelAndView modelAndView = new ModelAndView();		
 		ArrayList<CommunityDTO> communitydto = new ArrayList<CommunityDTO>();
+		
+		String community_type_code = request.getParameter("community_type_code");
+				
+		
+		
 		try 
 		{
 			
-			communitydto = dao.list();
+			CommunityDTO dto = new CommunityDTO();
 			
 			
+			
+			communitydto = dao.list(30);
+		
+			 
+			 
+			 
+			modelAndView.addObject("communitydto",communitydto );
+		
+		
+		
+			modelAndView.setViewName("/WEB-INF/community/CommunityMain.jsp");
 
 		} catch (Exception e) 
 		{
 				System.out.println(e.toString());
 		}
-		
 
-		modelAndView.addObject("communitydto", communitydto);
-		modelAndView.setViewName("/WEB-INF/community/CommunityMain.jsp");
-		return modelAndView;
 		
+		return modelAndView;
+	
 		
 		
 		

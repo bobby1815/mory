@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding/<project>=UTF-8
+=======
+encoding//src/com/kh/mory/newsfeed/Newsfeed_NewsfeedController.java=UTF-8
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory

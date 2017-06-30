@@ -1,17 +1,15 @@
 package com.kh.mory;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-public class CommunityInputFormController implements Controller
+public class CommunityMyPostController implements Controller
 {
-	
-	private ICommunityDAO dao;
+	ICommunityDAO dao;
 
 	public void setDao(ICommunityDAO dao) 
 	{
@@ -25,26 +23,12 @@ public class CommunityInputFormController implements Controller
 		
 		ModelAndView modelandview = new ModelAndView();
 		
-		ArrayList<CommunityDTO> dto = new ArrayList<CommunityDTO>();
-
+		HttpSession session = request.getSession();
 		
-		try 
-		{
-			dto = dao.type_list();
-			
-			
-			modelandview.addObject("dto" , dto);
-			
-			modelandview.setViewName("/WEB-INF/community/CommunityInputForm.jsp");
-
-		} catch (Exception e) 
-		{
-				System.out.println(e.toString());
-		}
-
+		
+		
+		
 		return modelandview;
 	}
-	
-	
 	
 }
