@@ -16,6 +16,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<property name="password" value="mory2017"></property>
 	</bean>
  -->
+ 
 	<!-- RemoteData -->
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
@@ -251,5 +252,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <property name="dao" ref="communityDAO"></property>
     
     </bean>
+
+
+    
+    <!-- 용진 테스트 -->
+    <bean name="/test.do" class="com.kh.mory.UnitTest"></bean>
  	
 </beans>
