@@ -25,6 +25,8 @@ public class Setup_searchuser_Controller implements Controller
 		String user_Id = request.getParameter("user_Id");
 		System.out.println(user_Id);
 		
+		
+		
 		modelAndView.addObject("userlist", managementDAO.searchuser(user_Id));
 		modelAndView.setViewName("WEB-INF/Source/Setup_Realation_Management.jsp");
 		return modelAndView;

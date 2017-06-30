@@ -27,9 +27,10 @@ public class Setup_Profile_Controller implements Controller
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		HttpSession session = request.getSession();
-		String user_Id = (String) session.getAttribute("user_id");
-		String user_Pw = (String) session.getAttribute("user_pw");
-		
+		String user_Id = (String) session.getAttribute("user_Id");
+		String user_Pw = (String) session.getAttribute("user_Pw");
+		System.out.println(user_Id);
+		System.out.println(user_Pw);
 		
 		if(request.getRequestURI().indexOf("modifyprofile.do") >-1)
 		{
