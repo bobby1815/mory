@@ -26,7 +26,6 @@ public class Setup_Main_Controller implements Controller
 		String user_id = request.getParameter("user_Id");
 		String user_pw = request.getParameter("user_Pw");
 		
-<<<<<<< Upstream, based on origin/master
 		System.out.println(user_id);
 		System.out.println(user_pw);
 		
@@ -54,8 +53,6 @@ public class Setup_Main_Controller implements Controller
 			
 		}
 		
-=======
->>>>>>> 1b49a7d 지섭이폭탄
 		modelAndView.setViewName("WEB-INF/Source/Setup_Main.jsp");
 		return modelAndView;
 	}
