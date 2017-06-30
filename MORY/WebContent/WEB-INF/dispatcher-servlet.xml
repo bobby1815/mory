@@ -288,7 +288,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
 	
-	<bean name="/diaryinsert.do" class="com.kh.mory.Diarycontroller.Diary_InsertFormController">
+	<bean name="/diaryinsert.do" class="com.kh.mory.Diarycontroller.Diary_InsertController">
+		<property name="dao" ref="diaryDAO"></property>
 	</bean>
 	
 	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">

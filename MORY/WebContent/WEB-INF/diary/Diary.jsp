@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- + 버튼 테마 -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/fullcalendar.css" />
@@ -22,6 +26,16 @@
 <script src="js/fullcalendar.min.js"></script>
 <script src="js/ko.js"></script>
 <script type="text/javascript">
+
+	function myFunction(id) {
+	    var x = document.getElementById(id);
+	    if (x.className.indexOf("w3-show") == -1) {
+	        x.className += " w3-show";
+	    } else { 
+	        x.className = x.className.replace(" w3-show", "");
+	    }
+	}
+
 	
 	$(document).ready(function() {	
 	
@@ -87,6 +101,8 @@
 			
 	});	
 	
+
+	
 </script>
 <style type="text/css">
 	a {color: black;}
@@ -133,30 +149,7 @@
 
 <div class="container"  id="container">
 	<!-- 첫번째 row  -->
-	<div class="row " id="all0">
-		<div class="col-xs-1 col-md-1" id="h1"></div>
-		<div class="col-xs-10 col-md-10"  id="h2" style="margin-bottom:30px; ">
-			<div class="col-xs-2 col-md-2">
-				<button type="button" value="뉴스피드" style="height: 40px; width: 100px;" class="btn btn-primary">뉴스피드</button>
-			</div>
-			<div class="col-xs-2 col-md-2">
-				<button type="button" value="다이어리" style="height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
-			</div>
-			<div class="col-xs-4 col-md-4"style="text-align: center;">	
-				<a href="*" style="margin:0px 20px; color:black;">
-	            	<!-- <img src="C:\MORY\Mory\WebContent\img\logo.png" width="100"/> -->
-	            	<span style="font-size:30px; text-align: center;"><b>MORY</b></span>
-	        	</a>
-	        </div>
-			<div class="col-xs-2 col-md-2">
-				<button type="button" value="커뮤니티" style="height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
-			</div>
-			<div class="col-xs-2 col-md-2">
-				<button type="button" value="환경설정" style="height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
-			</div>
-		</div>
-		<div class="col-xs-1 col-md-1"  id="h3"></div>
-	</div>		
+	<c:import url="../main/Mainmenu.jsp" />  		
 	
 	<!-- 두번째 row  -->
 	<div class="row " id="all1">
@@ -209,7 +202,20 @@
 		
 		</div>
 		
-		<div class="col-xs-1 col-md-1"  id="b3">b3</div>
+		<!-- +버튼 -->
+		<div class="col-xs-1 col-md-1"  id="b3">
+		    <div class="w3-container">        
+				<a onclick="myFunction('Demo1')" style="width: 100px; " class="glyphicon glyphicon-plus-sign btn-lg"></a>
+				<div id="Demo1" class="w3-container w3-hide">
+				  <a href="" style="width: 100px;" class="glyphicon glyphicon-user btn-lg"></a><br />
+				  <a href="" class="glyphicon glyphicon-time btn-lg"></a><br />
+				  <a href="" class="glyphicon glyphicon-pencil btn-lg"></a><br />
+				  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
+				</div>
+			</div>
+		</div>		
+		
+		
 	</div>	
 	
 	<br />

@@ -56,7 +56,7 @@ body{background-image:url("img/pinkback02.png");
 			<div class="row " id="all1">
 				<div class="col-xs-1 col-md-0" id="b1"></div>
 
-<!-- Center middle  -->
+				<!-- Center middle  -->
 				<div  class="col-xs-10 col-md-12">
 					<div id="moryCarousel" class="col-md-6 carousel slide" data-ride="carousel" data-interval="1500"
 						style="height: 500px;">
@@ -90,7 +90,6 @@ body{background-image:url("img/pinkback02.png");
 
 
 					<div class="col-md-6 " style="padding: 150px 20px 100px 30px">
-
 						<div class=" col-md-12 text-left">
 							<div class="col-xs-12 txt-left">
 								<input type="text" placeholder="userName" id="user_id" name="user_id" style="margin-bottom: 10px; width: 300px;" class="form-control">
@@ -98,7 +97,7 @@ body{background-image:url("img/pinkback02.png");
 							<div class="col-xs-12  col-md-12text-left">
 								<input type="password" placeholder="Password" id="user_pw" name="user_pw"	style="margin-bottom: 10px; width: 300px;" class="form-control">
 								<div style="margin-bottom: 10px;">
-									로그인 상태 유지<input type="radio">
+								로그인 상태 유지<input type="radio">
 								</div>
 								<button type="submit" class="btn btn-default form-control" style="height: 30px; width: 300px; margin-bottom: 10px;" id="btnLogin">로그인</button>
 								<br> <a>아이디/비밀번호가 기억나지 않으세요?</a>
