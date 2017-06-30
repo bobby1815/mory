@@ -37,7 +37,7 @@ public class Diary_UpdateController implements Controller
 			diary.setWrite_cont(write_cont);
 			
 			dao.modyfi(diary);
-			maAndView.setViewName("redirect:Diary.jsp");
+			maAndView.setViewName("redirect:WEB-INF/diary/Diary.jsp");
 			
 		} catch (Exception e)
 		{

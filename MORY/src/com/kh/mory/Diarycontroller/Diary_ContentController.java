@@ -81,7 +81,7 @@ public class Diary_ContentController implements Controller
 			modelAndView.addObject("diaryDTO",diaryDTO);
 			modelAndView.addObject("recommentList",recommentList);		
 			modelAndView.addObject("commentList",commentList);		
-			modelAndView.setViewName("WEB-INF/Diary/DiaryPost.jsp");
+			modelAndView.setViewName("WEB-INF/diary/DiaryPost.jsp");
 			
 			
 		} catch (Exception e)

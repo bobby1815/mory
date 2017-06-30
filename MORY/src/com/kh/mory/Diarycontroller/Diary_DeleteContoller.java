@@ -25,7 +25,7 @@ public class Diary_DeleteContoller  implements Controller
 		try
 		{
 			dao.remove(write_seq);
-			mav.setViewName("WEB-INF/Diary/Diary.jsp?write_seq="+write_seq);
+			mav.setViewName("WEB-INF/diary/Diary.jsp?write_seq="+write_seq);
 			
 		} catch (Exception e)
 		{

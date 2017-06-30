@@ -378,11 +378,11 @@
 							
 						</c:forEach>	
 	
-					<div onsubmit="commentinsert.do"  id="commentinsert"  style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">
+					<div onsubmit=""  id="commentinsert"  style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">
 						<!-- 답글달기 (숨겨줌) -->
 						<input type="hidden" name="recomment" value="답글">
 						<div style="min-height: 40px;">
-							<form action="" method="post" onsubmit="">
+							<form action="commentinsert.do" method="post" onsubmit="">
 								<!-- 댓글내용입력 -->
 								<textarea rows="3" name="commentinsertcont" id="commentinsertcont"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"></textarea>
 								<!-- 댓글달기버튼 -->
