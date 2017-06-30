@@ -37,12 +37,9 @@ public class Diary_InsertController implements Controller
 			diary.setWrite_cont(write_cont);
 			
 			dao.add(diary);
-<<<<<<< HEAD
 			
 			mav.setViewName("redirect:diary.do");
-=======
 			mav.setViewName("redirect:WEB-INF/diary/Diary.jsp");
->>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 			
 		} catch (Exception e)
 		{
