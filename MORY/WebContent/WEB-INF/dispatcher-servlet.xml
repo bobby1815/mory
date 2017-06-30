@@ -21,16 +21,21 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>	
+	
 	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
 	<property name="username" value="mory_ay"></property>
 	<property name="password" value="mory2017"></property>	
+	<property name="password" value="mory2017"></property>
 	
-	
-	
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
+	 
 	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="scott"></property>
 	<property name="password" value="TIGER"></property> 
-	 -->
+<<<<<<< HEAD
+	
+	<property name="password" value="TIGER"></property>  -->
+	
 	</bean>
 	
 	 
@@ -168,9 +173,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<bean name="/adminsearch.do" class="com.kh.mory.Controller.Admin_UserSeachController">
  			<property name="dao" ref="Admin_userDAO"></property>
  	</bean> 
-	<!-- 제재상태변경Controller  -->
-	<bean name="/usermodify.do" class="com.kh.mory.Controller.Admin_UserModifyController">
- 	</bean> 
+
+ 	
  	
  	
  	<!-- 신고조회 뉴스피드 -->
@@ -225,18 +229,17 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	
  	<!--1:1작성문의 Ajax처리  -->
- 	<!-- <bean name="/questiondetail.do" class="com.kh.mory.Controller.Admin_detailquestionSearchController">
- 			<property name="dao" ref="Admin_userDAO"></property>
- 	</bean> -->
+ 	<bean name="/questionAjax.do" class="com.kh.mory.Controller.Admin_UserlistSearchController">
+ 			<!-- <property name="dao" ref="Admin_userDAO"></property> -->
+ 	</bean>
  	 
  	
  	<!-- 작성1:1문의 조회-->
- 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_detailquestionSearchController">
- 		<property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_QuestionDeatilController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
  	</bean> 
  	
  	
-
  	<!-- 커뮤니티 dao -->
  	<bean id="communityDao" class="com.kh.mory.Dao.Admin_CommunityDAO">
  		<property name="dataSource" ref="remoteDataSource"></property>
