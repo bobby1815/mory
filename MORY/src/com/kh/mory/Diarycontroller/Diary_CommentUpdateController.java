@@ -47,7 +47,7 @@ public class Diary_CommentUpdateController implements Controller
 			diary.setUser_id(user_id);
 			
 			dao.commentUpdate(diary);
-			modelAndView.setViewName("WEB-INF/Diary/DiaryPost.do?write_seq="+write_seq);
+			modelAndView.setViewName("WEB-INF/diary/DiaryPost.do?write_seq="+write_seq);
 
 		} catch (Exception e)
 		{

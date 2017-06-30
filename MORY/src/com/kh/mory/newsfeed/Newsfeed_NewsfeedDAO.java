@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 
 	화면명 : Newsfeed_INewsfeedDAO.java
 	화면설명 : 데이터베이스 액션 처리
+	작성자 : 박아영
 
 ===============================================*/
 
@@ -37,11 +38,15 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 			String sql = "{call PROC_NEWSFEED_INSERT(?, ?)}";
 			
 			CallableStatement callableStatement = connection.prepareCall(sql);
-			
+			System.out.println("newsfeed_NewsfeedDTO.getWrite_cont()) : "+ newsfeed_NewsfeedDTO.getWrite_cont());
 			callableStatement.setString(1, newsfeed_NewsfeedDTO.getWrite_user_id());
+			//callableStatement.setString(2, newsfeed_NewsfeedDTO.getWrite_cont());
 			callableStatement.setString(2, uplo_loca);
 			
 			res = callableStatement.executeUpdate();
+			
+			callableStatement.close();
+			connection.close();
 			
 		} catch (Exception e)
 		{
