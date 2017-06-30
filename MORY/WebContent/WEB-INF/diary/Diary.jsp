@@ -209,7 +209,7 @@
 				<div id="Demo1" class="w3-container w3-hide">
 				  <a href="" style="width: 100px;" class="glyphicon glyphicon-user btn-lg"></a><br />
 				  <a href="" class="glyphicon glyphicon-time btn-lg"></a><br />
-				  <a href="" class="glyphicon glyphicon-pencil btn-lg"></a><br />
+				  <a href="diaryinsertform.do" class="glyphicon glyphicon-pencil btn-lg"></a><br />
 				  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
 				</div>
 			</div>
