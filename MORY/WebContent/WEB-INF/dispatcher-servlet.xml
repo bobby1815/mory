@@ -175,6 +175,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	</bean> 
 
  	
+	<!-- 제재상태변경Controller  -->
+	<bean name="/usermodify.do" class="com.kh.mory.Controller.Admin_UserModifyController">
+		 <property name="dao" ref="Admin_userDAO"></property> 
+ 	</bean> 
  	
  	
  	<!-- 신고조회 뉴스피드 -->
@@ -283,13 +287,14 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="diaryDAO" class="com.kh.mory.DiaryDAO.DiaryDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
+	
 	<bean id="commentDAO" class="com.kh.mory.DiaryDAO.CommentDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
+	
 	<bean id="recommentDAO" class="com.kh.mory.DiaryDAO.RecommentDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
-	
 	
 	<bean name="/diary.do" class="com.kh.mory.Diarycontroller.Diary_ListController">
 		<property name="dao" ref="diaryDAO"></property>
@@ -299,9 +304,17 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
 	
-	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">
+	<bean name="/diaryinsertform.do" class="com.kh.mory.Diarycontroller.Diary_InsertFormController">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
+		
+	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<bean name="/diaryupdateform.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>	
 	
 	<bean name="/diarypost.do" class="com.kh.mory.Diarycontroller.Diary_ContentController">
 		<property name="dao" ref="diaryDAO"></property>
@@ -311,7 +324,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
   <!-- 이용진 커퓨니티  -->
  	
-    <bean id="communityDAO" class="com.kh.mory.CommunityDAO">
+	<bean id="communityDAO" class="com.kh.mory.CommunityDAO">
       <property name="dataSource" ref="remoteDataSource"></property>
    </bean>
    
