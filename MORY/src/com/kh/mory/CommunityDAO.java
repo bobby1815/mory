@@ -25,7 +25,7 @@ public class CommunityDAO implements ICommunityDAO
 		
 		Connection conn = dataSource.getConnection();
 		
-		String sql = " EXEC PRC_COMMUNITY_INSERT(?,?, ?,)";
+		String sql = " EXEC PRC_COMMUNITY_INSERT(?,?,?,?)";
 			
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);

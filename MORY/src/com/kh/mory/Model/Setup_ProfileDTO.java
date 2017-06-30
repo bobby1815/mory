@@ -36,7 +36,48 @@ PWQU_ANSW               VARCHAR2(20)
 	
 	private String user_Id,user_Pw,user_name,user_Tel
 			,user_birth,user_Email,user_Zipcode,user_basic_Addr
-			,user_detail_addr,user_Nicname,gencode;
+			,user_detail_addr,user_Nicname,gencode,loca_code,city_code
+			,pwqu_code,pwqu_answ;
+
+	public String getLoca_code()
+	{
+		return loca_code;
+	}
+
+	public void setLoca_code(String loca_code)
+	{
+		this.loca_code = loca_code;
+	}
+
+	public String getCity_code()
+	{
+		return city_code;
+	}
+
+	public void setCity_code(String city_code)
+	{
+		this.city_code = city_code;
+	}
+
+	public String getPwqu_code()
+	{
+		return pwqu_code;
+	}
+
+	public void setPwqu_code(String pwqu_code)
+	{
+		this.pwqu_code = pwqu_code;
+	}
+
+	public String getPwqu_answ()
+	{
+		return pwqu_answ;
+	}
+
+	public void setPwqu_answ(String pwqu_answ)
+	{
+		this.pwqu_answ = pwqu_answ;
+	}
 
 	public String getUser_Nicname()
 	{

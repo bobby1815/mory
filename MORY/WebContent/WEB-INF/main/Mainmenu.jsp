@@ -27,7 +27,7 @@
                class="btn btn-primary"  onclick="location.href='diary.do'">다이어리</button>
             </div>
             <div class="col-xs-4 col-md-4"style="text-align: center;">   
-               <a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+               <a href="newsfeedlist.do" style="margin:0px ; color:black;">
                      <img src="img/Mory_logo.png" width="100"/>
                        <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
                        <img src="img/Mainlogo.png" width="100" />
