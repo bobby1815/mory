@@ -21,7 +21,7 @@
     .drop-menu{border: 1px solid grey;}
     .drop-menu-top{background: gray; color:white; border: gray;}
     th{background:lightgrey;}
-    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey;}
+    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; }
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
@@ -100,6 +100,7 @@
 			</table>
 		</div>
 	</div>
+</form>	
 	<!-- 데이터 상세조회  -->
 	<div id="lista" class="row"  style="display: none;">
 			<c:import url="/WEB-INF/menu/Admin_Detail.jsp"></c:import>
@@ -107,6 +108,5 @@
 </div>	
 </head>
 <body>
-</form>
 </body>
 </html>

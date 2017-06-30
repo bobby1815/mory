@@ -9,7 +9,6 @@ public interface Admin_IUserDAO
 {
 	public ArrayList<Admin_UserDTO> QueryUser(String user_Value,String user_Search) throws SQLException;
 	public ArrayList<Admin_UserDTO> UserList()throws SQLException;
-	public int NicModify(String User_Nic,String User_Id) throws SQLException;
 	public Admin_UserDTO SearchUser(String User_Id) throws SQLException;
-	public int UserModify(String id , String sanc_Type_Code) throws SQLException;
+	public int UserModify(String id , String sanc_Type_Code,String nic) throws SQLException;
 }

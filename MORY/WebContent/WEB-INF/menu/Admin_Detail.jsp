@@ -34,36 +34,22 @@
 			$("#lista").fadeToggle();	
 		}
 		
-		function usermodify() 
-		{
-			alert("우선됨");
-			//-- 유저 아이디 select박스값 담기.
-			var id = $("#user_id").val();
-			var value=$("#select").val();
-			var url ="/usermodify.do?user_id="+id+"&value="+value;
-			
-			//COntroller보내기
-			$(location).attr('href','usermodify.do');
-			
-			alert(url);
-			
-		}
 	
 </script>
 </head>
 <body>
-<form action="/usermodify.do?user_id">
+<form action="/usermodify.do" method="post" >
 <div class="container">
 		<div class="col-md-12" style="margin-top: 20px;">
 				<div class="col-md-8">
 						<div class="col-xs-2 col-md-2" >아이디 </div>
-						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" id="user_id"  readonly="readonly"></div>
+						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" name="id" id="user_id"  readonly="readonly"></div>
 						<div class="row col-xs-2 col-md-2">이름 </div>
 						<div class="col-xs-2 col-md-4"><input type="text" class="form-control" id="user_name" readonly="readonly"></div>
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<div class="col-xs-4 col-md-4">닉네임 </div>
-					<div class="col-xs-8 col-md-8"><input type="text" class="form-control" id="user_nic" readonly="readonly"></div>
+					<div class="col-xs-8 col-md-8"><input type="text" class="form-control" id="user_nic"></div>
 				</div>
 		</div>
 		
@@ -94,8 +80,9 @@
 					<div class="col-xs-4 col-md-4">제재상태</div>
 					<div class="col-xs-8 col-md-8">
 						<select class="form-control" name="select" id="select">
+								<option value="">제재 없음</option>
 								<option value="10">3일 정지</option>
-								<option value="20">5일 정지</option>
+								<option value="20">7일 정지</option>
 								<option value="99">영구 정지</option>
 						</select>
 					</div>
@@ -103,6 +90,7 @@
 		</div>
 		
 		<div class="col-xs-12 col-md-12" style="margin-top: 20px;">
+		<form action="/usermodify.do" method="post" >
 				<div class="col-xs-7 col-md-7">
 						<div class="col-xs-2 col-md-7"></div>
 						<div class="row col-xs-3  col-md-2">계정상태 </div>
@@ -119,7 +107,8 @@
 		</div>
 		<div class="row col-xs-12  col-md-12" style="margin-top: 20px;">
 			<div class="col-xs-1 col-md-11"></div>
-			<div class="col-xs-11 col-md-1"><button type="submit" class="btn btn-default" onclick="usermodify()">변경</button></div>
+			<div class="col-xs-11 col-md-1"><button class="btn btn-default" type="submit">변경</button>
+			</div>
 		</div>
 </div>		
 </form>

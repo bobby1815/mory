@@ -6,27 +6,36 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.kh.mory.Dao.Admin_IUserDAO;
+import com.kh.mory.Model.Admin_UserDTO;
+
+
 public class Admin_UserModifyController implements Controller
 {
+	private Admin_IUserDAO dao;
+	
+	public void setDao(Admin_IUserDAO dao)
+	{
+		this.dao = dao;
+	}
 
+
+	//제재상태 변경 Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		ModelAndView modelAndView = new ModelAndView();
-		
-		String val = request.getParameter("value");
 		String id = request.getParameter("id");
-		String href = request.getParameter("href");
+		String value = request.getParameter("select");
+		String user_nic = request.getParameter("user_nic");
+
+		System.out.println(user_nic);
 		
-		System.out.println(href);
-		System.out.println(5);
+		dao.UserModify(id, value,user_nic);
 		
-		
-		modelAndView.setViewName("WEB-INF/admin/Admin_DeclarationCommunityUserList.jsp");
+		modelAndView.setViewName("redirect:/userlist.do");
 		return modelAndView;
 	}
-	
-	
 	
 
 }

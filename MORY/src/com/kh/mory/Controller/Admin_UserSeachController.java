@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import com.kh.mory.Dao.Admin_IUserDAO;
 import com.kh.mory.Model.Admin_UserDTO;
 
-//--À¯Àú °Ë»ö ¾ÆÀÌµð,´Ð³×ÀÓ ,ÀÌ¸§,°èÁ¤»óÅÂ Controller
+//--ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½Ìµï¿½,ï¿½Ð³ï¿½ï¿½ï¿½ ,ï¿½Ì¸ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Controller
 public class Admin_UserSeachController implements Controller
 {
 	private Admin_IUserDAO dao;
@@ -30,7 +30,6 @@ public class Admin_UserSeachController implements Controller
 		
 		ArrayList<Admin_UserDTO> userList =  dao.QueryUser(value, name);
 
-		System.out.println(userList.size());
 		modelAndView.addObject("result", userList);
 		modelAndView.setViewName("WEB-INF/admin/Admin_UserList.jsp");
 		
