@@ -17,11 +17,14 @@ public class Diary_InsertController implements Controller
 	{
 		this.dao = dao;
 	}
+	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		ModelAndView mav = new ModelAndView();
 		request.setCharacterEncoding("UTF-8");
+		
+		ModelAndView mav = new ModelAndView();
+		
 		String diary_post_title  = request.getParameter("title");
 		String write_reg_dtm = request.getParameter("dtm");
 		String write_cont = request.getParameter("cont");
@@ -34,7 +37,8 @@ public class Diary_InsertController implements Controller
 			diary.setWrite_cont(write_cont);
 			
 			dao.add(diary);
-			mav.setViewName("redirect:WEB-INF/Diary/Diary.jsp");
+			
+			mav.setViewName("redirect:diary.do");
 			
 		} catch (Exception e)
 		{
