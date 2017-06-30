@@ -32,13 +32,27 @@
 				$("#user_sstate").attr("value",array[9])
 			});
 			$("#lista").fadeToggle();	
+		}
+		
+		function usermodify() 
+		{
+			alert("우선됨");
+			//-- 유저 아이디 select박스값 담기.
+			var id = $("#user_id").val();
+			var value=$("#select").val();
+			var url ="/usermodify.do?user_id="+id+"&value="+value;
+			
+			//COntroller보내기
+			$(location).attr('href','usermodify.do');
+			
+			alert(url);
 			
 		}
 	
 </script>
 </head>
 <body>
-
+<form action="/usermodify.do?user_id">
 <div class="container">
 		<div class="col-md-12" style="margin-top: 20px;">
 				<div class="col-md-8">
@@ -79,10 +93,10 @@
 				<div class="col-xs-4 col-md-4">
 					<div class="col-xs-4 col-md-4">제재상태</div>
 					<div class="col-xs-8 col-md-8">
-						<select class="form-control">
-								<option>3일 정지</option>
-								<option>5일 정지</option>
-								<option>영구 정지</option>
+						<select class="form-control" name="select" id="select">
+								<option value="10">3일 정지</option>
+								<option value="20">5일 정지</option>
+								<option value="99">영구 정지</option>
 						</select>
 					</div>
 				</div>
@@ -93,11 +107,6 @@
 						<div class="col-xs-2 col-md-7"></div>
 						<div class="row col-xs-3  col-md-2">계정상태 </div>
 						<div class="col-xs-1 col-md-3">
-						<!-- 	<select class="form-control" style="width:210px;" id="user_astate">
-								<option>3일 정지</option>
-								<option>5일 정지</option>
-								<option>영구 정지</option>
-							</select> -->
 							<input type="text" id="user_astate" class="form-control" readonly="readonly"style="margin-left: 10px;">
 						</div>
 				</div>
@@ -110,8 +119,9 @@
 		</div>
 		<div class="row col-xs-12  col-md-12" style="margin-top: 20px;">
 			<div class="col-xs-1 col-md-11"></div>
-			<div class="col-xs-11 col-md-1"><button class="btn btn-default">변경</button></div>
+			<div class="col-xs-11 col-md-1"><button type="submit" class="btn btn-default" onclick="usermodify()">변경</button></div>
 		</div>
 </div>		
+</form>
 </body>
 </html>

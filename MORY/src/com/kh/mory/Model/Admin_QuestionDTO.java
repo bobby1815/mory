@@ -5,12 +5,13 @@ public class Admin_QuestionDTO
 	//주요 변수 구성
 	
 	private int num;
-	private String ques_User_Id;
-	private String ques_Title;
-	private String ques_Reg_Dtm;
-	private String checks;
-	private String answ_User_Id;
-	private String ques_Cont;
+	private String ques_User_Id; //--아이디
+	private String ques_Title;	 //--제목 
+	private String ques_Reg_Dtm; //--작성일
+	private String checks;       //--답변여부
+	private String answ_User_Id; //--답변자
+	private String ques_Cont;    //--내용
+	private String answ_Cont;    //--답변내용
 	
 	
 
@@ -19,6 +20,14 @@ public class Admin_QuestionDTO
 	public int getNum()
 	{
 		return num;
+	}
+	public String getAnsw_Cont()
+	{
+		return answ_Cont;
+	}
+	public void setAnsw_Cont(String answ_Cont)
+	{
+		this.answ_Cont = answ_Cont;
 	}
 	public void setNum(int num)
 	{

@@ -26,6 +26,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<property name="password" value="mory2017"></property>	
 	
 	
+	
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="scott"></property>
+	<property name="password" value="TIGER"></property> 
+	 -->
 	</bean>
 	
 	 
@@ -163,8 +168,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<bean name="/adminsearch.do" class="com.kh.mory.Controller.Admin_UserSeachController">
  			<property name="dao" ref="Admin_userDAO"></property>
  	</bean> 
-
- 	
+	<!-- 제재상태변경Controller  -->
+	<bean name="/usermodify.do" class="com.kh.mory.Controller.Admin_UserModifyController">
+ 	</bean> 
  	
  	
  	<!-- 신고조회 뉴스피드 -->

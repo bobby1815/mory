@@ -14,16 +14,16 @@ import com.kh.mory.Model.Admin_DeclarationUserDTO;
 
 public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 {
-	// ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ±¸¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private DataSource dataSource;
 
-	// setter ¸Þ¼Òµå ±¸¼º
+	// setter ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void setDataSource(DataSource dataSource)
 	{
 		this.dataSource = dataSource;
 	}
 
-	//-- ½Å°í¸ñ·Ï Á¶È¸
+	//-- ï¿½Å°ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	@Override
 	public ArrayList<Admin_DeclarationUserDTO> DeclarationSearchList(String term, String Id, String select)
 			throws SQLException
@@ -34,10 +34,10 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		String sql=" ";
 		
 		
-		//--term¹Ú½º °¡ 1ÀÏÀÌ¸é ´º½ºÇÇµå Á¶È¸
+		//--termï¿½Ú½ï¿½ ï¿½ï¿½ 1ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½È¸
 		if (term.equals("1"))
 		{
-			//´º½ºÇÇµå ½Å°í Á¶È¸
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ ï¿½Å°ï¿½ ï¿½ï¿½È¸
 			sql= String.format(
 					" SELECT ROWNUM AS NUM,W.WRITE_USER_ID AS WRITE_USER_ID , W.WRITE_CONT,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
 					+" (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ "
@@ -53,7 +53,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		
 		else if(term.equals("2"))
 		{
-			//Ä¿¹Â´ÏÆ¼ ½Å°í Á¶È¸
+			//Ä¿ï¿½Â´ï¿½Æ¼ ï¿½Å°ï¿½ ï¿½ï¿½È¸
 			sql= String.format(
 					" SELECT ROWNUM AS NUM ,W.WRITE_USER_ID AS WRITE_USER_ID,B.COMMUNITY_TYPE_NAME AS COMMUNITY_TYPE_NAME "
 					+" ,C.COMMUNITY_TITLE AS COMMUNITY_TITLE ,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
@@ -74,7 +74,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		{
 			Admin_DeclarationUserDTO admin_DeclarationUserDTO = new Admin_DeclarationUserDTO();
 			
-			//-- Ä¿¹Â´ÏÆ¼ÀÏ¶§
+			//-- Ä¿ï¿½Â´ï¿½Æ¼ï¿½Ï¶ï¿½
 			if (term.equals("2"))
 			{
 				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
@@ -84,7 +84,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
 				admin_DeclarationUserDTO.setRepo_Count(rs.getInt("REPO_COUNT"));
 			}
-			//-- ´º½ºÇÇµåÀÏ¶§
+			//-- ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½Ï¶ï¿½
 			else if(term.equals("1"))
 			{
 				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
@@ -104,7 +104,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		return result;
 	}
 
-	//-- ½Å°í Ajax Á¶È¸
+	//-- ï¿½Å°ï¿½ Ajax ï¿½ï¿½È¸
 	@Override
 	public Admin_DeclarationUserDTO AjaxSearchUser(String userid) throws SQLException
 	{
@@ -132,7 +132,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 	}
 	
 
-	//-- ºí¶óÀÎµå Á¶È¸
+	//-- ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½È¸
 	@Override
 	public ArrayList<Admin_DeclarationUserDTO> BlindSearchList(String term, String Id, String select) throws SQLException
 	{
@@ -145,7 +145,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		{
 			sql = "select ROWNUM AS NUM ,WRITE_USER_ID,WRITE_CONT,TO_CHAR( WRITE_REG_DTM,'YY-MM-DD') AS WRITE_REG_DTM,REPO_COUNT "
 				+ " FROM DNEWSFEEDVIEW "
-				+" WHERE PAGE_CODE='N' AND WRITE_USER_ID LIKE '%%"+Id+"%%' AND WRITE_REG_DTM LIKE '%%"+term+"%%' AND REPO_COUNT >5 "; 
+				+" WHERE PAGE_CODE='N' AND WRITE_USER_ID LIKE '%%"+Id+"%%' AND WRITE_REG_DTM LIKE '%%"+term+"%%' AND REPO_COUNT >(SELECT DECL_CNT FROM TBL_BLIND_SETUP WHERE PAGE_CODE = 'N' ) "; 
 			
 		}
 		else if (select.equals("2"))
@@ -153,14 +153,14 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 			
 			sql ="SELECT ROWNUM AS NUM , COMMUNITY_TYPE_NAME,WRITE_USER_ID,WRITE_CONT,TO_CHAR( WRITE_REG_DTM,'YY-MM-DD') AS WRITE_REG_DTM,REPO_COUNT "
 				+" FROM DCOMMUNITYVIEW "
-				+" WHERE REPO_COUNT > 10   AND write_user_id LIKE '%%"+Id+"%%' ";
+				+" WHERE REPO_COUNT > (SELECT DECL_CNT FROM TBL_BLIND_SETUP WHERE PAGE_CODE = 'C' )  AND write_user_id LIKE '%%"+Id+"%%' ";
 		}
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next())
 		{
 			Admin_DeclarationUserDTO admin_DeclarationUserDTO = new Admin_DeclarationUserDTO();
 			
-			//--´º½ºÇÇµåÀÏ¶§
+			//--ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½Ï¶ï¿½
 			if (select.equals("1"))
 			{
 				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
@@ -173,7 +173,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 				result.add(admin_DeclarationUserDTO);
 			}
 			
-			//--Ä¿¹Â´ÏÆ¼ ÀÏ¶§
+			//--Ä¿ï¿½Â´ï¿½Æ¼ ï¿½Ï¶ï¿½
 			else if (select.equals("2"))
 			{
 				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));

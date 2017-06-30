@@ -16,23 +16,23 @@ import com.kh.mory.Model.Admin_UserDTO;
 public class Admin_UserDAO implements Admin_IUserDAO
 {
 
-	// ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ±¸¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private DataSource dataSource;
 
-	// setter ¸Þ¼Òµå ±¸¼º
+	// setter ï¿½Þ¼Òµï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void setDataSource(DataSource dataSource)
 	{
 		this.dataSource = dataSource;
 	}
 
 
-	// -- °èÁ¤Á¶È¸(ÀÌ¸§,´Ð³×ÀÓ,°èÁ¤»óÅÂ)Á¶È¸
+	// -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸(ï¿½Ì¸ï¿½,ï¿½Ð³ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½È¸
 	@Override
 	public ArrayList<Admin_UserDTO> QueryUser(String user_Value, String user_Search) throws SQLException
 	{
 			Connection conn = dataSource.getConnection();
 			ArrayList<Admin_UserDTO> list = new ArrayList<Admin_UserDTO>();
-	     //»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ °ª °¡Á®¿Â ÈÄ Á¶°Ç°É±â
+	     //ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ç°É±ï¿½
 			   if (user_Value.equals("1"))
 			   {	   
 				   user_Value = " AND U.USER_ID LIKE '%%"+user_Search+"%%' ";
@@ -49,8 +49,6 @@ public class Admin_UserDAO implements Admin_IUserDAO
 				{
 					user_Value ="AND T.SANC_TYPE_NAME LIKE '%"+user_Search+"%' ";
 				}
-		
-		
 
 		String sql =	
 			" SELECT ROWNUM AS NUM, U.USER_ID AS USER_ID, U.USER_NAME AS USER_NAME , U.USER_NIC  AS USER_NIC,U.USER_EMAIL AS USER_EMAIL " 
@@ -93,9 +91,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 
 	
 	
-	
-	
-	// --ÀüÃ¼°èÁ¤¸®½ºÆ®(»ç¿ëÀÚ ÀüÃ¼)
+	// --ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®(ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼)
 	@Override
 	public ArrayList<Admin_UserDTO> UserList() throws SQLException
 	{
@@ -135,17 +131,16 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		return list;
 	}
 
-	// --´Ð³×ÀÓ¼öÁ¤
+	// --ï¿½Ð³ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½
 	@Override
-	public int NicModify(String User_Nic, String User_Id) throws SQLException
+	public int NicModify(String user_Nic, String user_Id) throws SQLException
 	{
 		Connection conn = dataSource.getConnection();
 		int result = 0;
 		String sql = " UPDATE TBL_USER  SET USER_NIC=? WHERE USER_ID=? ";
-		Admin_UserDTO userDTO = new Admin_UserDTO();
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, userDTO.getUser_Nic());
-		pstmt.setString(2, userDTO.getUser_Id());
+		pstmt.setString(1,user_Nic );
+		pstmt.setString(2,user_Id);
 		result = pstmt.executeUpdate();
 
 		pstmt.close();
@@ -153,7 +148,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		return result;
 	}
 
-	// --À¯Àú°Ë»ö
+	// --ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½
 	@Override
 	public Admin_UserDTO SearchUser(String User_Id) throws SQLException
 	{
@@ -191,17 +186,17 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		return userDTO;
 	}
 
-	// --°èÁ¤»óÅÂ ÀÔ·Â
+
+	// --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
-	public int UserAddSanction() throws SQLException
+	public int UserModify(String id,String sanc_Type_Code) throws SQLException
 	{
 		int result = 0;
-		Admin_UserDTO userDTO = new Admin_UserDTO();
 		Connection conn = dataSource.getConnection();
-		String sql = " INSERT INTO TBL_USER_SANCTION VALUES(SEQ_USER_SANCTION.NEXTVAL,?,?,SYSDATE) ";
+		String sql = " UPDATE TBL_USER_SANCTION SET SANC_TYPE_CODE=? WHERE USER_ID=? ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, userDTO.getUser_Id());
-		pstmt.setString(2, userDTO.getSanc_Type_Code());
+		pstmt.setString(1, id);
+		pstmt.setString(2, sanc_Type_Code);
 		result = pstmt.executeUpdate();
 
 		return result;

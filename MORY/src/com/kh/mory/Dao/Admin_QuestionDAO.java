@@ -23,7 +23,7 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 	}
 
 
-	//1:1¹®ÀÇ °ªºÒ·¯¿À±â(°Ë»ö,¾ÆÀÌµð,´äº¯¿©ºÎ)
+	//1:1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Ë»ï¿½,ï¿½ï¿½ï¿½Ìµï¿½,ï¿½äº¯ï¿½ï¿½ï¿½ï¿½)
 	@Override
 	public ArrayList<Admin_QuestionDTO> QueSearch(String term, String select, String id) throws SQLException
 	{
@@ -34,23 +34,23 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		String sql ="";
 		
 		
-		//--´äº¯¿©ºÎ¿Ï·áÀÏ‹š
+		//--ï¿½äº¯ï¿½ï¿½ï¿½Î¿Ï·ï¿½ï¿½Ï‹ï¿½
 		if (select.equals("3"))
 		{
 			sql ="SELECT NUM,QUES_USER_ID,QUES_TITLE,QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT"
 				+" FROM QUESTIONVIEW "
-				+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS !='¹Ì¿Ï·á' ";
+				+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS !='ï¿½Ì¿Ï·ï¿½' ";
 			
 		}
-		//--´äº¯¿©ºÎ¹Ì¿Ï·áÀÏ¶§
+		//--ï¿½äº¯ï¿½ï¿½ï¿½Î¹Ì¿Ï·ï¿½ï¿½Ï¶ï¿½
 		else if (select.equals("2"))
 		{
 			sql ="SELECT NUM,QUES_USER_ID,QUES_TITLE,QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT"
 					+" FROM QUESTIONVIEW "
-					+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS LIKE '%%¿Ï·á%%' ";
+					+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS LIKE '%%ï¿½Ï·ï¿½%%' ";
 			
 		}
-		//--ÀüÃ¼Ãâ·Â
+		//--ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½
 		else if (select.equals("1"))
 		{
 			sql = "SELECT NUM,QUES_USER_ID,QUES_TITLE,QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT "
@@ -70,6 +70,7 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 			dto.setChecks(rs.getString("CHECKS"));
 			dto.setAnsw_User_Id(rs.getString("ANSW_USER_ID"));
 			dto.setQues_Cont(rs.getString("QUES_CONT"));
+			dto.setAnsw_Cont(rs.getString("ANSW_CONT"));
 			
 			result.add(dto);
 			
@@ -84,7 +85,7 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 
 	
 	
-	//´äº¯ ÀÔ·Â
+	//ï¿½äº¯ ï¿½Ô·ï¿½
 	@Override
 	public int addanw()
 	{
@@ -92,34 +93,36 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		return 0;
 	}
 
-	//-- 1:1¹®ÀÇ AjaxÃ³¸®¸¦ À§ÇÑ »ç¿ëÀÚ°Ë»ö±â´É
-
+	
+	//--ï¿½ï¿½ï¿½Ìµï¿½Þ¾ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¸
 	@Override
-	public Admin_QuestionDTO AjaxSearch(String term, String select, String id) throws SQLException
+	public Admin_QuestionDTO AjaxSearch(String id) throws SQLException
 	{
 		Connection conn=dataSource.getConnection();
-		
-		String sql =String.format(""
-				
-				
-				
-				
-				
-				
-				
-				);
 		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(sql);
+		
+		String sql ="SELECT NUM,QUES_USER_ID,QUES_TITLE,TO_DATE(QUES_REG_DTM,'YY-MM-DD')AS QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT "
+					+" FROM QUESTIONVIEW WHERE QUES_USER_ID ='"+id+"' ";
+				
+		ResultSet rs =  stmt.executeQuery(sql);
+		Admin_QuestionDTO dto = new Admin_QuestionDTO();
 		while (rs.next())
 		{
-			Admin_QuestionDTO dto = new Admin_QuestionDTO();
-
+			dto.setNum(rs.getInt("NUM"));
+			dto.setQues_User_Id(rs.getString("QUES_USER_ID"));
+			dto.setQues_Title(rs.getString("QUES_TITLE"));
+			dto.setQues_Reg_Dtm(rs.getString("QUES_REG_DTM"));
+			dto.setChecks(rs.getString("CHECKS"));
+			dto.setAnsw_User_Id(rs.getString("ANSW_USER_ID"));
+			dto.setQues_Cont(rs.getString("QUES_CONT"));
+			dto.setAnsw_Cont(rs.getString("ANSW_CONT"));
 			
 		}
+		rs.close();
+		stmt.close();
+		conn.close();
 		
-		
-		
-		return null;
+		return dto;
 	}
 	
 

@@ -11,5 +11,5 @@ public interface Admin_IUserDAO
 	public ArrayList<Admin_UserDTO> UserList()throws SQLException;
 	public int NicModify(String User_Nic,String User_Id) throws SQLException;
 	public Admin_UserDTO SearchUser(String User_Id) throws SQLException;
-	public int UserAddSanction() throws SQLException;
+	public int UserModify(String id , String sanc_Type_Code) throws SQLException;
 }

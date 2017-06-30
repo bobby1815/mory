@@ -18,13 +18,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
-	function moves() 
+	 function moves(user_id) 
 	{
-		alert("헤헷");
-		var url ="/questionAjax.do";
-		$.post("url",{})
+		//alert("ggg");		
+		var url ="/questiondeatil.do?user_id="+user_id;
+		$(location).attr('href',url);
 	} 
-
+ 
 
 </script>
 <style>
@@ -91,6 +91,8 @@
 			</div>
 		</div>	
 		<!-- 피드신고목록  -->
+		
+		
 		<div class="row" style="padding: 30px 0px;">
 			<table class="col-xs-12 text-center">
 				<tr>
@@ -102,7 +104,7 @@
 				</tr>
 				<!-- 제목,작성자,작성일,답변자,답변일,내용,답글  -->
 			<c:forEach var="lists" items="${list}">	
-				<tr id="list" onclick="moves('${lists.ques_User_Id}')" >
+				<tr id="list" onclick="moves('${lists.ques_User_Id}')">
 					<td>${lists.num}</td>
 					<td>${lists.ques_User_Id}</td>
 					<td>${lists.ques_Title}</td>
@@ -113,6 +115,7 @@
 			</table>
 		</div>
 	</div>
+</div>
 </div>
 </form>
 

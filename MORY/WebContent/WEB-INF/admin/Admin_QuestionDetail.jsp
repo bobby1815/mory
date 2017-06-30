@@ -16,6 +16,15 @@
 <script src="assets/jquery.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+	function checks() 
+	{
+		confirm("저장하시겠습니까?");	
+	}
+
+
+</script>
 <style>
     a{color:black;}
     .drop-menu{border: 1px solid grey;}
@@ -43,14 +52,13 @@
 		<div class="row " id="all1" >
 				<div class="col-xs-1 col-md-1"  id="b1"></div>
 				<div class="col-xs-10 col-md-10"  id="b2">
-					
 					<!-- 제목 -->
 					<div class="col-md-12" style="margin-top: 30px;">
 						<div class="col-md-1">
 							<input type="text" class="form-control" placeholder="제목" readonly="readonly" style="width:75px;">
 						</div>
 						<div class="col-md-11">
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" value="${ques_Title}">
 						</div>
 					</div>
 					<!-- 작성자  -->
@@ -61,7 +69,7 @@
 								<input type="text" class="form-control" placeholder="작성자" readonly="readonly" style="width:73px;">
 							</div>
 							<div class="col-md-10">
-								<input type="text" class="form-control" style="width: 380px;">
+								<input type="text" class="form-control" style="width: 380px;" value="${ques_User_Id}">
 							</div>
 					   </div>
 					   
@@ -71,7 +79,7 @@
 								<input type="text" class="form-control" placeholder="작성일" readonly="readonly" style="width:73px;">
 							</div>
 							<div class="col-md-10">
-								<input type="text" class="form-control"style="width: 350px;">
+								<input type="text" class="form-control"style="width: 350px;" value="${ques_Reg_Dtm}" >
 							</div>
 					   </div>
 					</div>
@@ -83,7 +91,7 @@
 								<input type="text" class="form-control" placeholder="답변자" readonly="readonly" style="width:73px;">
 							</div>
 							<div class="col-md-10">
-								<input type="text" class="form-control" style="width: 380px;">
+								<input type="text" class="form-control" style="width: 380px;" value="${answ_User_Id }"  >
 							</div>
 					   </div>
 					   
@@ -93,7 +101,7 @@
 								<input type="text" class="form-control" placeholder="답변일" readonly="readonly" style="width:73px;">
 							</div>
 							<div class="col-md-10">
-								<input type="text" class="form-control"style="width: 350px;">
+								<input type="text" class="form-control"style="width: 350px;" value="${checks }">
 							</div>
 					   </div>
 					</div>
@@ -104,7 +112,7 @@
 							</div>
 							
 							<div class="col-md-11">
-									<input type="text"class="form-control" style="height: 200px;">
+									<input type="text"class="form-control" style="height: 200px;" value="${answ_Cont}">
 							</div>
 					
 					</div>
@@ -116,20 +124,19 @@
 							</div>
 							
 							<div class="col-md-11">
-									<input type="text"class="form-control" style="height: 200px;">
+									<input type="text"class="form-control" style="height: 200px;" value="${ques_Cont}">
 							</div>
 					
 					</div>
-					
 					<div class="row col-md-12" style="margin-top: 30px;">
 							<div class="col-md-8"></div>
 							<div class="col-md-4">
 								<div class="col-md-4"></div>
 								<div class="col-md-4">
-									<button class="btn btn-info btn-lg">저장</button>
+									<button class="btn btn-info btn-lg" onclick="">저장</button>
 								</div>
 								<div class="col-md-4">
-									<button class="btn btn-info btn-lg">취소</button>
+									<a href="/question.do"><button class="btn btn-info btn-lg">취소</button></a>
 								</div>	
 							</div>
 					</div>
