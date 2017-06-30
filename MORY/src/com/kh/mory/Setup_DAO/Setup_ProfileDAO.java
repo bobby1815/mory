@@ -21,15 +21,16 @@ public class Setup_ProfileDAO implements Setup_IProfile
 	}
 
 	@Override
-	public ArrayList<Setup_ProfileDTO> nickname_check() throws SQLException
+	public ArrayList<Setup_ProfileDTO> user_info(String user_id,String user_pw) throws SQLException
 	{
 		
 		Connection conn = dataSource.getConnection();
 		ArrayList<Setup_ProfileDTO> result = new ArrayList<Setup_ProfileDTO>();
-		String sql ="  SELECT USER_ID AS ID,GEN_CODE AS GENDER,ACC_STATE_CODE AS STATUS, "
+		String sql ="  SELECT USER_ID AS ID,GEN_CODE AS GENDER,ACC_STATE_CODE AS STATUS,"
+				+ "CRYPTPACKAGE.DECRYPT("+user_pw+","+user_id+") AS PASSWORD "
 				+ " ACC_GRADE_CODE AS AUTHORITY, USER_NAME AS NAME "
      			+ ",USER_NIC AS NICKNAME, USER_TEL AS TEL, USER_BIRTH AS BRITHDAY,"
-     			+ " USER_EMAIL AS EMAIL,ZIPCODE AS ZIPCOE "
+     			+ " USER_EMAIL AS EMAIL,ZIPCODE AS ZIPCOE , GEN_CODE AS GENCODE "
 				+ ",BASIC_ADDR AS BASIC_ADDR,DETAIL_ADDR AS DETAIL_ADDR FROM TBL_USER";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
@@ -37,14 +38,16 @@ public class Setup_ProfileDAO implements Setup_IProfile
 		{
 			Setup_ProfileDTO profiledto = new Setup_ProfileDTO();
 			profiledto.setUser_Id(rs.getString("ID"));
+			profiledto.setUser_Nicname(rs.getString("NICKNAME"));
+			profiledto.setUser_name(rs.getString("NAME"));
+			profiledto.setUser_Pw(rs.getString("PASSWORD"));
 			profiledto.setUser_birth(rs.getString("BIRTHDAY"));
-			profiledto.setUser_basic_Addr(rs.getString("BASIC_ADDR"));
-			profiledto.setUser_detail_addr(rs.getString("DETAIL_ADDR"));
+			profiledto.setGencode(rs.getString("GENCODE"));
+			profiledto.setUser_Email("EMAIL");
 			profiledto.setUser_Tel(rs.getString("TEL"));
 			profiledto.setUser_Zipcode(rs.getString("ZIPCODE"));
-			profiledto.setUser_Email("EMAIL");
-			profiledto.setUser_Pw(rs.getString("PW"));
-			profiledto.setUser_name(rs.getString("NAME"));
+			profiledto.setUser_basic_Addr(rs.getString("BASIC_ADDR"));
+			profiledto.setUser_detail_addr(rs.getString("DETAIL_ADDR"));
 			result.add(profiledto);
 		}
 		pstmt.close();
@@ -62,12 +65,12 @@ public class Setup_ProfileDAO implements Setup_IProfile
 	}
 
 	@Override
-	public int modify() throws SQLException
+	public int modify(Setup_ProfileDTO profileDTO) throws SQLException
 	{
 		int result =0;
 		Connection conn = dataSource.getConnection();
-		Setup_ProfileDTO profileDTO = new Setup_ProfileDTO();
-		String sql ="UPDATE TBL_USER SET USER_ID = ? ,  USER_NIC =? ,USER_NAME = ? , USER_PW = ? ,"
+		String sql ="UPDATE TBL_USER "
+				+ "SET USER_ID = ? ,  USER_NIC =? ,USER_NAME = ? , USER_PW = ? ,"
 				+ " USER_BIRTH = ? , USER_GENCODE = ? , USER_EMAIL = ? , USER_TEL = ? , ZIPCODE = ? , "
 				+ "BASIC_ADDR = ? , DETAIL_ADDR = ?"  
 				+" WHERE USER_ID = ?";

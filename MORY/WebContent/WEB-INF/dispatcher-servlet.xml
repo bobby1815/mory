@@ -25,12 +25,22 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
 	<property name="username" value="mory_ay"></property>
 	<property name="password" value="mory2017"></property>
+<<<<<<< HEAD
 	
 	 <!-- 
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+=======
+	 
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 	<property name="username" value="scott"></property>
+<<<<<<< HEAD
 	<property name="password" value="TIGER"></property> 
 	 -->
+=======
+	<property name="password" value="TIGER"></property>  -->
+	
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 	</bean>
 	
 	 
@@ -45,7 +55,16 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<property name="password" value="mory2017"></property>
 		 -->
 
-		<bean name="/setmain.do"          class="com.kh.mory.SetupController.Setup_Main_Controller"></bean>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<bean id="mainDAO" class="com.kh.mory.Setup_DAO.Setup_MainDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+
+		<bean name="/*setmain.do"  class="com.kh.mory.SetupController.Setup_Main_Controller">
+			<property name="mainDAO" ref="mainDAO"></property>
+		</bean>
 		
 		
 		<bean name="/setmenual.do"        class="com.kh.mory.SetupController.Setup_Menual_Controller"></bean>
@@ -54,7 +73,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<bean name="/setcscenter.do"      class="com.kh.mory.SetupController.Setup_Customer_Center_Controller"></bean>
 		
 		
-		<bean name="/setprofile.do"       class="com.kh.mory.SetupController.Setup_Profile_Controller"></bean>
+		<bean id="profileDAO" class="com.kh.mory.Setup_DAO.Setup_ProfileDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+		
+		<bean name="/*profile.do"       class="com.kh.mory.SetupController.Setup_Profile_Controller">
+			<property name="profileDAO" ref="profileDAO"></property>
+		</bean>
 		
 		
 		<bean name="/setrhmanagement.do"  class="com.kh.mory.SetupController.Setup_Realation_Management_Controller"></bean>
@@ -80,7 +105,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			<property name="managementDAO" ref="managementDAO"></property>
 		</bean>
 		
-<!-- 환경 설정 끝  -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 	<bean id="userDao" class="com.kh.mory.join.Signup_UserDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
@@ -116,7 +142,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="feedDao" ref="feedDao"></property>
 	</bean>
 	
-<!-- 아영이 끝  -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <!-- 관리자 신지섭  -->
 
@@ -217,6 +244,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<!-- 	<property name="dao" ref="User"></property> -->
  	</bean> 
  	
+ 	
  	<!-- 커뮤니티 dao -->
  	<bean id="communityDao" class="com.kh.mory.Dao.Admin_CommunityDAO">
  		<property name="dataSource" ref="remoteDataSource"></property>
@@ -252,7 +280,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<!-- 관리자 끝 -->
  	
  	
- 	
+ <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
  	
  	
  	<!--김민준 김진호  -->
@@ -271,7 +300,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
 	
-	<bean name="/diaryinsert.do" class="com.kh.mory.Diarycontroller.Diary_InsertFormController">
+	<bean name="/diaryinsert.do" class="com.kh.mory.Diarycontroller.Diary_InsertController">
+		<property name="dao" ref="diaryDAO"></property>
 	</bean>
 	
 	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">

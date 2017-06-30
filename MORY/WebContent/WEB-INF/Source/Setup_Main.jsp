@@ -34,18 +34,6 @@ $(document).ready(function () {
 
 });
 
-$(document).ready(function() 
-		{
-			$("#submitBtn").click(function()
-			{
-				if ($("#id").val == "" || $("#pw").val() == "")
-				{
-					$("#errMsg").html("항목을 모두 채워야 합니다.").css("display", "inline");
-					return;
-				}
-				$("#setup_main").submit();
-			});
-		});
 
 
 function myFunction(id) {
@@ -204,20 +192,16 @@ width: 200px;
         	<table>
         		<tr>
         			<th>아이디</th>
-        			<td><input type="text" id="user_id"/></td>
-        			<td><span id="errMsg" style="color:red; display: none;" ></span></td>
+        			<td><input type="text" id="user_id" name="user_Id"/></td>
         		</tr>
         		<tr>
         		<th>비밀번호</th>
-        			<td><input type="password" id="user_pw"/></td>
-        			<td>
-        			<span id="errMsg" style="color:red; display: none;"></span>
-        			</td>
+        			<td><input type="password" id="user_pw" name="user_Pw"/></td>
         		</tr>
            	</table>
       </div>
       <div class="modal-footer">
-      	<button type="submit" class="btn btn-default " data-dismiss="modal" id="submitBtn">본인확인</button>
+      	<button type="button" class="btn btn-default " data-dismiss="modal" onclick="location.href='userlogin_setmain.do'">본인확인</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
       </div>
     </div>

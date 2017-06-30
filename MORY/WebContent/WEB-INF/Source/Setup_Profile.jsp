@@ -16,7 +16,7 @@
 function goPopup(){
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	var pop = window.open("/MORY/jusopopup.do","pop","width=570,height=320, scrollbars=yes, resizable=yes"); 
+	var pop = window.open("/jusopopup.do","pop","width=570,height=320, scrollbars=yes, resizable=yes"); 
 	
 	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
     //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
@@ -111,7 +111,7 @@ width: 200px;
                   <div class="col-xs-5 col-md-5 text-right"><h5>아이디</h5></div>
                   <div class="form-group">
                      <div class="input-group">
-                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="아이디를 입력해주세요."> 
+                        <input type="text" class="form-control" value="${profile.user_id }" id="user_id" name="user_id" readonly="readonly"> 
                         <span   class="input-group-btn">
                            <button type="button" class="btn btn-info" id="idCheck">중복확인</button>
                         </span>
@@ -126,7 +126,8 @@ width: 200px;
                   <div class="col-xs-5 col-md-5 text-right"><h5>닉네임</h5></div>
                   <div class="form-group">
                      <div class="input-group">
-                        <input type="text" class="form-control" id="user_nic" name="user_nic" placeholder="닉네임을 입력해주세요."> 
+                        <input type="text" class="form-control" value="${profile.user_nic }" id="user_nic" name="user_nic" > 
+                        
                         <span class="input-group-btn">
                            <button type="button" class="btn btn-info" id="nicCheck">중복확인</button>
                         </span>
@@ -139,7 +140,7 @@ width: 200px;
                <div class="row">
                   <div class="col-xs-5 col-md-5 text-right"><h5>이름</h5></div>
                   <div class="col-xs-7 col-md-5 text-center">
-                     <input type="text" class="form-control" id="user_name" name="user_name" placeholder="이름을 입력해주세요.">
+                     <input type="text" class="form-control" value="${profile.user_name }" id="user_name" name="user_name" placeholder="이름을 입력해주세요.">
                   </div>
                </div>
 
@@ -147,7 +148,7 @@ width: 200px;
                <div class="row">
                   <div class="col-xs-5 col-md-5 text-right"><h5>비밀번호</h5></div>
                   <div class="col-xs-7 col-md-5 text-center">
-                     <input type="password" class="form-control" id="user_pw" name="user_pw" placeholder="비밀번호를 입력해주세요.">
+                     <input type="password" class="form-control" value="${profile.user_Pw }" id="user_pw" name="user_pw" placeholder="비밀번호를 입력해주세요.">
                   </div>
                   <p id="pwCheck1">
                </div>
@@ -157,7 +158,7 @@ width: 200px;
                      <h5>비밀번호 확인</h5>
                   </div>
                   <div class="col-xs-7 col-md-5 text-center">
-                     <input type="password" class="form-control" id="user_pw2" name="user_pw2" placeholder="비밀번호를 재입력해주세요.">
+                     <input type="password" class="form-control" value="${profile.user_Pw }" id="user_pw2" name="user_pw2" placeholder="비밀번호를 재입력해주세요.">
                   </div>
                   <p id="pwCheck2">
                </div>
@@ -169,7 +170,7 @@ width: 200px;
                      <h5>생년월일</h5>
                   </div>
                   <div class="col-xs-7 col-md-5 text-center">
-                     <input type="date" class="form-control" id="user_birth" name="user_birth">
+                     <input type="date" class="form-control"  value="${profile.user_birth }" id="user_birth" name="user_birth">
                   </div>
                </div>
                
@@ -203,7 +204,7 @@ width: 200px;
                      <h5>e - mail</h5>
                   </div>
                   <div class="col-xs-7 col-md-5 text-center">
-                     <input type="text" class="form-control" id="user_email" name="user_email" placeholder="이메일을 입력해주세요.">
+                     <input type="text" class="form-control" value="${profile.user_Email }" id="user_email" name="user_email" placeholder="이메일을 입력해주세요.">
                   </div>
                </div>
 
@@ -213,7 +214,7 @@ width: 200px;
                      <h5>전화 번호</h5>
                   </div>
                   <div class="col-xs-7 col-md-5 text-center">
-                     <input type="text" class="form-control" id="user_tel" name="user_tel" placeholder="'-'를 제외하고 입력해주세요.">
+                     <input type="text" class="form-control" value="${profile.user_Tel }" id="user_tel" name="user_tel" placeholder="'-'를 제외하고 입력해주세요.">
                   </div>
                </div>
 
@@ -223,7 +224,7 @@ width: 200px;
                      <h5>우편 번호</h5>
                   </div>
                   <div class="col-xs-3 col-md-2 text-right">
-                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly="readonly">
+                     <input type="text" class="form-control" value="${profile.user_Zipcode }" id="zipcode" name="zipcode" readonly="readonly">
                   </div>
                   <div class="col-xs-3 col-md-3 ">
                      <div class="col-xs-8 col-md-12  text-left">
@@ -236,7 +237,7 @@ width: 200px;
                <div class="row text-left ">
                   <div class="col-xs-5 col-md-5"></div>
                   <div class="col-xs-7 col-md-7 text-left">
-                     <input type="text" class="form-control" id="roadFullAddr" name="roadFullAddr" readonly="readonly" style="width: 100%;">
+                     <input type="text"  value="${profile.user_basic_Addr }" class="form-control" id="roadFullAddr" name="roadFullAddr" readonly="readonly" style="width: 100%;">
                   </div>
                   <input type="hidden" id="siNm" name="siNm">
                   <input type="hidden" id="sggNm" name="sggNm">
@@ -252,7 +253,7 @@ width: 200px;
                   </div>
                   <div class="col-xs-6 col-md-4 text-left">
                      <select class="form-control "  id="pwqu_code" name="pwqu_code">
-                        <option selected="selected" ><h4>비밀번호 힌트</h4></option>
+                        <option selected=" value=${profile.pwqu_code }" ><h4>비밀번호 힌트</h4></option>
                         <c:forEach var="list" items="${pwquLists }">
                            <option  value="${list.pwqu_code }">${list.pwqu_name }</option>
                         </c:forEach>
@@ -270,7 +271,7 @@ width: 200px;
                   <button type="button" class="btn btn-primary" id="homeBtn" onclick="location.href='setmain.do'"><h5>돌아가기</h5></button>
                </div>
                <div class="col-xs-6 col-md-6 text-center">
-                  <button type="submit" class="btn btn-primary" id="updatebtn"><h5>회원 수정</h5></button>
+                  <button type="submit" class="btn btn-primary" id="updatebtn" onclick="loaction.href='modifyprofile.do'"><h5>회원 수정</h5></button>
                </div>
               </form>
            
