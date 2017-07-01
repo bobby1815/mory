@@ -6,6 +6,7 @@
 <head>
 <meta  content="charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -44,6 +45,32 @@ width: 200px;
 }
 </style>
 
+<script type="text/javascript">
+
+	function searchId()
+	{
+		$.post("/searchuser.do",{user_id:$("#user_id").val()}, function(data)
+		{
+			$("#userlistTbl > tbody:last").append(data);
+		})
+	}
+	
+	function memberinvite(nei_user_id)
+	{
+		//alert(nei_user_id);
+		var value = nei_user_id;
+		$.post("/memberinvite.do", {nei_user_id: value}, function(data)
+		{
+			if (data == 1)
+			{
+				alert("멤버요청이 완료되었습니다.");
+			}
+		});
+		
+	}
+
+</script>
+
 </head>
 <body>
 <div class="container"  id="container">
@@ -79,48 +106,45 @@ width: 200px;
           <!-- Center middle -->
            <div class="col-md-6" id="b2_center" style="width: 50%; height: 700px;">
           	
-          	<div class="col-md-12" style="  margin-top: 100px; width: 100%;" >
-          	<h2 style="text-align: center;"> 가족 관리</h2>
-          	<div class="col-md-12" style="width: 100%;">
-          	<input type="text" value="search" style="width: 60%;" />
-          	<span class="glyphicon glyphicon-search btn-lg" style="width: 30%;" onclick="alert(1);">
-          	</span>
+          	<div class="col-md-12" style="  margin-top: 10px; width: 100%;" >
+          	<div align="middle" style="margin-bottom: 50px;">
+          		<img src="img/searchUser.png" align="middle" width="200px" />
           	</div>
+          	<form action="searchuser.do?page=family" method="post">
+          		
+          	<div class="col-md-12" style="width: 100%;">
+          	<input type="text" name="user_Id" style="width: 60%;" placeholder="search" />
+          	<button type="submit" class="btn btn-default">검색</button>
+          	</div>
+          	</form>
           	
           	
           	<div class="col-md-12">
-          	<table style="border:1px solid gray; width: 100%">
+          	<table style="width: 100%" >
+          		
+          		<tbody>
+          		<c:forEach var="list" items="${userlist }">
           		<tr>
-          			<th>닉네임&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>메일주소&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
-          			<th>ㅎㅎ&nbsp;&nbsp;&nbsp;&nbsp;</th>
+          		<td><img src="img/1497890377_female-silhouette-sunglasses.png"  width="30px"/></td>
+          			<td>${list.user_id }</td>
+          			<td style="color:gray;">${list.user_nic }</td>
+          			<td><img src="img/neighbor_non.png" width="30px" onclick="memberinvite('${list.user_id}')"/></td>
           		</tr>
           		
+          		</c:forEach>
+          		
+          		</tbody>
+         		
           	</table>
-          	</div>
           	
           	</div>
          
           	<div class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
-          	 	<h1>이웃이웃</h1>
+          	 	<h1>다이어리멤버</h1>
          	 <ul class="list-group">
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영</li>
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 민혜</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 임 재균</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민</li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용</li>
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎 </li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 오 동연 </li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 동건 </li>
-			    
+         	 <c:forEach var="memberdto" items="${memberlist }">
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/>${memberdto.acce_user_name }</li>
+			     </c:forEach>
 			  </ul>
           	</div>
 
@@ -177,7 +201,7 @@ width: 200px;
             
             <div class="col-xs-1 col-md-1"  id="f3">f3</div>
       </div>      
- 
+	</div>
 </div>
 </body>
 </html>

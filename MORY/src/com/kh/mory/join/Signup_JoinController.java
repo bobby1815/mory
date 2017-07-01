@@ -53,8 +53,8 @@ public class Signup_JoinController implements Controller
 			
 			String user_id = request.getParameter("user_id");
 			String user_pw = request.getParameter("user_pw");
-			String user_nic = request.getParameter("user_name");
-			String user_name = request.getParameter("user_nic");
+			String user_nic = request.getParameter("user_nic");
+			String user_name = request.getParameter("user_name");
 			String user_birth = request.getParameter("user_birth");
 			String gen_code = request.getParameter("gen_code");
 			String user_email = request.getParameter("user_email");
@@ -87,14 +87,17 @@ public class Signup_JoinController implements Controller
 				dto.setPwqu_code(pwqu_code);
 				dto.setPwqu_answ(pwqu_answ);
 				
-				userDao.userInsert(dto);
+				if (0 < userDao.userInsert(dto))
+				{
+					modelAndView.setViewName("WEB-INF/join/Signup_JoinComplete.jsp");
+				}
+				else
+					modelAndView.setViewName("redirect:main.do");
 				
 			} catch (Exception e)
 			{
 				System.out.println(e.toString());
 			}
-			
-			modelAndView.setViewName("redirect:main.do");
 		}
 		
 		return modelAndView;

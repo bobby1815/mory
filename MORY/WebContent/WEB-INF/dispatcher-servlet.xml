@@ -20,17 +20,25 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- RemoteData -->
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<!-- 	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>	
 	<property name="url" value="jdbc:oracle:thin:@172.30.1.27:1521:xe"></property>
 	<property name="username" value="scott"></property>
 	<property name="password" value="TIGER"></property>	
+	
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
+	<property name="username" value="mory_ay"></property>
+	<property name="password" value="mory2017"></property>	
+	 -->
+	
+	
 	
 	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
 	 
 	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="scott"></property>
 	<property name="password" value="TIGER"></property> 
-<<<<<<< HEAD
 	
 	<property name="password" value="TIGER"></property>  -->
 	
@@ -80,7 +88,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		
 		<bean name="/setreportlist.do"    class="com.kh.mory.SetupController.Setup_Report_List_Controller"></bean>
 		
-		<bean name="/setfmmanagement.do"  class="com.kh.mory.SetupController.Setup_Famliy_Management_Controller"></bean>
+		<!-- 멤버 초대 -->
+		<bean id="memberDAO" class="com.kh.mory.Setup_DAO.Setup_Family_ManagementDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+		<bean name="/member*.do"  class="com.kh.mory.SetupController.Setup_Famliy_Management_Controller">
+			<property name="memberDAO" ref="memberDAO"></property>
+		</bean>
 		
 		<bean name="/setcsfna.do"		  class="com.kh.mory.SetupController.Setup_Fna_Controller"></bean>
 		
