@@ -44,7 +44,7 @@ public class CommentDAO implements ICommentDAO
 		String sql = "INSERT INTO TBL_COMMENT"
 				+ " (COMMENT_SEQ, WRITE_SEQ, COMMENT_CONT"
 				+ ", COMMENT_REG_DTM, USER_ID)"
-				+ " VALUES (SEQ_COMMENT.NEXTVAL, ?, ?, SYSDATE, ?)";
+				+ " VALUES (SEQ_COMMENT.NEXTVAL, TO_CHAR(?), ?, SYSDATE, ?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -136,7 +136,8 @@ public class CommentDAO implements ICommentDAO
 		Connection connection = dataSource.getConnection();
 
 		String sql = "SELECT A.COMMENT_SEQ AS COMMENT_SEQ, A.WRITE_SEQ AS WRITE_SEQ , "
-				+ " A.COMMENT_CONT AS COMMENT_CONT , SUBSTR(TO_CHAR(A.COMMENT_REG_DTM),0,10) AS COMMENT_REG_DTM,  B.USER_NIC AS USER_NIC "
+				+ " A.COMMENT_CONT AS COMMENT_CONT , SUBSTR(TO_CHAR(A.COMMENT_REG_DTM),0,10) AS COMMENT_REG_DTM, "
+				+ " B.USER_NIC AS USER_NIC , B.USER_ID AS USER_ID "
 				+ " FROM TBL_COMMENT A, TBL_USER B "
 				+ " WHERE A.USER_ID = B.USER_ID "
 				+ " AND A.WRITE_SEQ = ? "
@@ -153,6 +154,7 @@ public class CommentDAO implements ICommentDAO
 			diary.setComment_seq(resultSet.getString("COMMENT_SEQ"));
 			String cont = resultSet.getString("COMMENT_CONT");
 			cont = cont.replaceAll("\\\\n", "<br>");
+			diary.setUser_id(resultSet.getString("USER_ID"));
 			diary.setComment_cont(cont);
 			diary.setComment_reg_dtm(resultSet.getString("COMMENT_REG_DTM"));
 			diary.setUser_nic(resultSet.getString("USER_NIC"));

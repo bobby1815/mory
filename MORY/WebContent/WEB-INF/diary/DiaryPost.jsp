@@ -48,8 +48,47 @@
  */
 	$(document).ready(function()
 	{
+		// 수정 버튼
+		$("#submitBtn").click(function() 
+		{
+			// 데이터 검사(공란이 있는지 없는지에 대한 여부)
+			if ( $("#diary_post_title").val()=="" )
+			{
+				alert("제목이 누락됬습니다.");
+				return;	//-- submit 액션 중단.
+			}
+			
+			if ( $("#write_reg_dtm").val()=="" )
+			{
+				alert("내용이 누락됬습니다.");
+				return;	//-- submit 액션 중단.
+			}
+			
+			if ($("#write_cont").val()=="" )
+			{
+				alert("날짜가 누락됬습니다.");
+				return;	//-- submit 액션 중단.
+			}
+			
+			// submit 액션 처리
+			$("#diaryForm").submit();				
+		});
+		 		
+		// 삭제 버튼
+		$(".deleteBtn").click(function()
+		{
+			if (confirm("작성하신 다이어리 게시물을 삭제하시겠습니까?"))
+			{
+				$(location).attr("href", "diarydelete.do?write_seq="+"${diaryDTO.write_seq}");
+			}
+		});
 		
-		 
+		// 수정 버튼
+		$(".updateBtn").click(function()
+		{
+			// 수정 EmployeeUpdate → EmployeeUpdateForm
+			$(location).attr("href", "diaryupdateform.do?write_seq=" + "${diaryDTO.write_seq}");
+		});	
 		
 		
 		//댓글 입력
@@ -404,7 +443,7 @@
     				
     				form.setAttribute("charset", "UTF-8");
     				form.setAttribute("method", "Post"); // Get 또는 Post 입력
-    				form.setAttribute("action", "recommentupdate.do");
+    				form.setAttribute("action", "recommentinsert.do");
     				  
     				var hiddenField1 = document.createElement("input");
     				hiddenField1.setAttribute("type", "hidden");
@@ -449,50 +488,21 @@
 
 	<div class="container" id="container">
 		<!-- 첫번째 row  -->
-		<div class="row " id="all0">
-			<div class="col-xs-1 col-md-1" id="h1"></div>
-			<div class="col-xs-10 col-md-10" id="h2"
-				style="margin-bottom: 30px; ">
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="뉴스피드"
-						style="height: 40px; width: 100px;" class="btn btn-primary">뉴스피드</button>
-				</div>
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="다이어리"
-						style="height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
-				</div>
-				<div class="col-xs-4 col-md-4" style="text-align: center;">
-					<a href="*" style="margin: 0px 20px; color: black;"> <!-- <img src="C:\MORY\Mory\WebContent\img\logo.png" width="100"/> -->
-						<span style="font-size: 30px; text-align: center;"><b>MORY</b></span>
-					</a>
-				</div>
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="커뮤니티"
-						style="height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
-				</div>
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="환경설정"
-						style="height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
-				</div>
-			</div>
-			<div class="col-xs-1 col-md-1" id="h3"></div>
-		</div>
+		<c:import url="../main/Mainmenu.jsp" /> 
  
 		<!-- 두번째 row  -->
 		<div class="row " id="all1">
 			<div class="col-xs-1 col-md-1" id="b1">b1</div>
 			<div class="col-xs-10 col-md-10" id="b2">
 				<div>
-					<input type="text" class="form-control" value="민준이의 다이어리"
-						style="text-align: center"  readonly="readonly" >
+					<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center"  readonly="readonly" >
 				</div>
 				<div>
-					<input type="text" class="form-control" value="다이어리 작성"
-						style="text-align: center" readonly="readonly" >
+					<input type="text" class="form-control" value="다이어리 작성" style="text-align: center" readonly="readonly" >
 				</div>
 				<div class="col-xs-12 col-md-12"  style="background-color: aqua;">
 					<div class="col-xs-6 col-md-6" align="left">
-						<label style="text-align: left; color: white;  ">제목 :</label>
+						<label style="text-align: left; color: white; ">제목 :</label>
 						<input type="text" id="diary_post_title" name="diary_post_title" class="diary_post_title"
 						 placeholder="제목을 입력하세요." style="width: 70%;" value="${diaryDTO.diary_post_title }" readonly="readonly" >
 					</div>
@@ -506,19 +516,22 @@
 				<div>
 					<div class="form-control" id="write_cont" class="write_cont"
 						style="min-height: 450px; height:100%; background-color: white;  ">
-						<button style="margin-left: 90%;">수정</button>
-						<br /><button style="margin-left: 90%;">삭제</button>
+						<%-- <c:if test=""></c:if> --%>
+						<button style="margin-left: 90%;" class="updateBtn">수정</button>
+						<br />
+						<button style="margin-left: 90%;" class="deleteBtn">삭제</button>
 						<br />
 						${diaryDTO.write_cont }
 					</div>
-					<div  class="col-xs-12 col-md-12" style="align: right;" >
-						
+					<div class="col-xs-12 col-md-12" style="align: right;" >
 						 
 						 <bgsound class="col-xs-10 col-md-10">
 						 
 						<input type="button" value="목록" class="col-xs-2 col-md-2" >
 					</div>
+					
 					<br /><br />
+					
 						<!-- 댓글 영역 -->
 						<c:forEach var="comment" items="${commentList }" >
 							<div id="commentlistdiv${comment.comment_seq }" name="commentlistdiv${comment.comment_seq }" style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">

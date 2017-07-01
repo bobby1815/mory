@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -13,10 +14,10 @@ import com.kh.mory.DiaryIDAO.ICommentDAO;
 
 public class Diary_CommentListController implements Controller
 {
-	   // DAO ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ¸â¹ö ±¸¼º
+	   // DAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	   private ICommentDAO dao;
 
-	   // setter ±¸¼º
+	   // setter ï¿½ï¿½ï¿½ï¿½
 	   public void setDao(ICommentDAO dao)
 	   {
 	      this.dao = dao;
@@ -25,10 +26,12 @@ public class Diary_CommentListController implements Controller
 	   @Override
 	   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	   {
-	      request.setCharacterEncoding("UTF-8");
-	      
+		   request.setCharacterEncoding("UTF-8");
 
 			ModelAndView modelAndView = new ModelAndView();
+			
+			HttpSession session = request.getSession();
+			String user_id = (String) session.getAttribute("user_id");
 
 			String write_seq = request.getParameter("write_seq");
 

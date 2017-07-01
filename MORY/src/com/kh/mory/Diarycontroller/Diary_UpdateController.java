@@ -22,11 +22,15 @@ public class Diary_UpdateController implements Controller
 	{
 		ModelAndView maAndView = new ModelAndView();
 		request.setCharacterEncoding("UTF-8");
-		String diary_post_title  = request.getParameter("title");
-		String write_reg_dtm = request.getParameter("dtm");
-		String write_cont = request.getParameter("cont");
+		String diary_post_title  = request.getParameter("diary_post_title");
+		String write_reg_dtm = request.getParameter("write_reg_dtm");
+		String write_cont = request.getParameter("write_cont");
+		String write_seq = request.getParameter("write_seq");
 		
-		write_cont.replaceAll("\n", "<br>");
+		DiaryDTO dto = dao.mydiary(write_cont);
+		String diary_seq = dto.getDiary_seq();
+		
+		write_cont.replaceAll("\n", "<br>");		
 		
 		try
 		{
@@ -35,7 +39,9 @@ public class Diary_UpdateController implements Controller
 			diary.setDiary_post_title(diary_post_title);
 			diary.setWrite_reg_dtm(write_reg_dtm);
 			diary.setWrite_cont(write_cont);
-			
+			diary.setDiary_requ_seq(diary_seq);
+			diary.setWrite_seq(write_seq);
+			System.out.println(write_seq);
 			dao.modyfi(diary);
 			maAndView.setViewName("redirect:diary.do");
 			

@@ -7,6 +7,7 @@ package com.kh.mory.Diarycontroller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -33,15 +34,15 @@ public class Diary_CommentInsertController implements Controller
 		request.setCharacterEncoding("UTF-8");
 
 		ModelAndView modelAndView = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
 
-		String comment_cont = request.getParameter("cont");
-		String user_id = request.getParameter("id");
+		String comment_cont = request.getParameter("commentinsertcont");
 		String write_seq = request.getParameter("write_seq");
-
 		try
 		{
 			DiaryDTO diary = new DiaryDTO();
-			
 			diary.setComment_cont(comment_cont);
 			diary.setUser_id(user_id);
 			diary.setWrite_seq(write_seq);

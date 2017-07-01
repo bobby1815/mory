@@ -36,11 +36,16 @@ public class Diary_RecommentInsertController implements Controller
 		ModelAndView modelAndView = new ModelAndView();
 
 		String comment_cont = request.getParameter("cont");
+		System.out.println(comment_cont);
 		String user_id = request.getParameter("id");
+		System.out.println(user_id);
 		String commentseq = request.getParameter("commentseq");
+		System.out.println(commentseq);
 		String write_seq = request.getParameter("write_seq");
+		System.out.println(write_seq);
 		try
 		{
+			System.out.println("RECOMMENT");
 			DiaryDTO diary = new DiaryDTO();
 			
 			diary.setComment_cont(comment_cont);
