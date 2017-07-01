@@ -49,6 +49,27 @@
 	$(document).ready(function()
 	{
 		
+		 
+		
+		
+		//댓글 입력
+		$("#commentinsersubBtn").click(function()
+		{
+			//데이터 검사(공란이 있는지 없는징 대한 여부)
+			
+			if ( $("#commentinsertcont").val()=="")
+			{
+				alert("입력이 누락된 항목이 있습니다.");
+				return;
+				
+			}
+			
+			//submit 액션 처리
+			$("#commentisertform").submit();
+			
+		});
+		
+		
 		//2댓 답
 			<%
         	ArrayList<DiaryDTO> comment = (ArrayList<DiaryDTO>)request.getAttribute("commentList");
@@ -66,6 +87,9 @@
             <%
             }
             %>
+            
+         
+    		
 		
 		
 		
@@ -170,6 +194,250 @@
             }
             %>
             
+            // 댓글 삭제 유무 확인후 삭제
+            <%
+            
+            for(DiaryDTO comm : comment )
+            {
+        		String commentdelete = "#commentdelete"+comm.getComment_seq();
+           	%>
+            
+            
+            $("<%=commentdelete%>").click(function()
+			{
+				if (confirm("댓글을 삭제하시겠습니까?"))
+				{
+					$(location).attr("href","commentdelete.do?comment_seq="+"<%=comm.getComment_seq()%>"+"&write_seq="+"${diaryDTO.write_seq}");
+				}
+			});
+            
+            <%
+            }
+            %>
+            
+		// 댓글 수정 유무 확인후 수정 
+            
+            <%
+            
+            for(DiaryDTO comm : comment )
+            {
+        		String commentupdatebtn = "#commentupdatebtn"+comm.getComment_seq();
+        		String commentupdatecont = "commentupdatecont"+comm.getComment_seq();
+        		
+           	%>
+            
+            
+            $("<%=commentupdatebtn%>").click(function()
+    		{
+    			if (confirm("수정 하시겠습니까?"))
+    			{
+    				<%-- var txtBox = $("<%=commentupdatecont%>").val();
+    				hiddenField1.setAttribute("value", document.getElementById("<%=commentupdatecont%>").value);
+    				document.getElementById("<%=commentupdatecont%>").innerHTML;
+    				alert(txtBox); --%>
+    				
+    				
+    				
+    				var str = document.getElementById("<%=commentupdatecont%>").value;
+    				str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    				
+    				
+					alert(str);
+    				
+    				
+    				var form = document.createElement("form");
+    				
+    				
+    				form.setAttribute("charset", "UTF-8");
+    				form.setAttribute("method", "Post"); // Get 또는 Post 입력
+    				form.setAttribute("action", "commentupdate.do");
+    				  
+    				var hiddenField1 = document.createElement("input");
+    				hiddenField1.setAttribute("type", "hidden");
+    				hiddenField1.setAttribute("name", "comment_cont");
+    				hiddenField1.setAttribute("value", str);
+    				form.appendChild(hiddenField1);
+    				
+    				 
+    				 
+    				var hiddenField2 = document.createElement("input");
+    				hiddenField2.setAttribute("type", "hidden");
+    				hiddenField2.setAttribute("name", "comment_seq");
+    				hiddenField2.setAttribute("value", "<%=comm.getComment_seq()%>");
+    				form.appendChild(hiddenField2);
+    				
+    				var hiddenField3 = document.createElement("input");
+    				hiddenField3.setAttribute("type", "hidden");
+    				hiddenField3.setAttribute("name", "write_seq");
+    				hiddenField3.setAttribute("value", "${diaryDTO.write_seq}");
+    				form.appendChild(hiddenField3);
+    				document.body.appendChild(form);
+    				form.submit();
+    			}
+    		});
+            
+            <%
+            }
+            %>
+            		
+            
+            // 답글 삭제 유무 확인후 삭제
+            
+		           
+		    
+		    <%
+		    
+		    for(DiaryDTO comm : recomment )
+		    {
+				String recomentdelete = "#recomentdelete"+comm.getReco_seq();
+		   	%>
+		    
+		    
+		    $("<%=recomentdelete%>").click(function()
+			{
+				if (confirm("답글을 삭제하시겠습니까?"))
+				{
+					$(location).attr("href","recommentdelete.do?reco_seq="+"<%=comm.getReco_seq()%>"+"&write_seq="+"${diaryDTO.write_seq}");
+				}
+			});
+		    
+		    <%
+		    }
+		    %>
+		            
+            
+            
+            // 답글 수정 유무 확인후 수정
+            
+            <%
+            
+            for(DiaryDTO comm : recomment )
+            {
+        		String recommentcontupdate = "#recommentcontupdate"+comm.getReco_seq();
+        		String recommentupdatecont = "recommentupdatecont"+comm.getReco_seq();
+        		
+           	%>
+            
+            
+            $("<%=recommentcontupdate%>").click(function()
+    		{
+    			if (confirm("수정 하시겠습니까?"))
+    			{
+    				<%-- var txtBox = $("<%=commentupdatecont%>").val();
+    				hiddenField1.setAttribute("value", document.getElementById("<%=commentupdatecont%>").value);
+    				document.getElementById("<%=commentupdatecont%>").innerHTML;
+    				alert(txtBox); --%>
+    				
+    				
+    				
+    				var str = document.getElementById("<%=recommentupdatecont%>").value;
+    				str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    				
+    				
+					alert(str);
+    				
+    				
+    				var form = document.createElement("form");
+    				
+    				
+    				form.setAttribute("charset", "UTF-8");
+    				form.setAttribute("method", "Post"); // Get 또는 Post 입력
+    				form.setAttribute("action", "recommentupdate.do");
+    				  
+    				var hiddenField1 = document.createElement("input");
+    				hiddenField1.setAttribute("type", "hidden");
+    				hiddenField1.setAttribute("name", "reco_cont");
+    				hiddenField1.setAttribute("value", str);
+    				form.appendChild(hiddenField1);
+    				
+    				 
+    				 
+    				var hiddenField2 = document.createElement("input");
+    				hiddenField2.setAttribute("type", "hidden");
+    				hiddenField2.setAttribute("name", "reco_seq");
+    				hiddenField2.setAttribute("value", "<%=comm.getReco_seq()%>");
+    				form.appendChild(hiddenField2);
+    				
+    				var hiddenField3 = document.createElement("input");
+    				hiddenField3.setAttribute("type", "hidden");
+    				hiddenField3.setAttribute("name", "write_seq");
+    				hiddenField3.setAttribute("value", "${diaryDTO.write_seq}");
+    				form.appendChild(hiddenField3);
+    				document.body.appendChild(form);
+    				form.submit();
+    			}
+    		});
+            
+            <%
+            }
+            %>
+            
+            // 답글 입력 
+            
+<%
+            
+            for(DiaryDTO comm : recomment )
+            {
+        		String addrecommentbtn = "#addrecommentbtn"+comm.getReco_seq();
+        		String addrecommentcont = "addrecommentcont"+comm.getReco_seq();
+        		
+           	%>
+            
+            
+            $("<%=addrecommentbtn%>").click(function()
+    		{
+    			if (confirm("답글 하시겠습니까?"))
+    			{
+    				
+    				
+    				
+    				
+    				var str = document.getElementById("<%=addrecommentcont%>").value;
+    				str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    				
+    				
+					alert(str);
+    				
+    				
+    				var form = document.createElement("form");
+    				
+    				
+    				form.setAttribute("charset", "UTF-8");
+    				form.setAttribute("method", "Post"); // Get 또는 Post 입력
+    				form.setAttribute("action", "recommentupdate.do");
+    				  
+    				var hiddenField1 = document.createElement("input");
+    				hiddenField1.setAttribute("type", "hidden");
+    				hiddenField1.setAttribute("name", "reco_cont");
+    				hiddenField1.setAttribute("value", str);
+    				form.appendChild(hiddenField1);
+    				
+    				 
+    				 
+    				var hiddenField2 = document.createElement("input");
+    				hiddenField2.setAttribute("type", "hidden");
+    				hiddenField2.setAttribute("name", "reco_seq");
+    				hiddenField2.setAttribute("value", "<%=comm.getReco_seq()%>");
+    				form.appendChild(hiddenField2);
+    				
+    				var hiddenField3 = document.createElement("input");
+    				hiddenField3.setAttribute("type", "hidden");
+    				hiddenField3.setAttribute("name", "write_seq");
+    				hiddenField3.setAttribute("value", "${diaryDTO.write_seq}");
+    				form.appendChild(hiddenField3);
+    				document.body.appendChild(form);
+    				form.submit();
+    				
+    				
+    				
+    				document.body.appendChild(form);
+    				form.submit();
+    			}
+    		});
+            
+            <%
+            }
+            %>
        
 	});
 </script>
@@ -298,9 +566,9 @@
 								<a class="" id="commentupdatecancel${comment.comment_seq }" name="commentupdatecancel${comment.comment_seq }" style="margin-left: 38%; color: red; ">수정취소</a>
 								<div style="min-height: 40px;">
 									<!-- 댓글내용입력 -->
-									<textarea rows="3" name="commentupdatecont${comment.comment_seq }" id="commentupdatecont${comment.comment_seq }"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"><%=cont %></textarea>
-									<!-- 댓글달기버튼 -->
-									<button id="commentupdatebtn${comment.comment_seq }"name="commentupdatebtn${comment.comment_seq }"  style="width: 20%; min-height: 40px; vertical-align: middle;">수정</button>
+								<textarea rows="3" name="commentupdatecont${comment.comment_seq}" id="commentupdatecont${comment.comment_seq}"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"><%=cont %></textarea>
+									<!-- 댓글수정버튼 -->
+										<button id="commentupdatebtn${comment.comment_seq }"name="commentupdatebtn${comment.comment_seq }"  style="width: 20%; min-height: 40px; vertical-align: middle;">수정</button>
 								</div>
 							</div>
 							
@@ -327,7 +595,7 @@
 									
 										<c:set var="b" value="${recoment.reco_cont}"/>
 										<% String recont = (String)pageContext.getAttribute("b"); 
-										recont = cont.replaceAll("<br>", "\\\n");%>
+										recont = recont.replaceAll("<br>", "\\\n");%>
 							
 									
 										<!-- 답글 출력 -->
@@ -343,7 +611,7 @@
 												<input type="text" name="date" size="20" maxlength="20" value="${recoment.reco_reg_dtm}"  readonly="readonly"  >
 												<div style="min-height: 40px; vertical-align: middle;">
 													<!-- 댓글내용 --> 
-													<div style="text-align:left; width: 100%; min-height:  40px; " ><pre><%=recont %></pre>
+													<div style="text-align:left; width: 100%; min-height:  40px; " ><pre>${recoment.reco_cont }</pre>
 													</div>
 													<!-- 수정버튼 -->
 													<button id="recomentupdate${recoment.reco_seq }" name="recomentupdate${recoment.reco_seq }"  style="width: 50px; height: 40px; ">수정</button>
@@ -353,7 +621,7 @@
 											</div>
 											<!-- 답글 수정폼 -->
 											
-											<div id="recommentupdatediv${recoment.reco_seq }" name="recommentupdatediv${recoment.reco_seq }" style="border: 1px solid; width: 89%; padding: 5px; margin-left: 6%;  display:none   ; ">
+											<div id="recommentupdatediv${recoment.reco_seq}" name="recommentupdatediv${recoment.reco_seq }" style="border: 1px solid; width: 89%; padding: 5px; margin-left: 6%;  display:none   ; ">
 												<!-- 댓글 번호 (숨겨줌) -->
 												<input type="hidden" name="comment_seq"  value='<c:out value="${recoment.reco_seq }"></c:out>'>
 												<!-- 프로필 사진 -->
@@ -366,7 +634,7 @@
 												<a class="" id="reupcancel${recoment.reco_seq}" name="reupcancel${recoment.reco_seq}" style="margin-left: 37%; color: red; ">수정취소</a>
 												<div style="min-height: 40px;">
 													<!-- 댓글내용입력 -->
-													<textarea rows="3" id="recommentupdatecont${recoment.reco_seq }" name="recommentupdatecont${recoment.reco_seq }"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"><%=recont %></textarea>
+													<textarea rows="3" id="recommentupdatecont${recoment.reco_seq }" name="recommentupdatecont${recoment.reco_seq }"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"><%=recont%></textarea>
 													<!-- 댓글달기버튼 -->
 													<input type="button" name="recommentcontupdate${recoment.reco_seq }" id="recommentcontupdate${recoment.reco_seq }" value="댓글달기" style="width: 20%; min-height: 40px; vertical-align: middle;">
 												</div>
@@ -378,15 +646,17 @@
 							
 						</c:forEach>	
 	
-					<div onsubmit=""  id="commentinsert"  style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">
+					<div id="commentinsert"  style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;   ">
 						<!-- 답글달기 (숨겨줌) -->
 						<input type="hidden" name="recomment" value="답글">
 						<div style="min-height: 40px;">
-							<form action="commentinsert.do" method="post" onsubmit="">
+							<form action="commentinsert.do" method="post"  id="commentisertform">
 								<!-- 댓글내용입력 -->
 								<textarea rows="3" name="commentinsertcont" id="commentinsertcont"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"></textarea>
 								<!-- 댓글달기버튼 -->
-								<input type="submit" name="cancle" value="댓글달기" style="width: 100px; min-height: 40px; vertical-align: middle;">
+								<input type="button" id="commentinsersubBtn" value="댓글달기" style="width: 100px; min-height: 40px; vertical-align: middle;">
+								<input type="hidden" name="user" value=""  />
+								<input type="hidden" name="write_seq" value="${diaryDTO.write_seq }"/>
 							</form>
 						</div>
 					</div>

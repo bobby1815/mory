@@ -1,6 +1,6 @@
 /*==================================
    RecommentInsertController.java
-   - »ç¿ëÀÚ Á¤ÀÇ ÄÁÆ®·Ñ·¯ Å¬·¡½º.
+   - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
 ==================================*/
 
 package com.kh.mory.Diarycontroller;
@@ -17,14 +17,15 @@ import com.kh.mory.DiaryIDAO.IRecommentDAO;
 
 public class Diary_RecommentInsertController implements Controller
 {
-   // DAO ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ¸â¹ö ±¸¼º
-   private IRecommentDAO dao;
+   // DAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   private IRecommentDAO recommentdao;
 
-   // setter ±¸¼º
-   public void setDao(IRecommentDAO dao)
+   // setter ï¿½ï¿½ï¿½ï¿½
+   public void setRecommentdao(IRecommentDAO recommentdao)
    {
-      this.dao = dao;
+   	this.recommentdao = recommentdao;
    }
+      
 
    @Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -46,8 +47,8 @@ public class Diary_RecommentInsertController implements Controller
 			diary.setUser_id(user_id);
 			diary.setComment_seq(commentseq);
 			
-			dao.recommentInsert(diary);
-			modelAndView.setViewName("DiaryPost.do?write_seq="+write_seq);
+			recommentdao.recommentInsert(diary);
+			modelAndView.setViewName("redirect:diarypost.do?write_seq="+write_seq);
 
 		} catch (Exception e)
 		{
@@ -56,7 +57,8 @@ public class Diary_RecommentInsertController implements Controller
 
 		return modelAndView;
    }
-   
+
+
    
    
 }

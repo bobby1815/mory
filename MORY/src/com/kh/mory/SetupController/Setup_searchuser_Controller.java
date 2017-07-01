@@ -27,6 +27,7 @@ public class Setup_searchuser_Controller implements Controller
 		
 		String value = request.getParameter("page");
 		
+		
 		modelAndView.addObject("userlist", managementDAO.searchuser(user_Id));
 		
 		// 멤버초대 페이지에서 요청한 경우라면..

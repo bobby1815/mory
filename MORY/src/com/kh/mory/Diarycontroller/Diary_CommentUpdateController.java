@@ -1,6 +1,6 @@
 /*==================================
    CommentUpdateController.java
-   - »ç¿ëÀÚ Á¤ÀÇ ÄÁÆ®·Ñ·¯ Å¬·¡½º.
+   - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
 ==================================*/
 
 package com.kh.mory.Diarycontroller;
@@ -17,14 +17,14 @@ import com.kh.mory.DiaryIDAO.ICommentDAO;
 
 public class Diary_CommentUpdateController implements Controller
 {
-   // DAO ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ¸â¹ö ±¸¼º
-   private ICommentDAO dao;
+   // DAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   private ICommentDAO commentdao;
 
-   // setter ±¸¼º
-   public void setDao(ICommentDAO dao)
+   // setter ï¿½ï¿½ï¿½ï¿½
+   public void setCommentdao(ICommentDAO commentdao)
    {
-      this.dao = dao;
-   }
+   	this.commentdao = commentdao;
+   } 
 
    @Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -33,21 +33,19 @@ public class Diary_CommentUpdateController implements Controller
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		String comment_cont = request.getParameter("cont");
-		String comment_reg_dtm = request.getParameter("dtm");
-		String user_id = request.getParameter("id");
+		String comment_cont = request.getParameter("comment_cont");
+		
 		String write_seq=request.getParameter("write_seq");
-
+		String comment_seq = request.getParameter("comment_seq");
 		try
 		{
 			DiaryDTO diary = new DiaryDTO();
 			
 			diary.setComment_cont(comment_cont);
-			diary.setComment_reg_dtm(comment_reg_dtm);
-			diary.setUser_id(user_id);
+			diary.setComment_seq(comment_seq);
 			
-			dao.commentUpdate(diary);
-			modelAndView.setViewName("WEB-INF/diary/DiaryPost.do?write_seq="+write_seq);
+			commentdao.commentUpdate(diary);
+			modelAndView.setViewName("redirect:diarypost.do?write_seq="+write_seq);
 
 		} catch (Exception e)
 		{
@@ -56,6 +54,8 @@ public class Diary_CommentUpdateController implements Controller
 
 		return modelAndView;
    }
+
+
    
    
    

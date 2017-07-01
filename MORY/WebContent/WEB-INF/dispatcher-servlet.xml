@@ -22,6 +22,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 	<!-- 	
+=======
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>	
+	
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
 	<property name="username" value="mory_ay"></property>
 	<property name="password" value="mory2017"></property>	
@@ -29,9 +33,17 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	
 	
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
+	 
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 	<property name="username" value="scott"></property>
 	<property name="password" value="TIGER"></property> 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	
+	<property name="password" value="TIGER"></property>  -->
 	
 	</bean>
 	
@@ -176,8 +188,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<bean name="/adminsearch.do" class="com.kh.mory.Controller.Admin_UserSeachController">
  			<property name="dao" ref="Admin_userDAO"></property>
  	</bean> 
+
+ 	
 	<!-- 제재상태변경Controller  -->
 	<bean name="/usermodify.do" class="com.kh.mory.Controller.Admin_UserModifyController">
+		 <property name="dao" ref="Admin_userDAO"></property> 
  	</bean> 
  	
  	
@@ -233,18 +248,17 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	
  	<!--1:1작성문의 Ajax처리  -->
- 	<!-- <bean name="/questiondetail.do" class="com.kh.mory.Controller.Admin_detailquestionSearchController">
- 			<property name="dao" ref="Admin_userDAO"></property>
- 	</bean> -->
+ 	<bean name="/questionAjax.do" class="com.kh.mory.Controller.Admin_UserlistSearchController">
+ 			<!-- <property name="dao" ref="Admin_userDAO"></property> -->
+ 	</bean>
  	 
  	
  	<!-- 작성1:1문의 조회-->
- 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_detailquestionSearchController">
- 		<property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_QuestionDeatilController">
+ 	<!-- 	<property name="dao" ref="User"></property> -->
  	</bean> 
  	
  	
-
  	<!-- 커뮤니티 dao -->
  	<bean id="communityDao" class="com.kh.mory.Dao.Admin_CommunityDAO">
  		<property name="dataSource" ref="remoteDataSource"></property>
@@ -288,13 +302,14 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="diaryDAO" class="com.kh.mory.DiaryDAO.DiaryDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
+	
 	<bean id="commentDAO" class="com.kh.mory.DiaryDAO.CommentDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
+	
 	<bean id="recommentDAO" class="com.kh.mory.DiaryDAO.RecommentDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
-	
 	
 	<bean name="/diary.do" class="com.kh.mory.Diarycontroller.Diary_ListController">
 		<property name="dao" ref="diaryDAO"></property>
@@ -304,19 +319,57 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
 	
-	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">
+	<bean name="/diaryinsertform.do" class="com.kh.mory.Diarycontroller.Diary_InsertFormController">
 		<property name="dao" ref="diaryDAO"></property>
 	</bean>
+		
+	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<bean name="/diaryupdateform.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>	
 	
 	<bean name="/diarypost.do" class="com.kh.mory.Diarycontroller.Diary_ContentController">
 		<property name="dao" ref="diaryDAO"></property>
 		<property name="commentdao" ref="commentDAO" ></property>
 		<property name="recommentdao" ref="recommentDAO" ></property>
 	</bean>
+	
+	<!-- 댓글 입력 -->
+ 	<bean name="/commentinsert.do" class="com.kh.mory.Diarycontroller.Diary_CommentInsertController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	<!-- 댓글 삭제 -->
+ 	<bean name="/commentdelete.do" class="com.kh.mory.Diarycontroller.Diary_CommentDeleteController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	<!-- 댓글 수정 -->
+ 	<bean name="/commentupdate.do" class="com.kh.mory.Diarycontroller.Diary_CommentUpdateController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	
+	<!-- 답글 입력 -->
+ 	<bean name="/recommentinsert.do" class="com.kh.mory.Diarycontroller.Diary_RecommentInsertController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 답글 삭제 -->
+ 	<bean name="/recommentdelete.do" class="com.kh.mory.Diarycontroller.Diary_RecommentDeleteController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 답글 수정 -->
+ 	<bean name="/recommentupdate.do" class="com.kh.mory.Diarycontroller.Diary_RecommentUpdateController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	
+ 	
+	
+		<!--김민준 김진호 끝 -->
  	
   <!-- 이용진 커퓨니티  -->
  	
-    <bean id="communityDAO" class="com.kh.mory.CommunityDAO">
+	<bean id="communityDAO" class="com.kh.mory.CommunityDAO">
       <property name="dataSource" ref="remoteDataSource"></property>
    </bean>
    

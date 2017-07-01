@@ -23,20 +23,19 @@ public class Setup_Main_Controller implements Controller
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		ModelAndView modelAndView = new ModelAndView();
-		String user_id = request.getParameter("user_Id");
-		String user_pw = request.getParameter("user_Pw");
 		
-		System.out.println(user_id);
-		System.out.println(user_pw);
 		
-		if(request.getRequestURI().indexOf("/userlogin_setmain.do") > -1)
+		if(request.getRequestURI().indexOf("/userloginsetmain.do") > -1)
 		{
 			
 			System.out.println("login");
+			String user_id = request.getParameter("user_id");
+			String user_pw = request.getParameter("user_pw");
+			
 			Setup_MainDTO mainDTO = mainDAO.userLogin(user_id, user_pw);
 			System.out.println(user_id);
 			System.out.println(user_pw);
-			if(mainDTO.getUser_id() != null)
+			if(mainDTO.getUser_id() !=	 null)
 			{
 				System.out.println(user_id);
 				System.out.println(user_pw);
@@ -47,8 +46,15 @@ public class Setup_Main_Controller implements Controller
 				session.setAttribute("acc_grade_code", mainDTO.getAcc_grade_code());;
 				
 				modelAndView.addObject("mainDTO",mainDTO);
-				modelAndView.setViewName("redirect:profile.do");
+				modelAndView.setViewName("/profile.do");
+				return modelAndView;
 				
+			}
+			else	// 로그인 실패 
+			{
+				System.out.println("로그인 실패");
+				modelAndView.setViewName("/setmain.do");
+				return modelAndView;
 			}
 			
 		}

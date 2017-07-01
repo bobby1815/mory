@@ -1,16 +1,17 @@
 /*===========================================
    CommentDAO.java
-   - µ¥ÀÌÅÍº£ÀÌ½º ¾×¼Ç Ã³¸® Å¬·¡½º.
-   - ´ñ±Û ÀÛ¼º ¾×¼Ç Ã³¸®.
-   - ´ñ±Û ¼öÁ¤ ¾×¼Ç Ã³¸®.
-   - ´ñ±Û »èÁ¦ ¾×¼Ç Ã³¸®.
-   - ´ñ±Û ¸®½ºÆ® Ãâ·Â ¾×¼Ç Ã³¸®.
-   - Connection °´Ã¼¿¡ ´ëÇÑ ÀÇÁ¸¼º ÁÖÀÔ.
-     ¡æ setter ¸Þ¼Òµå
+   - ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½.
+   - Connection ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+     ï¿½ï¿½ setter ï¿½Þ¼Òµï¿½
 ===========================================*/
 
 package com.kh.mory.DiaryDAO;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ import com.kh.mory.DiaryIDAO.ICommentDAO;
 
 public class CommentDAO implements ICommentDAO
 {
-	// ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ±¸¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	private DataSource dataSource;
 
 	public void setDataSource(DataSource dataSource)
@@ -32,7 +33,7 @@ public class CommentDAO implements ICommentDAO
 		this.dataSource = dataSource;
 	}
 
-	// ´ñ±Û ÀÔ·Â
+	// ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½
 	@Override
 	public int commentInsert(DiaryDTO diaryDto) throws SQLException
 	{
@@ -65,7 +66,7 @@ public class CommentDAO implements ICommentDAO
 		return result;
 	}
 
-	// ´ñ±Û ¼öÁ¤
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int commentUpdate(DiaryDTO diaryDto) throws SQLException
 	{
@@ -73,6 +74,9 @@ public class CommentDAO implements ICommentDAO
 
 		Connection connection = dataSource.getConnection();
 
+		System.out.println( diaryDto.getComment_cont());
+		System.out.println( diaryDto.getComment_seq());
+		
 		String sql = "UPDATE TBL_COMMENT SET COMMENT_CONT = ? WHERE COMMENT_SEQ = ?";
 
 		try
@@ -94,7 +98,7 @@ public class CommentDAO implements ICommentDAO
 		return result;
 	}
 
-	// ´ñ±Û »èÁ¦
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int commentDelete(String comment_seq) throws SQLException
 	{
@@ -102,16 +106,16 @@ public class CommentDAO implements ICommentDAO
 
 		Connection connection = dataSource.getConnection();
 
-		String sql = "EXEC DELETE_COMMENT(?)";
+		String sql = "{CALL DELETE_COMMENT(?)}";
 
 		try
 		{
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			CallableStatement callableStatement = connection.prepareCall(sql);
 
-			preparedStatement.setString(1, comment_seq);
+			callableStatement.setString(1, comment_seq);
 
-			result = preparedStatement.executeUpdate();
-			preparedStatement.close();
+			result = callableStatement.executeUpdate();
+			callableStatement.close();
 			connection.close();
 
 		} catch (Exception e)
@@ -122,7 +126,7 @@ public class CommentDAO implements ICommentDAO
 		return result;
 	}
 
-	// ´ñ±Û ¸®½ºÆ® Ãâ·Â
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
 	@Override
 	public ArrayList<DiaryDTO> commentList(String write_seq) throws SQLException
 	{

@@ -18,35 +18,31 @@
 <title>Update Profile</title>
 
 <script type="text/javascript">
-function goPopup(){
-	// 주소검색을 수행할 팝업 페이지를 호출합니다.
-	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	var pop = window.open("/MORY/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-	
-	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
-    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
-}
-/*Modal*/
+
 
 $(document).ready(function () {
 
     $('#myModal').modal('show');
+    
+    $("#myBtn").click(function(){
+        	remote : "/userloginsetmain.do"
+    });
 
 });
 
 
-
-function myFunction(id) {
-    var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
 </script>
 <style type="text/css">
+
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
+}
 
 .setup_icon {
   -webkit-animation: spin 4s infinite linear;
@@ -86,9 +82,12 @@ width: 200px;
 
 </head>
 <body>
-<form action="" id="setup_main" >
+
+    
 <div class="container"  id="container">
       <!--Header  -->   
+
+      
 	<c:import url="../main/Mainmenu.jsp" />    
  <!--Header End-->          
       
@@ -105,19 +104,19 @@ width: 200px;
            <div class="col-md-3" id="b2_left" style="width: 25%; height: 700px;">
             <table>
             <tr>
-	           	<th id="setup_th"><p onclick="location.href='setprofile.do'">PROFILE</p></th>
+	           	<th id="setup_th">PROFILE</th>
 	           </tr>
 	           <tr>
-	           	<th id="setup_th"><p onclick="location.href='setcscenter.do'">COSTUMER CENTER</p></th>
+	           	<th id="setup_th">COSTUMER CENTER</th>
 	           </tr>
 	           <tr>
-	           	<th id="setup_th"><p onclick="location.href='setrhmanagement.do'">REALATION MANAGEMET</p></th>
+	           	<th id="setup_th">REALATION MANAGEMET</th>
 	           </tr>
 	           <tr>
-	           	<th id="setup_th"><p onclick="location.href='setreportlist.do'">REPORT LIST</p></th>
+	           	<th id="setup_th">REPORT LIST</th>
 	           </tr>
 	           <tr>
-	           	<th id="setup_th"><p onclick="location.href='setmenual.do'">MENUAL</p></th>
+	           	<th id="setup_th">MENUAL</th>
 	           </tr>
            </table>
            </div> 
@@ -135,29 +134,13 @@ width: 200px;
    
             <!--center-middle right end  -->
            </div>
-           
       
            <!--center-middle end  -->
            </div>
            
 			<!--Center right  -->
             <div class="col-xs-1 col-md-1"  id="b3">
-            <!-- Acordian Action -->
-           <div class="w3-container">
-           
-			<a onclick="myFunction('Demo1')" style="width: 100px; " class="glyphicon glyphicon-plus-sign btn-lg"></a>
-			<div id="Demo1" class="w3-container w3-hide">
-			  <a href="" style="width: 100px;"  class="glyphicon glyphicon-user btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-time btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-pencil btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
-			</div>			
-			</div>
-            
             </div>
-
-           
-         
            
         <!--Center End  -->
             </div>
@@ -176,16 +159,15 @@ width: 200px;
             <div class="col-xs-1 col-md-1"  id="f3">f3</div>
       </div>      
  
-</div>
+ <!-- MODAL  -->
 
-<!-- MODAL  -->
-<div id="myModal" class="modal fade" role="dialog" >
+
+<!-- <div id="myModal" class="modal fade" role="dialog" >
   <div class="modal-dialog modal-sm"  aria-labelledby="mySmallModalLabel" >
-
-    <!-- Modal content-->
+    Modal content
     <div class="modal-content">
+      <form action="/userloginsetmain.do" method="get">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">회원 정보 입력</h4>
       </div>
       <div class="modal-body">
@@ -201,14 +183,54 @@ width: 200px;
            	</table>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default " data-dismiss="modal" onclick="location.href='userlogin_setmain.do'">본인확인</button>
+      	<button type="submit" class="btn btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-off"></span>본인확인</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
       </div>
+        </form>
     </div>
-
   </div>
 </div>
+ -->
+ 
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> 본인 확인</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form" action="/userloginsetmain.do" method="post" >
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 아이디</label>
+              <input type="text" class="form-control" name="user_id" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> 비밀번호</label>
+              <input type="password" class="form-control" name="user_pw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>로그인 유지</label>
+            </div>
+              <button type="submit" id="mybtn" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> 로그인</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
 
-</form>
+</div>
+
+	
+
+
+
+
 </body>
 </html>

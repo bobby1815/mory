@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -51,14 +52,16 @@ public class Admin_UserDAO implements Admin_IUserDAO
 				}
 
 		String sql =	
-			" SELECT ROWNUM AS NUM, U.USER_ID AS USER_ID, U.USER_NAME AS USER_NAME , U.USER_NIC  AS USER_NIC,U.USER_EMAIL AS USER_EMAIL " 
+			" SELECT ROWNUM AS NUM, U.USER_ID AS USER_ID, U.USER_NAME AS USER_NAME , U.USER_NIC  AS USER_NIC"
+			+ ",U.USER_EMAIL AS USER_EMAIL " 
 			+" ,U.USER_TEL AS USER_TEL , U.BASIC_ADDR AS BASIC_ADDR "  
 			+"  ,U.DETAIL_ADDR AS DETAIL_ADDR , " 
 			+" U.USER_BIRTH AS USER_BIRTH, "
-			+" T.SANC_TYPE_NAME AS SANC_TYPE_NAME "
-			+" FROM TBL_USER U JOIN TBL_USER_SANCTION S "
+			+" NVL(T.SANC_TYPE_NAME,'활동 중') AS SANC_TYPE_NAME "
+			+" FROM TBL_USER U "
+			+ " LEFT JOIN TBL_USER_SANCTION S "
 		     +" ON U.USER_ID = S.USER_ID "
-		     +" JOIN TBL_SANCTION_TYPE T "
+		     +" LEFT JOIN TBL_SANCTION_TYPE T "
 		     +" ON S.SANC_TYPE_CODE = T.SANC_TYPE_CODE WHERE 1=1 "
 		     +user_Value;
 		
@@ -101,12 +104,13 @@ public class Admin_UserDAO implements Admin_IUserDAO
 				" SELECT U.USER_ID AS USER_ID  ,U.USER_NAME AS USER_NAME "
 			       		+" ,U.USER_NIC AS USER_NIC  ,U.BASIC_ADDR AS BASIC_ADDR ,U.DETAIL_ADDR AS DETAIL_ADDR "
 			       		+" ,U.USER_TEL AS USER_TEL  ,U.USER_EMAIL AS USER_EMAIL  ,U.USER_BIRTH AS USER_BIRTH "
-			       		+" ,ST.ACC_STATE_NAME AS ACC_STATE_NAME ,T.SANC_TYPE_NAME AS SANC_TYPE_NAME "
-				+" FROM TBL_USER U JOIN TBL_USER_SANCTION S "
+			       		+" ,ST.ACC_STATE_NAME AS ACC_STATE_NAME ,NVL(T.SANC_TYPE_NAME,'활동 중') AS SANC_TYPE_NAME "
+						+" FROM TBL_USER U "
+						+ " LEFT JOIN TBL_USER_SANCTION S "
 		                +" ON U.USER_ID = S.USER_ID " 
-		                +" JOIN TBL_SANCTION_TYPE T "
+		                +" LEFT JOIN TBL_SANCTION_TYPE T "
 		                +" ON S.SANC_TYPE_CODE=T.SANC_TYPE_CODE  "
-		                +" JOIN TBL_ACC_STATE ST "
+		                +" LEFT JOIN TBL_ACC_STATE ST "
 		                +" ON U.ACC_STATE_CODE=ST.ACC_STATE_CODE ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
@@ -131,23 +135,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		return list;
 	}
 
-	// --�г��Ӽ���
-	@Override
-	public int NicModify(String user_Nic, String user_Id) throws SQLException
-	{
-		Connection conn = dataSource.getConnection();
-		int result = 0;
-		String sql = " UPDATE TBL_USER  SET USER_NIC=? WHERE USER_ID=? ";
-		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,user_Nic );
-		pstmt.setString(2,user_Id);
-		result = pstmt.executeUpdate();
-
-		pstmt.close();
-		conn.close();
-		return result;
-	}
-
+	
 	// --�����˻�
 	@Override
 	public Admin_UserDTO SearchUser(String User_Id) throws SQLException
@@ -157,15 +145,16 @@ public class Admin_UserDAO implements Admin_IUserDAO
 				" SELECT U.USER_ID AS USER_ID  ,U.USER_NAME AS USER_NAME "
 			       		+" ,U.USER_NIC AS USER_NIC  ,U.BASIC_ADDR AS BASIC_ADDR ,U.DETAIL_ADDR AS DETAIL_ADDR "
 			       		+" ,U.USER_TEL AS USER_TEL  ,U.USER_EMAIL AS USER_EMAIL  ,TO_CHAR(U.USER_BIRTH,'YY-MM-DD')AS USER_BIRTH "
-			       		+" ,ST.ACC_STATE_NAME AS ACC_STATE_NAME ,T.SANC_TYPE_NAME AS SANC_TYPE_NAME "
-				+" FROM TBL_USER U JOIN TBL_USER_SANCTION S"
+			       		+" ,ST.ACC_STATE_NAME AS ACC_STATE_NAME ,NVL(T.SANC_TYPE_NAME,'활동 중') AS SANC_TYPE_NAME "
+				+" FROM TBL_USER U "
+						+ " LEFT JOIN TBL_USER_SANCTION S"
 		                +" ON U.USER_ID = S.USER_ID" 
-		                +" JOIN TBL_SANCTION_TYPE T"
+		                +" LEFT JOIN TBL_SANCTION_TYPE T"
 		                +" ON S.SANC_TYPE_CODE=T.SANC_TYPE_CODE "
-		                +" JOIN TBL_ACC_STATE ST"
+		                +" LEFT JOIN TBL_ACC_STATE ST"
 		                +" ON U.ACC_STATE_CODE=ST.ACC_STATE_CODE"
 				+" WHERE U.USER_ID=?";
-		
+		System.out.println(sql);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		Admin_UserDTO userDTO = new Admin_UserDTO();
 		pstmt.setString(1, User_Id);
@@ -189,16 +178,23 @@ public class Admin_UserDAO implements Admin_IUserDAO
 
 	// --������� ����
 	@Override
-	public int UserModify(String id,String sanc_Type_Code) throws SQLException
+	public int UserModify(String id,String sanc_Type_Code,String nic) throws SQLException
 	{
 		int result = 0;
 		Connection conn = dataSource.getConnection();
-		String sql = " UPDATE TBL_USER_SANCTION SET SANC_TYPE_CODE=? WHERE USER_ID=? ";
+		
+		//USER_NIC=? 
+		
+		String sql = "UPDATE TBL_USER_SANCTION SET SANC_TYPE_CODE=?  WHERE USER_ID=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, id);
-		pstmt.setString(2, sanc_Type_Code);
+		pstmt.setString(1, sanc_Type_Code);
+		pstmt.setString(2, nic);
+		pstmt.setString(3,id);
+		
+		
 		result = pstmt.executeUpdate();
-
+		System.out.println(result);
+		
 		return result;
 	}
 
