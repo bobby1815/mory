@@ -80,7 +80,6 @@ public class Main_MainController implements Controller
 				session.setAttribute("user_id", userDto.getUser_id());
 				session.setAttribute("acc_grade_code", userDto.getAcc_grade_code());
 				session.setAttribute("page_code", userDto.getPage_code());
-				session.setAttribute("user_id", userDto.getUser_id());
                 
 			    // 세션 유지시간 1시간
 			    session.setMaxInactiveInterval(60*60);
