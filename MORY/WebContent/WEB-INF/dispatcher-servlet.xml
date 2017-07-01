@@ -29,12 +29,20 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<property name="password" value="TIGER"></property>	
 =======
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>	 -->
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
+=======
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 >>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 	
 <<<<<<< HEAD
 	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
 =======
 <!-- <property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
+=======
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 >>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 	<property name="username" value="mory_ay"></property>
 	<property name="password" value="mory2017"></property>	 -->
@@ -44,6 +52,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
 =======
 	
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
+=======
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 >>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 	 
 <!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
@@ -58,6 +70,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <<<<<<< HEAD
 	
 =======
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
+=======
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 >>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 	<property name="password" value="TIGER"></property>  -->
 	

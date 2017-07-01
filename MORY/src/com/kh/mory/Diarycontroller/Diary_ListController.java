@@ -34,9 +34,11 @@ public class Diary_ListController implements Controller
 		
 		
 		DiaryDTO dto = dao.mydiary(user_id);
+		String diary_seq = dto.getDiary_seq();
 		
 		String requ_seq = request.getParameter("requ_seq");
-		String diary_seq = dto.getDiary_seq();
+		
+		
 		try
 		{
 			ArrayList<DiaryDTO> diaryList = new ArrayList<DiaryDTO>();

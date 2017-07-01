@@ -72,6 +72,7 @@ $(document).ready(function()
 			<div class="col-xs-10 col-md-10" id="b2">
 				<form action="diaryupdate.do" method="post" id="diaryForm">
 					<div>
+						<input type="hidden" name="write_seq" value="${diary.write_seq }">
 						<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center"  readonly="readonly" >
 					</div>
 					<div>

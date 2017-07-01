@@ -28,7 +28,12 @@ public class DiaryDAO implements IDiaryDAO
 
 		Connection conn = dataSource.getConnection();
 		ArrayList<DiaryDTO> result = new ArrayList<DiaryDTO>();
-		String sql = "SELECT  B.DIARY_POST_TITLE AS TITLE , SUBSTR(TO_CHAR(A.WRITE_REG_DTM),0,10) AS DTM ,A.WRITE_SEQ AS WRITE_SEQ  FROM TBL_WRITE A ,TBL_DIARY_POST B WHERE A.WRITE_SEQ= B.WRITE_SEQ AND B.REQU_SEQ = ? AND  DIARY_TYPE_CODE = 1";
+		String sql = "SELECT  B.DIARY_POST_TITLE AS TITLE , "
+				+  "SUBSTR(TO_CHAR(A.WRITE_REG_DTM),0,10) AS DTM "
+				+ ",A.WRITE_SEQ AS WRITE_SEQ "
+				+ " FROM TBL_WRITE A ,TBL_DIARY_POST B "
+				+ " WHERE A.WRITE_SEQ= B.WRITE_SEQ AND B.REQU_SEQ = ? "
+				+ " AND  DIARY_TYPE_CODE = 1";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, diary_seq);
 		ResultSet rs = pstmt.executeQuery();		
@@ -39,7 +44,6 @@ public class DiaryDAO implements IDiaryDAO
 		{
 			DiaryDTO diary = new DiaryDTO();
 			diary.setWrite_seq(rs.getString("WRITE_SEQ"));
-			
 			diary.setDiary_post_title(rs.getString("TITLE"));
 			diary.setWrite_reg_dtm(rs.getString("DTM"));
 			result.add(diary);
@@ -113,17 +117,22 @@ public class DiaryDAO implements IDiaryDAO
 		
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "{CALL INSERT_SHARE_DIARY_MY_POST(?,?,?,?,?)}";
+		String sql = "{CALL INSERT_MY_DIARY_POST(?,?,?,?,?)}";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		try
 		{
 			
 			// ���� ,����,�Ͻ�,���̾��ȣ,������
 			pstmt.setString(1, diary.getUser_id());
+			System.out.println(diary.getUser_id());
 			pstmt.setString(2, diary.getWrite_cont());
+			System.out.println(diary.getWrite_cont());
 			pstmt.setString(3, diary.getWrite_reg_dtm());
+			System.out.println(diary.getWrite_reg_dtm());
 			pstmt.setString(4, diary.getDiary_requ_seq());
+			System.out.println(diary.getDiary_requ_seq());
 			pstmt.setString(5, diary.getDiary_post_title());
+			System.out.println(diary.getDiary_post_title());
 			
 			result = pstmt.executeUpdate();
 			pstmt.close();
@@ -144,7 +153,7 @@ public class DiaryDAO implements IDiaryDAO
 		
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "{CALL DELETE_DIARY_POST(?) }";
+		String sql = "{CALL DELETE_DIARY_POST(TO_CHAR(?)) }";
 		
 		
 		try
@@ -152,9 +161,10 @@ public class DiaryDAO implements IDiaryDAO
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, write_seq);
-			
+			System.out.println(write_seq);
 			
 			result = pstmt.executeUpdate();
+			System.out.println(result);
 			pstmt.close();
 			conn.close();
 			
@@ -341,10 +351,11 @@ public class DiaryDAO implements IDiaryDAO
 
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "SELECT A.USER_ID AS USER_ID , B.DIARY_SEQ AS DIARY_SEQ , B.DIRAY_NAME AS DIRAY_NAME "
-				+ "FROM TBL_USER A, TBL_MY_DIARY B "
-				+ "WHERE A.USER_ID = B.USER_ID "
-				+ "AND A.USER_ID = ?";
+		String sql = "SELECT A.USER_ID AS USER_ID , B.DIARY_SEQ AS DIARY_SEQ , "
+				+  "B.DIARY_NAME AS DIARY_NAME "
+				+ " FROM TBL_USER A, TBL_MY_DIARY B"
+				+ " WHERE A.USER_ID = B.USER_ID  "
+				+ " AND A.USER_ID = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, user_id);

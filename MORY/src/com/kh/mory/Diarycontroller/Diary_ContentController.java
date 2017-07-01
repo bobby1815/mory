@@ -53,6 +53,8 @@ public class Diary_ContentController implements Controller
 		
 		
 		HttpSession session = request.getSession();
+
+		String user_id = (String) session.getAttribute("user_id");
 		
 		
 		
@@ -77,7 +79,6 @@ public class Diary_ContentController implements Controller
 			commentList= commentdao.commentList(write_seq);
 			
 			modelAndView.addObject("write_seq",write_seq);
-			modelAndView.addObject("diaryDTO",diaryDTO);
 			modelAndView.addObject("diaryDTO",diaryDTO);
 			modelAndView.addObject("recommentList",recommentList);		
 			modelAndView.addObject("commentList",commentList);		
