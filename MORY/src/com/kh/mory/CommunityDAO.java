@@ -25,7 +25,7 @@ public class CommunityDAO implements ICommunityDAO
 		int result = 0;
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "{CALL PRC_COMMUNITYINSERT(?,?,?,?)}";	
+		String sql = "{CALL PRC_COMMUNITY_INSERT(?,?,?,?)}";	
 		CallableStatement cstmt = conn.prepareCall(sql);
 		cstmt.setString(1, community.getWrite_user_id());
 		cstmt.setString(2, community.getWrite_cont());
@@ -221,7 +221,7 @@ public class CommunityDAO implements ICommunityDAO
 	}
 
 	@Override
-	public ArrayList<CommunityDTO> mypost_list() throws SQLException 
+	public ArrayList<CommunityDTO> mypost_list(CommunityDTO dto) throws SQLException 
 	{
 		
 		ArrayList<CommunityDTO> result = new ArrayList<CommunityDTO>();
@@ -237,7 +237,7 @@ public class CommunityDAO implements ICommunityDAO
 				+ " ORDER BY W.WRITE_REG_DTM DESC";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		CommunityDTO dto = new CommunityDTO();
+		
 		
 		pstmt.setString(1, dto.getWrite_user_id());
 		
@@ -249,13 +249,70 @@ public class CommunityDAO implements ICommunityDAO
 			 dto = new CommunityDTO();
 			 
 			 dto.setCommunity_title(rs.getString("COMMUNITY_TITLE"));
+			 dto.setWrite_user_id(rs.getString("WRITE_USER_ID"));
+			 dto.setWrite_cont(rs.getString("WRITE_CONT"));
+			 dto.setWrite_reg_dtm(rs.getString("WRITE_REG_DTM"));
+			 
+			 result.add(dto);
 			
 			
 			
 		}
+		rs.close();
+		conn.close();
+		pstmt.close();
 		
 		
-		return null;
+		return result;
+	}
+
+	
+
+	@Override
+	public ArrayList<CommunityDTO> search_list(CommunityDTO dto) throws SQLException 
+	{
+		ArrayList<CommunityDTO> result = new ArrayList<CommunityDTO>();
+		
+		Connection conn = dataSource.getConnection();
+		
+		
+		String sql = " SELECT COMMUNITY_TITLE ,"
+				+ " WRITE_UWER_ID, "
+				+ " WRITE_CONT "
+				+ " FROM GOOGLEVIEW"
+				+ " WHERE WRITE_USER_ID=? "
+				+ " AND COMMUNITY_TITLE LIKE ?  "
+				+ " AND WRITE_CONT LIKE ?   ";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		
+		
+		pstmt.setString(1, dto.getWrite_user_id());
+		pstmt.setString(2, dto.getCommunity_title());
+		pstmt.setString(3, dto.getWrite_cont());
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next())
+		{
+			
+			dto = new CommunityDTO();
+			
+			dto.setWrite_user_id(rs.getString("WRITE_USER_ID"));
+			dto.setCommunity_title(rs.getString("COMMUNITY_TITLE"));
+			dto.setWrite_cont(rs.getString("WRITE_CONT"));
+			result.add(dto);
+			
+			
+		}
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
+		
+		
+		return result;
 	}
 
 	

@@ -51,7 +51,7 @@ public class CommunityInputController implements Controller
 			
 			dao.add(dto);
 		
-			modelandview.setViewName("redirect:communitymypost.do");
+			modelandview.setViewName("/WEB-INF/community/CommunityMyPost.jsp");
 			
 			
 		} catch (Exception e) 

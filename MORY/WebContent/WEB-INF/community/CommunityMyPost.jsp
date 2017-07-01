@@ -199,7 +199,7 @@ function previewImage(targetObj, divPeedPhoto)
 		<div class="row " id="all1">
 				<div class="col-xs-1 col-md-1"  id="b1">b1</div>
 				<div class="col-xs-10 col-md-10"  id="b2"> 
-				
+					<table>
 				
 				
 					<div class="col-xs-12 col-md-12" style="border: 1px solid; margin-top: 10px; height:600px; ">
@@ -207,7 +207,7 @@ function previewImage(targetObj, divPeedPhoto)
 								
 								<div class="col-xs-4 col-md-4" style="margin-top: 5px;">
 									<div class="col-xs-6 col-md-6">
-									<input type="checkbox" name="check" value="전체선택" / style="margin-left: 17px;">
+									<input type="checkbox" name="check" value="전체선택" style="margin-left: 17px;">
 									전체 선택
 									
 									</div>
@@ -237,16 +237,22 @@ function previewImage(targetObj, divPeedPhoto)
 									
 									</div>
 									<div class="col-xs-6 col-md-6" >
-									1
+										<tr>
+											<td id="su" name="su"></td>
+										</tr>
 									
 									</div>
 									
 								</div>
 								<div class="col-xs-4 col-md-4" style="text-align: center; margin-top: 5px;">
-									육아 건강
+									<tr>
+										<td id="community_title" name="community_title"></td>
+									</tr>
 								</div>
 								<div class="col-xs-4 col-md-4" style="text-align: center; margin-top: 5px; ">
-									2017-12-12
+										<tr>
+											<td id="write_reg_dtm" name="write_reg_dtm"></td>
+										</tr>
 								</div>				
 				
 				
@@ -262,32 +268,7 @@ function previewImage(targetObj, divPeedPhoto)
 					
 					
 					
-					<div class="col-xs-12 col-md-12" style="height: 30px; border: 1px solid;">
-				
-				
-								<div class="col-xs-4 col-md-4" style="margin-top: 5px; ">
-									<div class="col-xs-6 col-md-6">
-									<input type="checkbox" name="check" value="" />
-									
-									
-									</div>
-									<div class="col-xs-6 col-md-6" >
-									2
-									
-									</div>
-									
-								</div>
-								<div class="col-xs-4 col-md-4" style="text-align: center; margin-top: 5px;">
-									육아 건강
-								</div>
-								<div class="col-xs-4 col-md-4" style="text-align: center; margin-top: 5px; ">
-									2017-12-12
-								</div>				
-				
-				
-				
-				
-				</div>
+					
 					
 				<div class="col-xs-12 col-md-12">
 				<div class="col-xs-6 col-md-6"></div>
@@ -303,10 +284,11 @@ function previewImage(targetObj, divPeedPhoto)
 									 
 									
 										<div class="col-xs-3 col-md-3">				
-									 	<select nama="name"  style="height: 30px; margin-top: 5px; margin-left:133px;  ">
-									 		<option value="닉네임" >닉네임</option>
-									 		<option value="내용">내용</option>
-									 		<option value="제목+내용">제목+내용</option>
+									 	<select nama="community_title1" id="community_title1" style="height: 30px; margin-top: 5px; margin-left:133px;  ">
+											<c:forEach var="community_title1" items="${community_title1 }">
+									 		<option value="${community_title1.community_title }">${community_title1.community_title } </option>
+									 		<option value="${community_title1.write_cont }">${community_title1.write_cont }</option>
+									 		</c:forEach>
 									 	</select>
 									 	</div>
 									 	<div class="col-xs-6 col-md-6" style="height: 30px;   margin-top: 5px;  ">
@@ -340,7 +322,7 @@ function previewImage(targetObj, divPeedPhoto)
 				
 			
 				
-				
+				</table>
 				</div>
 				<div class="col-xs-1 col-md-1"  id="b3"  style="margin-top: 500px;">
 

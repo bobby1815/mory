@@ -37,11 +37,11 @@ public class CommunityMainController implements Controller
 			
 			CommunityDTO dto = new CommunityDTO();
 			
-			
+			System.out.println("Test1");
 			
 			communitydto = dao.list(30);
 		
-			 
+			System.out.println("Test2");
 			 
 			 
 			modelAndView.addObject("communitydto",communitydto );
