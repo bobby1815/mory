@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.kh.mory.DiaryIDAO.IDiaryDAO;
 
-public class Diary_DeleteContoller  implements Controller 
+public class Diary_DeleteController  implements Controller 
 {
 	private IDiaryDAO dao;
 	
@@ -24,8 +24,8 @@ public class Diary_DeleteContoller  implements Controller
 		String write_seq = request.getParameter("write_seq");
 		try
 		{
-			dao.remove(write_seq);
-			mav.setViewName("WEB-INF/diary/Diary.jsp?write_seq="+write_seq);
+			int result =dao.remove(write_seq);
+			mav.setViewName("redirect:diary.do");
 			
 		} catch (Exception e)
 		{

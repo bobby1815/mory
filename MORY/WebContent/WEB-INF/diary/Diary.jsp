@@ -72,10 +72,11 @@
                     	ArrayList<DiaryDTO> list = (ArrayList<DiaryDTO>)request.getAttribute("diaryList");
                     	for(DiaryDTO diaryList : list )
                         {
-                    		String urlw = "http://localhost:8090/mory22/diarypost.do?write_seq=" + diaryList.getWrite_seq();
+                    		String urlw = "http://localhost:8090/diarypost.do?write_seq=" + diaryList.getWrite_seq();
                     		String dtm = diaryList.getWrite_reg_dtm();
                     		dtm = "20"+dtm.replaceAll("/", "-");
                     		System.out.println(dtm);
+                    		
                         %>
                         {
                         	title :"<%=diaryList.getDiary_post_title()%> "

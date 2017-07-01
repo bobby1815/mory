@@ -42,7 +42,7 @@ public class RecommentDAO implements IRecommentDAO
 		Connection connection = dataSource.getConnection();
 
 		String sql = "SELECT  A.RECO_SEQ AS RECO_SEQ , A.RECO_CONT AS RECO_CONT , A.USER_ID AS USER_ID, "
-				+ "SUBSTR(TO_CHAR(A.RECO_REG_DTM),0,10) AS RECO_REG_DTM , A.COMMENT_SEQ AS COMMENT_SEQ , C.USER_NIC AS USER_NIC "
+				+ "SUBSTR(TO_CHAR(A.RECO_REG_DTM),0,10) AS RECO_REG_DTM , A.COMMENT_SEQ AS COMMENT_SEQ , C.USER_NIC AS USER_NIC ,C.USER_ID AS USER_ID "
 				+ " FROM TBL_RECOMMENT A , TBL_COMMENT B , TBL_USER C"
 				+ " WHERE A.COMMENT_SEQ = B.COMMENT_SEQ "
 				+ "AND A.USER_ID = C.USER_ID "
@@ -61,7 +61,8 @@ public class RecommentDAO implements IRecommentDAO
 			diaryDTO.setRequ_user_id(resultSet.getString("USER_ID"));
 			
 			diaryDTO.setReco_reg_dtm(resultSet.getString("RECO_REG_DTM"));
-			
+
+			diaryDTO.setUser_id(resultSet.getString("USER_ID"));
 			diaryDTO.setComment_seq(resultSet.getString("COMMENT_SEQ"));
 			
 			diaryDTO.setUser_nic(resultSet.getString("USER_NIC"));

@@ -7,6 +7,7 @@ package com.kh.mory.Diarycontroller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -30,6 +31,9 @@ public class Diary_CommentDeleteController implements Controller
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
    {
       ModelAndView modelAndView = new ModelAndView();
+      
+      HttpSession session = request.getSession();
+      String user_id = (String) session.getAttribute("user_id");
       
       String comment_seq = request.getParameter("comment_seq");
       String write_seq = request.getParameter("write_seq");
