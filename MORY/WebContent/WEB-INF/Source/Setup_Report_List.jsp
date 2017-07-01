@@ -74,7 +74,10 @@ width: 200px;
 </style>
 
 </head>
+
 <body>
+
+
 <div class="container"  id="container">
       <!--Header  -->   
 	<c:import url="../main/Mainmenu.jsp" />    
