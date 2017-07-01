@@ -12,7 +12,9 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/ckeditor/config.js"></script>
+<link rel="stylesheet" href="css/sample.css" />
 
 
 <link rel="stylesheet" href="../css/Mainmenu.css" />
@@ -33,6 +35,35 @@ input
 	width: 100%;
 }
 </style>
+
+<script>
+CKEDITOR.instances.write_cont.getData();
+
+CKEDITOR.instances.write_cont.setData('<p>데이터</p>')
+
+CKEDITOR.on('dialogDefinition', function (ev) {
+	var dialogName = ev.data.name;
+	var dialog = ev.data.definition.dialog;
+	var dialogDefinition = ev.data.definition;
+
+		if (dialogName == 'image') {
+			dialog.on('show', function (obj) {
+			this.selectPage('Upload'); //업로드텝으로 시작
+		});
+
+		dialogDefinition.removeContents('advanced'); // 자세히탭 제거
+		dialogDefinition.removeContents('Link'); // 링크탭 제거
+	}
+		
+});
+	CKEDITOR.replace( 'write_cont', {
+	
+		 filebrowserUploadUrl:'/ckeditor/upload.jsp?'
+			    +'realUrl=http://localhost:8090/newsfeedinsert.do'
+			    +'&realDir=D:\\KH\\001_Eclipse WorkSpace\\MORY\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\MORY\\newsfeedupload',
+
+	});
+</script> 
 
 
 <script type="text/javascript">
@@ -153,7 +184,7 @@ input
 		<!-- 	두번째 row  -->
 		<form action="newsfeedinsert.do" method="post" enctype="multipart/form-data" id="form">
 		<div class="row " id="all1">
-			<div class="col-xs-1 col-md-1" id="b1">body1</div>
+			<div class="col-xs-1 col-md-1" id="b1"></div>
 
 			<div class="col-xs-10 col-md-10" id="b2">
 				
@@ -162,7 +193,9 @@ input
 				<br><br>
 		
 				<div id="divPeedContent">
-					<textarea class="form-control" rows="5" cols="" id="write_cont" name="write_cont" placeholder="피드 내용을 작성하세요"></textarea>
+					 <textarea class="ckeditor" rows="5" cols="" id="write_cont" name="write_cont" placeholder="피드 내용을 작성하세요">
+					 
+					 </textarea> 
 				</div>
 	
 
@@ -175,7 +208,7 @@ input
 
 			</div>
 
-			<div class="col-xs-1 col-md-1" id="b3">body3</div>
+			<div class="col-xs-1 col-md-1" id="b3"></div>
 		</div>
 		</form>
 

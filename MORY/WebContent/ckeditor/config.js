@@ -3,6 +3,7 @@
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
+
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
@@ -25,7 +26,8 @@ CKEDITOR.editorConfig = function( config ) {
 	    config.allowedContent = true;
 	    config.enterMode = CKEDITOR.ENTER_P;
 	    config.shiftEnterMode = CKEDITOR.ENTER_P;
-//		config.filebrowserImageUploadUrl = '/utl/wed/insertImage.do';
+	    config.filebrowserUploadUrl='/ckeditor/upload.jsp?';
+		config.filebrowserImageUploadUrl = '/ckeditor/upload.jsp';
 		config.forceSimpleAmpersand = true;
 	    config.toolbar = [
 	        ['Source','-','Save','NewPage','Preview','-','Templates'],
