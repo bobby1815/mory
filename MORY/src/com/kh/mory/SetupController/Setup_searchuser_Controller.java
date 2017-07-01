@@ -25,10 +25,21 @@ public class Setup_searchuser_Controller implements Controller
 		String user_Id = request.getParameter("user_Id");
 		System.out.println(user_Id);
 		
+		String value = request.getParameter("page");
 		
 		
 		modelAndView.addObject("userlist", managementDAO.searchuser(user_Id));
-		modelAndView.setViewName("WEB-INF/Source/Setup_Realation_Management.jsp");
+		
+		// 멤버초대 페이지에서 요청한 경우라면..
+		if (value.equals("family"))
+		{
+			modelAndView.setViewName("WEB-INF/Source/Setup_Family_Managament.jsp");
+		}
+		else
+		{
+			modelAndView.setViewName("WEB-INF/Source/Setup_Realation_Management.jsp");
+		}
+			
 		return modelAndView;
 		
 		
