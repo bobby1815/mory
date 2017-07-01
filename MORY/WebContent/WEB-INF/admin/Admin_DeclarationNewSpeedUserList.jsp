@@ -18,15 +18,23 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-
-/* $(document).ready(function() 
+	
+		$(document).ready(function() 
 		{
-			$("#list").click(function() 
+			$("#btn").click(function() 
 			{
-				$("#lista").fadeToggle();
+				
+				if ($("#term").val()==""|| $("#id").val()==""  )
+				{
+					alert("입력이 누락된 항목이 있습니다.");
+					return false;
+				}
+				
 			});
-			
-		}); */
+		
+		
+		});
+	
 </script>
 <style>
     a{color:black;}
@@ -69,13 +77,13 @@
 					<h5>검색기간</h5>
 				</div>
 				<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-					<input type="text" class="form-control" name="term" placeholder="ex)170215">
+					<input type="text" class="form-control" name="term" id="term" placeholder="ex)170215"> 
 				</div>
 				<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
 					<h5>조회유형</h5>
 				</div>
 				<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-					<select class="form-control" style="width: 160px;" name="value" >
+					<select class="form-control" style="width: 160px;" id="value" name="value" >
 						<option>선택하세요&lt;필수&gt;</option>
 						<option value="1">뉴스피드</option>
 						<option value="2">커뮤니티</option>
@@ -86,11 +94,11 @@
 					<h5>아이디</h5>
 				</div>
 				<div class="col-xs-12 col-md-2" style="padding: 0px;">
-					<input type="text" class="form-control"  name="id">
+					<input type="text" class="form-control" id="id"  name="id">
 				</div>
 				
 				<div class="col-xs-12 col-md-1 text-center">
-					<button class="btn btn-default" type="submit">검색</button>
+					<button class="btn btn-default" type="submit" id="btn">검색</button>
 				</div>
 			</div>	
 			<!-- 피드신고목록  -->

@@ -110,21 +110,22 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 	{
 		Connection conn = dataSource.getConnection();
 		Admin_DeclarationUserDTO dto = new Admin_DeclarationUserDTO();
-		String sql = 
-				"";
-		
-		
+		String sql ="select ROWNUM AS NUM ,WRITE_USER_ID,WRITE_CONT,TO_CHAR( WRITE_REG_DTM,'YY-MM-DD') AS WRITE_REG_DTM "
+				+ " FROM DNEWSFEEDVIEW "
+				+" WHERE PAGE_CODE='N' AND WRITE_USER_ID LIKE '%%?%%' AND REPO_COUNT >(SELECT DECL_CNT FROM TBL_BLIND_SETUP WHERE PAGE_CODE = 'N' ) ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, userid);
+		pstmt.setString(1,userid);
 		ResultSet rs = pstmt.executeQuery();
+		System.out.println(sql);
 		
 		while (rs.next())
 		{
+			Admin_DeclarationUserDTO admin_DeclarationUserDTO = new Admin_DeclarationUserDTO();
 				
-				
-				
-				
-				
+			admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
+			admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
+			admin_DeclarationUserDTO.setWrite_Cont(rs.getString("WRITE_CONT"));
+			admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
 			
 		}
 		
@@ -192,6 +193,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		
 		return result;
 	}
+
 	
 	
 

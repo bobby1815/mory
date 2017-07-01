@@ -1,6 +1,5 @@
 package com.kh.mory.Controller;
 
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ public class Admin_detailquestionSearchController implements Controller
 		this.dao = dao;
 	}
 
-	//-- ÀÛ¼º¸ñ·Ï¿¡ »Ñ·ÁÁö´Â Controller
+	//-- ï¿½Û¼ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{

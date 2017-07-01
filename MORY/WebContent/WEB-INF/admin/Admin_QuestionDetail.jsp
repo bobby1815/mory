@@ -16,15 +16,6 @@
 <script src="assets/jquery.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-	function checks() 
-	{
-		confirm("저장하시겠습니까?");	
-	}
-
-
-</script>
 <style>
     a{color:black;}
     .drop-menu{border: 1px solid grey;}
@@ -34,6 +25,18 @@
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
+<script type="text/javascript">
+
+	function addlist() 
+	{
+		alert("ddd");
+		var url = ""+ques_User_Id;
+		$(location).attr('href',url);
+		
+		
+	}
+
+</script>
 </head>
 <body>
 
@@ -133,7 +136,7 @@
 							<div class="col-md-4">
 								<div class="col-md-4"></div>
 								<div class="col-md-4">
-									<button class="btn btn-info btn-lg" onclick="">저장</button>
+									<button class="btn btn-info btn-lg" onclick="addlist('${ques_User_Id}')">저장</button>
 								</div>
 								<div class="col-md-4">
 									<a href="/question.do"><button class="btn btn-info btn-lg">취소</button></a>

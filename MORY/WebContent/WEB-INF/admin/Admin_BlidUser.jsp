@@ -16,6 +16,25 @@
 <script src="assets/jquery.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+		
+		$(document).ready(function() 
+				{
+					$("#btn").click(function() 
+					{
+						
+						if ($("#term").val()=="" || $("#id").val()=="")
+						{
+							alert("항목에 누락된 항목이 있습니다.");
+							return false;
+						}
+						
+					});
+				
+				
+			});
+
+</script>
 <style>
     a{color:black;}
     .drop-menu{border: 1px solid grey;}
@@ -53,7 +72,7 @@
 				<h5>검색기간</h5>
 			</div>
 			<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-				<input type="text" class="form-control" placeholder="ex)170215" name="term">
+				<input type="text" class="form-control" placeholder="ex)170215" id="term"  name="term">
 			</div>
 			<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
 				<h5>조회유형</h5>
@@ -70,11 +89,11 @@
 				<h5>아이디</h5>
 			</div>
 			<div class="col-xs-12 col-md-2" style="padding: 0px;">
-				<input type="text" class="form-control" name="id">
+				<input type="text" class="form-control" id="id" name="id">
 			</div>
 			
 			<div class="col-xs-12 col-md-1 text-center">
-				<button class="btn btn-default" type="submit">검색</button>
+				<button class="btn btn-default" type="submit" id="btn">검색</button>
 			</div>
 		</div>	
 		

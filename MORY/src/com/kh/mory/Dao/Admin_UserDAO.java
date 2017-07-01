@@ -154,7 +154,6 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		                +" LEFT JOIN TBL_ACC_STATE ST"
 		                +" ON U.ACC_STATE_CODE=ST.ACC_STATE_CODE"
 				+" WHERE U.USER_ID=?";
-		System.out.println(sql);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		Admin_UserDTO userDTO = new Admin_UserDTO();
 		pstmt.setString(1, User_Id);
@@ -176,24 +175,22 @@ public class Admin_UserDAO implements Admin_IUserDAO
 	}
 
 
-	// --������� ����
+	// --유저 제재상태,제재입력 기능(프로시저)
 	@Override
 	public int UserModify(String id,String sanc_Type_Code,String nic) throws SQLException
 	{
 		int result = 0;
 		Connection conn = dataSource.getConnection();
 		
-		//USER_NIC=? 
 		
-		String sql = "UPDATE TBL_USER_SANCTION SET SANC_TYPE_CODE=?  WHERE USER_ID=?";
+		String sql = " {CALL PRO_USERMODIFY(?,?,TO_CHAR(?))} ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, sanc_Type_Code);
-		pstmt.setString(2, nic);
-		pstmt.setString(3,id);
 		
+		pstmt.setString(3, sanc_Type_Code);
+		pstmt.setString(1,id);
+		pstmt.setString(2, nic);
 		
 		result = pstmt.executeUpdate();
-		System.out.println(result);
 		
 		return result;
 	}

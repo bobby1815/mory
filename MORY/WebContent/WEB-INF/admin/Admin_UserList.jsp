@@ -24,6 +24,7 @@
     th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; }
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
+tr{min-height: 50px;}
 </style>
 
 <form action="./adminsearch.do" method="post">

@@ -1,5 +1,7 @@
 package com.kh.mory.Controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.kh.mory.Dao.Admin_DeclarationUserDAO;
+import com.kh.mory.Model.Admin_DeclarationUserDTO;
 
 public class Admin_DeclarationNewSpeedUserListController implements Controller
 {
@@ -18,15 +21,12 @@ public class Admin_DeclarationNewSpeedUserListController implements Controller
 		this.dao = dao;
 	}
 
-	//-- ½Å°í´º½ºÇÇµå Á¶È¸ Controller
+	//-- ï¿½Å°ï¿½ï¿½ï¿½ï¿½Çµï¿½ ï¿½ï¿½È¸ Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-
 		
 			ModelAndView modelAndView = new ModelAndView();
-			
-			
 			modelAndView.setViewName("WEB-INF/admin/Admin_DeclarationNewSpeedUserList.jsp");
 			return modelAndView;
 		

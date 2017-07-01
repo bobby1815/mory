@@ -1,7 +1,6 @@
 package com.kh.mory.Dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -98,10 +97,11 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 	@Override
 	public Admin_QuestionDTO AjaxSearch(String id) throws SQLException
 	{
-		Connection conn=dataSource.getConnection();
+
+		Connection conn = dataSource.getConnection();
 		Statement stmt = conn.createStatement();
 		
-		String sql ="SELECT NUM,QUES_USER_ID,QUES_TITLE,TO_DATE(QUES_REG_DTM,'YY-MM-DD')AS QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT "
+		String sql ="SELECT NUM,QUES_SEQ,QUES_USER_ID,QUES_TITLE,TO_DATE(QUES_REG_DTM,'YY-MM-DD')AS QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT "
 					+" FROM QUESTIONVIEW WHERE QUES_USER_ID ='"+id+"' ";
 				
 		ResultSet rs =  stmt.executeQuery(sql);
@@ -109,6 +109,8 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		while (rs.next())
 		{
 			dto.setNum(rs.getInt("NUM"));
+			dto.setSeq(rs.getInt("QUES_SEQ"));
+			System.out.println(dto.getSeq());
 			dto.setQues_User_Id(rs.getString("QUES_USER_ID"));
 			dto.setQues_Title(rs.getString("QUES_TITLE"));
 			dto.setQues_Reg_Dtm(rs.getString("QUES_REG_DTM"));

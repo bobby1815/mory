@@ -18,10 +18,11 @@
 		function declaration(write_User_Id) 
 		{
 			//테스트
-			alert("헤헷");
 			 $.post("declarationuser.do",{write_User_Id:write_User_Id},function(data){
-				
-			});	  
+
+			 
+			 
+			 });	  
 			
 			$("#lista").fadeToggle();
 		}

@@ -20,7 +20,6 @@
 
 	 function moves(user_id) 
 	{
-		//alert("ggg");		
 		var url ="/questiondeatil.do?user_id="+user_id;
 		$(location).attr('href',url);
 	} 

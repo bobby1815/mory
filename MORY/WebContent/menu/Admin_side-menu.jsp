@@ -22,15 +22,10 @@
                             <h5>└ 신고 목록조회</h5>
                         </div>
                     </a>
-                    <a href="detailnewspeeduserlist.do">
-                        <div class="drop-menu">
-                            <h5>└ 신고 상세조회</h5>
-                        </div>
-                    </a>
                 </div>
 
                 <a href="#cus" data-toggle="collapse">
-                    <div class="drop-menu"><h4>고객센터</h4></div>
+                    <div class="drop-menu"><h4>문의사항</h4></div>
                 </a>
                 <div id="cus" class="collapse">
                     <a href="bliduser.do">

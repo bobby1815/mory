@@ -2,24 +2,35 @@ package com.kh.mory.Model;
 
 public class Admin_QuestionDTO
 {
-	//ÁÖ¿ä º¯¼ö ±¸¼º
+	//ï¿½Ö¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	private int num;
-	private String ques_User_Id; //--¾ÆÀÌµð
-	private String ques_Title;	 //--Á¦¸ñ 
-	private String ques_Reg_Dtm; //--ÀÛ¼ºÀÏ
-	private String checks;       //--´äº¯¿©ºÎ
-	private String answ_User_Id; //--´äº¯ÀÚ
-	private String ques_Cont;    //--³»¿ë
-	private String answ_Cont;    //--´äº¯³»¿ë
+	private String ques_User_Id; //--ï¿½ï¿½ï¿½Ìµï¿½
+	private String ques_Title;	 //--ï¿½ï¿½ï¿½ï¿½ 
+	private String ques_Reg_Dtm; //--ï¿½Û¼ï¿½ï¿½ï¿½
+	private String checks;       //--ï¿½äº¯ï¿½ï¿½ï¿½ï¿½
+	private String answ_User_Id; //--ï¿½äº¯ï¿½ï¿½
+	private String ques_Cont;    //--ï¿½ï¿½ï¿½ï¿½
+	private String answ_Cont;    //--ï¿½äº¯ï¿½ï¿½ï¿½ï¿½
+	private int seq;
 	
 	
 
-	//setter, getter ±¸¼º
+	//setter, getter ï¿½ï¿½ï¿½ï¿½
+	
+	
 	
 	public int getNum()
 	{
 		return num;
+	}
+	public int getSeq()
+	{
+		return seq;
+	}
+	public void setSeq(int seq)
+	{
+		this.seq = seq;
 	}
 	public String getAnsw_Cont()
 	{

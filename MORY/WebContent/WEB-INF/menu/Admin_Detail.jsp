@@ -49,7 +49,7 @@
 				</div>
 				<div class="col-xs-4 col-md-4">
 					<div class="col-xs-4 col-md-4">닉네임 </div>
-					<div class="col-xs-8 col-md-8"><input type="text" class="form-control" id="user_nic"></div>
+					<div class="col-xs-8 col-md-8"><input type="text" class="form-control" id="user_nic" name="user_nic"></div>
 				</div>
 		</div>
 		

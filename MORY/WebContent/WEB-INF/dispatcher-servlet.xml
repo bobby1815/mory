@@ -21,10 +21,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>	
-	
-	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
-	<property name="username" value="mory_ay"></property>
-	<property name="password" value="mory2017"></property>	
+	<property name="url" value="jdbc:oracle:thin:@172.30.1.27:1521:xe"></property>
+	<property name="username" value="scott"></property>
+	<property name="password" value="TIGER"></property>	
 	
 	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property> -->
 	 
@@ -187,12 +186,12 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	<!-- DeclarationUser뉴스피드 검색(검색기간 , 아이디 ,조회유형) -->
 	<bean name="/declaration.do" class="com.kh.mory.Controller.Admin_DetailNewSpeedUserListController">
- 				<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
+				<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
  	</bean> 
  	
  	<!-- 신고계정 Detail검색(뉴스피드)  -->
  	<bean name="/declarationuser.do" class="com.kh.mory.Controller.Admin_DeclarationUserSeachController">
- 	
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
  	</bean>
  	
  	
@@ -231,15 +230,15 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	</bean> 
  	
  	
- 	<!--1:1작성문의 Ajax처리  -->
- 	<bean name="/questionAjax.do" class="com.kh.mory.Controller.Admin_UserlistSearchController">
- 			<!-- <property name="dao" ref="Admin_userDAO"></property> -->
- 	</bean>
- 	 
  	
  	<!-- 작성1:1문의 조회-->
- 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_QuestionDeatilController">
- 	<!-- 	<property name="dao" ref="User"></property> -->
+ 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_detailquestionSearchController">
+ 		<property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	</bean> 
+ 	
+ 	<!-- 관리자가 답글단 것 insert하기   -->
+ 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_AnswaddController">
+ 		<!-- <property name="dao" ref="Admin_QuestionDAO"></property> --> 
  	</bean> 
  	
  	
