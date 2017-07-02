@@ -1,6 +1,6 @@
 /*==================================
    RecommentListController.java
-   - »ç¿ëÀÚ Á¤ÀÇ ÄÁÆ®·Ñ·¯ Å¬·¡½º.
+   - ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
 ==================================*/
 
 package com.kh.mory.Diarycontroller;
@@ -19,10 +19,10 @@ import com.kh.mory.DiaryIDAO.IRecommentDAO;
 
 public class Diary_RecommentListController implements Controller
 {
-   // DAO ÀÎÅÍÆäÀÌ½º ÀÚ·áÇü ¸â¹ö ±¸¼º
+   // DAO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    private IRecommentDAO dao;
 
-   // setter ±¸¼º
+   // setter ï¿½ï¿½ï¿½ï¿½
    public void setDao(IRecommentDAO dao)
    {
       this.dao = dao;
@@ -49,7 +49,7 @@ public class Diary_RecommentListController implements Controller
 			
 			modelAndView.addObject(commentList);
 
-			modelAndView.setViewName("DiaryPost.do?write_seq="+write_seq);
+			modelAndView.setViewName("newsfeed_post.do?write_seq="+write_seq);
 
 		} catch (Exception e)
 		{

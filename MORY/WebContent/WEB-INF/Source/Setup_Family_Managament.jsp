@@ -150,7 +150,7 @@ width: 200px;
 
 			     	
           	<div class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
-          	<h1>기웃기웃</h1>     
+          	<h1>기웃다이어리</h1>     
           	<ul class="list-group">
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준</li>
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭</li>
