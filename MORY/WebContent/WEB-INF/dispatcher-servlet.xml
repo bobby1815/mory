@@ -21,7 +21,11 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+<<<<<<< HEAD
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+=======
+	<property name="url" value="jdbc:oracle:thin:@192.168.1.2:1521:xe"></property>
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 	<property name="username" value="scott"></property>
 	<property name="password" value="TIGER"></property>
 	</bean>
