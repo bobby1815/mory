@@ -9,6 +9,6 @@ public interface Admin_IQuestionDAO
 {
 	public ArrayList<Admin_QuestionDTO>QueSearch(String term , String select,String id) throws SQLException;
 	public Admin_QuestionDTO AjaxSearch(String id)throws SQLException;
-	public int addanw();
+	public int addanw(Admin_QuestionDTO dto) throws SQLException;
 
 }

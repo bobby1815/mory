@@ -12,7 +12,7 @@ public class Admin_QuestionDTO
 	private String answ_User_Id; //--�亯��
 	private String ques_Cont;    //--����
 	private String answ_Cont;    //--�亯����
-	private int seq;
+	private String seq;
 	
 	
 
@@ -24,11 +24,11 @@ public class Admin_QuestionDTO
 	{
 		return num;
 	}
-	public int getSeq()
+	public String getSeq()
 	{
 		return seq;
 	}
-	public void setSeq(int seq)
+	public void setSeq(String seq)
 	{
 		this.seq = seq;
 	}

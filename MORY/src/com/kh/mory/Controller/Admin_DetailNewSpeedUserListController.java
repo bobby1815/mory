@@ -31,13 +31,13 @@ public class Admin_DetailNewSpeedUserListController implements Controller
 		String value = request.getParameter("value");
 		String id = request.getParameter("id");
 		String term = request.getParameter("term");
+		System.out.println(1);
 		
 		ArrayList<Admin_DeclarationUserDTO> declarationuser = dao.DeclarationSearchList(value, id, term);
 		
 		modelAndView.addObject("declarationuser",declarationuser);
 		
-		//-- 1번이면 뉴스피드jsp로 이동 
-		//-- 2번이면 커뮤니티jsp로 이동
+	
 		
 		if (value.equals("1"))
 		{

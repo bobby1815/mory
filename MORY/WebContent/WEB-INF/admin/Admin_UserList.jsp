@@ -26,7 +26,6 @@
     footer a{color:grey; text-decoration: underline;}
 tr{min-height: 50px;}
 </style>
-
 <form action="./adminsearch.do" method="post">
 <div class="container">
 	<!-- 첫번째 row  -->
@@ -35,8 +34,9 @@ tr{min-height: 50px;}
 		<div class="col-xs-10 col-md-10" id="h2" >
 				<div class="col-xs-12col-md-12"style="text-align: center;">	
 					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-	                  <img src="./logo.png"width="100"/>
-	                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
+					 <img src="img/Mory_logo.png" width="100"/>
+                       <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
+                       <img src="img/Mainlogo.png" width="100" />
 	                </a>
 	            </div>
 		</div>
@@ -46,6 +46,8 @@ tr{min-height: 50px;}
 <!-- side부분  -->
 <c:import url="/menu/Admin_side-menu.jsp"></c:import>
 <!-- 본문시작 부분  -->
+<h2>계정조회</h2>
+<hr>
 <div class="col-xs-12 col-md-9">
 		<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
 			<div class="col-xs-3 col-md-3" style="padding: 0px; margin-right: 15px; text-align:right">
@@ -57,7 +59,7 @@ tr{min-height: 50px;}
 				</select>
 			</div>
 			<div class="col-xs-3 col-md-3" style="padding: 0px;">
-				<input type="text" class="form-control" style="width: 250px;" name="name" id="name">
+				<input type="text" class="form-control" style="width: 250px;" name="name" id="name" placeholder="ex)honggildong">
 			</div>
 			<div class="col-xs-3 col-md-1 text-right">
 				<button class="btn btn-default" type="submit" id="searchBtn">검색</button>
