@@ -1,6 +1,7 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/bobby1815/mory
 eclipse.preferences.version=1
-<<<<<<< HEAD
-encoding/<project>=UTF-8
-=======
+encoding//WebContent/resource/se/sample/photo_uploader/file_uploader.jsp=UTF-8
 encoding//src/com/kh/mory/newsfeed/Newsfeed_NewsfeedController.java=UTF-8
->>>>>>> branch 'master' of https://github.com/bobby1815/mory
+encoding/<project>=UTF-8
