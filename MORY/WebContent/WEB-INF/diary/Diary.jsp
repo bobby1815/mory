@@ -299,10 +299,10 @@
 										</td>
 	
 										<td class="col-xs-6 col-md-6">
-											<input type="text" id="diary_name" name="diary_name" value="${diary.shar_diary_name }" readonly="readonly"  >
+											<lanel id="diary_name" name="diary_name"  readonly="readonly"  >${member.shar_diary_name }</lanel>
 										</td>
 										<td class="col-xs-3 col-md-3">
-											<input type="submit" >
+											<input type="submit" value="구경가기">
 										</td>
 								</tr>
 								
