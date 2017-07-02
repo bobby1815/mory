@@ -81,7 +81,7 @@
 				
 				</div>
 				<div class="col-md-1">
-					<button type="submit" class="btn btn-default" style="width: ">변경</button>
+					<button type="submit" class="btn btn-default" style="width:100px; ">변경</button>
 				</div>
 		
 		</div>
