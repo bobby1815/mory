@@ -75,10 +75,15 @@
 					<div class="col-xs-1 col-md-3 text-center">취소사유</div>
 					<div class="col-xs-2 col-md-3"><input type="text" class="form-control" id="declaration_" style="width: 170px; "></div>
 				</div>		
+		</div>
+		<div class="col-md-12">
+				<div class="col-md-10">
 				
-				<div class="col-md-6">
-					<button type="submit">변경</button>
 				</div>
+				<div class="col-md-1">
+					<button type="submit" class="btn btn-default" style="width: ">변경</button>
+				</div>
+		
 		</div>
 </div>
 </body>
