@@ -19,12 +19,12 @@
 
 <script type="text/javascript">
 	
-		$(document).ready(function() 
+		 $(document).ready(function() 
 		{
 			$("#btn").click(function() 
 			{
 				
-				if ($("#term").val()==""|| $("#id").val()==""  )
+				if ($("#value").val()==0  )
 				{
 					alert("입력이 누락된 항목이 있습니다.");
 					return false;
@@ -33,7 +33,7 @@
 			});
 		
 		
-		});
+		}); 
 	
 </script>
 <style>
@@ -57,8 +57,9 @@
 			<div class="col-xs-10 col-md-10" id="h2" >
 					<div class="col-xs-12col-md-12"style="text-align: center;">	
 						<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-		                  <img src="./logo.png"width="100"/>
-		                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
+		                <img src="img/Mory_logo.png" width="100"/>
+                       <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
+                       <img src="img/Mainlogo.png" width="100" />
 		                </a>
 		            </div>
 			</div>
@@ -71,6 +72,8 @@
 	<!--사이드 시작  -->
 	<c:import url="/menu/Admin_side-menu.jsp"></c:import>
 	<!-- 본문시작  -->
+<h2>신고목록</h2>
+<hr>
 	<div class="col-xs-12 col-md-9">
 			<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
 				<div class="col-xs-12 col-md-1 text-center" style="padding: 0px;">
@@ -84,7 +87,7 @@
 				</div>
 				<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
 					<select class="form-control" style="width: 160px;" id="value" name="value" >
-						<option>선택하세요&lt;필수&gt;</option>
+						<option value="0">선택하세요&lt;필수&gt;</option>
 						<option value="1">뉴스피드</option>
 						<option value="2">커뮤니티</option>
 					</select>
@@ -94,7 +97,7 @@
 					<h5>아이디</h5>
 				</div>
 				<div class="col-xs-12 col-md-2" style="padding: 0px;">
-					<input type="text" class="form-control" id="id"  name="id">
+					<input type="text" class="form-control" id="id"  name="id" placeholder="ex)honggildong">
 				</div>
 				
 				<div class="col-xs-12 col-md-1 text-center">
@@ -106,38 +109,39 @@
 				<table class="col-xs-12 text-center">
 					<tr>
 						<th class="col-xs-1 col-md-1">No</th>
-						<th class="col-xs-1 col-md-1">아이디</th>
+						<th class="col-xs-1 col-md-1">신고자아이디</th>
 						<th class="col-xs-1 col-md-1">피드내용</th>
 						<th class="col-xs-1 col-md-1">작성일</th>
 						<th class="col-xs-1 col-md-1">신고횟수</th>
 						<th class="col-xs-1 col-md-1">처리결과</th>
 					</tr>
 				<c:forEach  var="result"  items="${declarationuser}">
-						<tr id="list" style="text-align: center;" onclick="declaration('${result.write_User_Id}')">
+						<tr id="list" style="text-align: center;" onclick="declaration('${result.write_Seq}')">
 							<td>${result.num }</td>
-							<td>${result.write_User_Id}</td>
+							<td>${result.repo_User_Id}</td>
 							<td>${result.write_Cont}</td>
 							<td>${result.write_Reg_Dtm }</td>
 							<td>${result.repo_Count}</td>
 						<c:if test="${result.repo_Count >= '5' }">	
 							<td>블라인드 처리</td>
 						</c:if>
-						<c:if test="${result.repo_Count <= '5' }">	
+						<c:if test="${result.repo_Count < '5' }">	
 							<td>미처리</td>
 						</c:if>
 							
 						</tr>
+						<input type="hidden" value="${result.write_Seq }">
 				</c:forEach>
 				</table>
 			</div>
 			</div>
 		</div>
+</form>		
 		<!-- 데이터 상세조회  -->
 	<div id="lista" class="row"  style="display: none;">
 			<c:import url="/WEB-INF/menu/Admin_futter.jsp"></c:import>
 	</div>
 </div>		
-</form>
 
 </body>
 </html>

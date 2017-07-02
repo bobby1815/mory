@@ -25,26 +25,14 @@
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
-<script type="text/javascript">
-
-	function addlist() 
-	{
-		alert("ddd");
-		var url = ""+ques_User_Id;
-		$(location).attr('href',url);
-		
-		
-	}
-
-</script>
 </head>
 <body>
 
-
+<form action="/answadd.do?"method="post">
 <div class="container"  id="container">
 		<div class="row " id="all0">
 		<div class="col-xs-1  col-md-1"  id="h1"></div>
-		<div class="col-xs-10 col-md-10" id="h2" >
+		<div class="col-xs-10 col-md-10 center" id="h2" >
 
 		<hr style="border:dark;">				
 		</div>
@@ -72,7 +60,8 @@
 								<input type="text" class="form-control" placeholder="작성자" readonly="readonly" style="width:73px;">
 							</div>
 							<div class="col-md-10">
-								<input type="text" class="form-control" style="width: 380px;" value="${ques_User_Id}">
+								<input type="text" class="form-control" style="width: 380px;" value="${ques_User_Id}" name="id">
+								<input type="hidden" value="${seq}" name="seq"> 
 							</div>
 					   </div>
 					   
@@ -94,7 +83,7 @@
 								<input type="text" class="form-control" placeholder="답변자" readonly="readonly" style="width:73px;">
 							</div>
 							<div class="col-md-10">
-								<input type="text" class="form-control" style="width: 380px;" value="${answ_User_Id }"  >
+								<input type="text" class="form-control" style="width: 380px;" value="${answ_User_Id }" name="answ_id" >
 							</div>
 					   </div>
 					   
@@ -127,7 +116,7 @@
 							</div>
 							
 							<div class="col-md-11">
-									<input type="text"class="form-control" style="height: 200px;" value="${ques_Cont}">
+									<input type="text"class="form-control" style="height: 200px;" value="${ques_Cont}" name="answ">
 							</div>
 					
 					</div>
@@ -136,7 +125,7 @@
 							<div class="col-md-4">
 								<div class="col-md-4"></div>
 								<div class="col-md-4">
-									<button class="btn btn-info btn-lg" onclick="addlist('${ques_User_Id}')">저장</button>
+									<button class="btn btn-info btn-lg" type="submit" >저장</button>
 								</div>
 								<div class="col-md-4">
 									<a href="/question.do"><button class="btn btn-info btn-lg">취소</button></a>
@@ -158,6 +147,7 @@
 		</div>		
  
 </div>
+</form>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.kh.mory.Dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -86,10 +87,24 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 	
 	//�亯 �Է�
 	@Override
-	public int addanw()
+	public int addanw(Admin_QuestionDTO dto) throws SQLException
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		int result =0;
+		Connection conn =dataSource.getConnection();
+		String sql = " INSERT INTO TBL_ANSWERS (QUES_SEQ,ANSW_USER_ID,ANSW_CONT,ANSW_REG_DTM) "
+				+ " VALUES(?,?,?,SYSDATE)";
+				
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(2,dto.getAnsw_User_Id());
+		pstmt.setString(1,dto.getSeq());
+		pstmt.setString(3,dto.getAnsw_Cont());
+		result = pstmt.executeUpdate();
+		System.out.println(sql);
+		
+		
+		
+		System.out.println(result);
+		return result;
 	}
 
 	
@@ -103,14 +118,13 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		
 		String sql ="SELECT NUM,QUES_SEQ,QUES_USER_ID,QUES_TITLE,TO_DATE(QUES_REG_DTM,'YY-MM-DD')AS QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT "
 					+" FROM QUESTIONVIEW WHERE QUES_USER_ID ='"+id+"' ";
-				
+		System.out.println(sql);	
 		ResultSet rs =  stmt.executeQuery(sql);
 		Admin_QuestionDTO dto = new Admin_QuestionDTO();
 		while (rs.next())
 		{
 			dto.setNum(rs.getInt("NUM"));
-			dto.setSeq(rs.getInt("QUES_SEQ"));
-			System.out.println(dto.getSeq());
+			dto.setSeq(rs.getString("QUES_SEQ"));
 			dto.setQues_User_Id(rs.getString("QUES_USER_ID"));
 			dto.setQues_Title(rs.getString("QUES_TITLE"));
 			dto.setQues_Reg_Dtm(rs.getString("QUES_REG_DTM"));

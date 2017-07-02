@@ -28,6 +28,7 @@ public class Admin_detailquestionSearchController implements Controller
 		String user_id = request.getParameter("user_id");
 		Admin_QuestionDTO dto = dao.AjaxSearch(user_id);
 		
+		modelAndView.addObject("seq",dto.getSeq());
 		modelAndView.addObject("ques_User_Id",dto.getQues_User_Id());
 		modelAndView.addObject("ques_Title",dto.getQues_Title());
 		modelAndView.addObject("ques_Reg_Dtm",dto.getQues_Reg_Dtm());

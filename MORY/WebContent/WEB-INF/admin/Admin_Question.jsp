@@ -46,8 +46,9 @@
 		<div class="col-xs-10 col-md-10" id="h2" >
 				<div class="col-xs-12col-md-12"style="text-align: center;">	
 					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-	                  <img src="./logo.png"width="100"/>
-	                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
+	              <img src="img/Mory_logo.png" width="100"/>
+                       <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
+                       <img src="img/Mainlogo.png" width="100" />
 	                </a>
 	            </div>
 		</div>
@@ -59,6 +60,8 @@
 <!--사이드 시작  -->
 <c:import url="/menu/Admin_side-menu.jsp"></c:import>
 <!-- 본문시작  -->
+<h2>1:1문의</h2>
+<hr>
 <div class="col-xs-12 col-md-9">
 		<div class="row" style="border-bottom: 2px solid grey; padding: 20px;">
 			<div class="col-xs-12 col-md-2 text-center" style="padding: 0px;">
@@ -82,7 +85,7 @@
 				<h5>아이디</h5>
 			</div>
 			<div class="col-xs-12 col-md-2" style="padding: 0px;">
-				<input type="text" class="form-control" name="id">
+				<input type="text" class="form-control" name="id" placeholder="ex)honggildong" >
 			</div>
 			
 			<div class="col-xs-12 col-md-1 text-center">

@@ -182,8 +182,12 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		int result = 0;
 		Connection conn = dataSource.getConnection();
 		
+		System.out.println(id);
+		System.out.println(sanc_Type_Code);
+		System.out.println(nic);
 		
-		String sql = " {CALL PRO_USERMODIFY(?,?,TO_CHAR(?))} ";
+		String sql = " {CALL PRO_USERMODIFY(?,?,?)} ";
+		System.out.println(sql);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(3, sanc_Type_Code);

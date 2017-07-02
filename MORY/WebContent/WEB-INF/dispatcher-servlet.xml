@@ -212,7 +212,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	
  	<!-- 신고계정 Detail검색(뉴스피드)  -->
  	<bean name="/declarationuser.do" class="com.kh.mory.Controller.Admin_DeclarationUserSeachController">
- 		<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
  	</bean>
  	
  	
@@ -258,9 +258,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	</bean> 
  	
  	<!-- 관리자가 답글단 것 insert하기   -->
- 	<!-- <bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_AnswaddController">
- 	<property name="dao" ref="Admin_QuestionDAO"></property> 
- 	</bean>  -->
+ 	 <bean name="/answadd.do" class="com.kh.mory.Controller.Admin_AnswaddController">
+ 		 <property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	</bean>  
  	
  	
  	<!-- 커뮤니티 dao -->
