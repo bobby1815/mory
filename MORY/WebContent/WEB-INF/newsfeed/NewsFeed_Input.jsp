@@ -12,57 +12,47 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+
+<!-- <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/ckeditor/config.js"></script>
 <link rel="stylesheet" href="css/sample.css" />
-
+ -->
 
 <link rel="stylesheet" href="../css/Mainmenu.css" />
-<style type="text/css">
 
-#editor {
-	height: 220px;
-	width: 100%;
-}
-
-textarea
-{
-	width: 100%;
-}
-
-input
-{
-	width: 100%;
-}
-</style>
 
 <script>
-CKEDITOR.instances.write_cont.getData();
-
-CKEDITOR.instances.write_cont.setData('<p>데이터</p>')
-
-CKEDITOR.on('dialogDefinition', function (ev) {
-	var dialogName = ev.data.name;
-	var dialog = ev.data.definition.dialog;
-	var dialogDefinition = ev.data.definition;
-
-		if (dialogName == 'image') {
-			dialog.on('show', function (obj) {
-			this.selectPage('Upload'); //업로드텝으로 시작
-		});
-
-		dialogDefinition.removeContents('advanced'); // 자세히탭 제거
-		dialogDefinition.removeContents('Link'); // 링크탭 제거
-	}
-		
+var oEditors = [];
+$(function(){
+nhn.husky.EZCreator.createInIFrame({
+oAppRef: oEditors,
+elPlaceHolder: "textAreaContent",
+sSkinURI: "se2/SmartEditor2Skin.html",
+fCreator: "createSEditor2"
 });
-	CKEDITOR.replace( 'write_cont', {
-	
-		 filebrowserUploadUrl:'/ckeditor/upload.jsp?'
-			    +'realUrl=http://localhost:8090/newsfeedinsert.do'
-			    +'&realDir=D:\\KH\\001_Eclipse WorkSpace\\MORY\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\MORY\\newsfeedupload',
+});
+ 
+//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
+function submitContents(elClickedObj) {
+    // 에디터의 내용이 textarea에 적용된다.
+    oEditors.getById["textAreaContent"].exec("UPDATE_CONTENTS_FIELD", [ ]);
+ 
+    // 에디터의 내용에 대한 값 검증은 이곳에서
+    // document.getElementById("textAreaContent").value를 이용해서 처리한다.
+  
+    try {
+        elClickedObj.form.submit();
+    } catch(e) {
+     
+    }
+}
+ 
+// textArea에 이미지 첨부
+function pasteHTML(filepath){
+    var sHTML = '<img src="<%=request.getContextPath()%>/path에서 설정했던 경로/'+filepath+'">';
+    oEditors.getById["textAreaContent"].exec("PASTE_HTML", [sHTML]);
+}
 
-	});
 </script> 
 
 
@@ -193,9 +183,9 @@ CKEDITOR.on('dialogDefinition', function (ev) {
 				<br><br>
 		
 				<div id="divPeedContent">
-					 <textarea class="ckeditor" rows="5" cols="" id="write_cont" name="write_cont" placeholder="피드 내용을 작성하세요">
-					 
-					 </textarea> 
+					 <textarea name="textAreaContent" id="textAreaContent" rows="10" cols="100" style="width:766px; height:412px;"></textarea>
+   					 <input type="button" id="savebutton" value="업로드" />
+
 				</div>
 	
 
