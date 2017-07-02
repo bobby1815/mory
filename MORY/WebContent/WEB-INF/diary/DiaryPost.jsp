@@ -415,11 +415,11 @@
             
 <%
             
-            for(DiaryDTO comm : recomment )
+            for(DiaryDTO comm : comment )
             {
-        		String addrecommentbtn = "#addrecommentbtn"+comm.getReco_seq();
-        		String addrecommentcont = "addrecommentcont"+comm.getReco_seq();
-        		
+        		String addrecommentbtn = "#addrecommentbtn"+comm.getComment_seq();
+        		String addrecommentcont = "addrecommentcont"+comm.getComment_seq();
+        		//addrecommentbtn${comment.comment_seq}
            	%>
             
             
@@ -455,8 +455,8 @@
     				 
     				var hiddenField2 = document.createElement("input");
     				hiddenField2.setAttribute("type", "hidden");
-    				hiddenField2.setAttribute("name", "reco_seq");
-    				hiddenField2.setAttribute("value", "<%=comm.getReco_seq()%>");
+    				hiddenField2.setAttribute("name", "commentseq");
+    				hiddenField2.setAttribute("value", "<%=comm.getComment_seq()%>");
     				form.appendChild(hiddenField2);
     				
     				var hiddenField3 = document.createElement("input");
@@ -465,6 +465,9 @@
     				hiddenField3.setAttribute("value", "${diaryDTO.write_seq}");
     				form.appendChild(hiddenField3);
     				document.body.appendChild(form);
+    				
+    				
+    				
     				form.submit();
     				
     				
@@ -595,9 +598,7 @@
 									<!-- 댓글내용입력 -->
 									<textarea rows="3" name="addrecommentcont${comment.comment_seq }" id="addrecommentcont${comment.comment_seq }"   maxlength="200" placeholder="댓글을 입력해주세요." style=" vertical-align: middle;"></textarea>
 									<!-- 댓글달기버튼 -->
-									<a href="">
-										<button id="addrecommentbtn${comment.comment_seq }" name="addrecommentbtn${comment.comment_seq }" style="width: 20%; height: 40px; ">답글달기</button>
-									</a>
+									<button id="addrecommentbtn${comment.comment_seq}" name="addrecommentbtn${comment.comment_seq }" style="width: 20%; height: 40px; ">답글달기</button>
 								</div>
 							</div>
 							

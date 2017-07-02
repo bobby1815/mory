@@ -35,7 +35,13 @@
 	        x.className = x.className.replace(" w3-show", "");
 	    }
 	}
-
+	
+	/*// 모델 1
+	$(document).ready(function() {
+		$("#myBtn").click(function() {
+			$("#myModal1").modal();
+		});
+	}); */
 	
 	$(document).ready(function() {	
 	
@@ -162,15 +168,20 @@
 				
 				<div class="col-xs-1 col-md-1" style="font-size: 30px;">
 				<!-- <span class="glyphicon glyphicon-user" style="font-size: 30px; color: red;"></span> -->
+				<a href="diary.do" >
 				<img src="img/person_diary_image.png" style="width: 50px; height: 50px;">
+				</a>
 				</div>
 				<div class="col-xs-1 col-md-1">
 				<!-- <span class="glyphicon glyphicon-user" style="font-size: 30px; color: blue;"></span> -->
-				<img src="img/couple_diary_image.jpg" style="width: 50px; height: 50px;">
+				<%-- 
+				<a ${matecheck>0 ? "href='diary.do?requ_seq='"+couplediary.requ_seqd: '' } > <img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a>
+				 --%>
+				 <c:if test="${matecheck>0 }"><a href="diary.do?requ_seq=${couplediary.requ_seq }"><img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a></c:if>
 				</div>
 				<div class="col-xs-1 col-md-1">
 				<!-- <span class="glyphicon glyphicon-user" style="font-size: 30px; color: yellow;"></span> -->
-				<img src="img/other_diary_image.png" style="width: 50px; height: 50px;">
+				<img src="img/other_diary_image.png" style="width: 50px; height: 50px;" data-toggle="modal" data-target="#myModal" >
 				</div>
 				<div class="col-xs-1 col-md-1" style="font-size: 30px;"></div>
 				<div class="col-xs-1 col-md-1" style="font-size: 30px;"></div>
@@ -187,10 +198,21 @@
 			<!-- 다이어리 제목 -->
 			<div class="col-xs-3 col-md-3"></div>
 			<div class="col-xs-6 col-md-6">
-				<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center" readonly="readonly" >
+			<c:choose>
+
+				<c:when test="${diary.diary_name eq null}">
+					<input type="text" class="form-control" value="${couplediary.shar_diary_name }" style="text-align: center" readonly="readonly" >
+				</c:when>
+				<c:otherwise>
+					<input type="text" class="form-control" value="${diary.diary_name }" style="text-align: center" readonly="readonly" >
+				</c:otherwise>
+			</c:choose>
+			
+				
 			</div>
 			<div class="col-xs-3 col-md-3">
-				<img src="img/pen.jpg" style="width: 26px; height: 26px;">
+				<img src="img/pen.jpg" style="width: 26px; height: 26px;" 
+				data-toggle="modal" data-target="#myModal1"  >
 			</div>
 			<br />
 			<br />
@@ -214,7 +236,86 @@
 				  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
 				</div>
 			</div>
-		</div>		
+		</div>	
+		
+		
+		
+				<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+							</div>
+							<form action="diarynameupdate.do">
+							<div class="modal-body" style="height: 300px;">
+								<div class="col-xs-12 col-md-12"
+									style="border: 1px solid; height: 50px;">
+									<div class="col-xs-3 col-md-3" style="">
+										다이어리 이름
+									</div>
+
+									<div class="col-xs-6 col-md-6">
+										<c:choose>
+										
+											<c:when test="${diary.diary_name eq null}">
+												<input type="text" id="diary_name" name="diary_name" value="${ couplediary.shar_diary_name }" placeholder="다이어리 제목을 입력하세요"  >
+											</c:when>
+											<c:otherwise>
+												<input type="text" id="diary_name" name="diary_name" value="${ (diary.diary_name)}" placeholder="다이어리 제목을 입력하세요"  >
+											</c:otherwise>
+										</c:choose>
+										
+									</div>
+									<div class="col-xs-3 col-md-3"
+										style="text-align: right; margin-top: 10px;">
+										<input type="submit" value="수정하기" >
+									</div>
+									
+								</div>
+
+							</div>
+							</form>
+							<div class="modal-footer "></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true" >
+					<div class="modal-dialog" style="height: 500px;" >
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+								<h2>공유받은 다이어리 목록</h2>
+							</div>
+							<div class="modal-body" style="min-height: 400px;" >
+							<table>
+							<c:if test="${memberdiarylist.isEmpty() }"> <span style="text-align: center;" ><h1>공유 받은 다이어리가 없습니다.</h1></span> </c:if>
+							<c:forEach var="member" items="${memberdiarylist }">
+							
+								<tr onclick="location.href='diary.do?requ_seq=${member.requ_seq}'">
+										<td class="col-xs-3 col-md-3">
+											${member.user_nic } 
+										</td>
+	
+										<td class="col-xs-6 col-md-6">
+											<lanel id="diary_name" name="diary_name"  readonly="readonly"  >${member.shar_diary_name }</lanel>
+										</td>
+										<td class="col-xs-3 col-md-3">
+											<input type="submit" value="구경가기">
+										</td>
+								</tr>
+								
+								
+								</c:forEach>
+								</table>
+								</div>
+							</div>
+							<div class="modal-footer "></div>
+						</div>
+					</div>
+				</div> 
+			
 		
 		
 	</div>	

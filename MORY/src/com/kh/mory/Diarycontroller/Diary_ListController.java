@@ -32,12 +32,14 @@ public class Diary_ListController implements Controller
 		
 		String user_id = (String) session.getAttribute("user_id");
 		
-		
-		DiaryDTO dto = dao.mydiary(user_id);
-		String diary_seq = dto.getDiary_seq();
+		DiaryDTO dto = null;
+		DiaryDTO couplediary = null;
+		String diary_seq = null;
 		
 		String requ_seq = request.getParameter("requ_seq");
 		
+		System.out.println(user_id);
+		System.out.println(requ_seq);
 		
 		try
 		{
@@ -46,10 +48,35 @@ public class Diary_ListController implements Controller
 			if (requ_seq == null)
 			{	
 				diaryList = dao.list(diary_seq);
+				dto =  dao.mydiary(user_id);
+				 diary_seq = dto.getDiary_seq();
+				 System.out.println(dto.getDiary_name());
 			}else if (diary_seq == null) {
 				diaryList = dao.couplelist(requ_seq);
+				System.out.println("couple");
 			}
 			
+			int matecheck = dao.matecheck(user_id);
+			
+			
+			if (matecheck >0)
+			{
+				couplediary = dao.couplediary(user_id);
+				System.out.println(couplediary.getShar_diary_name());
+			}
+			
+
+			
+			ArrayList<DiaryDTO> memberdiarylist = dao.memberdiarylist(user_id);
+			
+
+			
+
+			modelAndView.addObject("matecheck",matecheck);
+			modelAndView.addObject("memberdiarylist",memberdiarylist);
+			
+			modelAndView.addObject("couplediary",couplediary);
+			modelAndView.addObject("diary",dto);	
 			modelAndView.addObject("diaryList",diaryList);			
 			modelAndView.setViewName("WEB-INF/diary/Diary.jsp");
 		} catch (Exception e)
