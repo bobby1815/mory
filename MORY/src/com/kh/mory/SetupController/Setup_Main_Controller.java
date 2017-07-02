@@ -46,7 +46,7 @@ public class Setup_Main_Controller implements Controller
 				session.setAttribute("acc_grade_code", mainDTO.getAcc_grade_code());;
 				
 				modelAndView.addObject("mainDTO",mainDTO);
-				modelAndView.setViewName("/profile.do");
+				modelAndView.setViewName("/membermain.do");
 				return modelAndView;
 				
 			}
