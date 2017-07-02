@@ -7,6 +7,7 @@ package com.kh.mory.Diarycontroller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -34,25 +35,23 @@ public class Diary_RecommentInsertController implements Controller
       
 
 		ModelAndView modelAndView = new ModelAndView();
+		
+		HttpSession session = request.getSession();
 
-		String comment_cont = request.getParameter("cont");
-		System.out.println(comment_cont);
-		String user_id = request.getParameter("id");
-		System.out.println(user_id);
+		String comment_cont = request.getParameter("reco_cont");
+		String user_id = (String) session.getAttribute("user_id");
 		String commentseq = request.getParameter("commentseq");
-		System.out.println(commentseq);
 		String write_seq = request.getParameter("write_seq");
-		System.out.println(write_seq);
 		try
 		{
-			System.out.println("RECOMMENT");
 			DiaryDTO diary = new DiaryDTO();
 			
-			diary.setComment_cont(comment_cont);
+			diary.setReco_cont(comment_cont);
 			diary.setUser_id(user_id);
 			diary.setComment_seq(commentseq);
 			
-			recommentdao.recommentInsert(diary);
+			int result = recommentdao.recommentInsert(diary);
+			System.out.println(result);
 			modelAndView.setViewName("redirect:diarypost.do?write_seq="+write_seq);
 
 		} catch (Exception e)
