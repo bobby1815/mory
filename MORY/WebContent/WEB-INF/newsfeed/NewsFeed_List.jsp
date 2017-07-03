@@ -40,7 +40,7 @@ p
 		<c:import url="../main/Mainmenu.jsp" />
 
 
-
+ 
 
 		<!-- 	두번째 row  -->
 		<div class="row " id="all1">
