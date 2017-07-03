@@ -29,7 +29,7 @@ public class Admin_UserDAO implements Admin_IUserDAO
 
 	// -- ������ȸ(�̸�,�г���,��������)��ȸ
 	@Override
-	public ArrayList<Admin_UserDTO> QueryUser(String user_Value, String user_Search) throws SQLException
+	public ArrayList<Admin_UserDTO> QueryUser(String user_Value, String user_Search,int start, int end) throws SQLException
 	{
 			Connection conn = dataSource.getConnection();
 			ArrayList<Admin_UserDTO> list = new ArrayList<Admin_UserDTO>();
@@ -62,12 +62,14 @@ public class Admin_UserDAO implements Admin_IUserDAO
 			+ " LEFT JOIN TBL_USER_SANCTION S "
 		     +" ON U.USER_ID = S.USER_ID "
 		     +" LEFT JOIN TBL_SANCTION_TYPE T "
-		     +" ON S.SANC_TYPE_CODE = T.SANC_TYPE_CODE WHERE 1=1"
+		     +" ON S.SANC_TYPE_CODE = T.SANC_TYPE_CODE WHERE 1=1 AND ROWNUM >=? AND ROWNUM<=? "
 		     /*+ " AND ROWNUM >=? ROWNUM<=? "*/
 		     +user_Value;
 		
 		
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,start);
+			pstmt.setInt(2, end);
 			ResultSet rs = pstmt.executeQuery();
 	
 			while (rs.next())

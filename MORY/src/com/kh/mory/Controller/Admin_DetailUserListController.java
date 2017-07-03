@@ -30,7 +30,7 @@ public class Admin_DetailUserListController implements Controller
 		ArrayList<Admin_UserDTO> list = new ArrayList<Admin_UserDTO>();
 		String value = request.getParameter("value");
 		String name = request.getParameter("name");
-		list =dao.QueryUser(value,name);
+	/*	list =dao.QueryUser(value,name);*/
 		
 		modelAndView.addObject("list",list);
 		modelAndView.setViewName("WEB-INF/menu/Admin_Detail.jsp");

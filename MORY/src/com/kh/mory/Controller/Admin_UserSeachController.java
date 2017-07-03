@@ -25,12 +25,22 @@ public class Admin_UserSeachController implements Controller
 	{
 		request.setCharacterEncoding("UTF-8");
 		ModelAndView modelAndView = new ModelAndView();
-		String value = request.getParameter("value");
-		String name = request.getParameter("name");
+		String value="";
+		String name="";
+			if ( request.getParameter("value")!=null)
+			{
+				 value=request.getParameter("value");
+				 name = request.getParameter("name");
+			}
+			else
+			{
+			}
+			
 		int start = Integer.parseInt(request.getParameter("start"));
+		System.out.println(start);
 		int end = Integer.parseInt(request.getParameter("end"));
 		
-		ArrayList<Admin_UserDTO> userList =  dao.QueryUser(value, name);
+		ArrayList<Admin_UserDTO> userList =  dao.QueryUser(value, name,start,end);
 
 		modelAndView.addObject("result", userList);
 		modelAndView.setViewName("WEB-INF/admin/Admin_UserList.jsp");
