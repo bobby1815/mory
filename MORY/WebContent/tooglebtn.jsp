@@ -140,6 +140,7 @@ input {
 </script>
 
 
+
 <div class="col-xs-1 col-md-1" id="b3">
 	<nav class="menu">
 		<input type="checkbox" href="#" class="menu-open" name="menu-open"
@@ -155,8 +156,15 @@ input {
 			data-target="#myModal1"> <i class="fa fa-envelope"></i>
 		</a>
 
+<<<<<<< HEAD
 	</nav>
 
+=======
+  <a href="#" class="menu-item"> <i class="fa fa-cog"></i> </a>  
+  <a href="newsfeedinsertform.do" class="menu-item"> <i class="fa fa-plus"></i> </a>
+  <a href="#" class="menu-item"> <i class="fa fa-heart"></i> </a>
+  <a href="commonalarmlist.do" class="menu-item" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-envelope"></i> </a>
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
 
 	<!-- filters -->
 	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -184,6 +192,7 @@ input {
       </filter>
     </defs>
     </svg>
+<<<<<<< HEAD
 </div>
 
 
@@ -286,3 +295,36 @@ input {
 
 
 
+=======
+    </div>
+    
+    
+       <!-- 알림 -->
+       <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header" style="text-align: center; color: black;">
+                        <h4>알림</h4>
+                     </div>
+                        <jsp:include page="WEB-INF/Source/Common_AlarmList.jsp"></jsp:include>
+                     <div class="modal-footer "></div>
+                  </div>
+               </div>
+            </div>
+       
+       <%-- 
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header" style="text-align: center; color: black;">
+                        <h4>알림</h4>
+                     </div>
+                        <jsp:include page="WEB-INF/Source/Common_AlarmList.jsp"></jsp:include>
+                     <div class="modal-footer "></div>
+                  </div>
+               </div>
+            </div>
+             --%>
+
+    
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
