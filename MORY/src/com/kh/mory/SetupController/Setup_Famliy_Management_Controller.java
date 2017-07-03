@@ -39,9 +39,13 @@ public class Setup_Famliy_Management_Controller implements Controller
 		if (request.getRequestURI().indexOf("membermain.do") > -1)
 		{
 			ArrayList<Setup_Family_ManagementDTO> res = new ArrayList<Setup_Family_ManagementDTO>();
-			res = memberDAO.memberList(user_id);
+			ArrayList<Setup_Family_ManagementDTO> res2 = new ArrayList<Setup_Family_ManagementDTO>();
+			res = memberDAO.memberList(user_id);	// 공유다이어리 멤버 리스트
+			res2 = memberDAO.shareDiaryList(user_id);	// 공유다이어리 리스트
+					
 			
 			modelAndView.addObject("memberlist", res);
+			modelAndView.addObject("shareDiaryList", res2);
 			
 			modelAndView.setViewName("WEB-INF/Source/Setup_Family_Managament.jsp");
 		}

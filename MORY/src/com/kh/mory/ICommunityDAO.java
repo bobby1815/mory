@@ -16,7 +16,7 @@ public interface ICommunityDAO
 		public ArrayList<CommunityDTO> list(int community_type_code) throws SQLException;
 		public ArrayList<CommunityDTO> type_list() throws SQLException;
 		public int type_Add(CommunityDTO dto) throws SQLException;
-		public ArrayList<CommunityDTO> mypost_list(CommunityDTO dto) throws SQLException; 
+		public ArrayList<CommunityDTO> mypost_list() throws SQLException; 
 		
 
 		
