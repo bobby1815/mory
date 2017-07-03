@@ -44,7 +44,7 @@
 								<p>${dto.requ_user_nic}님께서 ${dto.share_diary_name} 로 초대하였습니다.</p>
 							</div>
 							<div class="col-xs-3 col-md-3" style="text-align: right; margin-top: 10px;">
-							      <button type="submit" id="acceptBtn" value="Y" onclick="loation.href="commonalarmresult.do?requ_seq='${dto.requ_seq}&result_yn=y'">수락</button>
+							      <button type="submit" id="acceptBtn" value="Y" onclick="loation.href="commonalarmresult.do?requ_seq='${dto.requ_seq}'&result_yn=y">수락</button>
 							      <button type="submit" id="rejectionBtn" value="N" onclick="alarmResult('${dto.requ_seq}',this)">거절</button>
 							   </div>
 							</div>
