@@ -10,14 +10,13 @@ import org.springframework.web.servlet.mvc.Controller;
 public class Newsfeed_CommentDeleteController implements Controller
 {
 	   // DAO �������̽� ����
-	   private Newsfeed_INewsfeedDAO commentdao;
+	   private Newsfeed_INewsfeedDAO feed_commentdao;
 	  
-
 	   // setter ����
-	   public void setCommentdao(Newsfeed_INewsfeedDAO commentdao)
-	   {
-		   this.commentdao = commentdao;
-	   }
+		public void setFeed_commentdao(Newsfeed_INewsfeedDAO feed_commentdao)
+		{
+			this.feed_commentdao = feed_commentdao;
+		}
 
 	@Override
 	   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -30,7 +29,7 @@ public class Newsfeed_CommentDeleteController implements Controller
 	      String comment_seq = request.getParameter("comment_seq");
 	      String write_seq = request.getParameter("write_seq");
 	      
-	      int result = commentdao.newsFeedCommentDelete(comment_seq);
+	      int result = feed_commentdao.newsFeedCommentDelete(comment_seq);
 	      
 	      System.out.println(result);
 	      
@@ -41,6 +40,7 @@ public class Newsfeed_CommentDeleteController implements Controller
 	      
 	      
 	   }
+
 
 
 	   

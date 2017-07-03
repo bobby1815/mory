@@ -10,12 +10,12 @@ import org.springframework.web.servlet.mvc.Controller;
 public class Newsfeed_RecommentUpdateController implements Controller
 {
 	   // DAO �������̽� �ڷ��� ��� ����
-	   private Newsfeed_INewsfeedDAO recommentdao;
+	   private Newsfeed_INewsfeedDAO feed_recommentdao;
 
 	   // setter ����
-	   public void setRecommentdao(Newsfeed_INewsfeedDAO recommentdao)
+		public void setFeed_recommentdao(Newsfeed_INewsfeedDAO feed_recommentdao)
 		{
-			this.recommentdao = recommentdao;
+			this.feed_recommentdao = feed_recommentdao;
 		}
 
 	   @Override
@@ -36,7 +36,7 @@ public class Newsfeed_RecommentUpdateController implements Controller
 				
 				newsfeedDTO.setRecomment_cont(reco_cont);
 				newsfeedDTO.setRecomment_seq(reco_seq);
-				recommentdao.newsFeedRecommentUpdate(newsfeedDTO);
+				feed_recommentdao.newsFeedRecommentUpdate(newsfeedDTO);
 				modelAndView.setViewName("redirect:newsfeed_post.do?write_seq="+write_seq);
 
 			} catch (Exception e)
@@ -47,6 +47,7 @@ public class Newsfeed_RecommentUpdateController implements Controller
 			return modelAndView;
 	      
 	   }
+
 
 	
 
