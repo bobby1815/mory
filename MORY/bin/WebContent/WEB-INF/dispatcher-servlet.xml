@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+<!-- 	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="morymaster"></property>
+	<property name="password" value="mory2017"></property>
+	</bean
+	>
+  -->
+ 
+	<!-- RemoteData -->
+	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="morymaster"></property>
+	<property name="password" value="mory2017"></property>
+	</bean>
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<bean id="mainDAO" class="com.kh.mory.Setup_DAO.Setup_MainDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+
+		<bean name="/*setmain.do"  class="com.kh.mory.SetupController.Setup_Main_Controller">
+			<property name="mainDAO" ref="mainDAO"></property>
+		</bean>
+		
+		<bean name="/setmenual.do"        class="com.kh.mory.SetupController.Setup_Menual_Controller"></bean>
+		
+		<bean name="/setcscenter.do"      class="com.kh.mory.SetupController.Setup_Customer_Center_Controller"></bean>
+		
+		
+		<bean id="profileDAO" class="com.kh.mory.Setup_DAO.Setup_ProfileDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+		
+		<bean name="/*profile.do"       class="com.kh.mory.SetupController.Setup_Profile_Controller">
+			<property name="profileDAO" ref="profileDAO"></property>
+		</bean>
+		
+		
+		<bean name="/setrhmanagement.do"  class="com.kh.mory.SetupController.Setup_Realation_Management_Controller"></bean>
+
+		
+		<bean name="/setreportlist.do"    class="com.kh.mory.SetupController.Setup_Report_List_Controller"></bean>
+		
+		<!-- 멤버 초대 -->
+		<bean id="memberDAO" class="com.kh.mory.Setup_DAO.Setup_Family_ManagementDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+		<bean name="/member*.do"  class="com.kh.mory.SetupController.Setup_Famliy_Management_Controller">
+			<property name="memberDAO" ref="memberDAO"></property>
+		</bean>
+		<!-- 공통 알림 -->
+		<bean id="alarmDAO" class="com.kh.mory.Dao.Common_AlarmDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+		<bean name="/commonalarm*.do" class="com.kh.mory.Controller.Common_AlarmController">
+			<property name="alarmDAO" ref="alarmDAO"></property>
+		</bean>
+		
+		<bean name="/setcsfna.do"		  class="com.kh.mory.SetupController.Setup_Fna_Controller"></bean>
+		
+		<bean name="/setcsqna.do"  		  class="com.kh.mory.SetupController.Setup_Qna_Controller"></bean>
+		
+		<bean name="/setcsmyqna.do"       class="com.kh.mory.SetupController.Setup_MyQna_Controller"></bean>
+		
+		<bean name="/jusopopup.do"       class="com.kh.mory.SetupController.Setup_Address_Finder"></bean>
+		
+		<bean id="managementDAO" class="com.kh.mory.Setup_DAO.Setup_Realation_ManagementDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+		</bean>
+		
+		<bean name="/searchuser.do" class="com.kh.mory.SetupController.Setup_searchuser_Controller">
+			<property name="managementDAO" ref="managementDAO"></property>
+		</bean>
+		
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+	<bean id="userDao" class="com.kh.mory.join.Signup_UserDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<bean id="PwquestionDAO" class="com.kh.mory.main.Main_PwquestionDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<!-- 메인 컨트롤러 -->
+	<bean name="/*main.do" class="com.kh.mory.main.Main_MainController">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 회원가입 컨트롤러 -->
+	<bean name="/join*.do" class="com.kh.mory.join.Signup_JoinController">
+		<property name="userDao" ref="userDao"></property>
+		<property name="pwDao" ref="PwquestionDAO"></property>		
+	</bean>
+	
+	<!-- 중복확인 컨트롤러 -->
+	<bean name="/*check.do" class="com.kh.mory.join.Signup_JoinCheckController">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+
+	<!-- 뉴스피드 컨트롤러 -->
+	<bean id="feedDao" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<bean name="/newsfeed*.do" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedController">
+		<property name="feedDao" ref="feedDao"></property>
+	</bean>
+	
+	<bean id="feed_commentDAO" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<bean id="feed_recommentDAO" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<!-- 아영이 트롤 -->
+	<!-- 뉴스피드 댓글 입력 컨트롤러 -->
+	<bean name="/feed_commentinsert.do" class="com.kh.mory.newsfeed.Newsfeed_CommentInsertController">
+		<property name="feed_commentdao" ref="feed_commentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 댓글 수정 컨트롤러 -->
+	<bean name="/feed_commentupdate.do" class="com.kh.mory.newsfeed.Newsfeed_CommentUpdateController">
+		<property name="feed_commentdao" ref="feed_commentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 댓글 삭제 컨트롤러 -->
+	<bean name="/feed_commentdelete.do" class="com.kh.mory.newsfeed.Newsfeed_CommentDeleteController">
+		<property name="feed_commentdao" ref="feed_commentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 답글 입력 컨트롤러 -->
+	<bean name="/feed_recommentinsert.do" class="com.kh.mory.newsfeed.Newsfeed_RecommentInsertController">
+		<property name="feed_recommentdao" ref="feed_recommentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 답글 수정 컨트롤러 -->
+ 	<bean name="/feed_recommentupdate.do" class="com.kh.mory.newsfeed.Newsfeed_RecommentUpdateController">
+		<property name="feed_recommentdao" ref="feed_recommentDAO" ></property>
+	</bean>	
+	<!-- 뉴스피드 답글 삭제 컨트롤러 -->
+	<bean name="/feed_recommentdelete.do" class="com.kh.mory.newsfeed.Newsfeed_RecommentDeleteController">
+		<property name="feed_recommentdao" ref="feed_recommentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 댓글/답글 리스트 컨트롤러 -->
+	<bean name="/feed_post.do" class="com.kh.mory.newsfeed.Newsfeed_ContentController">
+		<property name="feedDao" ref="feedDao"></property>
+	</bean>
+		
+	
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- 관리자 신지섭  -->
+
+<!-- User DAO 생성  -->
+	 <bean id="Admin_userDAO" class="com.kh.mory.Dao.Admin_UserDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+	</bean> 
+<!-- Declaration DAO 생성  -->
+	<bean id="Admin_DeclarationuserDAO" class="com.kh.mory.Dao.Admin_DeclarationUserDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>	
+<!-- QuestionDAO 생성  -->
+	<bean id="Admin_QuestionDAO" class="com.kh.mory.Dao.Admin_QuestionDAO">
+			<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>		
+	
+	
+	<!-- DAO 생성 부분 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
+	
+	<!-- 계정관리 카테고리  -->
+	<!-- 유저조회Controller  -->
+ 	<bean name="/userlist.do" class="com.kh.mory.Controller.Admin_UserListController">
+ 	 		<property name="dao" ref="Admin_userDAO"></property>
+ 	</bean> 
+ 	
+ 	<!-- 계정Detail검색  -->
+ 	<bean name="/usersearch.do" class="com.kh.mory.Controller.Admin_UserlistSearchController">
+ 			<property name="dao" ref="Admin_userDAO"></property>
+ 	</bean>
+ 	
+ 	<!-- UserSearchController(이름,닉네임,아이디,계정상태) -->
+ 	<bean name="/adminsearch.do" class="com.kh.mory.Controller.Admin_UserSeachController">
+ 			<property name="dao" ref="Admin_userDAO"></property>
+ 	</bean> 
+
+ 	
+	<!-- 제재상태변경Controller  -->
+	<bean name="/usermodify.do" class="com.kh.mory.Controller.Admin_UserModifyController">
+		 <property name="dao" ref="Admin_userDAO"></property> 
+ 	</bean> 
+ 	
+ 	
+ 	<!-- 신고조회 뉴스피드 -->
+ 	<bean name="/declarationnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DeclarationNewSpeedUserListController">
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>   
+ 	
+ 	<!-- DeclarationUser뉴스피드 검색(검색기간 , 아이디 ,조회유형) -->
+	<bean name="/declaration.do" class="com.kh.mory.Controller.Admin_DetailNewSpeedUserListController">
+				<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
+ 	</bean> 
+ 	
+ 	<!-- 신고계정 Detail검색(뉴스피드)  -->
+ 	<bean name="/declarationuser.do" class="com.kh.mory.Controller.Admin_DeclarationUserSeachController">
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
+ 	<!-- 신고계정 Detail검색(커뮤니티)  -->
+ 	<bean name="/comdeclarationuser.do" class="com.kh.mory.Controller.Admin_ComDeclarationUserSeachController">
+		<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
+ 	</bean>
+ 	
+ 	<!-- 	DeclarationUser커뮤니티 검색(검색기간 , 아이디 ,조회유형) -->
+	<bean name="/declarationcommunity.do" class="com.kh.mory.Controller.Admin_DeclarationCommunityUserListController">
+ 			<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- 고객센터 카테고리  -->
+ 	
+ 	<!-- 블라인드 조회-->
+ 	<bean name="/bliduser.do" class="com.kh.mory.Controller.Admin_BlidUserController">
+ 		<!--  <property name="dao" ref="Admin_DeclarationuserDAO"></property>  -->
+ 	</bean> 
+ 	
+ 	<!-- 블라인드 뉴스피드 검색(검색기간 , 아이디 ,조회유형) -->
+ 	<bean name="/bliddetail.do" class="com.kh.mory.Controller.Admin_BlidDetailUserController">
+ 		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
+ 		<!-- 블라인드 커뮤니티 검색(검색기간 , 아이디 ,조회유형) -->
+ 	<bean name="/bliddetailcommunity.do" class="com.kh.mory.Controller.Admin_BlidDetailCommunityController">
+ 			<property name="dao" ref="Admin_DeclarationuserDAO"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- 1:1문의 조회-->
+ 	<bean name="/question.do" class="com.kh.mory.Controller.Admin_QuestionController">
+ 	</bean> 
+ 	
+ 	<!--1:1문의 목록리스트뿌리기  -->
+ 	<bean name="/detailquestion.do" class="com.kh.mory.Controller.Admin_QuestionSearchController">
+ 	<property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	</bean> 
+ 	
+ 	
+ 	
+ 	<!-- 작성1:1문의 조회-->
+ 	<bean name="/questiondeatil.do" class="com.kh.mory.Controller.Admin_detailquestionSearchController">
+ 		<property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	</bean> 
+ 	
+ 	<!-- 관리자가 답글단 것 insert하기   -->
+ 	 <bean name="/answadd.do" class="com.kh.mory.Controller.Admin_AnswaddController">
+ 		 <property name="dao" ref="Admin_QuestionDAO"></property> 
+ 	</bean>  
+ 	
+ 	
+ 	<!-- 커뮤니티 dao -->
+ 	<bean id="communityDao" class="com.kh.mory.Dao.Admin_CommunityDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	
+ 	<!-- 커뮤니티 조회-->
+ 	<bean name="/community*.do" class="com.kh.mory.Controller.Admin_CommunityController">
+ 		<property name="communityDao" ref="communityDao"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- 시스템 설정-->
+ 	
+ 	<bean id="blindDao" class="com.kh.mory.Dao.Admin_BlindSetupDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	<bean id="sanctionDao" class="com.kh.mory.Dao.Admin_SanctionTypeDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	<bean id="blindsanctionDao" class="com.kh.mory.Dao.Admin_BlindSanctionDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	<bean id="leaveDao" class="com.kh.mory.Dao.Admin_LeaveDAO">
+ 		<property name="dataSource" ref="remoteDataSource"></property>
+ 	</bean>
+ 	
+ 	<bean name="/system*.do" class="com.kh.mory.Controller.Admin_SystemController">
+ 		<property name="blindDao" ref="blindDao"></property>
+ 		<property name="sanctionDao" ref="sanctionDao"></property>
+ 		<property name="blindsanctionDao" ref="blindsanctionDao"></property>
+ 		<property name="leaveDao" ref="leaveDao"></property>
+ 	</bean>  
+ 	<!-- 관리자 끝 -->
+ 	
+ 	
+ <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+ 	
+ 	
+ 	<!--김민준 김진호  -->
+	<bean id="diaryDAO" class="com.kh.mory.DiaryDAO.DiaryDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<bean id="commentDAO" class="com.kh.mory.DiaryDAO.CommentDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<bean id="recommentDAO" class="com.kh.mory.DiaryDAO.RecommentDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<bean name="/diary.do" class="com.kh.mory.Diarycontroller.Diary_ListController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<bean name="/diaryinsert.do" class="com.kh.mory.Diarycontroller.Diary_InsertController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<bean name="/diaryinsertform.do" class="com.kh.mory.Diarycontroller.Diary_InsertFormController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+		
+	<bean name="/diaryupdate.do" class="com.kh.mory.Diarycontroller.Diary_UpdateController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<bean name="/diaryupdateform.do" class="com.kh.mory.Diarycontroller.Diary_UpdateFormController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>	
+	
+	<bean name="/diarypost.do" class="com.kh.mory.Diarycontroller.Diary_ContentController">
+		<property name="dao" ref="diaryDAO"></property>
+		<property name="commentdao" ref="commentDAO" ></property>
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	
+	<!-- 다이어리 일정 삭제 -->
+	<bean name="/diarydelete.do" class="com.kh.mory.Diarycontroller.Diary_DeleteController">
+		<property name="dao" ref="diaryDAO"></property>
+	</bean>
+	
+	<!-- 댓글 입력 -->
+ 	<bean name="/commentinsert.do" class="com.kh.mory.Diarycontroller.Diary_CommentInsertController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	<!-- 댓글 삭제 -->
+ 	<bean name="/commentdelete.do" class="com.kh.mory.Diarycontroller.Diary_CommentDeleteController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	<!-- 댓글 수정 -->
+ 	<bean name="/commentupdate.do" class="com.kh.mory.Diarycontroller.Diary_CommentUpdateController">
+		<property name="commentdao" ref="commentDAO" ></property>
+	</bean>
+	
+	<!-- 답글 입력 -->
+ 	<bean name="/recommentinsert.do" class="com.kh.mory.Diarycontroller.Diary_RecommentInsertController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 답글 삭제 -->
+ 	<bean name="/recommentdelete.do" class="com.kh.mory.Diarycontroller.Diary_RecommentDeleteController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 답글 수정 -->
+ 	<bean name="/recommentupdate.do" class="com.kh.mory.Diarycontroller.Diary_RecommentUpdateController">
+		<property name="recommentdao" ref="recommentDAO" ></property>
+	</bean>
+	<!-- 다이어리 제목 수정 -->
+	<bean name="/diarynameupdate.do" class="com.kh.mory.Diarycontroller.Diary_DiarynameUpdateController">
+		<property name="dao" ref="diaryDAO" ></property>
+	</bean>
+ 	
+	
+	<!--김민준 김진호 끝 -->
+ 	
+    <!-- 이용진 커퓨니티  -->
+ 	
+	<bean id="communityDAO" class="com.kh.mory.CommunityDAO">
+    	<property name="dataSource" ref="remoteDataSource"></property>
+    </bean>
+   
+   
+    <bean name="/communitymain.do" class="com.kh.mory.CommunityMainController">
+      <property name="dao" ref="communityDAO"></property>
+    </bean> 
+    
+    
+    <bean name="/communityinput.do" class="com.kh.mory.CommunityInputController">
+    	<property name="dao" ref="communityDAO"></property>
+    </bean>
+    
+    <bean name="/communityinputform.do" class="com.kh.mory.CommunityInputFormController">
+    <property name="dao" ref="communityDAO"></property>
+    
+    </bean>
+
+
+    
+    <!-- 용진 테스트 -->
+    <bean name="/test.do" class="com.kh.mory.UnitTest"></bean>
+ 	
+</beans>	
