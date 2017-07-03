@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import com.kh.mory.DiaryDTO.DiaryDTO;
+
 /*===============================================
 
 	화면명 : Newsfeed_INewsfeedDAO.java
@@ -440,6 +442,38 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 		resultSet.close();
 
 		return result;
+	}
+
+	@Override
+	public Newsfeed_NewsfeedDTO cont(String write_seq) throws SQLException
+	{
+		Connection conn = dataSource.getConnection();
+		
+		String sql = "SELECT A.WRITE_SEQ AS WRITE_SEQ, B.FEED_LOVE_CNT AS LOVE_CNT"
+				+ ", A.WRITE_USER_ID AS WRITE_USER_ID, A.WRITE_CONT AS CONT"
+				+ ", SUBSTR(TO_CHAR(A.WRITE_REG_DTM), 0, 10) AS DTM"
+				+ " FROM TBL_WRITE A, TBL_NEWSFEED B"
+				+ " WHERE A.WRITE_SEQ=B.FEED_SEQ AND A.WRITE_SEQ = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, write_seq);
+		
+		ResultSet rs  = pstmt.executeQuery();
+		Newsfeed_NewsfeedDTO newsfeedDTO = new Newsfeed_NewsfeedDTO();
+		
+		while (rs.next())
+		{
+			newsfeedDTO.setWrite_user_id(rs.getString("WRITE_USER_ID"));
+			newsfeedDTO.setWrite_seq(rs.getString("WRITE_SEQ"));
+			newsfeedDTO.setFeed_love_cnt(rs.getString("LOVE_CNT"));
+			newsfeedDTO.setWrite_cont(rs.getString("CONT").replaceAll("\\\\n", " <BR> "));
+			newsfeedDTO.setWrite_reg_dtm(rs.getString("DTM"));
+		}
+		
+		rs.close();
+		pstmt.close();
+		conn.close();
+		return newsfeedDTO;
 	}
 	
 	

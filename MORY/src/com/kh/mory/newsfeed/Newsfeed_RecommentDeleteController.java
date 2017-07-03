@@ -11,12 +11,12 @@ import com.kh.mory.DiaryIDAO.IRecommentDAO;
 public class Newsfeed_RecommentDeleteController implements Controller
 {
 	   // DAO �������̽� ����
-	   private Newsfeed_INewsfeedDAO recommentdao;
+	   private Newsfeed_INewsfeedDAO feed_recommentdao;
 
 	   // setter ����
-		public void setRecommentdao(Newsfeed_INewsfeedDAO recommentdao)
+		public void setFeed_recommentdao(Newsfeed_INewsfeedDAO feed_recommentdao)
 		{
-			this.recommentdao = recommentdao;
+			this.feed_recommentdao = feed_recommentdao;
 		}
 	   
 	   @Override
@@ -26,13 +26,15 @@ public class Newsfeed_RecommentDeleteController implements Controller
 	      
 	      String reco_seq = request.getParameter("reco_seq");
 	      String write_seq =request.getParameter("write_seq");
-	      recommentdao.newsFeedCommentDelete(reco_seq);
+	      feed_recommentdao.newsFeedCommentDelete(reco_seq);
 	      
 	      modelAndView.setViewName("redirect:newsfeed_post.do?write_seq="+write_seq);
 	      
 	      return modelAndView;   
 
 	   }
+
+
 
 
 

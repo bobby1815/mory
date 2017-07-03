@@ -12,12 +12,12 @@ import com.kh.mory.DiaryIDAO.IRecommentDAO;
 public class Newsfeed_RecommentInsertController implements Controller
 {
 	   // DAO �������̽� �ڷ��� ��� ����
-	   private Newsfeed_INewsfeedDAO recommentdao;
+	   private Newsfeed_INewsfeedDAO feed_recommentdao;
 
 	   // setter ����
-		public void setRecommentdao(Newsfeed_INewsfeedDAO recommentdao)
+		public void setFeed_recommentdao(Newsfeed_INewsfeedDAO feed_recommentdao)
 		{
-			this.recommentdao = recommentdao;
+			this.feed_recommentdao = feed_recommentdao;
 		}
 
 	   @Override
@@ -45,7 +45,7 @@ public class Newsfeed_RecommentInsertController implements Controller
 				newsfeedDTO.setUser_id(user_id);
 				newsfeedDTO.setComment_seq(commentseq);
 				
-				recommentdao.newsFeedCommentInsert(newsfeedDTO);
+				feed_recommentdao.newsFeedCommentInsert(newsfeedDTO);
 				modelAndView.setViewName("redirect:newsfeed_post.do?write_seq="+write_seq);
 
 			} catch (Exception e)
@@ -55,6 +55,7 @@ public class Newsfeed_RecommentInsertController implements Controller
 
 			return modelAndView;
 	   }
+
 
 
 

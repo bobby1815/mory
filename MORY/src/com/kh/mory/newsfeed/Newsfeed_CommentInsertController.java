@@ -10,13 +10,13 @@ import org.springframework.web.servlet.mvc.Controller;
 public class Newsfeed_CommentInsertController implements Controller
 {
 	   // DAO �������̽� ����
-	   private Newsfeed_INewsfeedDAO commentdao;
+	   private Newsfeed_INewsfeedDAO feed_commentdao;
 
 	   // setter ����
-		public void setCommentdao(Newsfeed_INewsfeedDAO commentdao)
+		public void setFeed_commentdao(Newsfeed_INewsfeedDAO feed_commentdao)
 		{
-			this.commentdao = commentdao;
-		}	  
+			this.feed_commentdao = feed_commentdao;
+		}
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -37,7 +37,7 @@ public class Newsfeed_CommentInsertController implements Controller
 			newsfeedDTO.setUser_id(user_id);
 			newsfeedDTO.setWrite_seq(write_seq);
 			
-			commentdao.newsFeedCommentInsert(newsfeedDTO);
+			feed_commentdao.newsFeedCommentInsert(newsfeedDTO);
 			modelAndView.setViewName("newsfeed_post.do?write_seq="+write_seq);
 
 		} catch (Exception e)
@@ -48,6 +48,7 @@ public class Newsfeed_CommentInsertController implements Controller
 		return modelAndView;
 
 	}
+
 
 
 
