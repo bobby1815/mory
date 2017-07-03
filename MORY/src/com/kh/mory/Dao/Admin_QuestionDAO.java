@@ -33,13 +33,12 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		
 		String sql ="";
 		
-		
 		//--�亯���οϷ��ϋ�
 		if (select.equals("3"))
 		{
 			sql ="SELECT NUM,QUES_USER_ID,QUES_TITLE,QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT"
 				+" FROM QUESTIONVIEW "
-				+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS !='�̿Ϸ�' ";
+				+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS !='미완료' ";
 			
 		}
 		//--�亯���ι̿Ϸ��϶�
@@ -47,7 +46,7 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		{
 			sql ="SELECT NUM,QUES_USER_ID,QUES_TITLE,QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT"
 					+" FROM QUESTIONVIEW "
-					+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS LIKE '%%�Ϸ�%%' ";
+					+" WHERE QUES_USER_ID LIKE '%%"+id+"%%' AND QUES_REG_DTM LIKE '%%"+term+"%%' AND CHECKS LIKE '%%미완료%%' ";
 			
 		}
 		//--��ü���
@@ -96,10 +95,13 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 				
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(2,dto.getAnsw_User_Id());
+		System.out.println(dto.getAnsw_User_Id());
 		pstmt.setString(1,dto.getSeq());
+		System.out.println(dto.getSeq());
 		pstmt.setString(3,dto.getAnsw_Cont());
+		System.out.println(dto.getAnsw_Cont());
 		result = pstmt.executeUpdate();
-		System.out.println(sql);
+		System.out.println("1:1문의작성입력 :"+sql);
 		
 		
 		
@@ -118,7 +120,6 @@ public class Admin_QuestionDAO implements Admin_IQuestionDAO
 		
 		String sql ="SELECT NUM,QUES_SEQ,QUES_USER_ID,QUES_TITLE,TO_DATE(QUES_REG_DTM,'YY-MM-DD')AS QUES_REG_DTM,CHECKS,ANSW_USER_ID,QUES_CONT,ANSW_CONT "
 					+" FROM QUESTIONVIEW WHERE QUES_USER_ID ='"+id+"' ";
-		System.out.println(sql);	
 		ResultSet rs =  stmt.executeQuery(sql);
 		Admin_QuestionDTO dto = new Admin_QuestionDTO();
 		while (rs.next())

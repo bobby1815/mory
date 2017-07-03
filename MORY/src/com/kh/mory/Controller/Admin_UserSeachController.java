@@ -27,6 +27,8 @@ public class Admin_UserSeachController implements Controller
 		ModelAndView modelAndView = new ModelAndView();
 		String value = request.getParameter("value");
 		String name = request.getParameter("name");
+		int start = Integer.parseInt(request.getParameter("start"));
+		int end = Integer.parseInt(request.getParameter("end"));
 		
 		ArrayList<Admin_UserDTO> userList =  dao.QueryUser(value, name);
 

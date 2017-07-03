@@ -33,7 +33,7 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 		Statement stmt = conn.createStatement();
 		String sql=" ";
 		
-		//--term�ڽ� �� 1���̸� �����ǵ� ��ȸ
+		//-- term 1이면 뉴스피드일떄
 		if (term.equals("1"))
 		{
 			//�����ǵ� �Ű� ��ȸ
@@ -51,19 +51,16 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 					
 		}
 		
+		//-- term 2이면 커뮤니티일떄
 		else if(term.equals("2"))
 		{
-			//Ŀ�´�Ƽ �Ű� ��ȸ
+
 			sql= String.format(
-					" SELECT ROWNUM AS NUM ,W.WRITE_USER_ID AS WRITE_USER_ID,B.COMMUNITY_TYPE_NAME AS COMMUNITY_TYPE_NAME "
-					+" ,C.COMMUNITY_TITLE AS COMMUNITY_TITLE ,W.WRITE_REG_DTM AS WRITE_REG_DTM, "
-					+" (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ "
-					+" ) AS REPO_COUNT " 
-					+" FROM TBL_WRITE W  JOIN TBL_COMMUNITY C "
-					+" ON W.WRITE_SEQ = C.WRITE_SEQ "
-					+" JOIN TBL_COMMUNITY_TYPE B "
-					+" ON B.COMMUNITY_TYPE_CODE = C.COMMUNITY_TYPE_CODE "
-					+" WHERE W.WRITE_USER_ID LIKE '%%"+Id+"%%' ");
+		     	"SELECT ROWNUM AS NUM ,P.REPO_USER_ID AS REPO_USER_ID,B.COMMUNITY_TYPE_NAME AS COMMUNITY_TYPE_NAME  ,C.COMMUNITY_TITLE AS COMMUNITY_TITLE ,W.WRITE_REG_DTM AS WRITE_REG_DTM"
+				+ ",  (SELECT COUNT(*)  FROM  TBL_POST_REPORT  WHERE WRITE_SEQ=W.WRITE_SEQ  ) AS REPO_COUNT, W.WRITE_SEQ AS WRITE_SEQ  FROM TBL_WRITE W " 
+			+" JOIN TBL_COMMUNITY C  ON W.WRITE_SEQ = C.WRITE_SEQ  JOIN TBL_COMMUNITY_TYPE B  ON B.COMMUNITY_TYPE_CODE = C.COMMUNITY_TYPE_CODE "
+			+" JOIN TBL_POST_REPORT P ON W.WRITE_SEQ=P.WRITE_SEQ "
+			+" WHERE W.WRITE_USER_ID LIKE '%%"+Id+"%%' ");
 			
 		}	
 		
@@ -77,12 +74,12 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 			if (term.equals("2"))
 			{
 				admin_DeclarationUserDTO.setNum(rs.getInt("NUM"));
-				admin_DeclarationUserDTO.setWrite_User_Id(rs.getString("WRITE_USER_ID"));
-				/*admin_DeclarationUserDTO.setRepo_User_Id(rs.getString("REPO_USER_ID"));*/
+				admin_DeclarationUserDTO.setRepo_User_Id(rs.getString("REPO_USER_ID"));
 				admin_DeclarationUserDTO.setCommunity_Type_Name(rs.getString("COMMUNITY_TYPE_NAME"));
 				admin_DeclarationUserDTO.setCommunity_Title(rs.getString("COMMUNITY_TITLE"));
 				admin_DeclarationUserDTO.setWrite_Reg_Dtm(rs.getString("WRITE_REG_DTM"));
 				admin_DeclarationUserDTO.setRepo_Count(rs.getInt("REPO_COUNT"));
+				admin_DeclarationUserDTO.setWrite_Seq(rs.getString("WRITE_SEQ"));
 			}
 			//-- �����ǵ��϶�
 			else if(term.equals("1"))
@@ -201,11 +198,39 @@ public class Admin_DeclarationUserDAO implements Admin_IDeclarationUserDAO
 	@Override
 	public Admin_DeclarationUserDTO AjaxCommuSearchUser(String userid) throws SQLException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = dataSource.getConnection();
+		Admin_DeclarationUserDTO dto = new Admin_DeclarationUserDTO();
+		
+		String sql =
+				" SELECT P.WRITE_SEQ AS WRITE_SEQ ,P.REPO_USER_ID AS REPO_USER_ID,P.REG_DTM AS REG_DTM ,C.COMMUNITY_TITLE AS COMMUNITY_TITLE,P.REPO_REASON AS REPO_REASON"
+				+ " ,W.WRITE_CONT AS WRITE_CONT"
+				 +" FROM TBL_WRITE W JOIN TBL_COMMUNITY C" 
+				 + "   ON W.WRITE_SEQ = C.WRITE_SEQ "
+				 + "  JOIN TBL_COMMUNITY_TYPE D "
+				 + "  ON C.COMMUNITY_TYPE_CODE=D.COMMUNITY_TYPE_CODE "
+				 + " JOIN TBL_POST_REPORT P ON W.WRITE_SEQ=P.WRITE_SEQ "
+				 +" JOIN TBL_REPORT_TYPE G ON P.REPO_TYPE_CODE=G.REPO_TYPE_CODE "
+				 +"  JOIN TBL_PAGE A  ON W.PAGE_CODE=A.PAGE_CODE "
+				 +" WHERE W.PAGE_CODE='C' AND W.WRITE_SEQ=? ";
+				
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userid);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next())
+			{
+				
+				dto.setWrite_Seq(rs.getString("WRITE_SEQ"));
+				dto.setRepo_User_Id(rs.getString("REPO_USER_ID"));
+				dto.setReg_Dtm(rs.getString("REG_DTM"));
+				dto.setCommunity_Title(rs.getString("COMMUNITY_TITLE"));
+				dto.setRepo_Reason(rs.getString("REPO_REASON"));
+				dto.setWrite_Cont(rs.getString("WRITE_CONT"));
+				
+			}
+				
+		return dto;
 	}
 
-	
-	
 
 }

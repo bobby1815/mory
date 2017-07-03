@@ -26,7 +26,7 @@
 				
 				if ($("#value").val()==0  )
 				{
-					alert("입력이 누락된 항목이 있습니다.");
+					alert("필수항목을 입력해주세요.");
 					return false;
 				}
 				
@@ -41,9 +41,11 @@
     .drop-menu{border: 1px solid grey;}
     .drop-menu-top{background: gray; color:white; border: gray;}
     th{background:lightgrey;}
-    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey;}
+    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; height: 30px; text-align: center; }
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
+    tr{height: 30px;}
+    #list:HOVER{ background-color:#FFE6E6}
 </style>
 </head>
 <body>
@@ -56,7 +58,7 @@
 			<div class="col-xs-1  col-md-1"  id="h1"></div>
 			<div class="col-xs-10 col-md-10" id="h2" >
 					<div class="col-xs-12col-md-12"style="text-align: center;">	
-						<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+						<a href="/userlist.do" style="margin:0px ; color:black;">
 		                <img src="img/Mory_logo.png" width="100"/>
                        <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
                        <img src="img/Mainlogo.png" width="100" />
@@ -106,14 +108,14 @@
 			</div>	
 			<!-- 피드신고목록  -->
 			<div class="row" style="padding: 30px 0px;">
-				<table class="col-xs-12 text-center">
-					<tr>
-						<th class="col-xs-1 col-md-1">No</th>
-						<th class="col-xs-1 col-md-1">신고자아이디</th>
-						<th class="col-xs-1 col-md-1">피드내용</th>
-						<th class="col-xs-1 col-md-1">작성일</th>
-						<th class="col-xs-1 col-md-1">신고횟수</th>
-						<th class="col-xs-1 col-md-1">처리결과</th>
+				<table class="table table-bordered table-hover" >
+					<tr class="danger">
+						<th class="col-xs-1 col-md-1" style="text-align: center;" >No</th>
+						<th class="col-xs-1 col-md-1" style="text-align: center;">신고자아이디</th>
+						<th class="col-xs-1 col-md-1" style="text-align: center;">피드내용</th>
+						<th class="col-xs-1 col-md-1" style="text-align: center;">작성일</th>
+						<th class="col-xs-1 col-md-1" style="text-align: center;">신고횟수</th>
+						<th class="col-xs-1 col-md-1" style="text-align: center;">처리결과</th>
 					</tr>
 				<c:forEach  var="result"  items="${declarationuser}">
 						<tr id="list" style="text-align: center;" onclick="declaration('${result.write_Seq}')">
@@ -130,7 +132,6 @@
 						</c:if>
 							
 						</tr>
-						<input type="hidden" value="${result.write_Seq }">
 				</c:forEach>
 				</table>
 			</div>

@@ -8,22 +8,22 @@ http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-<!-- 
-	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+
+<!-- 	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
 	</bean>
- -->
+  -->
  
 	<!-- RemoteData -->
 	
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-	<property name="url" value="jdbc:oracle:thin:@192.168.1.2:1521:xe"></property>
-	<property name="username" value="scott"></property>
-	<property name="password" value="TIGER"></property>
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
+	<property name="username" value="mory_ay"></property>
+	<property name="password" value="mory2017"></property>
 	</bean>
 	
 	<!-- 	
@@ -211,7 +211,10 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
  	</bean>
  	
- 	
+ 	<!-- 신고계정 Detail검색(커뮤니티)  -->
+ 	<bean name="/comdeclarationuser.do" class="com.kh.mory.Controller.Admin_ComDeclarationUserSeachController">
+		<property name="dao" ref="Admin_DeclarationuserDAO"></property> 
+ 	</bean>
  	
  	<!-- 	DeclarationUser커뮤니티 검색(검색기간 , 아이디 ,조회유형) -->
 	<bean name="/declarationcommunity.do" class="com.kh.mory.Controller.Admin_DeclarationCommunityUserListController">

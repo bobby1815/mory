@@ -23,9 +23,9 @@
 					$("#btn").click(function() 
 					{
 						
-						if ($("#term").val()=="" || $("#id").val()=="")
+						if ($("#select").val()=="0" )
 						{
-							alert("항목에 누락된 항목이 있습니다.");
+							alert("필수항목을 입력해주세요.");
 							return false;
 						}
 						
@@ -40,7 +40,8 @@
     .drop-menu{border: 1px solid grey;}
     .drop-menu-top{background: gray; color:white; border: gray;}
     th{background:lightgrey;}
-    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey;}
+    tr{height:30px;}
+    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; height:30px;}
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
@@ -54,7 +55,7 @@
 		<div class="col-xs-1  col-md-1"  id="h1"></div>
 		<div class="col-xs-10 col-md-10" id="h2" >
 			<div class="col-xs-12col-md-12"style="text-align: center;">	
-					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+					<a href="/userlist.do" style="margin:0px ; color:black;">
 	                 <img src="img/Mory_logo.png" width="100"/>
                        <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
                        <img src="img/Mainlogo.png" width="100" />
@@ -81,8 +82,8 @@
 				<h5>조회유형</h5>
 			</div>
 			<div class="col-xs-12 col-md-2" style="padding: 0px; margin-right: 10px;">
-				<select class="form-control" style="width: 160px;" name="value">
-					<option>선택하세요&lt;필수&gt;</option>
+				<select class="form-control" style="width: 160px;" id="select" name="value">
+					<option value="0">선택하세요&lt;필수&gt;</option>
 					<option value="1">뉴스피드</option>
 					<option value="2">커뮤니티</option>
 				</select>
@@ -102,14 +103,14 @@
 		
 		<!-- 피드신고목록  -->
 		<div class="row" style="padding: 30px 0px;">
-			<table class="col-xs-12 text-center">
+			<table class="table table-bordered table-hover">
 			
-				<tr>
-					<th class="col-xs-1 col-md-1">No</th>
-					<th class="col-xs-1 col-md-1">아이디</th>
-					<th class="col-xs-1 col-md-1">내용</th>
-					<th class="col-xs-1 col-md-1">작성일</th>
-					<th class="col-xs-1 col-md-1">신고횟수</th>
+				<tr class="active">
+					<th class="col-xs-1 col-md-1"style="text-align: center;">No</th>
+					<th class="col-xs-1 col-md-1"style="text-align: center;">아이디</th>
+					<th class="col-xs-1 col-md-1"style="text-align: center;">내용</th>
+					<th class="col-xs-1 col-md-1"style="text-align: center;">작성일</th>
+					<th class="col-xs-1 col-md-1"style="text-align: center;">신고횟수</th>
 				</tr>
 				
 			<c:forEach var="lists" items="${lists }">	

@@ -31,7 +31,7 @@
 	function setDetail(blind_cnt, sanc_type_code, blind_sanc_seq)
 	{
 		$("#blind_cnt").attr("value", blind_cnt);
-		$("#sanc_type_code").
+		$("#sanc_type_code")
 		
 	}
 	
@@ -45,7 +45,7 @@
 		<div class="col-xs-1  col-md-1"  id="h1"></div>
 		<div class="col-xs-10 col-md-10" id="h2" >
 				<div class="col-xs-4 col-md-12"style="text-align: center;">	
-					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+					<a href="/userlist.do" style="margin:0px ; color:black;">
 	                  <img src="img/Mory_logo.png" width="100"/>
                        <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
                        <img src="img/Mainlogo.png" width="100" />
@@ -67,8 +67,8 @@
 					<h3>탈퇴 유예기간 설정</h3>
 			</div>
 			<form action="systemleavesetup.do?leave_seq=${leave_seq }" method="post">
-			<div class="row col-xs-12 col-md-12"style="height: 50px;background-color: lightgray;">
-					<div class="col-xs-4 col-md-4">현재 유예기간 <input type="text" style="width:60px; height: 40px;" readonly="readonly" value="${leave_code}">일 </div>
+			<div class="row col-xs-12 col-md-12"style="height: 50px;background-color: lightgray; margin-left: 3px;">
+					<div class="col-xs-4 col-md-4">현재 유예기간 <input type="text" class="" style="width:60px; height: 40px;" readonly="readonly" value="${leave_code}">일 </div>
 					<div class="col-xs-4 col-md-4">변경 유예기간 <input type="text"style="width:60px; height: 40px;" name="leave_code">일</div>
 					<div class="col-xs-3 col-md-3"><button type="submit" style="width:90px;" class="btn btn-default md" >저장</button></div>
 			</div>

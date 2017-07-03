@@ -62,8 +62,10 @@ public class Admin_UserDAO implements Admin_IUserDAO
 			+ " LEFT JOIN TBL_USER_SANCTION S "
 		     +" ON U.USER_ID = S.USER_ID "
 		     +" LEFT JOIN TBL_SANCTION_TYPE T "
-		     +" ON S.SANC_TYPE_CODE = T.SANC_TYPE_CODE WHERE 1=1 "
+		     +" ON S.SANC_TYPE_CODE = T.SANC_TYPE_CODE WHERE 1=1"
+		     /*+ " AND ROWNUM >=? ROWNUM<=? "*/
 		     +user_Value;
+		
 		
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -182,12 +184,8 @@ public class Admin_UserDAO implements Admin_IUserDAO
 		int result = 0;
 		Connection conn = dataSource.getConnection();
 		
-		System.out.println(id);
-		System.out.println(sanc_Type_Code);
-		System.out.println(nic);
 		
 		String sql = " {CALL PRO_USERMODIFY(?,?,?)} ";
-		System.out.println(sql);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(3, sanc_Type_Code);

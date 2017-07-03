@@ -21,7 +21,7 @@
     .drop-menu{border: 1px solid grey;}
     .drop-menu-top{background: gray; color:white; border: gray;}
     th{background:lightgrey;}
-    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey;}
+    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; height:30px;}
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
 </style>
@@ -69,7 +69,7 @@
 		<div class="col-xs-1  col-md-1"  id="h1"></div>
 		<div class="col-xs-10 col-md-10" id="h2" >
 				<div class="col-xs-12col-md-12"style="text-align: center;">	
-					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+					<a href="/userlist.do" style="margin:0px ; color:black;">
 	                  <img src="img/Mory_logo.png" width="100"/>
                        <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
                        <img src="img/Mainlogo.png" width="100" />
@@ -87,8 +87,8 @@
 <div class="col-xs-12 col-md-9">
 <h1>커뮤니티 관리</h1>
 		<div class="row" style="padding: 30px 0px;">
-			<table class="col-xs-12 text-center" id="communityTbl">
-				<tr>
+			<table class="table table-bordered table-hover"  id="communityTbl" >
+				<tr class="active">
 					<th class="col-xs-2 col-md-2">No</th>
 					<th class="col-xs-5 col-md-5">커뮤니티 코드</th>
 					<th class="col-xs-5 col-md-5">커뮤니티 명</th>

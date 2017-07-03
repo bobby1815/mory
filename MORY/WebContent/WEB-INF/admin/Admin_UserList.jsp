@@ -16,24 +16,25 @@
 <script src="assets/jquery.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <style>
     a{color:black;}
     .drop-menu{border: 1px solid grey;}
     .drop-menu-top{background: gray; color:white; border: gray;}
     th{background:lightgrey;}
-    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; }
+    th, td{padding:5px 0px;  text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; height: 30px; }
     a:hover{text-decoration: none;}
     footer a{color:grey; text-decoration: underline;}
-tr{min-height: 50px;}
+tr{min-height: 100px;}
 </style>
-<form action="./adminsearch.do" method="post">
+<form action="./adminsearch.do?start=1&end=10" method="post">
 <div class="container">
 	<!-- 첫번째 row  -->
 	<div class="row " id="all0">
 		<div class="col-xs-1  col-md-1"  id="h1"></div>
 		<div class="col-xs-10 col-md-10" id="h2" >
 				<div class="col-xs-12col-md-12"style="text-align: center;">	
-					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
+					<a href="/userlist.do" style="margin:0px ; color:black;">
 					 <img src="img/Mory_logo.png" width="100"/>
                        <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
                        <img src="img/Mainlogo.png" width="100" />
@@ -67,21 +68,21 @@ tr{min-height: 50px;}
 			
 		</div>
 		<div class="row" style="padding: 30px 0px;">
-			<table class="col-xs-12 text-center" border="1">
-				<tr>
-					<th class="col-xs-1 col-md-1">No</th>
-					<th class="col-xs-2 col-md-2">아이디</th>
-					<th class="col-xs-3 col-md-1">이름</th>
-					<th class="col-xs-2 col-md-2"  >닉네임</th>
-					<th class="col-xs-2 col-md-2">전화번호</th>
-					<th class="col-xs-2 col-md-2">주소</th>
-					<th class="col-xs-2 col-md-3">계정상태</th>
+			<table class="table table-bordered table-hover">
+				<tr class="active">
+					<th class="col-xs-1 col-md-1"style="text-align: center;">No</th>
+					<th class="col-xs-2 col-md-2"style="text-align: center;">아이디</th>
+					<th class="col-xs-3 col-md-1"style="text-align: center;">이름</th>
+					<th class="col-xs-2 col-md-2"style="text-align: center;">닉네임</th>
+					<th class="col-xs-2 col-md-2"style="text-align: center;">전화번호</th>
+					<th class="col-xs-2 col-md-2"style="text-align: center;">주소</th>
+					<th class="col-xs-2 col-md-3"style="text-align: center;">계정상태</th>
 				</tr>
 				
 				<c:forEach   var="result"   items="${result}">
 					<c:choose>
 						<c:when test="${result >='1'}">
-							<tr id="list" style="text-align: center;" onclick="detailsearch('${result.user_Id}')">
+							<tr  id="list" style="text-align: center;" onclick="detailsearch('${result.user_Id}')">
 								<td>${result.num }</td>
 								<td>${result.user_Id }</td>
 								<td>${result.user_Name }</td>

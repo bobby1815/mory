@@ -31,7 +31,7 @@ public class Admin_DetailNewSpeedUserListController implements Controller
 		String value = request.getParameter("value");
 		String id = request.getParameter("id");
 		String term = request.getParameter("term");
-		System.out.println(1);
+		System.out.println(value);
 		
 		ArrayList<Admin_DeclarationUserDTO> declarationuser = dao.DeclarationSearchList(value, id, term);
 		

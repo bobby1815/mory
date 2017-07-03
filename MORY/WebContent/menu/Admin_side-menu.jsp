@@ -1,7 +1,22 @@
 <%@ page  contentType="text/html; charset=UTF-8" %>
+<style type="text/css">
+.drop-menu:HOVER
+{
+	background-color: #CCE1FF;
+}
+#aaa
+{
+background:#FF607F 
+}
+
+#sidediv
+{
+	color: #282828
+}
+</style>
 <!-- 사이드 메뉴 start -->
-        <div class="col-xs-12 col-md-3 text-center">
-            <h2><label class="label label-success">관리자 환경설정</label></h2>
+        <div id="sidediv" class="col-xs-12 col-md-3 text-center ">
+            <h2><label id="aaa" class="label label-success">관리자 환경설정</label></h2>
             <div class="col-xs-10 col-xs-offset-1 text-center">
 
                 <div class="drop-menu-top">
@@ -9,7 +24,7 @@
                 </div>
 
                 <a href="#mem" data-toggle="collapse">
-                    <div class="drop-menu "><h4>계정관리</h4></div>
+                    <div class="drop-menu " id="userbtn"><h4>계정관리</h4></div>
                 </a>
                 <div id="mem" class="collapse in ">
                     <a href="userlist.do">
@@ -29,7 +44,7 @@
                 </a>
                 <div id="cus" class="collapse">
                     <a href="bliduser.do">
-                        <div class="drop-menu">
+                        <div class="drop-menu" >
                             <h5>└ 블라인드 조회</h5>
                         </div>
                     </a>

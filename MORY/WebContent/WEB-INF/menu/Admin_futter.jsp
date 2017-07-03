@@ -24,7 +24,6 @@
 				$("#d_cont").attr("value",array[2])
 				$("#d_reason").attr("value",array[3])
 				
-				
 			});
 			
 			$("#lista").fadeToggle();
