@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,21 +45,21 @@
 		}
 	}
 
-	/* ¸ðµ¨  */
+	/* ëª¨ë¸  */
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
 			$("#myModal").modal();
 		});
 	});
 
-	/* ¸ðµ¨ 1 */
+	/* ëª¨ë¸ 1 */
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
 			$("#myModal1").modal();
 		});
 	});
 
-	/* ½Å°íÇÏ±â  */
+	/* ì‹ ê³ í•˜ê¸°  */
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
 			$("#myModalReport").modal();
@@ -73,7 +74,7 @@
 	});
 	
 	
-	/* ½Å°íÇÏ±â2  */
+	/* ì‹ ê³ í•˜ê¸°2  */
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
 			$("#myModalReport").modal();
@@ -92,7 +93,7 @@
 
 
 	
-	/* ½Å°íÇÏ±â2  */
+	/* ì‹ ê³ í•˜ê¸°2  */
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
 			$("#myModalReport2").modal();
@@ -113,7 +114,7 @@
 		var preview = document.getElementById(divPeedPhoto); //div id
 		var ua = window.navigator.userAgent;
 
-		//ieÀÏ¶§(IE8 ÀÌÇÏ¿¡¼­¸¸ ÀÛµ¿)
+		//ieì¼ë•Œ(IE8 ì´í•˜ì—ì„œë§Œ ìž‘ë™)
 
 		if (ua.indexOf("MSIE") > -1) {
 
@@ -121,18 +122,18 @@
 
 			try {
 
-				var src = document.selection.createRange().text; // get file full path(IE9, IE10¿¡¼­ »ç¿ë ºÒ°¡)
+				var src = document.selection.createRange().text; // get file full path(IE9, IE10ì—ì„œ ì‚¬ìš© ë¶ˆê°€)
 
 				var ie_preview_error = document
 						.getElementById("ie_preview_error_" + divPeedPhoto);
 
 				if (ie_preview_error) {
-					preview.removeChild(ie_preview_error); //error°¡ ÀÖÀ¸¸é delete
+					preview.removeChild(ie_preview_error); //errorê°€ ìžˆìœ¼ë©´ delete
 				}
 
-				var img = document.getElementById(divPeedPhoto); //ÀÌ¹ÌÁö°¡ »Ñ·ÁÁú °÷
+				var img = document.getElementById(divPeedPhoto); //ì´ë¯¸ì§€ê°€ ë¿Œë ¤ì§ˆ ê³³
 
-				//ÀÌ¹ÌÁö ·Îµù, sizingMethod´Â div¿¡ ¸ÂÃç¼­ »çÀÌÁî¸¦ ÀÚµ¿Á¶Àý ÇÏ´Â ¿ªÇÒ
+				//ì´ë¯¸ì§€ ë¡œë”©, sizingMethodëŠ” divì— ë§žì¶°ì„œ ì‚¬ì´ì¦ˆë¥¼ ìžë™ì¡°ì ˆ í•˜ëŠ” ì—­í• 
 				img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"
 						+ src + "', sizingMethod='scale')";
 
@@ -147,15 +148,15 @@
 					preview.insertBefore(info, null);
 				}
 			}
-			//ie°¡ ¾Æ´Ò¶§(Å©·Ò, »çÆÄ¸®, FF)
+			//ieê°€ ì•„ë‹ë•Œ(í¬ë¡¬, ì‚¬íŒŒë¦¬, FF)
 		} else {
 			var files = targetObj.files;
 			for (var i = 0; i < files.length; i++) {
 				var file = files[i];
-				var imageType = /image.*/; //ÀÌ¹ÌÁö ÆÄÀÏÀÏ°æ¿ì¸¸.. »Ñ·ÁÁØ´Ù.
+				var imageType = /image.*/; //ì´ë¯¸ì§€ íŒŒì¼ì¼ê²½ìš°ë§Œ.. ë¿Œë ¤ì¤€ë‹¤.
 				if (!file.type.match(imageType))
 					continue;
-				var prevImg = document.getElementById("prev_" + divPeedPhoto); //ÀÌÀü¿¡ ¹Ì¸®º¸±â°¡ ÀÖ´Ù¸é »èÁ¦
+				var prevImg = document.getElementById("prev_" + divPeedPhoto); //ì´ì „ì— ë¯¸ë¦¬ë³´ê¸°ê°€ ìžˆë‹¤ë©´ ì‚­ì œ
 				if (prevImg) {
 					preview.removeChild(prevImg);
 				}
@@ -168,7 +169,7 @@
 				img.style.height = '30%';
 				preview.appendChild(img);
 
-				if (window.FileReader) { // FireFox, Chrome, Opera È®ÀÎ.
+				if (window.FileReader) { // FireFox, Chrome, Opera í™•ì¸.
 					var reader = new FileReader();
 					reader.onloadend = (function(aImg) {
 						return function(e) {
@@ -202,39 +203,12 @@
 </head>
 <body>
 
-
+<c:import url="../main/Mainmenu.jsp" /> 
 	<div class="container" id="container">
-		<!-- Ã¹¹øÂ° row  -->
-		<div class="row " id="all0">
-			<div class="col-xs-1  col-md-1" id="h1"></div>
-			<div class="col-xs-10 col-md-10" id="h2">
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="´º½ºÇÇµå"
-						style="height: 40px; width: 100px;" class="btn btn-primary">´º½ºÇÇµå</button>
-				</div>
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="´ÙÀÌ¾î¸®"
-						style="height: 40px; width: 100px;" class="btn btn-primary">´ÙÀÌ¾î¸®</button>
-				</div>
-				<div class="col-xs-4 col-md-4" style="text-align: center;">
-					<a href="*" style="margin: 0px 20px; color: black;"> <!-- <img src="C:\MORY\Mory\WebContent\img\logo.png" width="100"/> -->
-						<span style="font-size: 30px; text-align: center;"><b>MORY</b></span>
-					</a>
-				</div>
-				<div class="col-xs-2 col-md-2" style="">
-					<button type="button" value="Ä¿¹Â´ÏÆ¼"
-						style="height: 40px; width: 100px;" class="btn btn-primary">Ä¿¹Â´ÏÆ¼</button>
-				</div>
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="È¯°æ¼³Á¤"
-						style="height: 40px; width: 100px;" class="btn btn-primary">È¯°æ¼³Á¤</button>
-				</div>
+		<!-- ì²«ë²ˆì§¸ row  -->
 
-			</div>
-			<div class="col-xs-1 col-md-1" id="h3"></div>
-		</div>
 
-		<!-- 	µÎ¹øÂ° row  -->
+		<!-- 	ë‘ë²ˆì§¸ row  -->
 		<div class="row " id="all1">
 			<div class="col-xs-1 col-md-1" id="b1">b1</div>
 			<div class="col-xs-10 col-md-10" id="b2">
@@ -256,16 +230,16 @@
 
 						<div class="col-xs-4 col-md-4"
 							style="margin-top: 20px; text-align: center; border: 1px solid;">
-							À°¾Æ Á¤º¸</div>
+							ìœ¡ì•„ ì •ë³´</div>
 						<div class="col-xs-8 col-md-8"
 							style="text-align: left; margin-top: 20px; border: 1px solid;">
-							Á¦¸ñ :½Å»ý¾Æ ÇÑÅ× ÁÁÀº À½½Ä</div>
+							ì œëª© :ì‹ ìƒì•„ í•œí…Œ ì¢‹ì€ ìŒì‹</div>
 
 
 
 
 						<div class="col-xs-12 col-md-12"
-							style="height: 20px; border: 1px solid;">´Ð³×ÀÓ : ¿ëÁø¾Æºü</div>
+							style="height: 20px; border: 1px solid;">ë‹‰ë„¤ìž„ : ìš©ì§„ì•„ë¹ </div>
 
 
 						<div class="col-xs-12 col-md-12"
@@ -279,24 +253,24 @@
 							<div class="col-xs-2 col-md-2"
 								style="text-align: left; margin-top: 4px;">
 
-								<p>´ñ±Û : 1¸í</p>
+								<p>ëŒ“ê¸€ : 1ëª…</p>
 
 
 
 							</div>
 							<div class="col-xs-2 col-md-2"
 								style="text-align: left; margin-top: 4px;">
-								<button type="button" value="»ç¶ûÇØ¿ä">
-									<span class="glyphicon glyphicon-heart">»ç¶ûÇØ¿ä</span>
+								<button type="button" value="ì‚¬ëž‘í•´ìš”">
+									<span class="glyphicon glyphicon-heart">ì‚¬ëž‘í•´ìš”</span>
 								</button>
 							</div>
 
 
 							<div class="col-xs-2 col-md-2"
 								style="text-align: left; margin-top: 4px;">
-								<button type="button" value="½Å°í ÇÏ±â" data-toggle="modal"
+								<button type="button" value="ì‹ ê³  í•˜ê¸°" data-toggle="modal"
 									data-target="#myModalReport">
-									<span class="glyphicon glyphicon-bullhorn">½Å°íÇÏ±â</span>
+									<span class="glyphicon glyphicon-bullhorn">ì‹ ê³ í•˜ê¸°</span>
 								</button>
 							</div>
 
@@ -310,7 +284,7 @@
 						<div class="col-xs-9 col-md-9"
 							style="border: 1px solid; height: 80px; ">
 
-							<div class="col-xs-3 col-md-3">´Ð³×ÀÓ:¿ëÁø</div>
+							<div class="col-xs-3 col-md-3">ë‹‰ë„¤ìž„:ìš©ì§„</div>
 
 							<div class="col-xs-3 col-md-3">2017.06.19</div>
 							
@@ -319,7 +293,7 @@
 						
 						<div class="col-xs-3 col-md-3" style=" height: 80px; text-align: left;">
 						
-							<button type="button" value="´ñ±Û´Þ±â" style="height: 80px; width: 205px;">´ñ±Û´Þ±â</button>
+							<button type="button" value="ëŒ“ê¸€ë‹¬ê¸°" style="height: 80px; width: 205px;">ëŒ“ê¸€ë‹¬ê¸°</button>
 						
 						</div>
 						
@@ -351,13 +325,13 @@
 				
 						
 						<div class="col-xs-6 col-md-6" >
-						<button type="button" class="glyphicon glyphicon-chevron-up" style="height: 50px;">´ÙÀ½±Û</button>
-						<button type="button" class="glyphicon glyphicon-chevron-down" style="height: 50px;">ÀÌÀü±Û</button>
+						<button type="button" class="glyphicon glyphicon-chevron-up" style="height: 50px;">ë‹¤ìŒê¸€</button>
+						<button type="button" class="glyphicon glyphicon-chevron-down" style="height: 50px;">ì´ì „ê¸€</button>
 						</div>
 						
 						<div class="col-xs-6 col-md-6" style="text-align: right;">
 						
-								<button type="button" class="glyphicon glyphicon-align-justify" style="height: 50px;">¸ñ·Ïº¸±â</button>
+								<button type="button" class="glyphicon glyphicon-align-justify" style="height: 50px;">ëª©ë¡ë³´ê¸°</button>
 						</div>
 				
 				</div>
@@ -403,7 +377,7 @@
 		</div>
 
 
-		<!-- ¼¼¹øÂ° row  -->
+		<!-- ì„¸ë²ˆì§¸ row  -->
 		<div class="row " id="all2">
 			<div class="col-xs-1 col-md-1" id="f1">f1</div>
 			<div class="col-xs-10 col-md-10" id="f2">f2</div>
@@ -422,7 +396,7 @@
 
 
 
-	<!--  ³»Á¤º¸  -->
+	<!--  ë‚´ì •ë³´  -->
 
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -446,31 +420,31 @@
 
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					ÀÌ¸§ : Áøµå·¡°ï <br> ´Ð³×ÀÓ : Jin
+					ì´ë¦„ : ì§„ë“œëž˜ê³¤ <br> ë‹‰ë„¤ìž„ : Jin
 				</div>
 				<div class="modal-footer ">
 
 					<div class="col-xs-12 col-md-12">
 						<div class="col-xs-4 col-md-4" style="text-align: left;">
-							<button type="button" value="´º½ºÇÇµå">´º½ºÇÇµå</button>
+							<button type="button" value="ë‰´ìŠ¤í”¼ë“œ">ë‰´ìŠ¤í”¼ë“œ</button>
 						</div>
 						<div class="col-xs-4 col-md-4" style="text-align: center;">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">µ¹¾Æ°¡±â</button>
+								data-dismiss="modal">ëŒì•„ê°€ê¸°</button>
 						</div>
 						<div class="col-xs-4 col-md-4" style="text-align: right;">
-							<button type="button" value="Ä¿¹Â´ÏÆ¼">Ä¿¹Â´ÏÆ¼</button>
+							<button type="button" value="ì»¤ë®¤ë‹ˆí‹°">ì»¤ë®¤ë‹ˆí‹°</button>
 						</div>
 					</div>
 
 
 					<div class="col-xs-12 col-md-12">
 						<div class="col-xs-4 col-md-4" style="text-align: left;">
-							<button type="button" value="´ÙÀÌ¾î¸®">´ÙÀÌ¾î¸®</button>
+							<button type="button" value="ë‹¤ì´ì–´ë¦¬">ë‹¤ì´ì–´ë¦¬</button>
 						</div>
 						<div class="col-xs-4 col-md-4"></div>
 						<div class="col-xs-4 col-md-4" style="text-align: right;">
-							<button type="button" value="°³ÀÎÁ¤º¸">°³ÀÎÁ¤º¸</button>
+							<button type="button" value="ê°œì¸ì •ë³´">ê°œì¸ì •ë³´</button>
 						</div>
 
 					</div>
@@ -485,7 +459,7 @@
 
 
 
-	<!-- ¾Ë¸² -->
+	<!-- ì•Œë¦¼ -->
 
 
 
@@ -494,7 +468,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="text-align: center;">
-					<h4>¾Ë¸²</h4>
+					<h4>ì•Œë¦¼</h4>
 				</div>
 				<div class="modal-body" style="height: 600px;">
 					<div class="col-xs-12 col-md-12"
@@ -505,12 +479,12 @@
 						</div>
 
 						<div class="col-xs-6 col-md-6">
-							Áøµå·¡°ï<br> 2017
+							ì§„ë“œëž˜ê³¤<br> 2017
 						</div>
 						<div class="col-xs-3 col-md-3"
 							style="text-align: right; margin-top: 10px;">
-							<button type="button" value="¼ö¶ô">¼ö¶ô</button>
-							<button type="button" value="°ÅÀý">°ÅÀý</button>
+							<button type="button" value="ìˆ˜ë½">ìˆ˜ë½</button>
+							<button type="button" value="ê±°ì ˆ">ê±°ì ˆ</button>
 						</div>
 
 
@@ -554,13 +528,13 @@
 			<div class="modal-content">
 				<div class="modal-header" style="text-align: center;">
 					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-					»èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?
+					ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 				</div>
 				<div class="modal-body" style="text-align: center;">
 
 					<a href=""><button type="button" class="btn btn-default"
-							data-dismiss="modal">»èÁ¦</button></a>
-					<button type="button" class="btn btn-default" data-dismiss="modal">µ¹¾Æ°¡±â</button>
+							data-dismiss="modal">ì‚­ì œ</button></a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">ëŒì•„ê°€ê¸°</button>
 				</div>
 				<div class="modal-footer"></div>
 			</div>
@@ -577,28 +551,28 @@
 			<div class="modal-content">
 				<div class="modal-header" style="text-align: left:;">
 					<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-					½Å°íÇÏ±â
+					ì‹ ê³ í•˜ê¸°
 
-					<div>Á¦¸ñ : ½Å»ý¾Æ ¿¡°Ô ÁÁÀº À½½Ä</div>
+					<div>ì œëª© : ì‹ ìƒì•„ ì—ê²Œ ì¢‹ì€ ìŒì‹</div>
 
-					<div>ÀÛ¼ºÀÚ : µ¿¾ð¸¾</div>
+					<div>ìž‘ì„±ìž : ë™ì–¸ë§˜</div>
 				</div>
 				<div class="modal-body" style="height: 200px;">
-					½Å°í»çÀ¯
+					ì‹ ê³ ì‚¬ìœ 
 
 					<div class="col-xs-12 col-md-12">
 
 
 						<div class="col-xs-4 col-md-4">
-							<input type="checkbox" name="check" value="¿µ¸®¸ñÀû/È«º¸¼º" /> ¿µ¸®¸ñÀû/È«º¸¼º
+							<input type="checkbox" name="check" value="ì˜ë¦¬ëª©ì /í™ë³´ì„±" /> ì˜ë¦¬ëª©ì /í™ë³´ì„±
 						</div>
 
 						<div class="col-xs-4 col-md-4">
-							<input type="checkbox" name="check" value="ºÒ¹ýÁ¤º¸" /> ºÒ¹ýÁ¤º¸
+							<input type="checkbox" name="check" value="ë¶ˆë²•ì •ë³´" /> ë¶ˆë²•ì •ë³´
 						</div>
 
 						<div class="col-xs-4 col-md-4">
-							<input type="checkbox" name="check" value="¿å¼³/ÀÎ½Å°ø°Ý" /> ¿å¼³/ÀÎ½Å°ø°Ý
+							<input type="checkbox" name="check" value="ìš•ì„¤/ì¸ì‹ ê³µê²©" /> ìš•ì„¤/ì¸ì‹ ê³µê²©
 						</div>
 
 					</div>
@@ -608,15 +582,15 @@
 					<div class="col-xs-12 col-md-12">
 
 						<div class="col-xs-4 col-md-4">
-							<input type="checkbox" name="check" value="À½¶õ¼º/¼±Á¤¼º" /> ¿µ¸®¸ñÀû/È«º¸¼º
+							<input type="checkbox" name="check" value="ìŒëž€ì„±/ì„ ì •ì„±" /> ì˜ë¦¬ëª©ì /í™ë³´ì„±
 						</div>
 
 						<div class="col-xs-4 col-md-4">
-							<input type="checkbox" name="check" value="ºÎÀûÀýÇÑÄÜÅÙÃ÷" /> ºÎÀûÀýÇÑÄÜÅÙÃ÷
+							<input type="checkbox" name="check" value="ë¶€ì ì ˆí•œì½˜í…ì¸ " /> ë¶€ì ì ˆí•œì½˜í…ì¸ 
 						</div>
 
 						<div class="col-xs-4 col-md-4">
-							<input type="checkbox" name="check" value="°³ÀÎÁ¤º¸³ëÃâ" /> °³ÀÎÁ¤º¸³ëÃâ
+							<input type="checkbox" name="check" value="ê°œì¸ì •ë³´ë…¸ì¶œ" /> ê°œì¸ì •ë³´ë…¸ì¶œ
 						</div>
 
 					</div>
@@ -624,11 +598,11 @@
 					<div class="col-xs-12 col-md-12">
 
 						<div class="col-xs-12 col-md-12">
-							<input type="checkbox" name="check" value="°°Àº³»¿ë¹Ýº¹" /> °°Àº³»¿ë¹Ýº¹
+							<input type="checkbox" name="check" value="ê°™ì€ë‚´ìš©ë°˜ë³µ" /> ê°™ì€ë‚´ìš©ë°˜ë³µ
 						</div>
 
 						<div class="col-xs-12 col-md-12">
-							<input type="checkbox" name="check" value="±âÅ¸" /> ±âÅ¸
+							<input type="checkbox" name="check" value="ê¸°íƒ€" /> ê¸°íƒ€
 
 
 						</div>
@@ -645,9 +619,9 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="reportBtn" class="btn btn-default " value="½Å°í¿Ï·á" data-toggle="modal"
-						data-target="#myModalReport1 ">½Å°í ¿Ï·á</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Ãë¼Ò</button>
+					<button type="button" id="reportBtn" class="btn btn-default " value="ì‹ ê³ ì™„ë£Œ" data-toggle="modal"
+						data-target="#myModalReport1 ">ì‹ ê³  ì™„ë£Œ</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">ì·¨ì†Œ</button>
 				</div>
 			</div>
 		</div>
@@ -657,19 +631,19 @@
 
 
 
-<!-- ½Å°í 1 -->
+<!-- ì‹ ê³  1 -->
 
 <div class="modal fade" id="myModalReport1" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" style="text-align: center;">
-					<h4>Á¤¸»·Î ½Å°íÇÏ½Ã°Ú½À´Ï±î?</h4>
+					<h4>ì •ë§ë¡œ ì‹ ê³ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?</h4>
 				</div>
 				<div class="modal-body"  style="text-align: center;" >
 					
-						<button type="button" class="btn btn-default" data-dismiss="modal">Ãë¼Ò</button>
-						<button type="button" id="reportBtn1" class="btn btn-default " value="½Å°í¿Ï·á" data-toggle="modal"data-target="#myModalReport2 ">½Å°í¿Ï·á</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">ì·¨ì†Œ</button>
+						<button type="button" id="reportBtn1" class="btn btn-default " value="ì‹ ê³ ì™„ë£Œ" data-toggle="modal"data-target="#myModalReport2 ">ì‹ ê³ ì™„ë£Œ</button>
 			
 
 				</div>
@@ -680,7 +654,7 @@
 
 
 
-<!-- ½Å°í 2 -->
+<!-- ì‹ ê³  2 -->
 
 <div class="modal fade" id="myModalReport2" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -691,7 +665,7 @@
 				</div> -->
 				<div class="modal-body"  style="text-align: center;" >
 					
-						<button type="submit" id="report_commit" class="btn btn-default" data-dismiss="modal" data-toggle="modal"data-target="#myModalReport2">½Å°í ¿Ï·áµÇ¾ú½À´Ï´Ù</button>
+						<button type="submit" id="report_commit" class="btn btn-default" data-dismiss="modal" data-toggle="modal"data-target="#myModalReport2">ì‹ ê³  ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤</button>
 				</div>
 				<!-- <div class="modal-footer "></div> -->
 			</div>

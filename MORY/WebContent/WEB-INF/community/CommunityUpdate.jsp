@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,7 +62,7 @@ $(document).ready(function(){
 
 
 
-/* ¸ğµ¨  */
+/* ëª¨ë¸  */
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
@@ -69,7 +71,7 @@ $(document).ready(function(){
 
 
 
-/* ¸ğµ¨ 1 */
+/* ëª¨ë¸ 1 */
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal1").modal();
@@ -86,7 +88,7 @@ function previewImage(targetObj, divPeedPhoto)
    var preview = document.getElementById(divPeedPhoto); //div id
    var ua = window.navigator.userAgent;
 
-   //ieÀÏ¶§(IE8 ÀÌÇÏ¿¡¼­¸¸ ÀÛµ¿)
+   //ieì¼ë•Œ(IE8 ì´í•˜ì—ì„œë§Œ ì‘ë™)
 
    if (ua.indexOf("MSIE") > -1) {
 
@@ -94,17 +96,17 @@ function previewImage(targetObj, divPeedPhoto)
 
       try {
 
-         var src = document.selection.createRange().text; // get file full path(IE9, IE10¿¡¼­ »ç¿ë ºÒ°¡)
+         var src = document.selection.createRange().text; // get file full path(IE9, IE10ì—ì„œ ì‚¬ìš© ë¶ˆê°€)
 
          var ie_preview_error = document.getElementById("ie_preview_error_" + divPeedPhoto);
 
          if (ie_preview_error) {
-            preview.removeChild(ie_preview_error); //error°¡ ÀÖÀ¸¸é delete
+            preview.removeChild(ie_preview_error); //errorê°€ ìˆìœ¼ë©´ delete
          }
 
-         var img = document.getElementById(divPeedPhoto); //ÀÌ¹ÌÁö°¡ »Ñ·ÁÁú °÷
+         var img = document.getElementById(divPeedPhoto); //ì´ë¯¸ì§€ê°€ ë¿Œë ¤ì§ˆ ê³³
 
-         //ÀÌ¹ÌÁö ·Îµù, sizingMethod´Â div¿¡ ¸ÂÃç¼­ »çÀÌÁî¸¦ ÀÚµ¿Á¶Àı ÇÏ´Â ¿ªÇÒ
+         //ì´ë¯¸ì§€ ë¡œë”©, sizingMethodëŠ” divì— ë§ì¶°ì„œ ì‚¬ì´ì¦ˆë¥¼ ìë™ì¡°ì ˆ í•˜ëŠ” ì—­í• 
          img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
 
       } catch (e) {
@@ -117,15 +119,15 @@ function previewImage(targetObj, divPeedPhoto)
             preview.insertBefore(info, null);
          }
       }
-      //ie°¡ ¾Æ´Ò¶§(Å©·Ò, »çÆÄ¸®, FF)
+      //ieê°€ ì•„ë‹ë•Œ(í¬ë¡¬, ì‚¬íŒŒë¦¬, FF)
    } else {
       var files = targetObj.files;
       for (var i = 0; i < files.length; i++) {
          var file = files[i];
-         var imageType = /image.*/; //ÀÌ¹ÌÁö ÆÄÀÏÀÏ°æ¿ì¸¸.. »Ñ·ÁÁØ´Ù.
+         var imageType = /image.*/; //ì´ë¯¸ì§€ íŒŒì¼ì¼ê²½ìš°ë§Œ.. ë¿Œë ¤ì¤€ë‹¤.
          if (!file.type.match(imageType))
             continue;
-         var prevImg = document.getElementById("prev_" + divPeedPhoto); //ÀÌÀü¿¡ ¹Ì¸®º¸±â°¡ ÀÖ´Ù¸é »èÁ¦
+         var prevImg = document.getElementById("prev_" + divPeedPhoto); //ì´ì „ì— ë¯¸ë¦¬ë³´ê¸°ê°€ ìˆë‹¤ë©´ ì‚­ì œ
          if (prevImg) {
             preview.removeChild(prevImg);
          }
@@ -138,7 +140,7 @@ function previewImage(targetObj, divPeedPhoto)
          img.style.height = '30%';
          preview.appendChild(img);
 
-         if (window.FileReader) { // FireFox, Chrome, Opera È®ÀÎ.
+         if (window.FileReader) { // FireFox, Chrome, Opera í™•ì¸.
             var reader = new FileReader();
             reader.onloadend = (function(aImg) {
                return function(e) {
@@ -178,37 +180,13 @@ function previewImage(targetObj, divPeedPhoto)
 </head>
 <body>
 
-
+<c:import url="../main/Mainmenu.jsp" /> 
 <div class="container"  id="container">
-	<!-- Ã¹¹øÂ° row  -->
-		<div class="row " id="all0">
-		<div class="col-xs-1  col-md-1"  id="h1"></div>
-		<div class="col-xs-10 col-md-10" id="h2" >
-				<div class="col-xs-2 col-md-2">
-					<button type="button" value="´º½ºÇÇµå" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary" >´º½ºÇÇµå</button>
-				</div>
-				<div class="col-xs-2 col-md-2">	
-					<button type="button" value="´ÙÀÌ¾î¸®" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary">´ÙÀÌ¾î¸®</button>
-				</div>
-				<div class="col-xs-4 col-md-4"style="text-align: center;">	
-					<a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-	                  <img src="img/logo.png" width="100;"/>
-	                    <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
-	                </a>
-	            </div>
-	            <div class="col-xs-2 col-md-2" style="">    
-	                <button type="button" value="Ä¿¹Â´ÏÆ¼" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;" class="btn btn-primary">Ä¿¹Â´ÏÆ¼</button>
-	            </div>  
-	            <div class="col-xs-2 col-md-2">
-					<button type="button" value="È¯°æ¼³Á¤" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;" class="btn btn-primary">È¯°æ¼³Á¤</button>
-				</div>
+	<!-- ì²«ë²ˆì§¸ row  -->
 				
-		</div>
-				<div class="col-xs-1 col-md-1"  id="h3"></div>
-		</div>		
 		
 		
-	<!-- 	µÎ¹øÂ° row  --> 
+	<!-- 	ë‘ë²ˆì§¸ row  --> 
 <div class="row " id="all1">
 	<div class="col-xs-1 col-md-1"  id="b1">b1</div>
 	<div class="col-xs-10 col-md-10"  id="b2" >				 
@@ -216,14 +194,14 @@ function previewImage(targetObj, divPeedPhoto)
 				
 								<div class="col-xs-12 col-md-12" style="border: 1px solid lightgray; height: 60px; margin-top: 30px; text-align: center;" >
 									 <div class="col-xs-12 col-md-12" style="margin-top:20px;">
-									 	Ä¿¹Â´ÏÆ¼ ¼öÁ¤
+									 	ì»¤ë®¤ë‹ˆí‹° ìˆ˜ì •
 									 </div>
 								</div>
 				
 							<div class="col-xs-9 col-md-9" style="height:50px; border: 1px solid lightgray; margin-top: 20px;" >
 							
 										<div class="col-xs-12 col-md-12" style=" margin-top: 15px; width: 663px; ">
-											Á¦¸ñ:À°¾ÆÀÇ ÁÁÀº Á¤º¸
+											ì œëª©:ìœ¡ì•„ì˜ ì¢‹ì€ ì •ë³´
 										</div>
 									
 								
@@ -231,9 +209,9 @@ function previewImage(targetObj, divPeedPhoto)
 								<div class="col-xs-3 col-md-3" style="text-align:left;" >
 													
 								<select name="name" id="name" style="width: 212px;  margin-left:0px; height: 50px; margin-boottom:5px;  margin-top: 20px;">
-													<option value="À°¾ÆÁ¤º¸">À°¾ÆÁ¤º¸</option>
-													<option value="ÃÊº¸À°¾ÆQ&A">ÃÊº¸À°¾ÆQ&A</option>	
-													<option value="À°¾Æ°Ç°­">À°¾Æ°Ç°­</option>			
+													<option value="ìœ¡ì•„ì •ë³´">ìœ¡ì•„ì •ë³´</option>
+													<option value="ì´ˆë³´ìœ¡ì•„Q&A">ì´ˆë³´ìœ¡ì•„Q&A</option>	
+													<option value="ìœ¡ì•„ê±´ê°•">ìœ¡ì•„ê±´ê°•</option>			
 								</select>		
 								</div>
 							
@@ -254,9 +232,9 @@ function previewImage(targetObj, divPeedPhoto)
 								</div>
 								<div class="col-xs-6 col-md-6" style="text-align: right; margin-top: 15px; margin-left:468px;">
 								
-								<button type="button" value="Ã·ºÎÆÄÀÏ" style="width: 100px;">Ã·ºÎÆÄÀÏ</button>
-								<button type="button" value="¼öÁ¤¿Ï·á" style="width: 100px;" data-toggle="modal" data-target="#myModalUpdate">¼öÁ¤¿Ï·á</button>
-								<button type="button" value="Ãë¼Ò" style="width: 100px;">Ãë¼Ò</button>
+								<button type="button" value="ì²¨ë¶€íŒŒì¼" style="width: 100px;">ì²¨ë¶€íŒŒì¼</button>
+								<button type="button" value="ìˆ˜ì •ì™„ë£Œ" style="width: 100px;" data-toggle="modal" data-target="#myModalUpdate">ìˆ˜ì •ì™„ë£Œ</button>
+								<button type="button" value="ì·¨ì†Œ" style="width: 100px;">ì·¨ì†Œ</button>
 								</div>
 							
 							
@@ -292,7 +270,7 @@ function previewImage(targetObj, divPeedPhoto)
 
  
 
- <!--  ³»Á¤º¸  -->
+ <!--  ë‚´ì •ë³´  -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -313,33 +291,33 @@ function previewImage(targetObj, divPeedPhoto)
         
       </div>
       <div class="modal-body" style="text-align: center;">
-        	ÀÌ¸§ : Áøµå·¡°ï <br>
-        	´Ğ³×ÀÓ : Jin
+        	ì´ë¦„ : ì§„ë“œë˜ê³¤ <br>
+        	ë‹‰ë„¤ì„ : Jin
       </div>
       <div class="modal-footer "  >
       	
       	<div class="col-xs-12 col-md-12">
       	<div class="col-xs-4 col-md-4" style="text-align: left;">
-      	<button type="button" value="´º½ºÇÇµå">´º½ºÇÇµå</button>
+      	<button type="button" value="ë‰´ìŠ¤í”¼ë“œ">ë‰´ìŠ¤í”¼ë“œ</button>
       	</div>
       	<div class="col-xs-4 col-md-4" style="text-align: center;">
-      	<button type="button" class="btn btn-default" data-dismiss="modal" >µ¹¾Æ°¡±â</button>
+      	<button type="button" class="btn btn-default" data-dismiss="modal" >ëŒì•„ê°€ê¸°</button>
       	</div>
       	<div class="col-xs-4 col-md-4" style="text-align: right;">
-      		<button type="button" value="Ä¿¹Â´ÏÆ¼">Ä¿¹Â´ÏÆ¼</button>
+      		<button type="button" value="ì»¤ë®¤ë‹ˆí‹°">ì»¤ë®¤ë‹ˆí‹°</button>
       	</div>
       	</div>
       	
       	
       	<div class="col-xs-12 col-md-12">
       	<div class="col-xs-4 col-md-4" style="text-align: left;">
-      	<button type="button" value="´ÙÀÌ¾î¸®">´ÙÀÌ¾î¸®</button>
+      	<button type="button" value="ë‹¤ì´ì–´ë¦¬">ë‹¤ì´ì–´ë¦¬</button>
       	</div>
       	<div class="col-xs-4 col-md-4" >
       
       	</div>
       	<div class="col-xs-4 col-md-4" style="text-align: right;" >
-      		<button type="button" value="°³ÀÎÁ¤º¸">°³ÀÎÁ¤º¸</button>
+      		<button type="button" value="ê°œì¸ì •ë³´">ê°œì¸ì •ë³´</button>
       	</div>
       	
       	</div>
@@ -354,7 +332,7 @@ function previewImage(targetObj, divPeedPhoto)
 
 
 
-<!-- ¾Ë¸² -->
+<!-- ì•Œë¦¼ -->
 
 
 
@@ -362,7 +340,7 @@ function previewImage(targetObj, divPeedPhoto)
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center;">
-      <h4>¾Ë¸²</h4>
+      <h4>ì•Œë¦¼</h4>
       </div>
       <div class="modal-body" style="height: 600px;">
         	<div class="col-xs-12 col-md-12" style="border: 1px solid; height: 50px;">
@@ -371,12 +349,12 @@ function previewImage(targetObj, divPeedPhoto)
         		</div>
         	
         		<div class="col-xs-6 col-md-6">
-        		Áøµå·¡°ï<br>
+        		ì§„ë“œë˜ê³¤<br>
         		2017
         		</div>
         		<div class="col-xs-3 col-md-3" style="text-align: right; margin-top: 10px;">
-        		<button type="button" value="¼ö¶ô">¼ö¶ô</button>
-        		<button type="button" value="°ÅÀı">°ÅÀı</button>
+        		<button type="button" value="ìˆ˜ë½">ìˆ˜ë½</button>
+        		<button type="button" value="ê±°ì ˆ">ê±°ì ˆ</button>
         		</div>
         	
        
@@ -400,7 +378,7 @@ function previewImage(targetObj, divPeedPhoto)
 </div>
 		 
 		
-		<!-- ¼¼¹øÂ° row  -->
+		<!-- ì„¸ë²ˆì§¸ row  -->
 		<div class="row " id="all2">
 				<div class="col-xs-1 col-md-1"  id="f1">f1</div>
 				<div class="col-xs-10 col-md-10"  id="f2">f2</div>
@@ -416,17 +394,17 @@ function previewImage(targetObj, divPeedPhoto)
 
 
 
-<!-- ÀÛ¼º¿Ï·á -->
+<!-- ì‘ì„±ì™„ë£Œ -->
 
 <div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
        <div class="modal-header"style="text-align: center;" >
        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-       		¼öÁ¤¿Ï·á µÇ¾ú½À´Ï´Ù
+       		ìˆ˜ì •ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤
       </div> 
       <div class="modal-body"  style="text-align: center;">
-      <a href=""><button type="button" class="btn btn-default" data-dismiss="modal">¼öÁ¤¿Ï·á</button></a>
+      <a href=""><button type="button" class="btn btn-default" data-dismiss="modal">ìˆ˜ì •ì™„ë£Œ</button></a>
       </div>
       <div class="modal-footer">
         

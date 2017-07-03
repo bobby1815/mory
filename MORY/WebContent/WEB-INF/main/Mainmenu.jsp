@@ -13,11 +13,21 @@
 		</div>
 	<div class="col-xs-1 col-md-1" id="h3">h3</div>
 </div>  -->
+<style type="text/css">
+#all0
+{
+	padding: 0;
+	margin: 0 auto;
+	width: 100%;
+	background-color: black;
+	
+}
 
+</style>
 	
       <div class="row " id="all0">
-      <div class="col-xs-1  col-md-1"  id="h1"></div>
-      <div class="col-xs-10 col-md-10" id="h2" >
+       <div class="col-xs-1  col-md-1"  id="h1"> </div> 
+      <div class="col-xs-12 col-md-12" id="h2" >
             <div  class="col-xs-2 col-md-2" style="margin-top: 26px;">
               <img src="img/newsfeed123.png" id="menubtn" height=40px; width=100px; align="middle" onclick="location.href='newsfeedlist.do'" />    
         <!--        <button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" 
@@ -30,9 +40,8 @@
             </div>
             <div class="col-xs-4 col-md-4"style="text-align: center;">   
                <a href="newsfeedlist.do" style="margin:0px ; color:black;">
-                     <img src="img/Mory_logo.png" width="100"/>
-                       <!-- <span style="font-size:30px; text-align: center;"><b>MORY</b></span> -->
-                       <img src="img/Mainlogo.png" width="100" />
+                     <img src="img/logo.png" width="100"/>
+                      <img src="img/Mainlogo.png" width="100" />
                    </a>
                </div>
                <div class="col-xs-2 col-md-2" style="margin-top: 26px;"> 
@@ -47,7 +56,7 @@
             </div>
             
       </div>
-            <div class="col-xs-1 col-md-1"  id="h3"></div>
+             <div class="col-xs-1 col-md-1"  id="h3"> </div> 
 </div>   
             
  

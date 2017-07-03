@@ -6,6 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/Mainmenu.css" />
+<link rel="stylesheet" href="css/acordian.css" />
+
 <style type="text/css">
 #setup_th
 {
@@ -53,6 +56,10 @@ table.type07 td {
     vertical-align: top;
     border-bottom: 1px solid #ccc;
 } 
+#b3
+{
+	margin-top: 30%;
+}
   </style>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -67,33 +74,10 @@ table.type07 td {
 </head>
 
 <body>
+<c:import url="../main/Mainmenu.jsp" /> 
 <div class="container"  id="container">
    <!-- header -->
-      <div class="row " id="all0">
-      <div class="col-xs-1  col-md-1"  id="h1"></div>
-      <div class="col-xs-10 col-md-10" id="h2" >
-            <div class="col-xs-2 col-md-2">
-               <button type="button" value="뉴스피드" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary" >뉴스피드</button>
-            </div>
-            <div class="col-xs-2 col-md-2">   
-               <button type="button" value="다이어리" style="margin-top: 26px; margin-right:20px; height: 40px; width: 100px;" class="btn btn-primary">다이어리</button>
-            </div>
-            <div class="col-xs-4 col-md-4"style="text-align: center;">   
-               <a href="http://localhost:8090/Mory/new/NewSpead.jsp" style="margin:0px ; color:black;">
-                     <img src="img/Mory_logo.png" width="100"/>
-                       <span style="font-size:30px; text-align: center;"><b>MORY</b></span>
-                   </a>
-               </div>
-               <div class="col-xs-2 col-md-2" style="">    
-                   <button type="button" value="커뮤니티" style="margin-top: 26px; margin-left:20px;  height: 40px; width: 100px;" class="btn btn-primary">커뮤니티</button>
-               </div>  
-               <div class="col-xs-2 col-md-2">
-               <button type="button" value="환경설정" style="margin-top: 26px; margin-left:20px; height: 40px; width: 100px;" class="btn btn-primary">환경설정</button>
-            </div>
-            
-      </div>
-            <div class="col-xs-1 col-md-1"  id="h3"></div>
-</div>       
+     
       
    <!--    Center  --> 
       <div class="row " id="Center">
@@ -168,18 +152,7 @@ table.type07 td {
            
 			<!--Center right  -->
             <div class="col-xs-1 col-md-1"  id="b3">
-            <!-- Acordian Action -->
-           <div class="w3-container">
-           
-			<a onclick="myFunction('Demo1')" style="width: 100px; " class="glyphicon glyphicon-plus-sign btn-lg"></a>
-			<div id="Demo1" class="w3-container w3-hide">
-			  <a href="" style="width: 100px;" class="glyphicon glyphicon-user btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-time btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-pencil btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
-			</div>			
-			</div>
-            
+         <c:import url="../../tooglebtn.jsp"/> 
             </div>
 	 <!--Center End  -->
      </div>
