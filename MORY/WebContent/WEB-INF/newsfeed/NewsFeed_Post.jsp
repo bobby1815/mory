@@ -1,3 +1,4 @@
+<%@page import="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO"%>
 <%@page import="com.kh.mory.newsfeed.Newsfeed_NewsfeedDTO"%>
 <%@page import="com.kh.mory.DiaryDTO.DiaryDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -364,15 +365,10 @@ p
 					<img class="uplo" src="/newsfeedupload/${dto.uplo_loca }">
 					<p>${dto.write_cont }</p>
 					<p>${dto.feed_love_cnt }</p>
-					<p>댓글염</p>
-				</div>
-			</c:forEach>
-				<div>
-					<div class="col-xs-12 col-md-12" style="align: right;" >
-						<bgsound class="col-xs-10 col-md-10">
-						<input type="button" value="목록" class="col-xs-2 col-md-2" >
-					</div>
-				<br /><br />
+					<c:set var="write_seq" value="${dto.write_seq } "></c:set>
+					<%  Newsfeed_NewsfeedDAO dao = new Newsfeed_NewsfeedDAO();
+						ArrayList<Newsfeed_NewsfeedDTO>  commentList = dao.commentList("write_seq");
+					%>
 					<!-- 댓글 영역 -->
 					<c:forEach var="comment" items="${commentList }" >
 						<div id="commentlistdiv${comment.comment_seq }" name="commentlistdiv${comment.comment_seq }" style="border: 1px solid; width: 92%; padding: 5px; margin-left: 3%;">
@@ -514,5 +510,13 @@ p
 			<div class="col-xs-1 col-md-1" id="f3">f3</div>
 		</div>
 	</div>
+				</div>
+			</c:forEach>
+				<div>
+					<div class="col-xs-12 col-md-12" style="align: right;" >
+						<bgsound class="col-xs-10 col-md-10">
+						<input type="button" value="목록" class="col-xs-2 col-md-2" >
+					</div>
+				<br /><br />
 </body>
 </html>
