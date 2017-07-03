@@ -62,7 +62,11 @@ input
         
       });
       
-      
+   $("#saveBtn").click(function()
+   {
+      $("#form").submit();
+   });
+  
       
     </script>
 
@@ -250,20 +254,21 @@ input
                <div class="modal-dialog">
                   <div class="modal-content">
                      <div class="modal-header" style="text-align: center;">
-
+      <form action="newsfeedinsert.do" method="post" enctype="multipart/form-data" id="form">
          <div id="divPeedPhoto"></div>
          <input type="file" name="profile_pt" id="profile_pt"onchange="previewImage(this,'divPeedPhoto')"style="text-align: center;">
          </div>
          <div class="modal-body" style="text-align: center;">
-                        <textarea rows="7" cols="" style="resize: none;"></textarea>
+                        <textarea rows="7" cols="" style="resize: none;" id="write_cont" name="write_cont"></textarea>
                      </div>
                      <div class="modal-footer " style="text-align: right;">
-                        <button value="작성완료" class="btn btn-primary"  data-toggle="modal" data-target="#myModal3" >작성완료</button>
+                        <button value="작성완료" class="btn btn-primary"  data-toggle="modal" data-target="#myModal3" id="saveBtn" >작성완료</button>
                         <button value="취소" class="btn btn-default"  data-dismiss="modal">취소</button>
                      </div>
                   </div>
                </div>
             </div>
+          </form>
 
 <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
@@ -292,7 +297,7 @@ input
 
                      </div>
                      <div class="modal-body" style="text-align: center;">
-                        이름 : 진드래곤 <br> 닉네임 : Jin
+                        이름 : 김민준 <br> 닉네임 : 뀨?
                      </div>
                      <div class="modal-footer ">
 
