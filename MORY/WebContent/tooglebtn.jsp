@@ -297,7 +297,7 @@ input
 
 							</div>
 							<div class="modal-body" style="text-align: center;">
-								이름 : 진드래곤 <br> 닉네임 : Jin
+								이름 : 김민준 <br> 닉네임 : 뀨?
 							</div>
 							<div class="modal-footer ">
 
