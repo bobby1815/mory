@@ -12,12 +12,12 @@ import com.kh.mory.DiaryIDAO.ICommentDAO;
 public class Newsfeed_CommentUpdateController implements Controller
 {
 	   // DAO �������̽� �ڷ��� ��� ����
-	   private Newsfeed_INewsfeedDAO commentdao;
+	   private Newsfeed_INewsfeedDAO feed_commentdao;
 
 	   // setter ����
-		public void setCommentdao(Newsfeed_INewsfeedDAO commentdao)
+		public void setFeed_commentdao(Newsfeed_INewsfeedDAO feed_commentdao)
 		{
-			this.commentdao = commentdao;
+			this.feed_commentdao = feed_commentdao;
 		}
 
 	   @Override
@@ -38,7 +38,7 @@ public class Newsfeed_CommentUpdateController implements Controller
 				newsfeedDTO.setComment_cont(comment_cont);
 				newsfeedDTO.setComment_seq(comment_seq);
 				
-				commentdao.newsFeedCommentUpdate(newsfeedDTO);
+				feed_commentdao.newsFeedCommentUpdate(newsfeedDTO);
 				modelAndView.setViewName("redirect:newsfeed_post.do?write_seq="+write_seq);
 
 			} catch (Exception e)

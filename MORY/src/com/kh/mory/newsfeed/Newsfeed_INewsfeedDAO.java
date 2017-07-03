@@ -34,5 +34,7 @@ public interface Newsfeed_INewsfeedDAO
 	// 뉴스피드 답글 삭제
 	public int newsFeedRecommentDelete(String comment_seq) throws SQLException;
 	
+	public Newsfeed_NewsfeedDTO cont(String write_seq) throws SQLException;
+	
 	
 }
