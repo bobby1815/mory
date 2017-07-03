@@ -38,13 +38,13 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 		{
 			Connection connection = dataSource.getConnection();
 		
-			String sql = "{call PROC_NEWSFEED_INSERT(?, ?)}";
-			
+			String sql = "{call PROC_NEWSFEED_INSERT(?, ?, ?)}";
+			System.out.println(sql);
 			CallableStatement callableStatement = connection.prepareCall(sql);
 			System.out.println("newsfeed_NewsfeedDTO.getWrite_cont()) : "+ newsfeed_NewsfeedDTO.getWrite_cont());
 			callableStatement.setString(1, newsfeed_NewsfeedDTO.getWrite_user_id());
-			//callableStatement.setString(2, newsfeed_NewsfeedDTO.getWrite_cont());
-			callableStatement.setString(2, uplo_loca);
+			callableStatement.setString(2, newsfeed_NewsfeedDTO.getWrite_cont());
+			callableStatement.setString(3, uplo_loca);
 			
 			res = callableStatement.executeUpdate();
 			
