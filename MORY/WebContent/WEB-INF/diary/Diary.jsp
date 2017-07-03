@@ -266,10 +266,13 @@
 										<c:choose>
 											<c:when test="${diary.diary_name eq null}">
 												<input type="text" id="diary_name" name="diary_name" value="${couplediary.shar_diary_name}" placeholder="다이어리 제목을 입력하세요"  >
-												<input type="hidden"  />
+												<input type="hidden" id="diary_seq" name="diary_seq"  />												
+												<input type="hidden" id="diary_type"  name="diary_type"  />
 											</c:when>
 											<c:otherwise>
 												<input type="text" id="diary_name" name="diary_name" value="${diary.diary_name}" placeholder="다이어리 제목을 입력하세요"  >
+												<input type="hidden" id="diary_seq" name="diary_seq" />												
+												<input type="hidden" id="diary_type" name="diary_type" />
 											</c:otherwise>
 										</c:choose>
 									</div>
