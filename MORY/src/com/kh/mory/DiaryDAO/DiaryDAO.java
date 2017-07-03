@@ -93,7 +93,7 @@ public class DiaryDAO implements IDiaryDAO
 		while (rs.next())
 		{
 			String cont = (rs.getString("CONT"));
-			cont = cont.replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
+			cont = cont.replaceAll("(\r\n|\r|\n|\n\r)", "<BR>");
 			
 			
 			diary.setWrite_user_id(rs.getString("WRITE_USER_ID"));
@@ -200,7 +200,7 @@ public class DiaryDAO implements IDiaryDAO
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			String cont = (diary.getWrite_cont());
-			cont = cont.replaceAll("\\\\n\\\\r", "<br>");
+			cont = cont.replaceAll("\\\\n\\\\r", "<BR>");
 			pstmt.setString(1, diary.getWrite_seq());
 			System.out.println();
 			pstmt.setString(2, cont);

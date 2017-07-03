@@ -47,7 +47,6 @@ public class Diary_ListController implements Controller
 			
 			if (requ_seq == null)
 			{	
-			
 				dto =  dao.mydiary(user_id);
 				diaryList = dao.list(dto.getDiary_seq());
 				 diary_seq = dto.getDiary_seq();

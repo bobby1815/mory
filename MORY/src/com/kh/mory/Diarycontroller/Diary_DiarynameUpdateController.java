@@ -22,7 +22,16 @@ public class Diary_DiarynameUpdateController implements Controller
 	   @Override
 	   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	   {
-		return null;
+		   
+		   ModelAndView modelAndView = new ModelAndView();
+			
+			
+			String diary_seq = request.getParameter("diary_seq");
+			String diary_name = request.getParameter("diary_name");
+			String diary_type = request.getParameter("diary_type");
+			
+			
+		return modelAndView;
 		   
 	   }
 	

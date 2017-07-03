@@ -254,6 +254,7 @@
 						<div class="modal-content">
 							<div class="modal-header" style="text-align: center;">
 							</div>
+							
 							<form action="diarynameupdate.do">
 							<div class="modal-body" style="height: 300px;">
 								<div class="col-xs-12 col-md-12"
@@ -261,28 +262,25 @@
 									<div class="col-xs-3 col-md-3" style="">
 										다이어리 이름
 									</div>
-
 									<div class="col-xs-6 col-md-6">
 										<c:choose>
-										
 											<c:when test="${diary.diary_name eq null}">
 												<input type="text" id="diary_name" name="diary_name" value="${couplediary.shar_diary_name}" placeholder="다이어리 제목을 입력하세요"  >
+												<input type="hidden"  />
 											</c:when>
 											<c:otherwise>
 												<input type="text" id="diary_name" name="diary_name" value="${diary.diary_name}" placeholder="다이어리 제목을 입력하세요"  >
 											</c:otherwise>
 										</c:choose>
-										
 									</div>
 									<div class="col-xs-3 col-md-3"
 										style="text-align: right; margin-top: 10px;">
 										<input type="submit" value="수정하기" >
 									</div>
-									
 								</div>
-
 							</div>
 							</form>
+							
 							<div class="modal-footer "></div>
 						</div>
 					</div>
