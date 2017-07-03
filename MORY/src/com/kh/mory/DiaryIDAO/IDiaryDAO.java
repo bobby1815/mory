@@ -48,4 +48,7 @@ public interface IDiaryDAO
 	public int couplediaryname(DiaryDTO diary) throws SQLException;
 	
 	public DiaryDTO mydiary(String user_id) throws SQLException;
+	
+	public DiaryDTO couplediary(String user_id) throws SQLException;
+	
 }

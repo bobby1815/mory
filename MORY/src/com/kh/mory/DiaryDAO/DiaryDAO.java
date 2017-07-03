@@ -230,7 +230,9 @@ public class DiaryDAO implements IDiaryDAO
 			
 			while (rs.next())
 			{
-				result = rs.getInt(Integer.parseInt(rs.getString("COUNT")));
+				result = Integer.parseInt(rs.getString("COUNT"));
+				System.out.println(result);
+				
 				
 			}
 			
@@ -253,31 +255,22 @@ public class DiaryDAO implements IDiaryDAO
 		
 		ArrayList<DiaryDTO> result = new ArrayList<DiaryDTO>();
 		
-		String sql = "SELECT P.REQU_USER_ID AS REQU_USER_ID , P.USER_NIC AS USER_NIC , P.REQU_SEQ AS REQU_SEQ , P.SHAR_DIARY_NAME AS SHAR_DIARY_NAME "
-				+ " FROM( SELECT A.REQU_USER_ID AS REQU_USER_ID ,A.ACCE_USER_ID AS ACCE_USER_ID , "
-				+ " B.REQU_SEQ AS REQU_SEQ ,C.USER_NIC AS USER_NIC ,D.SHAR_DIARY_NAME AS SHAR_DIARY_NAME "
-				+ " FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B,TBL_USER C , TBL_SHARE_DIARY D "
-				+ " WHERE A.REQU_SEQ = B.REQU_SEQ "
-				+ " AND A.REQU_USER_ID = C.USER_ID "
-				+ " AND B.REQU_SEQ = D.SHARE_DIARY_SEQ ) P , TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B "
-				+ " WHERE (P.REQU_USER_ID = A.REQU_USER_ID OR  P.ACCE_USER_ID = A.REQU_USER_ID) "
-				+ " AND A.REQU_SEQ = B.REQU_SEQ "
-				+ " AND A.MEM_REL_CODE='20' "
-				+ " AND B.RESULT_YN='Y' "
-				+ " AND A.ACCE_USER_ID=?";
+		String sql = "SELECT P.REQU_USER_ID AS REQU_USER_ID , P.USER_NIC AS USER_NIC , P.REQU_SEQ AS REQU_SEQ , P.SHARE_DIARY_NAME AS SHARE_DIARY_NAME  FROM ( SELECT A.REQU_USER_ID AS REQU_USER_ID ,A.ACCE_USER_ID AS ACCE_USER_ID ,  B.REQU_SEQ AS REQU_SEQ ,C.USER_NIC AS USER_NIC ,D.SHARE_DIARY_NAME AS SHARE_DIARY_NAME  FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B,TBL_USER C , TBL_SHARE_DIARY D  WHERE A.REQU_SEQ = B.REQU_SEQ  AND A.REQU_USER_ID = C.USER_ID AND B.REQU_SEQ = D.SHARE_DIARY_SEQ ) P , TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B WHERE (P.REQU_USER_ID = A.REQU_USER_ID OR  P.ACCE_USER_ID = A.REQU_USER_ID) AND A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='20' AND B.RESULT_YN='Y' AND A.ACCE_USER_ID=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, user_id);
 		ResultSet rs = pstmt.executeQuery();		
 		
-		
+
+		System.out.println("테스트");
 		while (rs.next())
 		{
 			DiaryDTO diary = new DiaryDTO();
 			diary.setRequ_user_id(rs.getString("REQU_USER_ID"));
 			diary.setUser_nic(rs.getString("USER_NIC"));
 			diary.setRequ_seq(rs.getString("REQU_SEQ"));
-			diary.setShar_diary_name(rs.getString("SHAR_DIARY_NAME"));
+			diary.setShar_diary_name(rs.getString("SHARE_DIARY_NAME"));
 			result.add(diary);
+			System.out.println(result);
 			
 		}
 		rs.close();
@@ -375,6 +368,42 @@ public class DiaryDAO implements IDiaryDAO
 		rs.close();
 		pstmt.close();
 		conn.close();
+		
+		return diary;
+	}
+
+	@Override
+	public DiaryDTO couplediary(String user_id) throws SQLException
+	{
+		Connection conn = dataSource.getConnection();
+		
+		String sql = "SELECT A.ACCE_USER_ID AS ACCE_USER_ID  , A.REQU_USER_ID  AS REQU_USER_ID ,A.REQU_SEQ AS REQU_SEQ ,C.SHARE_DIARY_NAME AS SHARE_DIARY_NAME  FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B , TBL_SHARE_DIARY C WHERE  A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='10' AND B.RESULT_YN='Y' AND A.REQU_SEQ=C.SHARE_DIARY_SEQ AND (A.ACCE_USER_ID = ? OR A.REQU_USER_ID = ? )";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, user_id);
+		pstmt.setString(2, user_id);
+		
+		ResultSet rs  = pstmt.executeQuery();
+		DiaryDTO diary = new DiaryDTO();
+		
+		while (rs.next())
+		{//getRequ_seq
+			diary.setAcce_user_id(rs.getString("ACCE_USER_ID"));
+			diary.setRequ_user_id(rs.getString("REQU_USER_ID"));
+			diary.setRequ_seq(rs.getString("REQU_SEQ"));
+			diary.setShar_diary_name(rs.getString("SHARE_DIARY_NAME"));
+
+			System.out.println(rs.getString("ACCE_USER_ID"));
+			System.out.println(rs.getString("REQU_USER_ID"));
+			System.out.println(rs.getString("REQU_SEQ"));
+			
+		}
+		
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
 		
 		return diary;
 	}

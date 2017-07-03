@@ -15,7 +15,94 @@ public class Newsfeed_NewsfeedDTO
 	private String uplo_seq, write_seq, uplo_loca;
 	
 	private String user_nic;
+	// 댓글
+	private String comment_seq, comment_cont, comment_reg_dtm;
+	// 답글
+	private String recomment_seq, recomment_cont, recomment_reg_dtm;
+	// 추가
+	private String user_id, requ_user_id;
 	
+	
+	public String getRequ_user_id()
+	{
+		return requ_user_id;
+	}
+
+	public void setRequ_user_id(String requ_user_id)
+	{
+		this.requ_user_id = requ_user_id;
+	}
+
+	public String getUser_id()
+	{
+		return user_id;
+	}
+
+	public void setUser_id(String user_id)
+	{
+		this.user_id = user_id;
+	}
+
+	public String getComment_seq()
+	{
+		return comment_seq;
+	}
+
+	public void setComment_seq(String comment_seq)
+	{
+		this.comment_seq = comment_seq;
+	}
+
+	public String getComment_cont()
+	{
+		return comment_cont;
+	}
+
+	public void setComment_cont(String comment_cont)
+	{
+		this.comment_cont = comment_cont;
+	}
+
+	public String getComment_reg_dtm()
+	{
+		return comment_reg_dtm;
+	}
+
+	public void setComment_reg_dtm(String comment_reg_dtm)
+	{
+		this.comment_reg_dtm = comment_reg_dtm;
+	}
+
+	public String getRecomment_seq()
+	{
+		return recomment_seq;
+	}
+
+	public void setRecomment_seq(String recomment_seq)
+	{
+		this.recomment_seq = recomment_seq;
+	}
+
+	public String getRecomment_cont()
+	{
+		return recomment_cont;
+	}
+
+	public void setRecomment_cont(String recomment_cont)
+	{
+		this.recomment_cont = recomment_cont;
+	}
+
+	public String getRecomment_reg_dtm()
+	{
+		return recomment_reg_dtm;
+	}
+
+	public void setRecomment_reg_dtm(String recomment_reg_dtm)
+	{
+		this.recomment_reg_dtm = recomment_reg_dtm;
+	}
+
 	public String getUser_nic()
 	{
 		return user_nic;

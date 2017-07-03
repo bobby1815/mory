@@ -87,16 +87,19 @@ public class RecommentDAO implements IRecommentDAO
 
 		String sql = "INSERT INTO TBL_RECOMMENT"
 				+ " (RECO_SEQ, COMMENT_SEQ, RECO_CONT, RECO_REG_DTM, USER_ID)"
-				+ " VALUES(?, ?, ?, SYSDATE, ?)";
+				+ " VALUES(SEQ_RECOMMENT.NEXTVAL, ?, ?, SYSDATE, ?)";
 
 		PreparedStatement preparedStatement = connection.prepareStatement(sql);
 		
 		try
 		{
-			preparedStatement.setString(1, diaryDto.getReco_seq());
+			
+			preparedStatement.setString(1, diaryDto.getComment_seq());
+			System.out.println(diaryDto.getReco_seq());
 			preparedStatement.setString(2, diaryDto.getReco_cont());
-			preparedStatement.setString(3, diaryDto.getReco_cont());
-			preparedStatement.setString(4, diaryDto.getUser_id());
+			System.out.println(diaryDto.getReco_cont());
+			preparedStatement.setString(3, diaryDto.getUser_id());
+			System.out.println(diaryDto.getUser_id());
 			
 			result = preparedStatement.executeUpdate();
 			preparedStatement.close();
