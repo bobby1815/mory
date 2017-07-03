@@ -43,29 +43,29 @@ input
           }
         });
         
-		/* 모델 1 */
-		$("#myBtn").click(function() {
-			$("#myModal3").modal();
-		});
+      /* 모델 1 */
+      $("#myBtn").click(function() {
+         $("#myModal3").modal();
+      });
    
-	  /* 모델 1 */
+     /* 모델 1 */
 
-		$("#myBtn").click(function() {
-			$("#write").modal();
-		});
+      $("#myBtn").click(function() {
+         $("#write").modal();
+      });
 
-	  /*내정보  */
+     /*내정보  */
 
-		$("#myBtn").click(function() {
-			$("#myinput").modal();
-		});
+      $("#myBtn").click(function() {
+         $("#myinput").modal();
+      });
         
       });
       
-	$("#saveBtn").click(function()
-	{
-		$("#form").submit();
-	});
+   $("#saveBtn").click(function()
+   {
+      $("#form").submit();
+   });
   
       
     </script>
@@ -238,7 +238,7 @@ input
             </div> -->
 
 
-		<!-- 알림 -->
+      <!-- 알림 -->
        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
              <div class="modal-dialog">
                   <div class="modal-content">
@@ -254,7 +254,7 @@ input
                <div class="modal-dialog">
                   <div class="modal-content">
                      <div class="modal-header" style="text-align: center;">
-		<form action="newsfeedinsert.do" method="post" enctype="multipart/form-data" id="form">
+      <form action="newsfeedinsert.do" method="post" enctype="multipart/form-data" id="form">
          <div id="divPeedPhoto"></div>
          <input type="file" name="profile_pt" id="profile_pt"onchange="previewImage(this,'divPeedPhoto')"style="text-align: center;">
          </div>
@@ -284,46 +284,54 @@ input
     
 <!--  내정보  -->
 
-				<div class="modal fade" id="myinput" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header" style="text-align: center;">
+            <div class="modal fade" id="myinput" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header" style="text-align: center;">
 
-								<div id="divPeedPhoto"></div>
-								<input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
-								<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div id="divPeedPhoto"></div>
+                        <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
 
+<<<<<<< HEAD
 							</div>
 							<div class="modal-body" style="text-align: center;">
 								이름 : 김민준 <br> 닉네임 : 뀨?
 							</div>
 							<div class="modal-footer ">
+=======
+                     </div>
+                     <div class="modal-body" style="text-align: center;">
+                        이름 : 김민준 <br> 닉네임 : 뀨?
+                     </div>
+                     <div class="modal-footer ">
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 
-								<div class="col-xs-12 col-md-12">
-									<div class="col-xs-4 col-md-4" style="text-align: left;">
-										<button type="button" value="뉴스피드">뉴스피드</button>
-									</div>
-									<div class="col-xs-4 col-md-4" style="text-align: center;">
-										<button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
-									</div>
-									<div class="col-xs-4 col-md-4" style="text-align: right;">
-										<button type="button" value="커뮤니티">커뮤니티</button>
-									</div>
-								</div>
+                        <div class="col-xs-12 col-md-12">
+                           <div class="col-xs-4 col-md-4" style="text-align: left;">
+                              <button type="button" value="뉴스피드">뉴스피드</button>
+                           </div>
+                           <div class="col-xs-4 col-md-4" style="text-align: center;">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
+                           </div>
+                           <div class="col-xs-4 col-md-4" style="text-align: right;">
+                              <button type="button" value="커뮤니티">커뮤니티</button>
+                           </div>
+                        </div>
 
 
-								<div class="col-xs-12 col-md-12">
-									<div class="col-xs-4 col-md-4" style="text-align: left;">
-										<button type="button" value="다이어리">다이어리</button>
-									</div>
-									<div class="col-xs-4 col-md-4"></div>
-									<div class="col-xs-4 col-md-4" style="text-align: right;">
-										<button type="button" value="개인정보">개인정보</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                        <div class="col-xs-12 col-md-12">
+                           <div class="col-xs-4 col-md-4" style="text-align: left;">
+                              <button type="button" value="다이어리">다이어리</button>
+                           </div>
+                           <div class="col-xs-4 col-md-4"></div>
+                           <div class="col-xs-4 col-md-4" style="text-align: right;">
+                              <button type="button" value="개인정보">개인정보</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
