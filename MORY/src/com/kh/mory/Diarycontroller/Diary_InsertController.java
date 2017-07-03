@@ -31,29 +31,56 @@ public class Diary_InsertController implements Controller
 		String diary_post_title  = request.getParameter("diary_post_title");
 		String write_reg_dtm = request.getParameter("write_reg_dtm");
 		String write_cont = request.getParameter("write_cont");
+		String requ_seq = request.getParameter("requ_seq");
 		
-		DiaryDTO dto = dao.mydiary(user_id);
+		DiaryDTO dto = null;
+		String diary_seq = null;
+		
+		if (requ_seq ==null|| requ_seq =="")
+		{
+			dto = dao.mydiary(user_id);
+			diary_seq = dto.getDiary_seq();
+		}
+		else {
+			dto = dao.couplediary(requ_seq);
+		}
 
-		String diary_seq = dto.getDiary_seq();
-		System.out.println(diary_seq);
+ 
+		
 		try
 		{
 			DiaryDTO diary = new DiaryDTO();
 			
 			diary.setUser_id(user_id);
-			diary.setDiary_post_title(diary_post_title);
 			diary.setWrite_reg_dtm(write_reg_dtm);
 			diary.setWrite_cont(write_cont);
-			diary.setDiary_requ_seq(diary_seq);
-			System.out.println(diary_seq);
+			diary.setDiary_post_title(diary_post_title);
+			
+			
+			if (requ_seq ==null || requ_seq =="")
+			{
+				
+				diary.setDiary_requ_seq(diary_seq);
+				diary.setDiary_type_code("1");
+				
+				int a = dao.add(diary);
+				mav.setViewName("redirect:diary.do");
+			}
+			else 
+			{
+				diary.setDiary_requ_seq(requ_seq);
+				diary.setDiary_type_code("2");
+				
+				int b = dao.add(diary);
+				
+				mav.setViewName("redirect:diary.do?requ_seq="+requ_seq);
+			}
 			
 			
 			
-			int a = dao.add(diary);
 			
-			System.out.println(a);
 			
-			mav.setViewName("redirect:diary.do");
+			
 
 		} catch (Exception e)
 		{

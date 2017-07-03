@@ -498,7 +498,14 @@
 			<div class="col-xs-1 col-md-1" id="b1">b1</div>
 			<div class="col-xs-10 col-md-10" id="b2">
 				<div>
-					<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center"  readonly="readonly" >
+					<c:choose>
+						<c:when test="${diary.diary_name eq null}">
+							<input type="text" class="form-control" value="${couplediary.shar_diary_name }" style="text-align: center" readonly="readonly" >
+						</c:when>
+						<c:otherwise>
+							<input type="text" class="form-control" value="${diary.diary_name }" style="text-align: center" readonly="readonly" >
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div>
 					<input type="text" class="form-control" value="다이어리 작성" style="text-align: center" readonly="readonly" >
@@ -524,7 +531,7 @@
 						<br />
 						<button style="margin-left: 90%;" class="deleteBtn">삭제</button>
 						<br />
-						${diaryDTO.write_cont }
+						${diaryDTO.write_cont}
 					</div>
 					<div class="col-xs-12 col-md-12" style="align: right;" >
 						 

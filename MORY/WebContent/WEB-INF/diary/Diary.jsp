@@ -177,7 +177,7 @@
 				<%-- 
 				<a ${matecheck>0 ? "href='diary.do?requ_seq='"+couplediary.requ_seqd: '' } > <img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a>
 				 --%>
-				 <c:if test="${matecheck>0 }"><a href="diary.do?requ_seq=${couplediary.requ_seq }"><img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a></c:if>
+				 <c:if test="${matecheck>0 }"><a href="diary.do?requ_seq=${matecheck }"><img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a></c:if>
 				</div>
 				<div class="col-xs-1 col-md-1">
 				<!-- <span class="glyphicon glyphicon-user" style="font-size: 30px; color: yellow;"></span> -->
@@ -199,7 +199,6 @@
 			<div class="col-xs-3 col-md-3"></div>
 			<div class="col-xs-6 col-md-6">
 			<c:choose>
-
 				<c:when test="${diary.diary_name eq null}">
 					<input type="text" class="form-control" value="${couplediary.shar_diary_name }" style="text-align: center" readonly="readonly" >
 				</c:when>
@@ -232,8 +231,17 @@
 				<div id="Demo1" class="w3-container w3-hide">
 				  <a href="" style="width: 100px;" class="glyphicon glyphicon-user btn-lg"></a><br />
 				  <a href="" class="glyphicon glyphicon-time btn-lg"></a><br />
-				  <a href="diaryinsertform.do" class="glyphicon glyphicon-pencil btn-lg"></a><br />
-				  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
+				  
+				  <c:choose>
+				<c:when test="${diary.diary_name eq null}">
+					<a href="diaryinsertform.do?requ_seq=${matecheck}" class="glyphicon glyphicon-pencil btn-lg"></a><br />
+				</c:when>
+				<c:otherwise>
+					<a href="diaryinsertform.do" class="glyphicon glyphicon-pencil btn-lg"></a><br />
+				</c:otherwise>
+			</c:choose>
+				  
+				  
 				</div>
 			</div>
 		</div>	
@@ -258,10 +266,10 @@
 										<c:choose>
 										
 											<c:when test="${diary.diary_name eq null}">
-												<input type="text" id="diary_name" name="diary_name" value="${ couplediary.shar_diary_name }" placeholder="다이어리 제목을 입력하세요"  >
+												<input type="text" id="diary_name" name="diary_name" value="${couplediary.shar_diary_name}" placeholder="다이어리 제목을 입력하세요"  >
 											</c:when>
 											<c:otherwise>
-												<input type="text" id="diary_name" name="diary_name" value="${ (diary.diary_name)}" placeholder="다이어리 제목을 입력하세요"  >
+												<input type="text" id="diary_name" name="diary_name" value="${diary.diary_name}" placeholder="다이어리 제목을 입력하세요"  >
 											</c:otherwise>
 										</c:choose>
 										

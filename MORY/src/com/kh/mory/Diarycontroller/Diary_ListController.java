@@ -47,10 +47,10 @@ public class Diary_ListController implements Controller
 			
 			if (requ_seq == null)
 			{	
-				diaryList = dao.list(diary_seq);
+			
 				dto =  dao.mydiary(user_id);
+				diaryList = dao.list(dto.getDiary_seq());
 				 diary_seq = dto.getDiary_seq();
-				 System.out.println(dto.getDiary_name());
 			}else if (diary_seq == null) {
 				diaryList = dao.couplelist(requ_seq);
 				System.out.println("couple");
@@ -59,11 +59,10 @@ public class Diary_ListController implements Controller
 			int matecheck = dao.matecheck(user_id);
 			
 			
-			if (matecheck >0)
-			{
-				couplediary = dao.couplediary(user_id);
-				System.out.println(couplediary.getShar_diary_name());
-			}
+			
+			couplediary = dao.couplediary(requ_seq);
+			System.out.println(couplediary.getShar_diary_name());
+			
 			
 
 			
