@@ -396,7 +396,7 @@ input
 		</div>
     </div>
     
-    
+     
     
        <!-- 알림 -->
        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
