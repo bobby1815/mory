@@ -13,4 +13,5 @@ public interface Setup_IFamily_Management
 {
 	public int memberInsert(Setup_Family_ManagementDTO dto) throws SQLException;
 	public ArrayList<Setup_Family_ManagementDTO> memberList(String requ_user_id) throws SQLException;
+	public ArrayList<Setup_Family_ManagementDTO> shareDiaryList(String requ_user_id) throws SQLException;
 }

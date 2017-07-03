@@ -5,6 +5,17 @@ public class Setup_Family_ManagementDTO
 	// 주요 속성 구성
 	private String requ_user_id, mem_rel_code, acce_user_id, requ_reg_dtm;
 	private String acce_user_name;
+	private String share_diary_name;
+	
+	
+	public String getShare_diary_name()
+	{
+		return share_diary_name;
+	}
+	public void setShare_diary_name(String share_diary_name)
+	{
+		this.share_diary_name = share_diary_name;
+	}
 	private int requ_seq;
 	
 	// getter / setter 구성

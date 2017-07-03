@@ -25,7 +25,7 @@ public class CommunityDAO implements ICommunityDAO
 		int result = 0;
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "{CALL PRC_COMMUNITY_INSERT(?,?,?,?)}";	
+		String sql = "{CALL PRC_COMMUNITYINSERT(?,?,?,?)}";	
 		CallableStatement cstmt = conn.prepareCall(sql);
 		cstmt.setString(1, community.getWrite_user_id());
 		cstmt.setString(2, community.getWrite_cont());
@@ -221,7 +221,7 @@ public class CommunityDAO implements ICommunityDAO
 	}
 
 	@Override
-	public ArrayList<CommunityDTO> mypost_list(CommunityDTO dto) throws SQLException 
+	public ArrayList<CommunityDTO> mypost_list( ) throws SQLException 
 	{
 		
 		ArrayList<CommunityDTO> result = new ArrayList<CommunityDTO>();
@@ -238,6 +238,7 @@ public class CommunityDAO implements ICommunityDAO
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
+		CommunityDTO dto = new CommunityDTO();
 		
 		pstmt.setString(1, dto.getWrite_user_id());
 		
