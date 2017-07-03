@@ -35,19 +35,20 @@ public class Newsfeed_NewsfeedController implements Controller
 		ModelAndView mav = new ModelAndView();
 		
 		HttpSession session = request.getSession();
-		// �꽭�뀡�뿉 ���옣�맂 �궗�슜�옄 ID
+		// 로그인한 사용자 id
 		String user_id = (String)session.getAttribute("user_id");
 		
+		// 뉴스피드 작성 폼
 		if (request.getRequestURI().indexOf("newsfeedinsertform.do") > -1)
 		{
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_Input.jsp");
 		}
-		// �돱�뒪�뵾�뱶 �씤�꽌�듃s
+		// 뉴스피드 작성
 		else if (request.getRequestURI().indexOf("newsfeedinsert.do") > -1)
 		{
 			request.setCharacterEncoding("UTF-8");
 			
-			// ���옣 寃쎈줈
+			// 업로드 파일 경로
 			//String path = "D:\\MORY\\mory_ay\\WebContent\\uploads";
 			String root = request.getServletContext().getRealPath("/");
 			String path = root + "newsfeedupload";
@@ -55,12 +56,12 @@ public class Newsfeed_NewsfeedController implements Controller
 			 System.out.println(path);
 			// C:\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload
 			
-			// ���옣 �뵒�젆�꽣由�(�뤃�뜑)媛� 議댁옱�븯吏� �븡�쑝硫� �깮�꽦
+			// 폴더 경로가 존재하지않으면 생성
 			File dir = new File(path);
 			if(!dir.exists()) dir.mkdirs();
 			
-			String encType = "UTF-8";	//-- �씤肄붾뵫 諛뺤떛
-			int maxFileSize = 5*1024*1024;	//-- �쟾�넚 理쒕� �궗�씠利�
+			String encType = "UTF-8";	//-- 인코딩 방식
+			int maxFileSize = 5*1024*1024;	//-- 최대 사이즈
 			
 			MultipartRequest req = null;
 			try
@@ -69,10 +70,12 @@ public class Newsfeed_NewsfeedController implements Controller
 				
 				Newsfeed_NewsfeedDTO newsfeed_NewsfeedDTO = new Newsfeed_NewsfeedDTO();
 				
+				String write_cont = req.getParameter("write_cont");
 				//newsfeed_NewsfeedDTO.setWrite_cont(req.getParameter("write_cont"));
+				newsfeed_NewsfeedDTO.setWrite_cont(write_cont);
 				newsfeed_NewsfeedDTO.setWrite_user_id(user_id);
 				
-				// ���옣寃쎈줈
+				// 업로드한 파일명
 				String uplo_loca = req.getFilesystemName("profile_pt");
 				int res = feedDao.newsFeedInsert(newsfeed_NewsfeedDTO, uplo_loca);
 
@@ -83,10 +86,9 @@ public class Newsfeed_NewsfeedController implements Controller
 				System.out.println(e.toString());
 			}
 		}
-		// �돱�뒪�뵾�뱶 議고쉶
+		// 뉴스피드 리스트
 		else if (request.getRequestURI().indexOf("newsfeedlist.do") > -1)
 		{
-			
 			mav.addObject("list",feedDao.newsFeedLists(user_id));
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_List.jsp");
 		}
