@@ -221,7 +221,7 @@ public class CommunityDAO implements ICommunityDAO
 	}
 
 	@Override
-	public ArrayList<CommunityDTO> mypost_list(CommunityDTO dto) throws SQLException 
+	public ArrayList<CommunityDTO> mypost_list( ) throws SQLException 
 	{
 		
 		ArrayList<CommunityDTO> result = new ArrayList<CommunityDTO>();
@@ -238,6 +238,7 @@ public class CommunityDAO implements ICommunityDAO
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
+		CommunityDTO dto = new CommunityDTO();
 		
 		pstmt.setString(1, dto.getWrite_user_id());
 		

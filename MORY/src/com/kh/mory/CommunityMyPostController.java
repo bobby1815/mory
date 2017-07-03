@@ -32,7 +32,11 @@ public class CommunityMyPostController implements Controller
 		
 		String  community_title1 = request.getParameter("community_title1");
 		String  community_title = request.getParameter("community_title");
-		String  write_reg_dtm = request.getParameter("write_reg_dtm");
+		String  write_cont = request.getParameter("write_cont");
+		
+		
+		
+		
 		
 		
 		
@@ -42,14 +46,16 @@ public class CommunityMyPostController implements Controller
 			CommunityDTO dto = new CommunityDTO();
 			
 			
+			
 			dto.setCommunity_title(community_title);
+			dto.setWrite_cont(write_cont);
 			dto.setCommunity_title(community_title1);
-			dto.setWrite_reg_dtm(write_reg_dtm);
+			
 			
 			String write_user_id =  (String)session.getAttribute("user_id");
 			
 			search_list = dao.search_list(dto);
-			mypost_list = dao.mypost_list(dto);
+			mypost_list = dao.mypost_list();
 			
 			
 			modelandview.addObject("search_list", search_list);
