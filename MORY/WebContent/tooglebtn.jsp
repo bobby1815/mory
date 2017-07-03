@@ -172,7 +172,7 @@ input
       }	
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script>
+<script>
       $( document ).ready( function() {
         var moryOffset = $( '.menu' ).offset();
         $( window ).scroll( function() {
@@ -396,19 +396,5 @@ input
 		</div>
     </div>
     
-     
-    
-       <!-- 알림 -->
-       <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-             <div class="modal-dialog">
-                  <div class="modal-content">
-                     <div class="modal-header" style="text-align: center; color: black;">
-                        <h4>알림</h4>
-                     </div>
-                        <jsp:include page="WEB-INF/Source/Common_AlarmList.jsp"></jsp:include>
-                     <div class="modal-footer "></div>
-                  </div>
-               </div>
-            </div>
 
     
