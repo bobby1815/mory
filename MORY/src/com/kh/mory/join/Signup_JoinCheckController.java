@@ -36,9 +36,6 @@ public class Signup_JoinCheckController implements Controller
 			int idcnk = userDao.userIdCheck(user_id);
 			int niccnk = userDao.userNicknameCheck(user_nic);
 			
-			System.out.println("idcnk : "+idcnk);
-			System.out.println("niccnk : "+niccnk);
-			
 			modelAndView.addObject("idcnk", idcnk);
 			modelAndView.addObject("niccnk", niccnk);
 			modelAndView.setViewName("WEB-INF/join/Signup_JoinCheck.jsp");

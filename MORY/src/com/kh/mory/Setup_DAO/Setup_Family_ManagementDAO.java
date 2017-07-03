@@ -109,6 +109,65 @@ public class Setup_Family_ManagementDAO implements Setup_IFamily_Management
 		
 		return res;
 	}
+
+	// 내가 공유받는 공유다이어리 리스트
+	@Override
+	public ArrayList<Setup_Family_ManagementDTO> shareDiaryList(String requ_user_id) throws SQLException
+	{
+		ArrayList<Setup_Family_ManagementDTO> res = new ArrayList<Setup_Family_ManagementDTO>();
+		
+		Connection connection = dataSource.getConnection();
+		
+		try
+		{
+			String sql = "SELECT"
+					+ "     P.REQU_USER_ID AS REQU_USER_ID"
+					+ "     , P.USER_NIC AS USER_NIC"
+					+ "     , P.REQU_SEQ AS REQU_SEQ"
+					+ "     , P.SHARE_DIARY_NAME AS SHARE_DIARY_NAME"
+					+ "  FROM"
+					+ "     ("
+					+ "         SELECT"
+					+ "             A.REQU_USER_ID AS REQU_USER_ID"
+					+ "             ,A.ACCE_USER_ID AS ACCE_USER_ID"
+					+ "             ,B.REQU_SEQ AS REQU_SEQ"
+					+ "             ,C.USER_NIC AS USER_NIC"
+					+ "             ,D.SHARE_DIARY_NAME AS SHARE_DIARY_NAME"
+					+ "          FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B,TBL_USER C , TBL_SHARE_DIARY D"
+					+ "          WHERE A.REQU_SEQ = B.REQU_SEQ"
+					+ "          AND A.REQU_USER_ID = C.USER_ID"
+					+ "         AND B.REQU_SEQ = D.SHARE_DIARY_SEQ"
+					+ "     ) P , TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B "
+					+ "WHERE 1=1 "
+					+ " AND (P.REQU_USER_ID = A.REQU_USER_ID OR  P.ACCE_USER_ID = A.REQU_USER_ID)"
+					+ " AND A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='20'"
+					+ " AND B.RESULT_YN='Y'"
+					+ " AND A.ACCE_USER_ID=?";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, requ_user_id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next())
+			{
+				Setup_Family_ManagementDTO dto = new Setup_Family_ManagementDTO();
+				
+				dto.setRequ_seq(resultSet.getInt("REQU_SEQ"));
+				dto.setShare_diary_name(resultSet.getString("SHARE_DIARY_NAME"));
+				
+				res.add(dto);
+			}
+		
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return res;
+	}
+	
+
+	
 	
 	
 }
