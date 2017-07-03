@@ -255,8 +255,8 @@
 							<div class="modal-header" style="text-align: center;">
 							</div>
 							
-							<form action="diarynameupdate.do">
-							<div class="modal-body" style="height: 300px;">
+							<form action="diarynameupdate.do" method="post" >
+							<div class="modal-body" style="height: 300px;" >
 								<div class="col-xs-12 col-md-12"
 									style="border: 1px solid; height: 50px;">
 									<div class="col-xs-3 col-md-3" style="">
@@ -266,13 +266,13 @@
 										<c:choose>
 											<c:when test="${diary.diary_name eq null}">
 												<input type="text" id="diary_name" name="diary_name" value="${couplediary.shar_diary_name}" placeholder="다이어리 제목을 입력하세요"  >
-												<input type="hidden" id="diary_seq" name="diary_seq"  />												
-												<input type="hidden" id="diary_type"  name="diary_type"  />
+												<input type="hidden" id="diary_seq" name="diary_seq" value="${matecheck }" />												
+												<input type="hidden" id="diary_type"  name="diary_type" value="2" />
 											</c:when>
 											<c:otherwise>
 												<input type="text" id="diary_name" name="diary_name" value="${diary.diary_name}" placeholder="다이어리 제목을 입력하세요"  >
-												<input type="hidden" id="diary_seq" name="diary_seq" />												
-												<input type="hidden" id="diary_type" name="diary_type" />
+												<input type="hidden" id="diary_seq" name="diary_seq" value="" />												
+												<input type="hidden" id="diary_type" name="diary_type" value="1" />
 											</c:otherwise>
 										</c:choose>
 									</div>

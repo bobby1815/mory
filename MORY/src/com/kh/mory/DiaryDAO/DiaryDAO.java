@@ -299,7 +299,7 @@ public class DiaryDAO implements IDiaryDAO
 		Connection conn = dataSource.getConnection();
 		
 		//���� ���� (����, ���� ,÷������)
-		String sql = "UPDATE TBL_MY_DIARY SET  DIRAY_NAME = ? WHERE DIARY_SEQ = ?";
+		String sql = "UPDATE TBL_MY_DIARY SET  DIARY_NAME = ? WHERE DIARY_SEQ = ?";
 		
 		try
 		{
@@ -335,10 +335,12 @@ public class DiaryDAO implements IDiaryDAO
 		{
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, diary.getShar_diary_name());
-			pstmt.setString(2, diary.getShare_diary_seq());
-			
+			pstmt.setString(1, diary.getDiary_name());
+			pstmt.setString(2, diary.getDiary_seq());
+			System.out.println(diary.getDiary_name());
+			System.out.println(diary.getDiary_seq());
 			result = pstmt.executeUpdate();
+			System.out.println(result);
 			pstmt.close();
 			conn.close();
 			

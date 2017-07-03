@@ -24,7 +24,7 @@ public class Diary_ListController implements Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		
+		request.setCharacterEncoding("UTF-8");
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
