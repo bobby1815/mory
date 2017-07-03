@@ -27,7 +27,7 @@ background:#FF607F
                     <div class="drop-menu " id="userbtn"><h4>계정관리</h4></div>
                 </a>
                 <div id="mem" class="collapse in ">
-                    <a href="userlist.do?start=0&end=0">
+                    <a href="userlist.do">
                         <div class="drop-menu">
                         	<h5>└ 계정조회</h5>
                         </div>

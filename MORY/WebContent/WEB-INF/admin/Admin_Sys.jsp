@@ -67,7 +67,7 @@
 					<h3>탈퇴 유예기간 설정</h3>
 			</div>
 			<form action="systemleavesetup.do?leave_seq=${leave_seq }" method="post">
-			<div class="row col-xs-12 col-md-12"style="height: 50px;background-color: lightgray; margin-left: 3px;">
+			<div class="row col-xs-12 col-md-12"style="height: 50px;background-color:#FEBEBE; margin-left: 3px;">
 					<div class="col-xs-4 col-md-4">현재 유예기간 <input type="text" class="" style="width:60px; height: 40px;" readonly="readonly" value="${leave_code}">일 </div>
 					<div class="col-xs-4 col-md-4">변경 유예기간 <input type="text"style="width:60px; height: 40px;" name="leave_code">일</div>
 					<div class="col-xs-3 col-md-3"><button type="submit" style="width:90px;" class="btn btn-default md" >저장</button></div>
@@ -85,7 +85,7 @@
 					</c:otherwise>
 				</c:choose>
 				<form action="systemblindsetup.do?page_code=${dto.page_code }&setup_seq=${dto.setup_seq}" method="post" >
-					<div class="row col-xs-12 col-md-12"style=" height: 50px;background-color: lightgray;">
+					<div class="row col-xs-12 col-md-12"style=" height: 50px;background-color:#FEBEBE;">
 						<div class="col-xs-4 col-md-4">신고 횟수<input type="text"style="width:60px; height: 40px; margin-left: 30px;"readonly="readonly" value="${dto.decl_cnt }">건 </div>
 						<div class="col-xs-4 col-md-4">변경 횟수<input type="text"style="width:60px; height: 40px; margin-left: 30px;" name="decl_cnt">건</div>
 						<div class="col-xs-3 col-md-3"><button type="submit" style="width:90px;" class="btn btn-default md">저장</button></div>
@@ -98,9 +98,9 @@
 				<h3>상태 설정</h3>
 			</div>
 		
-			<div class="row col-xs-12 col-md-12"style="height: 200px;background-color: lightgray;">
+			<div class="row col-xs-12 col-md-12"style="height: 200px;background-color:#FEBEBE;">
 					<div class="col-xs-5 col-md-5">
-						<table border="1px;" style="margin-top: 15px;background-color: white;">
+						<table class="table-bordered table-hover" style="margin-top: 15px;background-color: white;">
 							<tr>
 								<th>블라인드 피드 수</th>
 								<th>계정 상태</th>

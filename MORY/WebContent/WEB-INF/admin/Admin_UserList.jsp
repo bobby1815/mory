@@ -1,11 +1,5 @@
 <%@ page  contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% int start= Integer.parseInt(request.getParameter("start"));
-	int end= Integer.parseInt(request.getParameter("end"));
-
-	int next =start+10;
-	int prex = end+10;
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +27,7 @@
     footer a{color:grey; text-decoration: underline;}
 tr{min-height: 100px;}
 </style>
-<form action="./adminsearch.do?start=1&end=10" method="post">
+<form action="./adminsearch.do" method="post">
 <div class="container">
 	<!-- 첫번째 row  -->
 	<div class="row " id="all0">
@@ -111,19 +105,6 @@ tr{min-height: 100px;}
 		</div>
 	</div>
 </form>
-<div class="col-md-12">
-
-
-	<div class="col-md-8 text-right">
-		<button class="btn btn-info"> 이전 </button>
-	</div>
-
-	<div class="col-md-4 text-left "">
-			<button class="btn btn-info" onclick="location.href='./adminsearch.do?start=11&end=21'" >다음</button>
-			<div onclick="location.href='./adminsearch.do?start=11&end=21'" >ggg</div>
-	</div>
-</div>	
-
 	<!-- 데이터 상세조회  -->
 	<div id="lista" class="row"  style="display: none;">
 			<c:import url="/WEB-INF/menu/Admin_Detail.jsp"></c:import>
