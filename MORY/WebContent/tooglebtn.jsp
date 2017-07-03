@@ -147,7 +147,7 @@ input
   <a href="#" class="menu-item"> <i class="fa fa-cog"></i> </a>  
   <a href="#" class="menu-item" data-toggle="modal" data-target="#write"> <i class="fa fa-plus"></i> </a>
   <a href="#" class="menu-item"> <i class="fa fa-heart"></i> </a>
-  <a href="#" class="menu-item" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-envelope"></i> </a>
+  <a href="commonalarmlist.do" class="menu-item" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-envelope"></i> </a>
 
 </nav>
 

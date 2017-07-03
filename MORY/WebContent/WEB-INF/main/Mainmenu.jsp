@@ -19,7 +19,7 @@
 	padding: 0;
 	margin: 0 auto;
 	width: 100%;
-	background-color: black;
+	background-color: lightyellow;
 	
 } 
 
@@ -40,8 +40,8 @@
             </div>
             <div class="col-xs-4 col-md-4"style="text-align: center;">   
                <a href="newsfeedlist.do" style="margin:0px ; color:black;">
-                     <img src="img/logo.png" width="100"/>
-                      <img src="img/Mainlogo.png" width="100" />
+                     <img src="img/Mory_logo.png" width="100"/>
+                      <img src="img/Mainmory.png" width="100" />
                    </a>
                </div>
                <div class="col-xs-2 col-md-2" style="margin-top: 26px;"> 
