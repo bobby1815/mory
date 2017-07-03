@@ -73,9 +73,6 @@ $(document).ready(function()
 				<form action="diaryupdate.do" method="post" id="diaryForm">
 					<div>
 						<input type="hidden" name="write_seq" value="${diary.write_seq }">
-						<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center"  readonly="readonly" >
-					</div>
-					<div>
 						<input type="text" class="form-control" value="다이어리 작성" style="text-align: center" readonly="readonly" >
 					</div>
 					<div class="col-xs-12 col-md-12"  style="background-color: aqua;">
@@ -89,7 +86,11 @@ $(document).ready(function()
 						</div>
 					</div>
 					<div>
-						<textarea class="form-control" id="write_cont" class="write_cont" name="write_cont"	style="min-height: 450px; height:100%;" placeholder="내용을 입력하세요.">${diary.write_cont }</textarea>
+					<c:set var="a" value="${diary.write_cont }"/>
+							<% String cont = (String)pageContext.getAttribute("a"); 
+							cont = cont.replaceAll("<BR>", "\\\n");%>
+							
+						<textarea class="form-control" id="write_cont" class="write_cont" name="write_cont"	style="min-height: 450px; height:100%;" placeholder="내용을 입력하세요."><%=cont %></textarea>
 						<div class="col-xs-12 col-md-12">
 							<input type="button" name = "submitBtn" id="submitBtn" value="수정완료" class="col-xs-2 col-md-2"> 
 							<input type="file"	value="" class="col-xs-8 col-md-8" > 

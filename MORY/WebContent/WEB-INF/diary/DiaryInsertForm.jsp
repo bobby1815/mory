@@ -42,13 +42,13 @@ $(document).ready(function()
 		
 		if ( $("#write_reg_dtm").val()=="" )
 		{
-			alert("내용이 누락됬습니다.");
+			alert("날짜이 누락됬습니다.");
 			return;	//-- submit 액션 중단.
 		}
 		
 		if ($("#write_cont").val()=="" )
 		{
-			alert("날짜가 누락됬습니다.");
+			alert("내용가 누락됬습니다.");
 			return;	//-- submit 액션 중단.
 		}
 		
@@ -74,7 +74,14 @@ $(document).ready(function()
 			<div class="col-xs-10 col-md-10" id="b2">
 				<form action="diaryinsert.do" method="post" id="diaryForm">
 					<div>
-						<input type="text" class="form-control" value="민준이의 다이어리" style="text-align: center"  readonly="readonly" >
+						<c:choose>
+							<c:when test="${diary.diary_name eq null}">
+								<input type="text" class="form-control" value="${couplediary.shar_diary_name }" style="text-align: center" readonly="readonly" >
+							</c:when>
+							<c:otherwise>
+								<input type="text" class="form-control" value="${diary.diary_name }" style="text-align: center" readonly="readonly" >
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div>
 						<input type="text" class="form-control" value="다이어리 작성" style="text-align: center" readonly="readonly" >
@@ -83,6 +90,7 @@ $(document).ready(function()
 						<div class="col-xs-6 col-md-6" align="left">
 							<label style="text-align: left; color: white;  ">제목 :</label>
 							<input type="text" id="diary_post_title" name="diary_post_title" class="diary_post_title" placeholder="제목을 입력하세요." style="width: 70%;">
+							
 						</div>
 						<div align="right" class="col-xs-6 col-md-6">
 							<label style="text-align: right;  color: white; ">일시 :</label>
@@ -98,7 +106,8 @@ $(document).ready(function()
 								<input type="button" value="취소" class="col-xs-2 col-md-2"  >
 							</a>
 						</div>
-					</div>	
+					</div>
+					<input type="hidden" id="requ_seq" name="requ_seq" class="requ_seq" value="${requ_seq}"/>	
 				</form>
 			</div>
 

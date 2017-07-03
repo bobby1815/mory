@@ -33,11 +33,10 @@ public class DiaryDAO implements IDiaryDAO
 				+ ",A.WRITE_SEQ AS WRITE_SEQ "
 				+ " FROM TBL_WRITE A ,TBL_DIARY_POST B "
 				+ " WHERE A.WRITE_SEQ= B.WRITE_SEQ AND B.REQU_SEQ = ? "
-				+ " AND  DIARY_TYPE_CODE = 1";
+				+ " AND  B.DIARY_TYPE_CODE = 1";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, diary_seq);
 		ResultSet rs = pstmt.executeQuery();		
-		
 		
 		
 		while (rs.next())
@@ -58,7 +57,7 @@ public class DiaryDAO implements IDiaryDAO
 
 		Connection conn = dataSource.getConnection();
 		ArrayList<DiaryDTO> result = new ArrayList<DiaryDTO>();
-		String sql = "SELECT  B.DIARY_POST_TITLE AS TITLE , SUBSTR(TO_CHAR(A.WRITE_REG_DTM),0,10) AS DTM ,A.WRITE_SEQ AS WRITE_SEQ  FROM TBL_WRITE A ,TBL_DIARY_POST B WHERE A.WRITE_SEQ= B.WRITE_SEQ AND B.REQU_SEQ = ? AND  DIARY_TYPE_CODE = 2";
+		String sql = "SELECT  B.DIARY_POST_TITLE AS TITLE , SUBSTR(TO_CHAR(A.WRITE_REG_DTM),0,10) AS DTM ,A.WRITE_SEQ AS WRITE_SEQ  FROM TBL_WRITE A ,TBL_DIARY_POST B WHERE A.WRITE_SEQ= B.WRITE_SEQ AND B.REQU_SEQ = ? AND  B.DIARY_TYPE_CODE = 2";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, requ_seq);
 		ResultSet rs = pstmt.executeQuery();		
@@ -93,10 +92,15 @@ public class DiaryDAO implements IDiaryDAO
 		
 		while (rs.next())
 		{
+			String cont = (rs.getString("CONT"));
+			cont = cont.replaceAll("(\r\n|\r|\n|\n\r)", "<BR>");
+			
+			
 			diary.setWrite_user_id(rs.getString("WRITE_USER_ID"));
 			diary.setWrite_seq(rs.getString("WRITE_SEQ"));
 			diary.setDiary_post_title(rs.getString("TITLE"));
-			diary.setWrite_cont(rs.getString("CONT").replaceAll("\\\\n", " <BR> "));
+			diary.setWrite_cont(cont);
+			System.out.println(cont);
 			diary.setWrite_reg_dtm(rs.getString("DTM"));
 			
 			
@@ -117,22 +121,30 @@ public class DiaryDAO implements IDiaryDAO
 		
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "{CALL INSERT_MY_DIARY_POST(?,?,?,?,?)}";
+		String sql = "{CALL INSERT_DIARY_POST(?,?,?,?,?,?)}";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		
+		System.out.println("입력");
+		System.out.println(diary.getUser_id());
+		System.out.println(diary.getWrite_cont());
+		System.out.println(diary.getWrite_reg_dtm());
+		System.out.println(diary.getDiary_requ_seq());
+		System.out.println(diary.getDiary_post_title());
+		System.out.println(diary.getDiary_type_code());
+		
+		
 		try
 		{
 			
 			// ���� ,����,�Ͻ�,���̾��ȣ,������
 			pstmt.setString(1, diary.getUser_id());
-			System.out.println(diary.getUser_id());
 			pstmt.setString(2, diary.getWrite_cont());
-			System.out.println(diary.getWrite_cont());
 			pstmt.setString(3, diary.getWrite_reg_dtm());
-			System.out.println(diary.getWrite_reg_dtm());
 			pstmt.setString(4, diary.getDiary_requ_seq());
-			System.out.println(diary.getDiary_requ_seq());
 			pstmt.setString(5, diary.getDiary_post_title());
-			System.out.println(diary.getDiary_post_title());
+			pstmt.setString(6, diary.getDiary_type_code());
+			
 			
 			result = pstmt.executeUpdate();
 			pstmt.close();
@@ -161,10 +173,8 @@ public class DiaryDAO implements IDiaryDAO
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, write_seq);
-			System.out.println(write_seq);
 			
 			result = pstmt.executeUpdate();
-			System.out.println(result);
 			pstmt.close();
 			conn.close();
 			
@@ -189,11 +199,16 @@ public class DiaryDAO implements IDiaryDAO
 		{
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
+			String cont = (diary.getWrite_cont());
+			cont = cont.replaceAll("\\\\n\\\\r", "<BR>");
 			pstmt.setString(1, diary.getWrite_seq());
-			pstmt.setString(2, diary.getWrite_cont());
+			System.out.println();
+			pstmt.setString(2, cont);
+			System.out.println();
 			pstmt.setString(3, diary.getWrite_reg_dtm());
+			System.out.println();
 			pstmt.setString(4, diary.getDiary_post_title());
-			
+			System.out.println();
 			
 			result = pstmt.executeUpdate();
 			pstmt.close();
@@ -215,7 +230,7 @@ public class DiaryDAO implements IDiaryDAO
 		Connection conn = dataSource.getConnection();
 		
 		//���� ���� (����, ���� ,÷������)
-		String sql = "SELECT COUNT(*) AS COUNT FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B WHERE  A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='10' AND B.RESULT_YN='Y' AND (A.ACCE_USER_ID = ? OR A.REQU_USER_ID = ? )";
+		String sql = "SELECT B.REQU_SEQ AS REQU_SEQ FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B WHERE  A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='10' AND B.RESULT_YN='Y' AND (A.ACCE_USER_ID = ? OR A.REQU_USER_ID = ? )";
 		
 		
 		try
@@ -230,8 +245,7 @@ public class DiaryDAO implements IDiaryDAO
 			
 			while (rs.next())
 			{
-				result = Integer.parseInt(rs.getString("COUNT"));
-				System.out.println(result);
+				result = Integer.parseInt(rs.getString("REQU_SEQ"));
 				
 				
 			}
@@ -261,7 +275,6 @@ public class DiaryDAO implements IDiaryDAO
 		ResultSet rs = pstmt.executeQuery();		
 		
 
-		System.out.println("테스트");
 		while (rs.next())
 		{
 			DiaryDTO diary = new DiaryDTO();
@@ -270,7 +283,6 @@ public class DiaryDAO implements IDiaryDAO
 			diary.setRequ_seq(rs.getString("REQU_SEQ"));
 			diary.setShar_diary_name(rs.getString("SHARE_DIARY_NAME"));
 			result.add(diary);
-			System.out.println(result);
 			
 		}
 		rs.close();
@@ -287,7 +299,7 @@ public class DiaryDAO implements IDiaryDAO
 		Connection conn = dataSource.getConnection();
 		
 		//���� ���� (����, ���� ,÷������)
-		String sql = "UPDATE TBL_MY_DIARY SET  DIRAY_NAME = ? WHERE DIARY_SEQ = ?";
+		String sql = "UPDATE TBL_MY_DIARY SET  DIARY_NAME = ? WHERE DIARY_SEQ = ?";
 		
 		try
 		{
@@ -317,16 +329,18 @@ public class DiaryDAO implements IDiaryDAO
 		Connection conn = dataSource.getConnection();
 		
 		//���� ���� (����, ���� ,÷������)
-		String sql = "UPDATE TBL_SHARE_DIARY SET SHAR_DIARY_NAME = ? WHERE SHARE_DIARY_SEQ= ?";
+		String sql = "UPDATE TBL_SHARE_DIARY SET SHARE_DIARY_NAME = ? WHERE SHARE_DIARY_SEQ= ?";
 		
 		try
 		{
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, diary.getShar_diary_name());
-			pstmt.setString(2, diary.getShare_diary_seq());
-			
+			pstmt.setString(1, diary.getDiary_name());
+			pstmt.setString(2, diary.getDiary_seq());
+			System.out.println(diary.getDiary_name());
+			System.out.println(diary.getDiary_seq());
 			result = pstmt.executeUpdate();
+			System.out.println(result);
 			pstmt.close();
 			conn.close();
 			
@@ -373,16 +387,15 @@ public class DiaryDAO implements IDiaryDAO
 	}
 
 	@Override
-	public DiaryDTO couplediary(String user_id) throws SQLException
+	public DiaryDTO couplediary(String share_diary_seq) throws SQLException
 	{
 		Connection conn = dataSource.getConnection();
 		
-		String sql = "SELECT A.ACCE_USER_ID AS ACCE_USER_ID  , A.REQU_USER_ID  AS REQU_USER_ID ,A.REQU_SEQ AS REQU_SEQ ,C.SHARE_DIARY_NAME AS SHARE_DIARY_NAME  FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B , TBL_SHARE_DIARY C WHERE  A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='10' AND B.RESULT_YN='Y' AND A.REQU_SEQ=C.SHARE_DIARY_SEQ AND (A.ACCE_USER_ID = ? OR A.REQU_USER_ID = ? )";
+		String sql = "SELECT A.ACCE_USER_ID AS ACCE_USER_ID  , A.REQU_USER_ID  AS REQU_USER_ID ,A.REQU_SEQ AS REQU_SEQ ,C.SHARE_DIARY_NAME AS SHARE_DIARY_NAME  FROM TBL_MEM_REQU A , TBL_MEM_REQU_RESULT B , TBL_SHARE_DIARY C WHERE  A.REQU_SEQ = B.REQU_SEQ AND A.MEM_REL_CODE='10' AND B.RESULT_YN='Y' AND A.REQU_SEQ=C.SHARE_DIARY_SEQ  AND  C.SHARE_DIARY_SEQ = ?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		pstmt.setString(1, user_id);
-		pstmt.setString(2, user_id);
+		pstmt.setString(1, share_diary_seq);
 		
 		ResultSet rs  = pstmt.executeQuery();
 		DiaryDTO diary = new DiaryDTO();
@@ -391,12 +404,10 @@ public class DiaryDAO implements IDiaryDAO
 		{//getRequ_seq
 			diary.setAcce_user_id(rs.getString("ACCE_USER_ID"));
 			diary.setRequ_user_id(rs.getString("REQU_USER_ID"));
-			diary.setRequ_seq(rs.getString("REQU_SEQ"));
 			diary.setShar_diary_name(rs.getString("SHARE_DIARY_NAME"));
-
 			System.out.println(rs.getString("ACCE_USER_ID"));
 			System.out.println(rs.getString("REQU_USER_ID"));
-			System.out.println(rs.getString("REQU_SEQ"));
+			System.out.println(rs.getString("SHARE_DIARY_NAME"));
 			
 		}
 		
