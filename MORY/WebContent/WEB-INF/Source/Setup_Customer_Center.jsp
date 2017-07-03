@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../css/Mainmenu.css" />
+<link rel="stylesheet" href="css/acordian.css" />
+
 <title>고객 센터</title>
 
 <script type="text/javascript">
@@ -78,14 +81,18 @@ width: 200px;
 	font-family: 맑은고딕;
 	font-weight: bold;
 }
-
+#b3
+{
+	margin-top: 30%;
+}
 </style>
 
 </head>
 <body>
+<c:import url="../main/Mainmenu.jsp" /> 
 <div class="container"  id="container">
      <!--Header  -->   
-	<c:import url="../main/Mainmenu.jsp" />    
+	   
  <!--Header End-->   
       
    <!--    Center  --> 
@@ -166,14 +173,7 @@ width: 200px;
          </div>  
          	<!--Center right  -->
             <div class="col-xs-1 col-md-1"  id="b3">
-				<div class="w3-container">
-           
-			<a onclick="myFunction('Demo1')" style="width: 100px; " class="glyphicon glyphicon-plus-sign btn-lg"></a>
-			<div id="Demo1" class="w3-container w3-hide">
-			  <a href="" style="width: 100px;" class="glyphicon glyphicon-user btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-time btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-pencil btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
+			<c:import url="../../tooglebtn.jsp"/> 
 			</div>
 			
 			</div>

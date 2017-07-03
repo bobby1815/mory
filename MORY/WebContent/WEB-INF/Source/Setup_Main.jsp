@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../css/Mainmenu.css" />
+<link rel="stylesheet" href="css/acordian.css" />
+  
   
 
 <title>Update Profile</title>
@@ -33,7 +36,14 @@ $(document).ready(function () {
 
 </script>
 <style type="text/css">
-
+#b3
+{
+	margin-top: 30%;
+}
+#container
+{
+	margin: 0 auto;
+}
 .modal-header, h4, .close {
     background-color: #5cb85c;
     color:white !important;
@@ -78,21 +88,17 @@ width: 200px;
 	color: lightpink;	
 }
 
-#menubtn:HOVER
-{
- box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 </style>
 
 </head>
 <body>
 
-    
+    	<c:import url="../main/Mainmenu.jsp" />   
 <div class="container"  id="container">
       <!--Header  -->   
 
       
-	<c:import url="../main/Mainmenu.jsp" />    
+ 
  <!--Header End-->          
       
    <!--    Center  --> 
@@ -163,38 +169,7 @@ width: 200px;
             <div class="col-xs-1 col-md-1"  id="f3">f3</div>
       </div>      
  
- <!-- MODAL  -->
 
-
-<!-- <div id="myModal" class="modal fade" role="dialog" >
-  <div class="modal-dialog modal-sm"  aria-labelledby="mySmallModalLabel" >
-    Modal content
-    <div class="modal-content">
-      <form action="/userloginsetmain.do" method="get">
-      <div class="modal-header">
-        <h4 class="modal-title">회원 정보 입력</h4>
-      </div>
-      <div class="modal-body">
-        	<table>
-        		<tr>
-        			<th>아이디</th>
-        			<td><input type="text" id="user_id" name="user_Id"/></td>
-        		</tr>
-        		<tr>
-        		<th>비밀번호</th>
-        			<td><input type="password" id="user_pw" name="user_Pw"/></td>
-        		</tr>
-           	</table>
-      </div>
-      <div class="modal-footer">
-      	<button type="submit" class="btn btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-off"></span>본인확인</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
-      </div>
-        </form>
-    </div>
-  </div>
-</div>
- -->
  
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">

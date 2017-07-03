@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,7 +48,7 @@ function myFunction(id) {
 
 
 
-/* ¸ğµ¨  */
+/* ëª¨ë¸  */
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal").modal();
@@ -56,7 +57,7 @@ $(document).ready(function(){
 
 
 
-/* ¸ğµ¨ 1 */
+/* ëª¨ë¸ 1 */
 $(document).ready(function(){
     $("#myBtn").click(function(){
         $("#myModal1").modal();
@@ -73,7 +74,7 @@ function previewImage(targetObj, divPeedPhoto)
    var preview = document.getElementById(divPeedPhoto); //div id
    var ua = window.navigator.userAgent;
 
-   //ieÀÏ¶§(IE8 ÀÌÇÏ¿¡¼­¸¸ ÀÛµ¿)
+   //ieì¼ë•Œ(IE8 ì´í•˜ì—ì„œë§Œ ì‘ë™)
 
    if (ua.indexOf("MSIE") > -1) {
 
@@ -81,17 +82,17 @@ function previewImage(targetObj, divPeedPhoto)
 
       try {
 
-         var src = document.selection.createRange().text; // get file full path(IE9, IE10¿¡¼­ »ç¿ë ºÒ°¡)
+         var src = document.selection.createRange().text; // get file full path(IE9, IE10ì—ì„œ ì‚¬ìš© ë¶ˆê°€)
 
          var ie_preview_error = document.getElementById("ie_preview_error_" + divPeedPhoto);
 
          if (ie_preview_error) {
-            preview.removeChild(ie_preview_error); //error°¡ ÀÖÀ¸¸é delete
+            preview.removeChild(ie_preview_error); //errorê°€ ìˆìœ¼ë©´ delete
          }
 
-         var img = document.getElementById(divPeedPhoto); //ÀÌ¹ÌÁö°¡ »Ñ·ÁÁú °÷
+         var img = document.getElementById(divPeedPhoto); //ì´ë¯¸ì§€ê°€ ë¿Œë ¤ì§ˆ ê³³
 
-         //ÀÌ¹ÌÁö ·Îµù, sizingMethod´Â div¿¡ ¸ÂÃç¼­ »çÀÌÁî¸¦ ÀÚµ¿Á¶Àı ÇÏ´Â ¿ªÇÒ
+         //ì´ë¯¸ì§€ ë¡œë”©, sizingMethodëŠ” divì— ë§ì¶°ì„œ ì‚¬ì´ì¦ˆë¥¼ ìë™ì¡°ì ˆ í•˜ëŠ” ì—­í• 
          img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + src + "', sizingMethod='scale')";
 
       } catch (e) {
@@ -104,15 +105,15 @@ function previewImage(targetObj, divPeedPhoto)
             preview.insertBefore(info, null);
          }
       }
-      //ie°¡ ¾Æ´Ò¶§(Å©·Ò, »çÆÄ¸®, FF)
+      //ieê°€ ì•„ë‹ë•Œ(í¬ë¡¬, ì‚¬íŒŒë¦¬, FF)
    } else {
       var files = targetObj.files;
       for (var i = 0; i < files.length; i++) {
          var file = files[i];
-         var imageType = /image.*/; //ÀÌ¹ÌÁö ÆÄÀÏÀÏ°æ¿ì¸¸.. »Ñ·ÁÁØ´Ù.
+         var imageType = /image.*/; //ì´ë¯¸ì§€ íŒŒì¼ì¼ê²½ìš°ë§Œ.. ë¿Œë ¤ì¤€ë‹¤.
          if (!file.type.match(imageType))
             continue;
-         var prevImg = document.getElementById("prev_" + divPeedPhoto); //ÀÌÀü¿¡ ¹Ì¸®º¸±â°¡ ÀÖ´Ù¸é »èÁ¦
+         var prevImg = document.getElementById("prev_" + divPeedPhoto); //ì´ì „ì— ë¯¸ë¦¬ë³´ê¸°ê°€ ìˆë‹¤ë©´ ì‚­ì œ
          if (prevImg) {
             preview.removeChild(prevImg);
          }
@@ -125,7 +126,7 @@ function previewImage(targetObj, divPeedPhoto)
          img.style.height = '30%';
          preview.appendChild(img);
 
-         if (window.FileReader) { // FireFox, Chrome, Opera È®ÀÎ.
+         if (window.FileReader) { // FireFox, Chrome, Opera í™•ì¸.
             var reader = new FileReader();
             reader.onloadend = (function(aImg) {
                return function(e) {
@@ -186,7 +187,7 @@ function previewImage(targetObj, divPeedPhoto)
 
  
 
- <!--  ³»Á¤º¸  -->
+ <!--  ë‚´ì •ë³´  -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -207,33 +208,33 @@ function previewImage(targetObj, divPeedPhoto)
         
       </div>
       <div class="modal-body" style="text-align: center;">
-        	ÀÌ¸§ : Áøµå·¡°ï <br>
-        	´Ğ³×ÀÓ : Jin
+        	ì´ë¦„ : ì§„ë“œë˜ê³¤ <br>
+        	ë‹‰ë„¤ì„ : Jin
       </div>
       <div class="modal-footer "  >
       	
       	<div class="col-xs-12 col-md-12">
       	<div class="col-xs-4 col-md-4" style="text-align: left;">
-      	<button type="button" value="´º½ºÇÇµå">´º½ºÇÇµå</button>
+      	<button type="button" value="ë‰´ìŠ¤í”¼ë“œ">ë‰´ìŠ¤í”¼ë“œ</button>
       	</div>
       	<div class="col-xs-4 col-md-4" style="text-align: center;">
-      	<button type="button" class="btn btn-default" data-dismiss="modal" >µ¹¾Æ°¡±â</button>
+      	<button type="button" class="btn btn-default" data-dismiss="modal" >ëŒì•„ê°€ê¸°</button>
       	</div>
       	<div class="col-xs-4 col-md-4" style="text-align: right;">
-      		<button type="button" value="Ä¿¹Â´ÏÆ¼">Ä¿¹Â´ÏÆ¼</button>
+      		<button type="button" value="ì»¤ë®¤ë‹ˆí‹°">ì»¤ë®¤ë‹ˆí‹°</button>
       	</div>
       	</div>
       	
       	
       	<div class="col-xs-12 col-md-12">
       	<div class="col-xs-4 col-md-4" style="text-align: left;">
-      	<button type="button" value="´ÙÀÌ¾î¸®">´ÙÀÌ¾î¸®</button>
+      	<button type="button" value="ë‹¤ì´ì–´ë¦¬">ë‹¤ì´ì–´ë¦¬</button>
       	</div>
       	<div class="col-xs-4 col-md-4" >
       
       	</div>
       	<div class="col-xs-4 col-md-4" style="text-align: right;" >
-      		<button type="button" value="°³ÀÎÁ¤º¸">°³ÀÎÁ¤º¸</button>
+      		<button type="button" value="ê°œì¸ì •ë³´">ê°œì¸ì •ë³´</button>
       	</div>
       	
       	</div>
@@ -248,7 +249,7 @@ function previewImage(targetObj, divPeedPhoto)
 
 
 
-<!-- ¾Ë¸² -->
+<!-- ì•Œë¦¼ -->
 
 
 
@@ -256,7 +257,7 @@ function previewImage(targetObj, divPeedPhoto)
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center;">
-      <h4>¾Ë¸²</h4>
+      <h4>ì•Œë¦¼</h4>
       </div>
       <div class="modal-body" style="height: 600px;">
         	<div class="col-xs-12 col-md-12" style="border: 1px solid; height: 50px;">
@@ -265,12 +266,12 @@ function previewImage(targetObj, divPeedPhoto)
         		</div>
         	
         		<div class="col-xs-6 col-md-6">
-        		Áøµå·¡°ï<br>
+        		ì§„ë“œë˜ê³¤<br>
         		2017
         		</div>
         		<div class="col-xs-3 col-md-3" style="text-align: right; margin-top: 10px;">
-        		<button type="button" value="¼ö¶ô">¼ö¶ô</button>
-        		<button type="button" value="°ÅÀı">°ÅÀı</button>
+        		<button type="button" value="ìˆ˜ë½">ìˆ˜ë½</button>
+        		<button type="button" value="ê±°ì ˆ">ê±°ì ˆ</button>
         		</div>
         	
        
