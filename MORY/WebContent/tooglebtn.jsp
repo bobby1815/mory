@@ -132,6 +132,28 @@ input
          }
       }
    }
+   
+   
+   
+   /* 모델 1 */
+	$(document).ready(function() {
+		$("#myBtn").click(function() {
+			$("#myModal3").modal();
+		});
+	});
+
+   
+	  /* 모델 1 */
+	$(document).ready(function() {
+		$("#myBtn").click(function() {
+			$("#write").modal();
+		});
+	});
+   
+   
+   
+   
+   
 </script>
 
 
@@ -175,7 +197,7 @@ input
     </div>
     
     
-       <div class="modal fade" id="write" tabindex="-1" role="dialog"
+       <!-- <div class="modal fade" id="write" tabindex="-1" role="dialog"
                aria-labelledby="myModalLabel" aria-hidden="true">
                <div class="modal-dialog">
                   <div class="modal-content">
@@ -206,8 +228,7 @@ input
                      <div class="modal-footer "></div>
                   </div>
                </div>
-            </div>
-</div>
+            </div> -->
 
 
 <!-- 알림 -->
