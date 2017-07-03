@@ -15,6 +15,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="css/sample.css" />
+<link rel="stylesheet" href="../css/Mainmenu.css" />
+<link rel="stylesheet" href="css/acordian.css" />
+
 <title>메뉴얼</title>
 
 <script type="text/javascript">
@@ -31,7 +34,10 @@ function myFunction(id) {
 
 </script>
 <style type="text/css">
-
+#b3
+{
+	margin-top: 30%;
+}
 
 #setup_th
 {
@@ -50,9 +56,10 @@ width: 200px;
 
 </head>
 <body>
+	<c:import url="../main/Mainmenu.jsp" /> 
 <div class="container"  id="container">
 <!--Header  -->   
-	<c:import url="../main/Mainmenu.jsp" />    
+   
  <!--Header End--> 
       
    <!--    Center  --> 
@@ -109,17 +116,7 @@ width: 200px;
            
 			<!--Center right  -->
             <div class="col-xs-1 col-md-1"  id="b3">
-            <!-- Acordian Action -->
-           <div class="w3-container">
-           
-			<a onclick="myFunction('Demo1')" style="width: 100px; " class="glyphicon glyphicon-plus-sign btn-lg"></a>
-			<div id="Demo1" class="w3-container w3-hide">
-			
-			  <a href="" style="width: 100px;"data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-user btn-lg"></a><br /> 
-			  <a href=""  class="glyphicon glyphicon-time btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-pencil btn-lg"></a><br />
-			  <a href="" class="glyphicon glyphicon-plus btn-lg"></a><br />
-			</div>			
+           <c:import url="../../tooglebtn.jsp"/> 
 			</div>
             
             </div>

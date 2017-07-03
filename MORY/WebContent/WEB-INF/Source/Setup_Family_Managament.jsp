@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="../css/Mainmenu.css" />
+<link rel="stylesheet" href="css/acordian.css" />
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <title>이웃/기웃/가족</title>
@@ -28,7 +31,10 @@ function myFunction(id) {
 
 </script>
 <style type="text/css">
-
+#b3
+{
+	margin-top: 30%;
+}
 
 #setup_th
 {
@@ -82,9 +88,10 @@ width: 200px;
 
 </head>
 <body>
+<c:import url="../main/Mainmenu.jsp" /> 
 <div class="container"  id="container">
    <!--Header  -->   
-	<c:import url="../main/Mainmenu.jsp" />    
+	   
  <!--Header End--> 
    <!--   Center  --> 
       <div class="row " id="Center">
@@ -169,7 +176,7 @@ width: 200px;
 
 			<!--Center right  -->
             <div class="col-xs-1 col-md-1"  id="b3">
-		
+		<c:import url="../../tooglebtn.jsp"/> 
 			 
 			 </div>
 

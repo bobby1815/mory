@@ -28,10 +28,9 @@
 </head>
 <style>
 /* 	 div {border:1px solid lightgrey;}  */
-body{background-image:url("img/pinkback02.png");
-   height:100%;
-   width:100%;
-   margin: auto;
+body{
+background-image:url("img/pinkback02.png"); 
+    background-size: cover;
 }
 .
 </style>
@@ -45,7 +44,7 @@ body{background-image:url("img/pinkback02.png");
 				<div class="col-xs-10 col-md-10  text-center"
 					style="margin-bottom: 30px;" id="h2">
 					<h1>
-						<img alt="error" src="image/logo.png" style="width: 80px;"><img src="img/Mainlogo.png" width="100" />
+						<img alt="error" src="img/mainimage.png" style="width: 80px;"><img src="img/Mainmory.png" width="100" />
 					</h1>
 				</div>
 				<div class="col-xs-1 col-md-1" id="h3"></div>
