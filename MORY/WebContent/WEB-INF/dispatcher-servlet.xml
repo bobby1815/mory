@@ -126,10 +126,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
 	
-	<bean id="feedDao" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
-		<property name="dataSource" ref="remoteDataSource"></property>
-	</bean>
-	
 	<!-- 메인 컨트롤러 -->
 	<bean name="/*main.do" class="com.kh.mory.main.Main_MainController">
 		<property name="userDao" ref="userDao"></property>
@@ -148,11 +144,52 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
 	<!-- 뉴스피드 컨트롤러 -->
+	<bean id="feedDao" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
 	<bean name="/newsfeed*.do" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedController">
 		<property name="feedDao" ref="feedDao"></property>
 	</bean>
 	
+	<bean id="feed_commentDAO" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
 	
+	<bean id="feed_recommentDAO" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
+	
+	<!-- 아영이 트롤 -->
+	<!-- 뉴스피드 댓글 입력 컨트롤러 -->
+	<bean name="/feed_commentinsert.do" class="com.kh.mory.newsfeed.Newsfeed_CommentInsertController">
+		<property name="feed_commentdao" ref="feed_commentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 댓글 수정 컨트롤러 -->
+	<bean name="/feed_commentupdate.do" class="com.kh.mory.newsfeed.Newsfeed_CommentUpdateController">
+		<property name="feed_commentdao" ref="feed_commentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 댓글 삭제 컨트롤러 -->
+	<bean name="/feed_commentdelete.do" class="com.kh.mory.newsfeed.Newsfeed_CommentDeleteController">
+		<property name="feed_commentdao" ref="feed_commentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 답글 입력 컨트롤러 -->
+	<bean name="/feed_recommentinsert.do" class="com.kh.mory.newsfeed.Newsfeed_RecommentInsertController">
+		<property name="feed_recommentdao" ref="feed_recommentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 답글 수정 컨트롤러 -->
+ 	<bean name="/feed_recommentupdate.do" class="com.kh.mory.newsfeed.Newsfeed_RecommentUpdateController">
+		<property name="feed_recommentdao" ref="feed_recommentDAO" ></property>
+	</bean>	
+	<!-- 뉴스피드 답글 삭제 컨트롤러 -->
+	<bean name="/feed_recommentdelete.do" class="com.kh.mory.newsfeed.Newsfeed_RecommentDeleteController">
+		<property name="feed_recommentdao" ref="feed_recommentDAO" ></property>
+	</bean>
+	<!-- 뉴스피드 댓글/답글 리스트 컨트롤러 -->
+	<bean name="/feed_post.do" class="com.kh.mory.newsfeed.Newsfeed_ContentController">
+		<property name="feedDao" ref="feedDao"></property>
+	</bean>
+		
 	
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -372,13 +409,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
  	
 	
-		<!--김민준 김진호 끝 -->
+	<!--김민준 김진호 끝 -->
  	
-  <!-- 이용진 커퓨니티  -->
+    <!-- 이용진 커퓨니티  -->
  	
 	<bean id="communityDAO" class="com.kh.mory.CommunityDAO">
-      <property name="dataSource" ref="remoteDataSource"></property>
-   </bean>
+    	<property name="dataSource" ref="remoteDataSource"></property>
+    </bean>
    
    
     <bean name="/communitymain.do" class="com.kh.mory.CommunityMainController">
@@ -400,4 +437,4 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <!-- 용진 테스트 -->
     <bean name="/test.do" class="com.kh.mory.UnitTest"></bean>
  	
-</beans>
+</beans>	
