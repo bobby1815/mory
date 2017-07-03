@@ -31,9 +31,10 @@ input
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
-      $( document ).ready( function() {
+      $(document).ready(function() {
         var moryOffset = $( '.menu' ).offset();
-        $( window ).scroll( function() {
+        
+        $(window).scroll( function() {
           if ( $( document ).scrollTop() > moryOffset.top ) {
             $( '.menu' ).addClass( 'menufix' );
           }
@@ -41,7 +42,28 @@ input
             $( '.menu' ).removeClass( 'menufix' );
           }
         });
-      } );
+        
+      /* 모델 1 */
+      $("#myBtn").click(function() {
+         $("#myModal3").modal();
+      });
+   
+     /* 모델 1 */
+
+      $("#myBtn").click(function() {
+         $("#write").modal();
+      });
+
+     /*내정보  */
+
+      $("#myBtn").click(function() {
+         $("#myinput").modal();
+      });
+        
+      });
+      
+      
+      
     </script>
 
 <script type="text/javascript">
@@ -132,6 +154,9 @@ input
          }
       }
    }
+   
+   
+   
 </script>
 
 
@@ -144,7 +169,7 @@ input
     <span class="hamburger hamburger-3"></span>
   </label>
 
-  <a href="#" class="menu-item"> <i class="fa fa-cog"></i> </a>  
+  <a href="#" class="menu-item " data-toggle="modal" data-target="#myinput"> <i class="fa fa-cog"></i> </a>  
   <a href="#" class="menu-item" data-toggle="modal" data-target="#write"> <i class="fa fa-plus"></i> </a>
   <a href="#" class="menu-item"> <i class="fa fa-heart"></i> </a>
   <a href="commonalarmlist.do" class="menu-item" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-envelope"></i> </a>
@@ -175,7 +200,7 @@ input
     </div>
     
     
-       <div class="modal fade" id="write" tabindex="-1" role="dialog"
+       <!-- <div class="modal fade" id="write" tabindex="-1" role="dialog"
                aria-labelledby="myModalLabel" aria-hidden="true">
                <div class="modal-dialog">
                   <div class="modal-content">
@@ -206,17 +231,13 @@ input
                      <div class="modal-footer "></div>
                   </div>
                </div>
-            </div>
-</div>
+            </div> -->
 
 
-<!-- 알림 -->
+      <!-- 알림 -->
        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
              <div class="modal-dialog">
                   <div class="modal-content">
-                     <div class="modal-header" style="text-align: center; color: black;">
-                        <h4>알림</h4>
-                     </div>
                         <jsp:include page="WEB-INF/Source/Common_AlarmList.jsp"></jsp:include>
                      <div class="modal-footer "></div>
                   </div>
@@ -254,3 +275,50 @@ input
          </div>
       </div>
     </div>
+    
+    
+<!--  내정보  -->
+
+            <div class="modal fade" id="myinput" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header" style="text-align: center;">
+
+                        <div id="divPeedPhoto"></div>
+                        <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+
+                     </div>
+                     <div class="modal-body" style="text-align: center;">
+                        이름 : 진드래곤 <br> 닉네임 : Jin
+                     </div>
+                     <div class="modal-footer ">
+
+                        <div class="col-xs-12 col-md-12">
+                           <div class="col-xs-4 col-md-4" style="text-align: left;">
+                              <button type="button" value="뉴스피드">뉴스피드</button>
+                           </div>
+                           <div class="col-xs-4 col-md-4" style="text-align: center;">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
+                           </div>
+                           <div class="col-xs-4 col-md-4" style="text-align: right;">
+                              <button type="button" value="커뮤니티">커뮤니티</button>
+                           </div>
+                        </div>
+
+
+                        <div class="col-xs-12 col-md-12">
+                           <div class="col-xs-4 col-md-4" style="text-align: left;">
+                              <button type="button" value="다이어리">다이어리</button>
+                           </div>
+                           <div class="col-xs-4 col-md-4"></div>
+                           <div class="col-xs-4 col-md-4" style="text-align: right;">
+                              <button type="button" value="개인정보">개인정보</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
