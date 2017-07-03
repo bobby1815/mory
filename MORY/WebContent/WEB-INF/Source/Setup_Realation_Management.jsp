@@ -96,7 +96,7 @@ width: 200px;
           	<div align="middle" style="margin-bottom: 50px;">
           		<img src="img/searchUser.png" align="middle" width="200px" />
           	</div>
-          	<form action="searchuser.do" method="post">
+          	<form action="searchuser.do?value=realation" method="post">
           		
           	<div class="col-md-12" style="width: 100%;">
           	<input type="text" name="user_Id" style="width: 60%;" placeholder="search" />
@@ -148,7 +148,7 @@ width: 200px;
 			  </ul>
           	</div>
 
-			     	
+			     <!--깃은왜날힘들게할까  -->	
           	<div id="Neigher_me" class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
           		<div align="middle">
           		<img src="img/hey.png"  width="100px" />
