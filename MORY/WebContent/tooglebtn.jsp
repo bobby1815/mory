@@ -57,7 +57,7 @@ input
      /*내정보  */
 
       $("#myBtn").click(function() {
-         $("#myinput").modal();
+         $("#myinfo").modal();
       });
         
       });
@@ -173,7 +173,7 @@ input
     <span class="hamburger hamburger-3"></span>
   </label>
 
-  <a href="#" class="menu-item " data-toggle="modal" data-target="#myinput"> <i class="fa fa-cog"></i> </a>  
+  <a href="commonprofilesearch.do" class="menu-item " data-toggle="modal" data-target="#myinfo"> <i class="fa fa-cog"></i> </a>  
   <a href="#" class="menu-item" data-toggle="modal" data-target="#write"> <i class="fa fa-plus"></i> </a>
   <a href="#" class="menu-item"> <i class="fa fa-heart"></i> </a>
   <a href="commonalarmlist.do" class="menu-item" data-toggle="modal" data-target="#myModal1"> <i class="fa fa-envelope"></i> </a>
@@ -284,21 +284,23 @@ input
     
 <!--  내정보  -->
 
-            <div class="modal fade" id="myinput" tabindex="-1" role="dialog"
-               aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                <div class="modal-dialog">
                   <div class="modal-content">
+                  	<jsp:include page="WEB-INF/Source/Common_Profile.jsp"></jsp:include>
+       <!--           
                      <div class="modal-header" style="text-align: center;">
 
                         <div id="divPeedPhoto"></div>
                         <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
 
 							</div>
 							<div class="modal-body" style="text-align: center;">
 								이름 : 김민준 <br> 닉네임 : 뀨?
 							</div>
+ -->							
 							<div class="modal-footer ">
                    
                      <div class="modal-footer ">
@@ -326,6 +328,7 @@ input
                            </div>
                         </div>
                      </div>
+
                   </div>
                </div>
             </div>

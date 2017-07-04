@@ -13,7 +13,7 @@ import com.kh.mory.join.Signup_UserDTO;
 
 public class Main_MainController implements Controller
 {
-	Signup_IUserDAO userDao;
+	private Signup_IUserDAO userDao;
 	
 	public void setUserDao(Signup_IUserDAO userDao)
 	{

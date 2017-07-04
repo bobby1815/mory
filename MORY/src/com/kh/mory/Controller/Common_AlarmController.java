@@ -40,7 +40,6 @@ public class Common_AlarmController implements Controller
 		System.out.println("=========================================");
 		System.out.println("Common_AlarmController");
 		System.out.println("=========================================");
-		System.out.println(request.getRequestURI());
 		if (request.getRequestURI().indexOf("commonalarmlist.do") > -1)
 		{
 			modelAndView.addObject("alarmList", alarmDAO.alarmList(user_id));
@@ -50,13 +49,13 @@ public class Common_AlarmController implements Controller
 		else if (request.getRequestURI().indexOf("commonalarmresult.do") > -1)
 		{
 			String result_yn = request.getParameter("result_yn");
-			String requ_seq = request.getParameter("requ_Seq");
+			String requ_seq = request.getParameter("requ_seq");
 			int irequ_seq = Integer.parseInt(requ_seq);
 			alarmDAO.alarmConfirm(irequ_seq, result_yn);
 			
 			modelAndView.setViewName("commonalarmlist.do");
 		}
-		
+		//modelAndView.setViewName("WEB-INF/Source/Common_AlarmList.jsp");
 		
 		return modelAndView;
 	}
