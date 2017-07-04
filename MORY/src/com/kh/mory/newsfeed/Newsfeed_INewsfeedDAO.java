@@ -17,6 +17,8 @@ public interface Newsfeed_INewsfeedDAO
 	public ArrayList<Newsfeed_NewsfeedDTO> newsFeedLists(String user_id);	// 피드 조회
 	public int newsFeedModify(Newsfeed_NewsfeedDTO newsfeed_NewsfeedDTO);	// 피드 수정
 	public int newsFeedRemove(String write_seq);	// 피드삭제
+	public int newsFeedLove(int write_seq, String user_id);	// 사랑해요 버튼 클릭
+	public int newsFeedLoveCnt(int write_seq);
 	// 뉴스피드 댓글 리스트 출력
 	public ArrayList<Newsfeed_NewsfeedDTO> commentList(String write_seq) throws SQLException;
 	// 뉴스피드 댓글 입력

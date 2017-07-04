@@ -46,14 +46,23 @@ p
 #newsfeed_conmmet{border: 2px solid #fdfaf8;}
 
 </style>
+<script type="text/javascript">
+	function loveclick(write_seq)
+	{
+		$.post("newsfeedloveclick.do",{write_seq : write_seq}, function(data)
+		{
+			alert(data);
+			$("#newsfeed_love").val(data);
+		});
+	}
+
+</script>
+
 </head>
 <body>
 		<!-- 첫번째 row  -->
 		<!-- 메인메뉴 -->
 		<c:import url="../main/Mainmenu.jsp" />
-
-
- 
 
 		<!-- 	두번째 row  -->
 		<div class="row " id="all1">
@@ -61,26 +70,16 @@ p
 
 			<div class="col-xs-8 col-md-" id="b2">
 			<c:forEach var="dto" items="${list }">
-<<<<<<< HEAD
-				<div class="col-xs-12 col-md-12" style="text-align: center;">
-					<p id="user_id">${dto.write_user_id } </p>
-					<img class="uplo"  src="newsfeedupload/${dto.uplo_loca }" >
-					<p>${dto.write_cont }</p>
-					<p>${dto.feed_love_cnt }</p>
-					<p>댓글염</p>
-=======
 				<div id="newsfeed_content" class="col-xs-12 col-md-12" style="text-align: center;">
 					<p id="user_id"><img src="" />${dto.write_user_id } </p>
 					<img class="uplo"  src="/newsfeedupload/${dto.uplo_loca }" >
-					<p id="newsfeed_love"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
+					<p id="newsfeed_love" onclick="loveclick('${dto.write_seq}')"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
 					<p id="newsfeed_content">${dto.write_cont }</p>
 					<p id="newsfeed_comment">Commnets</p>
->>>>>>> branch 'master' of https://github.com/bobby1815/mory
 				</div>
 			</c:forEach>
-		
-			
 			</div>
+			
 			<div class="col-xs-3 col-md-3" id="b3">
 			<c:import url="../../tooglebtn.jsp"/> 
 			</div>

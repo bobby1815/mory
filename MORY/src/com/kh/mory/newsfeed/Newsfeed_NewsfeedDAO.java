@@ -39,7 +39,6 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 			Connection connection = dataSource.getConnection();
 		
 			String sql = "{call PROC_NEWSFEED_INSERT(?, ?, ?)}";
-			System.out.println(sql);
 			CallableStatement callableStatement = connection.prepareCall(sql);
 			System.out.println("newsfeed_NewsfeedDTO.getWrite_cont()) : "+ newsfeed_NewsfeedDTO.getWrite_cont());
 			callableStatement.setString(1, newsfeed_NewsfeedDTO.getWrite_user_id());
@@ -69,70 +68,73 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 		{
 			Connection connection = dataSource.getConnection();
 			
-			String sql = "SELECT"
-					+ "        T.WRITE_SEQ"
-					+ "        ,T.WRITE_USER_ID"
-					+ "        ,U.USER_NIC"
-					+ "        ,T.WRITE_CONT"
-					+ "        ,T.WRITE_REG_DTM"
-					+ "        ,T.FEED_LOVE_CNT"
-					+ "        ,T.UPLO_LOCA"
-					+ "    FROM"
-					+ "    ("
-					+ "        SELECT"
-					+ "            A.WRITE_SEQ"
-					+ "            ,A.WRITE_USER_ID"
-					+ "            ,A.PAGE_CODE"
-					+ "            ,A.WRITE_CONT"
-					+ "            ,A.WRITE_REG_DTM"
-					+ "            ,A.FEED_SEQ"
-					+ "            ,A.FEED_LOVE_CNT"
-					+ "            ,A.UPLO_SEQ"
-					+ "            ,A.UPLO_LOCA"
-					+ "        FROM"
-					+ "        ("
-					+ "            ("
-					+ "                SELECT"
-					+ "                     W.WRITE_SEQ"
-					+ "         AS WRITE_SEQ"
-					+ "                    , W.WRITE_USER_ID   AS WRITE_USER_ID"
-					+ "                    , W.PAGE_CODE       AS PAGE_CODE"
-					+ "                    , W.WRITE_CONT      AS WRITE_CONT"
-					+ "                    , W.WRITE_REG_DTM   AS WRITE_REG_DTM"
-					+ "                      , N.FEED_SEQ        AS FEED_SEQ"
-					+ "                    , N.FEED_LOVE_CNT   AS FEED_LOVE_CNT"
-					+ "                    , U.UPLO_SEQ        AS UPLO_SEQ"
-					+ "                     , U.UPLO_LOCA       AS UPLO_LOCA"
-					+ "                FROM TBL_WRITE W JOIN TBL_NEWSFEED N"
-					+ "                ON W.WRITE_SEQ = N.FEED_SEQ"
-					+ "                JOIN TBL_UPLOAD_FILE U"
-					+ "                ON W.WRITE_SEQ = U.WRITE_SEQ"
-					+ "                WHERE W.WRITE_USER_ID IN (SELECT NEI_USER_ID FROM TBL_NEIGHBOR WHERE USER_ID=?)"
-					+ "                AND W.PAGE_CODE = 'N'"
-					+ "            )"
-					+ "            UNION ALL"
-					+ "            ("
-					+ "                SELECT"
-					+ "                     W.WRITE_SEQ         AS WRITE_SEQ"
-					+ "                    , W.WRITE_USER_ID   AS WRITE_USER_ID"
-					+ "                    , W.PAGE_CODE       AS PAGE_CODE"
-					+ "                    , W.WRITE_CONT      AS WRITE_CONT"
-					+ "                    , W.WRITE_REG_DTM   AS WRITE_REG_DTM"
-					+ "                      , N.FEED_SEQ        AS FEED_SEQ"
-					+ "                    , N.FEED_LOVE_CNT   AS FEED_LOVE_CNT"
-					+ "                    , U.UPLO_SEQ        AS UPLO_SEQ"
-					+ "                       , U.UPLO_LOCA       AS UPLO_LOCA"
-					+ "                FROM TBL_WRITE W JOIN TBL_NEWSFEED N"
-					+ "                ON W.WRITE_SEQ = N.FEED_SEQ"
-					+ "                JOIN TBL_UPLOAD_FILE U"
-					+ "                ON W.WRITE_SEQ = U.WRITE_SEQ"
-					+ "                WHERE W.WRITE_USER_ID =?"
-					+ "                AND W.PAGE_CODE = 'N'"
-					+ "            )"
-					+ "        ) A"
-					+ "    )T JOIN TBL_USER U"
-					+ "    ON T.WRITE_USER_ID = U.USER_ID"
-					+ "    ORDER BY T.WRITE_REG_DTM DESC";
+			String sql = " 		SELECT"
+					+ "					T.WRITE_SEQ"
+					+ "					,T.WRITE_USER_ID"
+					+ "					,U.USER_NIC"
+					+ "					,T.WRITE_CONT"
+					+ "					,T.WRITE_REG_DTM"
+					+ "					,T.FEED_LOVE_CNT"
+					+ "					,T.UPLO_LOCA"
+					+ "			FROM"
+					+ "			("
+					+ "				        SELECT"
+					+ "				            A.WRITE_SEQ"
+					+ "				            ,A.WRITE_USER_ID"
+					+ "				            ,A.PAGE_CODE"
+					+ "				            ,A.WRITE_CONT"
+					+ "				            ,A.WRITE_REG_DTM"
+					+ "				            ,A.FEED_SEQ"
+					+ "				            ,A.FEED_LOVE_CNT"
+					+ "				            ,A.UPLO_SEQ"
+					+ "				            ,A.UPLO_LOCA"
+					+ "				        FROM"
+					+ "				        ("
+					+ "				            ("
+					+ "				                SELECT"
+					+ "				                     W.WRITE_SEQ					         AS WRITE_SEQ"
+					+ "				                    , W.WRITE_USER_ID   AS WRITE_USER_ID"
+					+ "				                    , W.PAGE_CODE       AS PAGE_CODE"
+					+ "				                    , W.WRITE_CONT      AS WRITE_CONT"
+					+ "				                    , W.WRITE_REG_DTM   AS WRITE_REG_DTM"
+					+ "                                 , N.FEED_SEQ        AS FEED_SEQ"
+					+ "				                    , (SELECT COUNT(*) FROM TBL_LOVE WHERE WRITE_SEQ = W.WRITE_SEQ)   AS FEED_LOVE_CNT"
+					+ "				                    , U.UPLO_SEQ        AS UPLO_SEQ"
+					+ "				                    , U.UPLO_LOCA       AS UPLO_LOCA"
+					+ "				                FROM TBL_WRITE W JOIN TBL_NEWSFEED N"
+					+ "				                ON W.WRITE_SEQ = N.FEED_SEQ"
+					+ "				                JOIN TBL_UPLOAD_FILE U"
+					+ "				                ON W.WRITE_SEQ = U.WRITE_SEQ"
+					+ "                             LEFT JOIN TBL_LOVE N"
+					+ "                             ON N.WRITE_SEQ = W.WRITE_SEQ"
+					+ "				                WHERE W.WRITE_USER_ID IN (SELECT NEI_USER_ID FROM TBL_NEIGHBOR WHERE USER_ID= ?)"
+					+ "				                AND W.PAGE_CODE = 'N'"
+					+ "				            )"
+					+ "				            UNION ALL"
+					+ "				            ("
+					+ "				                SELECT"
+					+ "				                     W.WRITE_SEQ         AS WRITE_SEQ"
+					+ "				                    , W.WRITE_USER_ID   AS WRITE_USER_ID"
+					+ "				                    , W.PAGE_CODE       AS PAGE_CODE"
+					+ "				                    , W.WRITE_CONT      AS WRITE_CONT"
+					+ "				                    , W.WRITE_REG_DTM   AS WRITE_REG_DTM"
+					+ "                                 , N.FEED_SEQ        AS FEED_SEQ"
+					+ "				                    , (SELECT COUNT(*) FROM TBL_LOVE WHERE WRITE_SEQ = W.WRITE_SEQ)   AS FEED_LOVE_CNT"
+					+ "				                    , U.UPLO_SEQ        AS UPLO_SEQ"
+					+ "                                 , U.UPLO_LOCA       AS UPLO_LOCA"
+					+ "				                FROM TBL_WRITE W JOIN TBL_NEWSFEED N"
+					+ "				                ON W.WRITE_SEQ = N.FEED_SEQ"
+					+ "				                JOIN TBL_UPLOAD_FILE U"
+					+ "				                ON W.WRITE_SEQ = U.WRITE_SEQ"
+					+ "                             LEFT JOIN TBL_LOVE N"
+					+ "                             ON N.WRITE_SEQ = W.WRITE_SEQ"
+					+ "				                WHERE W.WRITE_USER_ID = ?"
+					+ "				                AND W.PAGE_CODE = 'N'"
+					+ "				            )"
+					+ "				        ) A"
+					+ "				    )T JOIN TBL_USER U"
+					+ "				    ON T.WRITE_USER_ID = U.USER_ID"
+					+ "				    ORDER BY T.WRITE_REG_DTM DESC";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user_id);
 			preparedStatement.setString(2, user_id);
@@ -157,6 +159,68 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 		}
 		return res;
 	}
+	
+	// 뉴스피드 사랑해요
+	@Override
+	public int newsFeedLove(int write_seq, String user_id)
+	{
+		int res = 0;
+		
+		try
+		{
+			Connection connection = dataSource.getConnection();
+
+			String sql = "{call PROC_NEWSFEED_LOVECNT(?, ?)}";
+			CallableStatement callableStatement = connection.prepareCall(sql);
+
+			callableStatement.setInt(1, write_seq);
+			callableStatement.setString(2, user_id);
+
+			res = callableStatement.executeUpdate();
+			
+			callableStatement.close();
+			connection.close();
+
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return res;
+	}
+	
+	// 뉴스피드 사랑해요 갯수
+	@Override
+	public int newsFeedLoveCnt(int write_seq)
+	{
+		int res = 0;
+		
+		try
+		{
+			Connection connection = dataSource.getConnection();
+			
+			String sql = "SELECT COUNT(*) AS CNT FROM TBL_LOVE WHERE WRITE_SEQ = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, write_seq);
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next())
+			{
+				res = resultSet.getInt("CNT");
+			}
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		
+		return res;
+	}
+
 
 	// 뉴스피드 수정
 	@Override
@@ -475,6 +539,9 @@ public class Newsfeed_NewsfeedDAO implements Newsfeed_INewsfeedDAO
 		conn.close();
 		return newsfeedDTO;
 	}
+
+
+
 	
 	
 	

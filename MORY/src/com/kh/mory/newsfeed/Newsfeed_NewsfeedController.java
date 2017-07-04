@@ -93,6 +93,17 @@ public class Newsfeed_NewsfeedController implements Controller
 			mav.addObject("list",feedDao.newsFeedLists(user_id));
 			mav.setViewName("WEB-INF/newsfeed/NewsFeed_List.jsp");
 		}
+		// 사랑해요 버튼 클릭
+		else if (request.getRequestURI().indexOf("newsfeedloveclick.do") > -1)
+		{
+			String strwrite_seq = request.getParameter("write_seq");
+			int write_seq = Integer.parseInt(strwrite_seq);
+			
+			feedDao.newsFeedLove(write_seq, user_id);
+			
+			mav.addObject("cnt",feedDao.newsFeedLoveCnt(write_seq));
+			mav.setViewName("redirect:newsfeedlist.do");
+		}
 		
 		return mav;
 	}
