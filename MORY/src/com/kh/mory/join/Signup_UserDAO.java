@@ -278,6 +278,7 @@ public class Signup_UserDAO implements Signup_IUserDAO
 					+ "    , C.CITY_NAME   AS CITY_NAME"
 					+ "    , U.PWQU_CODE   AS PWQU_CODE"
 					+ "    , U.PWQU_ANSW   AS PWQU_ANSW"
+					+ "    , U.PROFILE_LOCATION AS PROFILE_LOCATION"
 					+ " FROM TBL_USER U JOIN TBL_GENDER G"
 					+ " ON U.GEN_CODE = G.GEN_CODE"
 					+ " JOIN TBL_PAGE P"
@@ -314,7 +315,7 @@ public class Signup_UserDAO implements Signup_IUserDAO
 				res.setUser_nic(rs.getString("USER_NIC"));
 				res.setUser_name(rs.getString("USER_NAME"));
 				res.setUser_tel(rs.getString("USER_TEL"));
-				res.setUser_birth(rs.getString("USER_BRITH"));
+				res.setUser_birth(rs.getString("USER_BIRTH"));
 				res.setUser_email(rs.getString("USER_EMAIL"));
 				res.setZipcode(rs.getString("ZIPCODE"));
 				res.setBasic_addr(rs.getString("BASIC_ADDR"));
@@ -323,7 +324,10 @@ public class Signup_UserDAO implements Signup_IUserDAO
 				res.setCity_code(rs.getString("CITY_CODE"));
 				res.setPwqu_code(rs.getString("PWQU_CODE"));
 				res.setPwqu_answ(rs.getString("PWQU_ANSW"));
+				res.setProfile_location(rs.getString("PROFILE_LOCATION"));
 			}
+			System.out.println("========================="+res.getProfile_location());
+			
 			rs.close();
 			preparedStatement.close();
 			connection.close();
@@ -442,45 +446,32 @@ public class Signup_UserDAO implements Signup_IUserDAO
 		
 		try
 		{
-			String sql = 
-					"UPDATE TBL_USER"
-					+ " SET     "
-					+ "      GEN_CODE = ?"
-					+ "     ,PAGE_CODE = ?"
-					+ "     ,OPEN_CODE = ?"
-					+ "     ,ACC_STATE_CODE = ?"
-					+ "     ,ACC_GRADE_CODE = ?"
-					+ "     ,USER_PW = ?"
-					+ "     ,USER_NIC = ?"
-					+ "     ,USER_NAME = ?"
-					+ "     ,USER_TEL = ?"
-					+ "     ,USER_BIRTH = ?"
-					+ "     ,USER_EMAIL = ?"
-					+ "     ,ZIPCODE = ?"
-					+ "     ,BASIC_ADDR = ?"
-					+ "     ,DETAIL_ADDR = ?"
-					+ " WHERE USER_ID = ?";
+			String sql = "{call PROC_USER_UPDATE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 			
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			CallableStatement callableStatement = connection.prepareCall(sql);
 			
-			preparedStatement.setString(1, dto.getGen_code());
-			preparedStatement.setString(2, dto.getPage_code());
-			preparedStatement.setString(3, dto.getOpen_code());
-			preparedStatement.setInt(4, dto.getAcc_state_code());
-			preparedStatement.setInt(5, dto.getAcc_grade_code());
-			preparedStatement.setString(6, dto.getUser_pw());
-			preparedStatement.setString(7, dto.getUser_nic());
-			preparedStatement.setString(8, dto.getUser_name());
-			preparedStatement.setString(9, dto.getUser_tel());
-			preparedStatement.setString(10, dto.getUser_birth());
-			preparedStatement.setString(11, dto.getUser_email());
-			preparedStatement.setString(12, dto.getZipcode());
-			preparedStatement.setString(13, dto.getBasic_addr());
-			preparedStatement.setString(14, dto.getDetail_addr());
+			callableStatement.setString(1, dto.getUser_id());
+			callableStatement.setString(2, dto.getGen_code());
+			callableStatement.setString(3, dto.getUser_pw());
+			callableStatement.setString(4, dto.getUser_nic());
+			callableStatement.setString(5, dto.getUser_name());
+			callableStatement.setString(6, dto.getUser_tel());
+			callableStatement.setString(7, dto.getUser_birth());
+			callableStatement.setString(8, dto.getUser_email());
+			callableStatement.setString(9, dto.getZipcode());
+			callableStatement.setString(10, dto.getBasic_addr());
+			callableStatement.setString(11, dto.getDetail_addr());
+			callableStatement.setString(12, dto.getLoca_name());
+			callableStatement.setString(13, dto.getCity_name());
+			callableStatement.setString(14, dto.getPwqu_code());
+			callableStatement.setString(15, dto.getPwqu_answ());
+			callableStatement.setString(16, dto.getProfile_location());
 			
-			res = preparedStatement.executeUpdate();
+			res = callableStatement.executeUpdate();
 			
-			preparedStatement.close();
+			System.out.println("res : "+res);
+			
+			callableStatement.close();
 			connection.close();
 			
 		} catch (Exception e)

@@ -4,36 +4,27 @@ public class Signup_UserDTO
 {
 	private String user_id, gen_code, page_code, open_code, user_nic, user_pw
 			,user_name, user_tel, user_birth, user_email, zipcode, basic_addr
-			,detail_addr, loca_code, city_code, pwqu_code, pwqu_answ;
+			,detail_addr, loca_code, city_code, pwqu_code, pwqu_answ, profile_location;
 	
 	private String gen_name, page_name, open_name, acc_state_name, loca_name, city_name;
 
 	private int acc_state_code, acc_grade_code;
 
 	// getter / setter 구성
-	public String getPwqu_code()
-	{
-		return pwqu_code;
-	}
-
-	public void setPwqu_code(String pwqu_code)
-	{
-		this.pwqu_code = pwqu_code;
-	}
-
-	public String getPwqu_answ()
-	{
-		return pwqu_answ;
-	}
-
-	public void setPwqu_answ(String pwqu_answ)
-	{
-		this.pwqu_answ = pwqu_answ;
-	}
 	
 	public String getUser_id()
 	{
 		return user_id;
+	}
+
+	public String getProfile_location()
+	{
+		return profile_location;
+	}
+
+	public void setProfile_location(String profile_location)
+	{
+		this.profile_location = profile_location;
 	}
 
 	public void setUser_id(String user_id)
@@ -181,6 +172,26 @@ public class Signup_UserDTO
 		this.city_code = city_code;
 	}
 
+	public String getPwqu_code()
+	{
+		return pwqu_code;
+	}
+
+	public void setPwqu_code(String pwqu_code)
+	{
+		this.pwqu_code = pwqu_code;
+	}
+
+	public String getPwqu_answ()
+	{
+		return pwqu_answ;
+	}
+
+	public void setPwqu_answ(String pwqu_answ)
+	{
+		this.pwqu_answ = pwqu_answ;
+	}
+
 	public String getGen_name()
 	{
 		return gen_name;
@@ -260,6 +271,4 @@ public class Signup_UserDTO
 	{
 		this.acc_grade_code = acc_grade_code;
 	}
-
-	
 }

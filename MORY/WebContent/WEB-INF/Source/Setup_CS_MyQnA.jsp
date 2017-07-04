@@ -92,7 +92,7 @@ table.type07 td {
            <div class="col-md-3" id="b2_left" style="width: 25%; height: 700px; ; ">
          <table>
             <tr>
-	           	<th id="setup_th"><p onclick="location.href='setprofile.do'">PROFILE</p></th>
+	           	<th id="setup_th"><p onclick="location.href='commonprofilesearch.do?type=modify'">PROFILE</p></th>
 	           </tr>
 	           <tr>
 	           	<th id="setup_th"><p onclick="location.href='setcscenter.do'">COSTUMER CENTER</p></th>

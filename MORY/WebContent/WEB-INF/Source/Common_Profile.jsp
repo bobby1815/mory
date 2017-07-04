@@ -25,7 +25,7 @@
 
 							</div>
 							<div class="modal-body" style="text-align: center;">
-								이름 : 김민준 <br> 닉네임 : ${userSearch.user_nic}
+								이름 : ${userDTO.user_name } <br> 닉네임 : ${userDTO.user_nic}
 							</div>
 							<div class="modal-footer ">
                    
