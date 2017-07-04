@@ -62,10 +62,10 @@ $(document).ready(function()
 </head>
 
 <body>
-
+<c:import url="../main/Mainmenu.jsp" /> 
 	<div class="container" id="container">
 		<!-- 첫번째 row  -->
-		<c:import url="../main/Mainmenu.jsp" />  
+		 
 
 		<!-- 두번째 row  -->
 		<div class="row ">

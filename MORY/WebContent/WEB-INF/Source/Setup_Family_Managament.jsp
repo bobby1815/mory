@@ -124,7 +124,7 @@ width: 200px;
           	
           	<div class="col-md-12" style="  margin-top: 10px; width: 100%;" >
           	<div align="middle" style="margin-bottom: 50px;">
-          		<img src="img/searchUser.png" align="middle" width="200px" />
+          		<img src="img/membersearch.png" align="middle" width="200px" />
           	</div>
           	<div class="col-md-12" style="width: 100%;">
           	<input type="text" name="user_Id" id="user_id" style="width: 60%;" placeholder="search" />
@@ -138,7 +138,7 @@ width: 200px;
           	</div>
          	
          	
-          	<div class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
+          	<div id="memberlist" class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
           	 	<h1>다이어리멤버</h1>
          	 <ul class="list-group">
          	 <c:forEach var="memberdto" items="${memberlist }">
@@ -148,7 +148,7 @@ width: 200px;
           	</div>
 
 			     	
-          	<div class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
+          	<div id="memberlist" class="list-group col col-md-6" style="overflow:scroll; margin-top: 20px; height: 300px;">
           	<h1>기웃다이어리</h1>     
           	<ul class="list-group">
           	<c:forEach var="diarylistDTO" items="${shareDiaryList }">

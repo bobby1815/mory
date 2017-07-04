@@ -28,6 +28,12 @@ input
 {
    width: 100%;
 }
+
+      .menufix {
+      	left: 78%;
+        position: fixed;
+        top: 70%;
+      }
 </style>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
@@ -291,23 +297,22 @@ input
                      <div class="modal-header" style="text-align: center;">
 
                         <div id="divPeedPhoto"></div>
+                        <div class="image-upload">
+                        <label for="profile_pt"><img src="img/photoupload.png" width="50px" /></label>
                         <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
-
+						</div>
 							</div>
 							<div class="modal-body" style="text-align: center;">
 								이름 : 김민준 <br> 닉네임 : 뀨?
 							</div>
 							<div class="modal-footer ">
-<<<<<<< HEAD
                      </div>
                      <div class="modal-body" style="text-align: center;">
                         이름 : 김민준 <br> 닉네임 : 뀨?
                      </div>
-=======
                    
->>>>>>> branch 'master' of https://github.com/bobby1815/mory
                      <div class="modal-footer ">
 
                         <div class="col-xs-12 col-md-12">

@@ -15,8 +15,16 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../css/Mainmenu.css" />
 <link rel="stylesheet" href="css/acordian.css" />
+<script type="text/javascript">
+$('#newsfeed_content').val().replaceAll(/\n/g, "<br>")
 
+
+</script>
 <style type="text/css">
+#all1
+{
+	margin-top: 5%;
+}
 
 #b3
 {
@@ -32,6 +40,11 @@ p
 {
 	text-align: left;
 }
+#user_id{font-family: 맑은 고딕; font-size: 20px; font-weight: bold;}
+#newsfeed_content{border: 2px solid #fdfaf8; margin-top: 5%; background-color: #ffffe9; border-radius: 2%; }
+#newsfeed_love{border: 2px solid #fdfaf8;}
+#newsfeed_conmmet{border: 2px solid #fdfaf8;}
+
 </style>
 </head>
 <body>
@@ -48,15 +61,15 @@ p
 
 			<div class="col-xs-8 col-md-" id="b2">
 			<c:forEach var="dto" items="${list }">
-				<div class="col-xs-12 col-md-12" style="text-align: center;">
-					<p id="user_id">${dto.write_user_id } </p>
-					<img class="uplo"  src="/D:\KH\001_Eclipse WorkSpace\MORY\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MORY\newsfeedupload/${dto.uplo_loca }" >
-					<p>${dto.write_cont }</p>
-					<p>${dto.feed_love_cnt }</p>
-					<p>댓글염</p>
+				<div id="newsfeed_content" class="col-xs-12 col-md-12" style="text-align: center;">
+					<p id="user_id"><img src="" />${dto.write_user_id } </p>
+					<img class="uplo"  src="/newsfeedupload/${dto.uplo_loca }" >
+					<p id="newsfeed_love"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
+					<p id="newsfeed_content">${dto.write_cont }</p>
+					<p id="newsfeed_comment">Commnets</p>
 				</div>
 			</c:forEach>
-
+		
 			
 			</div>
 			<div class="col-xs-3 col-md-3" id="b3">
