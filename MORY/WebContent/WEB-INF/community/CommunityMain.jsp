@@ -177,7 +177,7 @@
 
 		<!-- 	두번째 row  -->
 		<div class="row " id="all1">
-			<div class="col-xs-1 col-md-1" id="b1">b1</div>
+			<div class="col-xs-1 col-md-1" id="b1"></div>
 			<div class="col-xs-10 col-md-10" id="b2">
 
 				<div class="col-xs-12 col-md-12"
@@ -696,9 +696,9 @@
 
 		<!-- 세번째 row  -->
 		<div class="row " id="all2">
-			<div class="col-xs-1 col-md-1" id="f1">f1</div>
-			<div class="col-xs-10 col-md-10" id="f2">f2</div>
-			<div class="col-xs-1 col-md-1" id="f3">f3</div>
+			<div class="col-xs-1 col-md-1" id="f1"></div>
+			<div class="col-xs-10 col-md-10" id="f2"></div>
+			<div class="col-xs-1 col-md-1" id="f3"></div>
 		</div>
 
 
