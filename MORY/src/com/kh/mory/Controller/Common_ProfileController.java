@@ -53,7 +53,14 @@ public class Common_ProfileController implements Controller
 		
 		// 로그인한 id 조회
 		HttpSession session = request.getSession();
-		String user_id = (String)session.getAttribute("user_id");
+		String user_id = null;
+		
+		if (request.getParameter("cust")== null)
+		{
+			user_id = (String)session.getAttribute("user_id");;
+		}
+		else
+			user_id = request.getParameter("cust");
 		
 		// 프로필 조회
 		if (request.getRequestURI().indexOf("commonprofilesearch.do") > -1)
@@ -114,11 +121,28 @@ public class Common_ProfileController implements Controller
 				String pwqu_answ = req.getParameter("pwqu_answ");
 				String siNm = req.getParameter("siNm");	// 시이름
 				String sggNm = req.getParameter("sggNm");	// 시군구
-				
 				// 업로드한 파일명
 				String profile_location = req.getFilesystemName("profile_pt");
+				
+				System.out.println(user_id);
+				System.out.println(user_pw);
+				System.out.println(user_nic);
+				System.out.println(user_name);
+				System.out.println(user_birth);
+				System.out.println(gen_code);
+				System.out.println(user_email);
+				System.out.println(user_tel);
+				System.out.println(zipcode);
+				System.out.println(basic_addr);
+				System.out.println(detail_addr);
+				System.out.println(pwqu_code);
+				System.out.println(pwqu_answ);
+				System.out.println(siNm);
+				System.out.println(sggNm);
 				System.out.println("profile_location============= : "+profile_location);
+				
 				Signup_UserDTO dto = new Signup_UserDTO();
+				
 				dto.setUser_id(user_id);
 				dto.setUser_pw(user_pw);
 				dto.setUser_name(user_name);
@@ -138,7 +162,7 @@ public class Common_ProfileController implements Controller
 				
 				int res = userDao.userModify(dto);
 
-				modelAndView.setViewName("WEB-INF/Source/Setup_Profile.jsp");
+				modelAndView.setViewName("redirect:commonprofilesearch.do?type=modify");
 			} catch (Exception e)
 			{
 				System.out.println(e.toString());
