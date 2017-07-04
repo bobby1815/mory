@@ -71,6 +71,7 @@ public class Newsfeed_NewsfeedController implements Controller
 				Newsfeed_NewsfeedDTO newsfeed_NewsfeedDTO = new Newsfeed_NewsfeedDTO();
 				
 				String write_cont = req.getParameter("write_cont");
+				write_cont.replaceAll("\r\n", "<br/>");
 				//newsfeed_NewsfeedDTO.setWrite_cont(req.getParameter("write_cont"));
 				newsfeed_NewsfeedDTO.setWrite_cont(write_cont);
 				newsfeed_NewsfeedDTO.setWrite_user_id(user_id);

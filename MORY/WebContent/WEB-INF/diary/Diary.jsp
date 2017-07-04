@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>diary_1.jsp</title>
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 부가적인 테마 -->
@@ -25,6 +26,7 @@
 <script src="js/fullcalendar.js"></script>
 <script src="js/fullcalendar.min.js"></script>
 <script src="js/ko.js"></script>
+<link rel="stylesheet" href="../css/acordian.css" />
 <script type="text/javascript">
 
 	function myFunction(id) {
@@ -114,11 +116,10 @@
 <style type="text/css">
 	a {color: black;}
 	th {background: lightgrey;}
-	th, td {padding: 5px 0px; text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey;}
+	th, td {padding: 5px 0px; text-align: center; border-bottom: 1px solid grey; border-top: 1px solid grey; color:black;}
 	a:hover {text-decoration: none;}
 	footer a {color: grey; text-decoration: underline;}
 	body {	
-		margin: 40px 10px;
 		padding: 0;
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 		font-size: 14px;
@@ -148,19 +149,26 @@
 		border-color: #FFBB00;
 		background: #B2EBF4;
 		}
-
+	.list-inline
+	{
+	align: center;
+	}
+	#b3
+	{
+	margin-top:40%;	
+	}
 </style>
 </head>
 
 <body>
-
+	<c:import url="../main/Mainmenu.jsp" />  
 <div class="container"  id="container">
 	<!-- 첫번째 row  -->
-	<c:import url="../main/Mainmenu.jsp" />  		
+		
 	
 	<!-- 두번째 row  -->
 	<div class="row " id="all1">
-		<div class="col-xs-1 col-md-1"  id="b1">b1</div>
+		<div class="col-xs-1 col-md-1"  id="b1"></div>
 		
 		<!-- 다이어리 구성 내용 -->
 		<div class="col-xs-10 col-md-10"  id="b2" >
@@ -174,7 +182,7 @@
 				</div>
 				<div class="col-xs-1 col-md-1">
 				<!-- <span class="glyphicon glyphicon-user" style="font-size: 30px; color: blue;"></span> -->
-				<%-- 
+		q		<%-- 
 				<a ${matecheck>0 ? "href='diary.do?requ_seq='"+couplediary.requ_seqd: '' } > <img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a>
 				 --%>
 				 <c:if test="${matecheck>0 }"><a href="diary.do?requ_seq=${matecheck }"><img src="img/couple_diary_image.jpg"   style="width: 50px; height: 50px;"></a></c:if>
@@ -226,7 +234,7 @@
 		
 		<!-- +버튼 -->
 		<div class="col-xs-1 col-md-1"  id="b3">
-		    <div class="w3-container">        
+		  <%--   <div class="w3-container">        
 				<a onclick="myFunction('Demo1')" style="width: 100px; " class="glyphicon glyphicon-plus-sign btn-lg"></a>
 				<div id="Demo1" class="w3-container w3-hide">
 				  <a href="" style="width: 100px;" class="glyphicon glyphicon-user btn-lg"></a><br />
@@ -243,7 +251,50 @@
 				  
 				  
 				</div>
-			</div>
+			</div> --%>
+<div class="col-xs-1 col-md-1" id="b3">
+<nav class="menu">
+  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+  <label class="menu-open-button" for="menu-open">
+    <span class="hamburger hamburger-1"></span>
+    <span class="hamburger hamburger-2"></span>
+    <span class="hamburger hamburger-3"></span>
+ </label>
+<!--   <a href="#" class="menu-item"><i class="fa fa-cog"></i> </a>  
+  <a href="#" class="menu-item"><i class="fa fa-plus"></i> </a> -->
+  <a href="#" class="menu-item"><i class="fa fa-heart"></i> </a>
+  <a href="#" class="menu-item"><i class="fa fa-envelope"></i> </a>
+    <c:choose>
+		<c:when test="${diary.diary_name eq null}">
+			<a href="diaryinsertform.do?requ_seq=${matecheck}" class="menu-item"><i class="fa fa-plus"></i> </a>
+		</c:when>
+	<c:otherwise>
+		<a href="diaryinsertform.do" class="menu-item"><i class="fa fa-plus"></i></a>
+		</c:otherwise>
+	</c:choose>
+</nav>
+
+
+<!-- filters -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+      <filter id="shadowed-goo">
+          
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+          <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+          <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+          <feBlend in2="shadow" in="goo" result="goo" />
+          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+      <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+          <feBlend in2="goo" in="SourceGraphic" result="mix" />
+      </filter>
+    </defs>
+    </svg>
 		</div>	
 		
 		
@@ -336,11 +387,11 @@
 	
 	<!-- 세번째 row  -->
 	<div class="row " id="all2">
-		<div class="col-xs-1 col-md-1"  id="f1">f1</div>
+		<div class="col-xs-1 col-md-1"  id="f1"></div>
 		<div class="col-xs-10 col-md-10"  id="f2">
 		
 		<div class="row " id="foot">
-				<div class="col-xs-1 col-md-1" id="h1">h1</div>
+				<div class="col-xs-1 col-md-1" id="h1"></div>
 				<div class="col-xs-10 col-md-10" id="h2">
 					<footer style="border-top:2px solid gainsboro"
 						style="height:100px;  ">
@@ -356,12 +407,12 @@
 					</ul>
 					</footer>
 				</div>
-				<div class="col-xs-1 col-md-1" id="h3">h3</div>
+				<div class="col-xs-1 col-md-1" id="h3"></div>
 			</div>
 		</div>
 		
 		</div>
-		<div class="col-xs-1 col-md-1"  id="f3">f3</div>
+		<div class="col-xs-1 col-md-1"  id="f3"></div>
 	</div>		
  
 
