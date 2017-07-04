@@ -10,17 +10,18 @@
 </head>
 <script type="text/javascript">
 	
-	function alarmResult(requ_Seq, obj)
+	function alarmResult(requ_seq, obj)
 	{
 		var value = obj.value;
 		//alert(value);
-		
-		$.post("commonalarmresult.do",{requ_Seq : requ_Seq, result_yn : value}, function(data)
+		/* 
+		var url = "commonalarmresult.do?requ_seq="+requ_seq+"&result_yn="+value;
+		$(location).attr("href",url);
+		 */
+		$.post("commonalarmresult.do",{requ_seq : requ_seq, result_yn : value}, function(data)
 		{
-			
+			$("#listDiv").html(data).find("#listDiv");
 		});
-		
-		return false;
 	}
 
 </script>
@@ -31,9 +32,12 @@
                      <div class="modal-header" style="text-align: center; color: black;">
                         <h4>알림</h4>
                      </div> -->
-						<div class="modal-body" style="height: 600px;">
+                     <div class="modal-header" style="text-align: center; color: black;">
+                        <h5>알림</h5>
+                     </div>
+						<div class="modal-body" style="height: 600px;" id="listDiv">
 							<c:if test="${alarmList.size() == null}">
-								<a>초대 내역이 존재하지 않습니다.</a>
+								<p>초대 내역이 존재하지 않습니다.</p>
 							</c:if>
 							<c:forEach var="dto" items="${alarmList}">
 							<div class="col-xs-12 col-md-12" style="border: 1px solid; height: 50px;">
@@ -44,8 +48,13 @@
 								<p>${dto.requ_user_nic}님께서 ${dto.share_diary_name} 로 초대하였습니다.</p>
 							</div>
 							<div class="col-xs-3 col-md-3" style="text-align: right; margin-top: 10px;">
-							      <button type="submit" id="acceptBtn" value="Y" onclick="loation.href="commonalarmresult.do?requ_seq='${dto.requ_seq}'&result_yn=y">수락</button>
-							      <button type="submit" id="rejectionBtn" value="N" onclick="alarmResult('${dto.requ_seq}',this)">거절</button>
+								<%-- 
+								<button type="button" id="acceptBtn" value="Y" onclick="alarmResult('${dto.requ_seq}',this)">수락</button>
+							    <button type="button" id="rejectionBtn" value="N" onclick="alarmResult('${dto.requ_seq}',this)">거절</button>
+								 --%>	
+							      <button type="button" id="acceptBtn" value="Y" onclick="alarmResult('${dto.requ_seq}',this)">수락</button>
+							      <button type="button" id="rejectionBtn" value="N" onclick="alarmResult('${dto.requ_seq}',this)">거절</button>
+							      
 							   </div>
 							</div>
 							</c:forEach>
@@ -55,6 +64,12 @@
                </div>
             </div>
  -->
+
+
+<!-- 깃은 왜잘 안되는걸까요 -->
+
+
+
 
 </body>
 </html>

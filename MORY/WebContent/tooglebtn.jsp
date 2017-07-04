@@ -300,10 +300,14 @@ input
 								이름 : 김민준 <br> 닉네임 : 뀨?
 							</div>
 							<div class="modal-footer ">
+<<<<<<< HEAD
                      </div>
                      <div class="modal-body" style="text-align: center;">
                         이름 : 김민준 <br> 닉네임 : 뀨?
                      </div>
+=======
+                   
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
                      <div class="modal-footer ">
 
                         <div class="col-xs-12 col-md-12">
