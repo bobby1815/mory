@@ -15,11 +15,6 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../css/Mainmenu.css" />
 <link rel="stylesheet" href="css/acordian.css" />
-<script type="text/javascript">
-$('#newsfeed_content').val().replaceAll(/\n/g, "<br>")
-
-
-</script>
 <style type="text/css">
 #all1
 {
@@ -51,7 +46,6 @@ p
 	{
 		$.post("newsfeedloveclick.do",{write_seq : write_seq}, function(data)
 		{
-			alert(data);
 			$("#newsfeed_love").val(data);
 		});
 	}

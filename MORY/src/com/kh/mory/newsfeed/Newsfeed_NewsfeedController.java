@@ -102,7 +102,7 @@ public class Newsfeed_NewsfeedController implements Controller
 			feedDao.newsFeedLove(write_seq, user_id);
 			
 			mav.addObject("cnt",feedDao.newsFeedLoveCnt(write_seq));
-			mav.setViewName("redirect:newsfeedlist.do");
+			mav.setViewName("WEB-INF/newsfeed/Newsfeed_LoveCount.jsp");
 		}
 		
 		return mav;
