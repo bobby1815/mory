@@ -46,7 +46,8 @@ p
 	{
 		$.post("newsfeedloveclick.do",{write_seq : write_seq}, function(data)
 		{
-			$("#newsfeed_love").val(data);
+			//alert(data);
+			$("#newsfeed_love"+write_seq).html(data).find("#newsfeed_love"+write_seq);
 		});
 	}
 
@@ -67,7 +68,7 @@ p
 				<div id="newsfeed_content" class="col-xs-12 col-md-12" style="text-align: center;">
 					<p id="user_id"><img src="" />${dto.write_user_id } </p>
 					<img class="uplo"  src="/newsfeedupload/${dto.uplo_loca }" >
-					<p id="newsfeed_love" onclick="loveclick('${dto.write_seq}')"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
+					<p id="newsfeed_love${dto.write_seq }" onclick="loveclick('${dto.write_seq}')"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
 					<p id="newsfeed_content">${dto.write_cont }</p>
 					<p id="newsfeed_comment">Commnets</p>
 				</div>
