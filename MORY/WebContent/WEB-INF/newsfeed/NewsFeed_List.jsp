@@ -51,6 +51,13 @@ p
 		});
 	}
 	
+	function profile(user_id)
+	{
+		$.post('commonprofilesearch.do?cust='+user_id, {cust : user_id}, function(data)
+		{
+			$("#profile").html(data).find("#profile");
+		});
+	}
 
 </script>
 
@@ -67,7 +74,10 @@ p
 			<div class="col-xs-8 col-md-" id="b2">
 			<c:forEach var="dto" items="${list }">
 				<div id="newsfeed_content" class="col-xs-12 col-md-12" style="text-align: center;">
-					<p id="user_id" onclick="location.href='commonprofilesearch.do?cust=${dto.write_user_id }'"><img src="" />${dto.write_user_id } </p>
+					<%-- 
+					<p id="user_id" onclick="location.href='commonprofilesearch.do?cust=${dto.write_user_id }'" data-toggle="modal" data-target="#myinfo"><img src="" />${dto.write_user_id } </p>
+					 --%>
+					<p id="user_id" onclick="profile('${dto.write_user_id }')" data-toggle="modal" data-target="#myinfo"><img src="" />${dto.write_user_id } </p>
 					<img class="uplo"  src="/newsfeedupload/${dto.uplo_loca }" >
 					<p id="newsfeed_love${dto.write_seq }" onclick="loveclick('${dto.write_seq}')"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
 					<p id="newsfeed_content">${dto.write_cont }</p>
@@ -76,16 +86,32 @@ p
 			</c:forEach>
 			</div>
 			
-<%-- 			
-	<div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			
+			<div class="modal fade" id="myinfo" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header" style="text-align: center;">
+							<div class="modal-body" style="text-align: center;" id="profile">
+							
+							<img src="/profileupload/${userDTO.profile_location }" style="width: 300px; height: 500px;" ><br>
+								이름 : ${userDTO.user_name } <br> 닉네임 : ${userDTO.user_nic}<br>
+								배우자 : ${userDTO.acce_user_nic }
+							</div>
+                   
+                     </div>
+                  </div>
+               </div>
+            </div>
+			
+<%-- 	<div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<c:import url="../Source/Common_Profile.jsp"/>
 			</div>
 		</div>
 	</div>
- --%>
-			
+ 
+			 --%>
 			
 			<div class="col-xs-3 col-md-3" id="b3">
 			<c:import url="../../tooglebtn.jsp"/> 

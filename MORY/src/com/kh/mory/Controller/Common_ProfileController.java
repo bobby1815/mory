@@ -62,6 +62,8 @@ public class Common_ProfileController implements Controller
 		else
 			user_id = request.getParameter("cust");
 		
+		System.out.println("qqqqqqqqqqqqqqqqqqq : "+user_id);
+		
 		// 프로필 조회
 		if (request.getRequestURI().indexOf("commonprofilesearch.do") > -1)
 		{
@@ -73,7 +75,7 @@ public class Common_ProfileController implements Controller
 				modelAndView.setViewName("WEB-INF/Source/Common_Profile.jsp");
 			}
 			// 회원 정보 수정에서 user정보 조회
-			else
+			else if(request.getParameter("type").equals("modify"))
 			{
 				ArrayList<Main_PwquestionDTO> pwquLists = pwDao.pwquLists();
 				
@@ -81,6 +83,12 @@ public class Common_ProfileController implements Controller
 				
 				modelAndView.setViewName("WEB-INF/Source/Setup_Profile.jsp");
 			}
+			/*
+			else if (request.getParameter("type").equals("newsfeed"))
+			{
+				modelAndView.setViewName("WEB-INF/Source/Common_Profile.jsp");
+			}
+			*/
 		}
 		// 프로필 수정
 		else if (request.getRequestURI().indexOf("commonprofileset.do") > -1)
