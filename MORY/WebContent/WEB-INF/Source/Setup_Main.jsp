@@ -180,7 +180,7 @@ width: 200px;
           <h4><span class="glyphicon glyphicon-lock"></span> 본인 확인</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="/userloginsetmain.do" method="post" >
+          <form role="form" action="/commonprofileset.do" method="get" >
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> 아이디</label>
               <input type="text" class="form-control" name="user_id" placeholder="Enter email">

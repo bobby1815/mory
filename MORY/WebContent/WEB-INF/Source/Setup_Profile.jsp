@@ -114,7 +114,6 @@
 	{
 		// 회원가입 버튼클릭
 		$("#joinBtn").click(function() {
-			alert("ddddddddddd");
 				$("#form").submit();
 		});
 	});
@@ -223,11 +222,8 @@ width: 200px;
 				<div class="col-xs-1 col-md-1" id="b1">b1</div>
 				<div class="col-xs-10 col-md-10 text-center" id="b2">
 					<div class="row">
-						<div id="divPeedPhoto" style="widows: 300px;">
-						</div>
-						<c:if test="">
+						<div id="divPeedPhoto" style="widows: 300px;"></div>
 							<img src="/profileupload/${userDTO.profile_location }" style="width: 300px;" >
-				        </c:if>
 				        <input type="file" name="profile_pt" id="profile_pt"onchange="previewImage(this,'divPeedPhoto')"style="text-align: center;">
 				        </div>
 			        </div>

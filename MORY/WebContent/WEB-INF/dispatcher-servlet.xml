@@ -23,7 +23,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!--Database Connection-->
 	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
 </bean>
@@ -97,6 +97,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<!-- 공통 프로필 -->
 	<bean name="/commonprofile*.do" class="com.kh.mory.Controller.Common_ProfileController">
 		<property name="userDao" ref="userDao"></property>
+		<property name="pwDao" ref="PwquestionDAO"></property>
 	</bean>
 
 	<bean id="userDao" class="com.kh.mory.join.Signup_UserDAO">

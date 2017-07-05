@@ -76,7 +76,7 @@ public class Setup_Profile_Controller implements Controller
 			{
 				System.out.println(e.toString());
 			}
-			modelAndView.setViewName("redirect:modifyprofile.do");
+			modelAndView.setViewName("redirect:/Source/Setup_Profile.jsp");
 			return modelAndView;
 			
 		}

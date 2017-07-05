@@ -17,14 +17,12 @@
                   <div class="modal-content">
                    -->
                      <div class="modal-header" style="text-align: center;">
-
-                        <div id="divPeedPhoto"></div>
-                        <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
 
 							</div>
 							<div class="modal-body" style="text-align: center;">
+							<img src="/profileupload/${userDTO.profile_location }" style="width: 300px; height: 500px;" ><br>
 								이름 : ${userDTO.user_name } <br> 닉네임 : ${userDTO.user_nic}
 							</div>
 							<div class="modal-footer ">

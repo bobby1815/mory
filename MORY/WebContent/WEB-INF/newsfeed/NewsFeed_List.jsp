@@ -50,6 +50,7 @@ p
 			$("#newsfeed_love"+write_seq).html(data).find("#newsfeed_love"+write_seq);
 		});
 	}
+	
 
 </script>
 
@@ -66,7 +67,7 @@ p
 			<div class="col-xs-8 col-md-" id="b2">
 			<c:forEach var="dto" items="${list }">
 				<div id="newsfeed_content" class="col-xs-12 col-md-12" style="text-align: center;">
-					<p id="user_id"><img src="" />${dto.write_user_id } </p>
+					<p id="user_id" onclick="location.href='commonprofilesearch.do?cust=${dto.write_user_id }'"><img src="img/persopm.png" width="35px"/>${dto.write_user_id } </p>
 					<img class="uplo"  src="/newsfeedupload/${dto.uplo_loca }" >
 					<p id="newsfeed_love${dto.write_seq }" onclick="loveclick('${dto.write_seq}')"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
 					<p id="newsfeed_content">${dto.write_cont }</p>
@@ -74,6 +75,17 @@ p
 				</div>
 			</c:forEach>
 			</div>
+			
+<%-- 			
+	<div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<c:import url="../Source/Common_Profile.jsp"/>
+			</div>
+		</div>
+	</div>
+ --%>
+			
 			
 			<div class="col-xs-3 col-md-3" id="b3">
 			<c:import url="../../tooglebtn.jsp"/> 

@@ -28,6 +28,10 @@ input
 {
    width: 100%;
 }
+    .menu {
+        text-align: center;
+        width: 100%;
+      }
 
       .menufix {
       	left: 78%;
@@ -66,7 +70,6 @@ input
          $("#myinfo").modal();
       });
         
-      });
       
    $("#saveBtn").click(function()
    {
@@ -288,52 +291,12 @@ input
     </div>
     
     
-<!--  내정보  -->
 
-            <div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-               <div class="modal-dialog">
-                  <div class="modal-content">
-                  	<jsp:include page="WEB-INF/Source/Common_Profile.jsp"></jsp:include>
-       <!--           
-                     <div class="modal-header" style="text-align: center;">
-
-                        <div id="divPeedPhoto"></div>
-                        <div class="image-upload">
-                        <label for="profile_pt"><img src="img/photoupload.png" width="50px" /></label>
-                        <input type="file" name="profile_pt" id="profile_pt" onchange="previewImage(this,'divPeedPhoto')" style="text-align: center;">
-<<<<<<< HEAD
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
-						</div>
-                     <div class="modal-footer ">
-
-                        <div class="col-xs-12 col-md-12">
-                           <div class="col-xs-4 col-md-4" style="text-align: left;">
-                              <button type="button" value="뉴스피드">뉴스피드</button>
-                           </div>
-                           <div class="col-xs-4 col-md-4" style="text-align: center;">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">돌아가기</button>
-                           </div>
-                           <div class="col-xs-4 col-md-4" style="text-align: right;">
-                              <button type="button" value="커뮤니티">커뮤니티</button>
-                           </div>
-                        </div>
-
-
-                        <div class="col-xs-12 col-md-12">
-                           <div class="col-xs-4 col-md-4" style="text-align: left;">
-                              <button type="button" value="다이어리">다이어리</button>
-                           </div>
-                           <div class="col-xs-4 col-md-4"></div>
-                           <div class="col-xs-4 col-md-4" style="text-align: right;">
-                              <button type="button" value="개인정보">개인정보</button>
-                           </div>
-                        </div>
-                     </div>
-
-                  </div>
-               </div>
-            </div>
+	<!--  내정보  -->
+	<div class="modal fade" id="myinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<jsp:include page="WEB-INF/Source/Common_Profile.jsp"></jsp:include>
+			</div>
+		</div>
+	</div>

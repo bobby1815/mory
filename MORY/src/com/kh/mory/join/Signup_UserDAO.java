@@ -467,6 +467,8 @@ public class Signup_UserDAO implements Signup_IUserDAO
 			callableStatement.setString(15, dto.getPwqu_answ());
 			callableStatement.setString(16, dto.getProfile_location());
 			
+			System.out.println("11111111111111111 : "+ dto.getProfile_location());
+			
 			res = callableStatement.executeUpdate();
 			
 			System.out.println("res : "+res);
