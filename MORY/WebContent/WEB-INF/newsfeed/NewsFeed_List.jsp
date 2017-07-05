@@ -74,10 +74,14 @@ p
 			<div class="col-xs-8 col-md-" id="b2">
 			<c:forEach var="dto" items="${list }">
 				<div id="newsfeed_content" class="col-xs-12 col-md-12" style="text-align: center;">
+<<<<<<< HEAD
 					<%-- 
 					<p id="user_id" onclick="location.href='commonprofilesearch.do?cust=${dto.write_user_id }'" data-toggle="modal" data-target="#myinfo"><img src="" />${dto.write_user_id } </p>
 					 --%>
 					<p id="user_id" onclick="profile('${dto.write_user_id }')" data-toggle="modal" data-target="#myinfo"><img src="" />${dto.write_user_id } </p>
+=======
+					<p id="user_id" onclick="location.href='commonprofilesearch.do?cust=${dto.write_user_id }'"><img src="img/persopm.png" width="35px"/>${dto.write_user_id } </p>
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
 					<img class="uplo"  src="/newsfeedupload/${dto.uplo_loca }" >
 					<p id="newsfeed_love${dto.write_seq }" onclick="loveclick('${dto.write_seq}')"><img src="img/redheart.png" width="20px" />${dto.feed_love_cnt } LOVES</p>
 					<p id="newsfeed_content">${dto.write_cont }</p>

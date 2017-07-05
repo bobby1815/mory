@@ -99,7 +99,7 @@ public class Common_ProfileController implements Controller
 			//String path = "D:\\MORY\\mory_ay\\WebContent\\uploads";
 			String root = request.getServletContext().getRealPath("/");
 			String path = root + "profileupload";
-			
+			System.out.println(root+"/"+path);
 			 System.out.println(path);
 			
 			// 폴더 경로가 존재하지않으면 생성

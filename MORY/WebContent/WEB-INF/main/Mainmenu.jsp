@@ -1,18 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<!--  <div class="row " id="all0">
-	<div class="col-xs-1  col-md-1" id="h1">h1</div>
-		<div class="col-xs-10 col-md-10" id="mainMemu">
-			<ul>
-				<li><a href="#">뉴스피드</a></li>
-				<li><a href="#">다이어리</a></li>
-				<li><a href="#">MORY</a></li>
-				<li><a href="#">커뮤니티</a></li>
-				<li><a href="#">환경설정</a></li>
-			</ul>
-		</div>
-	<div class="col-xs-1 col-md-1" id="h3">h3</div>
-</div>  -->
+
 <style type="text/css">
 #all0
 {
@@ -23,7 +11,31 @@
 	
 } 
 
+      #menubtn {
+        text-align: center;
+        width: 100%;
+      }
+      #menubtnFixed {
+        position: fixed;
+        top: 0px;
+      }
+
+
 </style>
+<script>
+$( document ).ready( function() {
+    var jbOffset = $( '#menubtn' ).offset();
+    $( window ).scroll( function() {
+      if ( $( document ).scrollTop() > jbOffset.top ) {
+        $( '#menubtn' ).addClass( '#menubtnFixed' );
+      }
+      else {
+        $( '#menubtn' ).removeClass( '#menubtnFixed' );
+      }
+    });
+  } );
+
+</script>
 	
       <div class="row " id="all0">
        <div class="col-xs-1  col-md-1"  id="h1"> </div> 

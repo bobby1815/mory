@@ -28,6 +28,10 @@ input
 {
    width: 100%;
 }
+    .menu {
+        text-align: center;
+        width: 100%;
+      }
 
       .menufix {
       	left: 78%;
