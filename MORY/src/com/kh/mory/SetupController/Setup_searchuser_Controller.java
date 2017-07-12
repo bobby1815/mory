@@ -32,6 +32,7 @@ public class Setup_searchuser_Controller implements Controller
 		modelAndView.addObject("userlist", managementDAO.searchuser(user_Id));
 		
 		// 멤버초대 페이지에서 요청한 경우라면..
+		/*
 		if (value.equals("family"))
 		{
 			modelAndView.setViewName("WEB-INF/Source/Setup_SearchUser.jsp");
@@ -40,7 +41,10 @@ public class Setup_searchuser_Controller implements Controller
 		{
 			modelAndView.setViewName("WEB-INF/Source/Setup_Realation_Management.jsp");
 		}
-			
+		*/	
+		modelAndView.setViewName("WEB-INF/Source/Setup_SearchUser.jsp");
+		
+		
 		return modelAndView;
 		
 		

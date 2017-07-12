@@ -19,14 +19,53 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  
 	<!-- RemoteData -->
 	
+	<!-- <bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+<<<<<<< HEAD
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
+	<property name="username" value="mory_ay"></property>
+	<property name="password" value="mory2017"></property>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="JIN"></property>
+	<property name="password" value="java003$"></property>
+=======
+	<property name="url" value="jdbc:oracle:thin:@192.168.1.2:1521:xe"></property>
+=======
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="scott"></property>
+	<property name="password" value="TIGER"></property>
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
+>>>>>>> branch 'master' of https://github.com/bobby1815/mory
+	</bean>
+	 -->
+	
+	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
+	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
+	<!-- 
+	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
+	<property name="username" value="mory_ay"></property>
+	<property name="password" value="mory2017"></property>	 
+	 -->
+	 
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<property name="username" value="scott"></property>
+	<property name="password" value="TIGER"></property>
+	
+	</bean>
+	
 
 	<!--Database Connection-->
-	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	<!-- 		
+	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
-</bean>
+		 -->
+
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -52,7 +91,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		</bean>
 		
 		
-		<bean name="/setrhmanagement.do"  class="com.kh.mory.SetupController.Setup_Realation_Management_Controller"></bean>
+		<bean name="/setrhmanagement.do"  class="com.kh.mory.SetupController.Setup_Realation_Management_Controller">
+			<property name="neighbotDAO" ref="neighbotDAO"></property>
+		</bean>
 
 		
 		<bean name="/setreportlist.do"    class="com.kh.mory.SetupController.Setup_Report_List_Controller"></bean>
@@ -78,13 +119,17 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- 박아영 컨트롤러 -->
-	
+	ㅋ
 	<!-- 멤버 초대 -->
 	<bean id="memberDAO" class="com.kh.mory.Setup_DAO.Setup_Family_ManagementDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
+	<bean id="neighbotDAO" class="com.kh.mory.Setup_DAO.Setup_Realation_ManagementDAO">
+		<property name="dataSource" ref="remoteDataSource"></property>
+	</bean>
 	<bean name="/member*.do"  class="com.kh.mory.SetupController.Setup_Famliy_Management_Controller">
 		<property name="memberDAO" ref="memberDAO"></property>
+		<property name="neighbotDAO" ref="neighbotDAO"></property>
 	</bean>
 	<!-- 공통 알림 -->
 	<bean id="alarmDAO" class="com.kh.mory.Dao.Common_AlarmDAO">

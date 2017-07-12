@@ -4,7 +4,8 @@ public class Signup_UserDTO
 {
 	private String user_id, gen_code, page_code, open_code, user_nic, user_pw
 			,user_name, user_tel, user_birth, user_email, zipcode, basic_addr
-			,detail_addr, loca_code, city_code, pwqu_code, pwqu_answ, profile_location;
+			,detail_addr, loca_code, city_code, pwqu_code, pwqu_answ, profile_location
+			,acce_user_id, acce_user_nic;
 	
 	private String gen_name, page_name, open_name, acc_state_name, loca_name, city_name;
 
@@ -15,6 +16,26 @@ public class Signup_UserDTO
 	public String getUser_id()
 	{
 		return user_id;
+	}
+
+	public String getAcce_user_id()
+	{
+		return acce_user_id;
+	}
+
+	public void setAcce_user_id(String acce_user_id)
+	{
+		this.acce_user_id = acce_user_id;
+	}
+
+	public String getAcce_user_nic()
+	{
+		return acce_user_nic;
+	}
+
+	public void setAcce_user_nic(String acce_user_nic)
+	{
+		this.acce_user_nic = acce_user_nic;
 	}
 
 	public String getProfile_location()

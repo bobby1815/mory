@@ -6,9 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -50,6 +52,37 @@ width: 200px;
 	
 }
 </style>
+<script type="text/javascript">
+
+		$(document).ready(function()
+		{
+			// 사용자 검색
+			$("#userSearch").click(function()
+			{
+				$.post("searchuser.do",{user_Id:$("#user_id").val(), value : "realation"}, function(data)
+				{
+					$("#userlistTbl > tbody:last").append(data);
+				});
+			});
+		});
+		
+		
+		// 이웃하기
+		function memberinvite(nei_user_id)
+		{
+			//alert(nei_user_id);
+			var value = nei_user_id;
+			$.post("/memberneighbor.do", {nei_user_id: value}, function(data)
+			{
+				if (data == 1)
+				{
+					alert("이웃 추가 완료");
+				}
+			});
+			
+		}
+
+</script>
 
 </head>
 <body>
@@ -96,16 +129,18 @@ width: 200px;
           	<div align="middle" style="margin-bottom: 50px;">
           		<img src="img/searchUser.png" align="middle" width="200px" />
           	</div>
-          	<form action="searchuser.do?value=realation" method="post">
           		
           	<div class="col-md-12" style="width: 100%;">
-          	<input type="text" name="user_Id" style="width: 60%;" placeholder="search" />
-          	<button type="submit" class="btn btn-default">검색</button>
+          	<input type="text" name="user_Id" id="user_id" style="width: 60%;" placeholder="search" />
+          	<button type="button" class="btn btn-default" id="userSearch">검색</button>
+          	<table style="width: 100%" id="userlistTbl">
+          		<tr></tr>
+          	</table>
           	</div>
-          	</form>
           	
           	
           	<div class="col-md-12">
+          	<%-- 
           	<table style="width: 100%" >
           		
           		<tbody>
@@ -122,6 +157,7 @@ width: 200px;
           		</tbody>
          		
           	</table>
+          	 --%>
           	</div>
           	
           	</div>
@@ -131,20 +167,9 @@ width: 200px;
           		<img src="img/hi.png"  width="100px" />
           		</div>
          	 <ul class="list-group" style="margin-top: 10px;">
-			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 박 아영 <img src="img/neighbor_hihey.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 민혜 <img src="img/neighbor_hihey.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 임 재균  <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준 <img src="img/neighbor_hihey.png" width="20px"/></li>
-			   <!--  <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호 <img src="img/neighbor_hihey.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 송현 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 조 원희 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용 <img src="img/neighbor_hi.png" width="20px"/></li>
-			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎<img src="img/neighbor_hi.png" width="20px"/> </li>
-			    <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 오 동연<img src="img/neighbor_hi.png" width="20px"/> </li> -->
+			   <c:forEach var="neighbordto" items="${neighborLists }">
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> ${neighbordto.nei_user_id }</li>
+			     </c:forEach>
 			  </ul>
           	</div>
 
@@ -154,7 +179,11 @@ width: 200px;
           		<img src="img/hey.png"  width="100px" />
           		</div>
           	<ul class="list-group" style="margin-top: 10px;">
-			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준 <img src="img/neighbor_hey.png" width="20px"/></li>
+          		<c:forEach var="neighborgidto" items="${neighborgiLists }">
+			    <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> ${neighborgidto.user_id }</li>
+			     </c:forEach>
+          	
+			   <!-- <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 민준 <img src="img/neighbor_hey.png" width="20px"/></li>
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 신 지섭<img src="img/neighbor_hey.png" width="20px"/></li>
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 진호<img src="img/neighbor_hey.png" width="20px"/></li>
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 이 용진<img src="img/neighbor_hey.png" width="20px"/></li>
@@ -163,7 +192,7 @@ width: 200px;
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 장 슬기<img src="img/neighbor_hey.png" width="20px"/></li>
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 구 성민<img src="img/neighbor_hey.png" width="20px"/></li>
 			   <li class="list-group-item"><img src="img/1497890656_Man-16.png" alt="" width="30px"/> 김 필용<img src="img/neighbor_hey.png" width="20px"/></li>
-			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎<img src="img/neighbor_hey.png" width="20px"/> </li>
+			   <li class="list-group-item"><img src="img/1497890377_female-silhouette-sunglasses.png" alt="" width="30px"/> 김 솔잎<img src="img/neighbor_hey.png" width="20px"/> </li> -->
 			  </ul>
           	</div>
           	</div>

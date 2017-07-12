@@ -40,7 +40,8 @@ public class Setup_Realation_ManagementDAO implements Setup_IRealation_Managemen
 		}
 		return user_list;
 	}
-
+	
+	// 이웃 추가
 	@Override
 	public int Negihbor(String user_Id , String nei_user_id) throws SQLException
 	{
@@ -48,7 +49,7 @@ public class Setup_Realation_ManagementDAO implements Setup_IRealation_Managemen
 		Connection conn = dataSource.getConnection();
 		
 		String sql ="INSERT INTO TBL_NEIGHBOR (NEI_SEQ,USER_ID,NEI_USER_ID,NEI_REG_DTM) "
-				+ "VALUES (SEQ_NEIGHBOR.NEXTVAL,?,?,SYSDATE);";
+				+ "VALUES (SEQ_NEIGHBOR.NEXTVAL,?,?,SYSDATE)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, user_Id);
 		pstmt.setString(2, nei_user_id);
@@ -72,6 +73,79 @@ public class Setup_Realation_ManagementDAO implements Setup_IRealation_Managemen
 		pstmt.close();
 		
 		return result;
+	}
+
+	// 이웃 목록 조회
+	@Override
+	public ArrayList<Setup_Realation_ManagementDTO> neighborList(String user_id) throws SQLException
+	{
+		ArrayList<Setup_Realation_ManagementDTO> res = new ArrayList<Setup_Realation_ManagementDTO>();
+		
+		Connection conn = dataSource.getConnection();
+		
+		try
+		{
+			String sql = "SELECT NEI_SEQ, USER_ID, NEI_USER_ID, NEI_REG_DTM FROM TBL_NEIGHBOR WHERE USER_ID=?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next())
+			{
+				Setup_Realation_ManagementDTO dto = new Setup_Realation_ManagementDTO();
+				dto.setNei_seq(rs.getInt("NEI_SEQ"));
+				dto.setUser_id(rs.getString("USER_ID"));
+				dto.setNei_user_id(rs.getString("NEI_USER_ID"));
+				dto.setNei_reg_dtm(rs.getString("NEI_REG_DTM"));
+				
+				res.add(dto);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		return res;
+	}
+
+	@Override
+	public ArrayList<Setup_Realation_ManagementDTO> neighborgiList(String nei_user_id) throws SQLException
+	{
+		ArrayList<Setup_Realation_ManagementDTO> res = new ArrayList<Setup_Realation_ManagementDTO>();
+		
+		Connection conn = dataSource.getConnection();
+		
+		try
+		{
+			String sql = "SELECT NEI_SEQ, USER_ID, NEI_USER_ID, NEI_REG_DTM FROM TBL_NEIGHBOR WHERE NEI_USER_ID=?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nei_user_id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next())
+			{
+				Setup_Realation_ManagementDTO dto = new Setup_Realation_ManagementDTO();
+				dto.setNei_seq(rs.getInt("NEI_SEQ"));
+				dto.setUser_id(rs.getString("USER_ID"));
+				dto.setNei_user_id(rs.getString("NEI_USER_ID"));
+				dto.setNei_reg_dtm(rs.getString("NEI_REG_DTM"));
+				
+				res.add(dto);
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		return res;
 	}
 
 	

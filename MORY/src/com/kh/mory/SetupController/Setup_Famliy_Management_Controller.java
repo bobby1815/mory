@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.kh.mory.Model.Setup_Family_ManagementDTO;
 import com.kh.mory.Model.Setup_IFamily_Management;
+import com.kh.mory.Model.Setup_IRealation_Management;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class Setup_Famliy_Management_Controller implements Controller
@@ -20,6 +21,13 @@ public class Setup_Famliy_Management_Controller implements Controller
 	public void setMemberDAO(Setup_IFamily_Management memberDAO)
 	{
 		this.memberDAO = memberDAO;
+	}
+	
+	private Setup_IRealation_Management neighbotDAO;
+	
+	public void setNeighbotDAO(Setup_IRealation_Management neighbotDAO)
+	{
+		this.neighbotDAO = neighbotDAO;
 	}
 
 	@Override
@@ -58,6 +66,11 @@ public class Setup_Famliy_Management_Controller implements Controller
 			// 10	부부
 			// 20	멤버
 			String mem_rel_code = "20";
+			if (request.getParameter("mem_rel_code")!=null)
+			{
+				mem_rel_code = request.getParameter("mem_rel_code");
+			}
+			System.out.println("mem_rel_code : "+mem_rel_code);
 			
 			dto.setRequ_user_id(user_id);
 			dto.setAcce_user_id(nei_user_id);
@@ -67,6 +80,14 @@ public class Setup_Famliy_Management_Controller implements Controller
 				modelAndView.addObject("result",1);
 			else
 				modelAndView.addObject("result", 0);
+			
+			modelAndView.setViewName("WEB-INF/Source/Setup_Family_RequsetResult.jsp");
+		}
+		else if (request.getRequestURI().indexOf("memberneighbor.do") > -1)
+		{
+			String nei_user_id = request.getParameter("nei_user_id");	// 이웃할 유저 id
+			
+			neighbotDAO.Negihbor(user_id, nei_user_id);
 			
 			modelAndView.setViewName("WEB-INF/Source/Setup_Family_RequsetResult.jsp");
 		}
