@@ -11,21 +11,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
-
-
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -38,16 +23,142 @@
 
 
 <style type="text/css">
-/*   div{border:1px solid gray;}   */
 
-/* #img
+#img
 {
   
 	height: 200px;
 	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
 	background-size: contain;
 	
-} */
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+#img
+{
+  
+	height: 200px;
+	background-image: url('img/건강한아기1.jpg'),url('img/보기 좋다.jpg'),url('img/하트.jpg');
+	background-size: contain;
+	
+} 
+<style type="text/css">
+#b3
+{
+	margin-top: 30%;
+}
+#container
+{
+	margin: 0 auto;
+}
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
+}
+
+.setup_icon {
+  -webkit-animation: spin 4s infinite linear;
+  -o-animation: spin 4s infinite linear;
+  -moz-animation: spin 4s infinite linear;
+  animation: spin 4s infinite linear;
+}
+ 
+@-webkit-keyframes spin {
+    0%  {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
+ 
+@-moz-keyframes spin {
+   0%  {-moz-transform: rotate(0deg);}
+    100% {-moz-transform: rotate(360deg);}
+}
+@keyframes spin {
+    0%  {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+#setup_th
+{
+width: 200px;
+	height: 80px;
+	font-size: 25px;
+	font-weight: bold;
+	font-family: 맑은고딕; 
+}
+
+#setup_th:HOVER {
+	color: lightpink;	
+}
+
+</style>
+
 </style>
 
 
@@ -65,7 +176,7 @@
 	/* 모델  */
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
-			$("#myModal").modal();
+			$("#myModal").modal('show1');
 		});
 	});
 
@@ -207,7 +318,7 @@
 
 							<table id="mam">
 
-								<c:forEach var="communitydto" items="${communitydto}">
+								<%-- <c:forEach var="communitydto" items="${communitydto}">
 									<tr>
 										<td>${communitydto.write_seq }</td>
 										<td>${communitydto.community_type_code }</td>
@@ -219,17 +330,15 @@
 										<td>${communitydto.uplo_loca }</td>
 										<td>${communitydto.community_type_name }</td>
 									</tr>
-								</c:forEach>
+								</c:forEach> --%>
 
-								<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
-								    Indicators
+								 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 								    <ol class="carousel-indicators">
 								      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 								      <li data-target="#myCarousel" data-slide-to="1"></li>
 								      <li data-target="#myCarousel" data-slide-to="2"></li>
 								    </ol>
 								
-								    Wrapper for slides
 								    <div class="carousel-inner">
 								
 								      <div class="item active">
@@ -267,15 +376,14 @@
 								      <span class="glyphicon glyphicon-chevron-right"></span>
 								      <span class="sr-only">Next</span>
 								    </a>
-								  </div> -->
+								  </div> 
 							</table>
 						</div>
 
 					</div>
 
 
-					<div class="col-xs-12 col-md-12"
-						style="border: 1px solid lightgray; height: 30px; margin-top: 10px; text-align: center;">
+					<div class="col-xs-12 col-md-12"  height: 30px; margin-top: 10px; text-align: center;">
 						공지사항</div>
 
 					<div class="col-xs-12 col-md-12"
@@ -285,7 +393,7 @@
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
 							
 							<table>
-							<c:forEach var="communitydto" items="${communitydto}">
+						<%-- 	<c:forEach var="communitydto" items="${communitydto}">
 										<tr>
 											<td>${communitydto.write_seq }</td>
 											<td>${communitydto.community_type_code }</td>
@@ -298,7 +406,8 @@
 											<td>${communitydto.community_type_name }</td>
 										</tr>
 								</c:forEach>
-							</table>
+								--%>
+							</table> 
 
 						</div>
 
@@ -311,7 +420,7 @@
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
 					
 						<table>
-						<c:forEach var="communitydto" items="${communitydto}">
+						<%-- <c:forEach var="communitydto" items="${communitydto}">
 										<tr>
 											<td>${communitydto.write_seq }</td>
 											<td>${communitydto.community_type_code }</td>
@@ -323,7 +432,7 @@
 											<td>${communitydto.uplo_loca }</td>
 											<td>${communitydto.community_type_name }</td>
 										</tr>
-								</c:forEach>
+								</c:forEach> --%>
 						</table>
 						</div>
 
@@ -340,7 +449,7 @@
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
 
 							<table id="infant_data">
-								<c:forEach var="communitydto" items="${communitydto}">
+								<%-- <c:forEach var="communitydto" items="${communitydto}">
 									<c:if test="${communitydto.community_type_code == 30}">
 										<tr>
 											<td>${communitydto.write_seq }</td>
@@ -354,7 +463,7 @@
 											<td>${communitydto.community_type_name }</td>
 										</tr>
 									</c:if>
-								</c:forEach>
+								</c:forEach> --%>
 
 							</table>
 						</div>
@@ -366,7 +475,7 @@
 
 						<div class="col-xs-5 col-md-5"
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
-							<table id="infant_data">
+							<%-- <table id="infant_data">
 						
 								<c:forEach var="communitydto" items="${communitydto}">
 									<c:if test="${communitydto.community_type_code ==40 }">
@@ -382,7 +491,7 @@
 										<td>${communitydto.community_type_name }</td>
 									</tr>
 									</c:if>
-								</c:forEach>
+								</c:forEach> --%>
 							</table>
 						</div>
 					</div>
@@ -398,7 +507,8 @@
 
 						<div class="col-xs-5 col-md-5"
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
-							<table id="elementary">
+							 <table id="elementary">
+							<%--
 								<c:forEach var="communitydto" items="${communitydto}">
 									<tr>
 										<td>${communitydto.write_seq }</td>
@@ -411,8 +521,7 @@
 										<td>${communitydto.uplo_loca }</td>
 										<td>${communitydto.community_type_name }</td>
 									</tr>
-								</c:forEach>
-
+								</c:forEach> --%>
 
 							</table>
 
@@ -426,7 +535,7 @@
 						<div class="col-xs-5 col-md-5"
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
 							<table id="elementary">
-								<c:forEach var="communitydto" items="${communitydto}">
+							<%-- 	<c:forEach var="communitydto" items="${communitydto}">
 									<tr>
 										<td>${communitydto.write_seq }</td>
 										<td>${communitydto.community_type_code }</td>
@@ -439,7 +548,7 @@
 										<td>${communitydto.community_type_name }</td>
 									</tr>
 								</c:forEach>
-
+ --%>
 
 							</table>
 
@@ -456,7 +565,7 @@
 						<div class="col-xs-5 col-md-5"
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
 							<table id="health">
-								<c:forEach var="communitydto" items="${communitydto}">
+								<%-- <c:forEach var="communitydto" items="${communitydto}">
 									<tr>
 										<td>${communitydto.write_seq }</td>
 										<td>${communitydto.community_type_code }</td>
@@ -468,7 +577,7 @@
 										<td>${communitydto.uplo_loca }</td>
 										<td>${communitydto.community_type_name }</td>
 									</tr>
-								</c:forEach>
+								</c:forEach> --%>
 
 
 							</table>
@@ -482,11 +591,10 @@
 
 						<div class="col-xs-5 col-md-5"
 							style="height: 100px; border: 1px solid lightgray; margin-top: 20px;">
-							<h1>용진테스트</h1>
 							<table id="health">
 
 
-								<c:forEach var="communitydto" items="${communitydto}">
+							<%-- 	<c:forEach var="communitydto" items="${communitydto}">
 										<tr>
 											<td>${communitydto.write_seq }</td>
 											<td>${communitydto.community_type_code }</td>
@@ -501,7 +609,7 @@
 								</c:forEach>
 
 
-
+ --%>
 
 							</table>
 						</div>
@@ -554,7 +662,7 @@
 				<!-- Acordian Action -->
 				<div class="w3-container">
 
-					<a onclick="myFunction('Demo1')" style="width: 100px;"
+			<!-- 		<a onclick="myFunction('Demo1')" style="width: 100px;"
 						class="glyphicon glyphicon-plus-sign btn-lg"></a>
 					<div id="Demo1" class="w3-container w3-hide">
 						<button type="button" class="btn btn-primary " data-toggle="modal"
@@ -572,15 +680,15 @@
 						</button>
 						<br />
 
-					</div>
-
+					</div> -->
+				<c:import url="../../tooglebtn2.jsp"/> 
 				</div>
 
 
 
+<!-- 
 
-
-				<!--  내정보  -->
+				 내정보 
 
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
@@ -595,8 +703,8 @@
 								<input type="file" name="profile_pt" id="profile_pt"
 									onchange="previewImage(this,'divPeedPhoto')"
 									style="text-align: center;">
-								<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
 
 
 
@@ -643,7 +751,7 @@
 
 
 
-				<!-- 알림 -->
+				알림
 
 
 
@@ -680,18 +788,45 @@
 					</div>
 				</div>
 
+			</div>
+
+		</div> -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header" style="text-align: center;">
+								<h4>알림</h4>
+							</div>
+							<div class="modal-body" style="height: 600px;">
+								<div class="col-xs-12 col-md-12"
+									style="border: 1px solid; height: 50px;">
+									<div class="col-xs-3 col-md-3" style="">
+										<img src="img/user.PNG" alt=""
+											style="height: 45px; margin-right: 800px;" />
+									</div>
+
+									<div class="col-xs-6 col-md-6">
+									<h4>업데이트 예정 입니다  </h4> <img src="" id="setup" />
+									</div>
+									<div class="col-xs-3 col-md-3"
+										style="text-align: right; margin-top: 10px;">
+										<button type="button" value="수락">수락</button>
+										<button type="button" value="거절">거절</button>
+									</div>
 
 
+								</div>
 
-
-
-
-
+							</div>
+							<div class="modal-footer "></div>
+						</div>
+					</div>
+				</div>
 
 			</div>
 
 		</div>
-
 
 
 		<!-- 세번째 row  -->

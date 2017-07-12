@@ -31,14 +31,11 @@
 	height: auto;
 	background-size: contain;
 } 
-p
-{
-	text-align: left;
-}
+
 #user_id{font-family: 맑은 고딕; font-size: 20px; font-weight: bold;}
 #newsfeed_content{border: 2px solid #fdfaf8; margin-top: 5%; background-color: #ffffe9; border-radius: 2%; }
-#newsfeed_love{border: 2px solid #fdfaf8;}
-#newsfeed_conmmet{border: 2px solid #fdfaf8;}
+#newsfeed_love{border: 2px solid #fdfaf8; text-align: left;}
+#newsfeed_conmmet{border: 2px solid #fdfaf8; text-align: left;}
 
 </style>
 <script type="text/javascript">
