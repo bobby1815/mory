@@ -9,66 +9,28 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<!-- 	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
-	</bean>
-  -->
- 
-	<!-- RemoteData -->
-	
-	<!-- <bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
-	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-<<<<<<< HEAD
-	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
-	<property name="username" value="mory_ay"></property>
-	<property name="password" value="mory2017"></property>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-	<property name="username" value="JIN"></property>
-	<property name="password" value="java003$"></property>
-=======
-	<property name="url" value="jdbc:oracle:thin:@192.168.1.2:1521:xe"></property>
-=======
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-	<property name="username" value="scott"></property>
-	<property name="password" value="TIGER"></property>
->>>>>>> branch 'master' of https://github.com/bobby1815/mory.git
->>>>>>> branch 'master' of https://github.com/bobby1815/mory
-	</bean>
-	 -->
-	
-	<bean id="remoteDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">	
-	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-	<!-- 
-	<property name="url" value="jdbc:oracle:thin:@192.168.30.23:1521:xe"></property>
-	<property name="username" value="mory_ay"></property>
-	<property name="password" value="mory2017"></property>	 
-	 -->
-	 
-	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
-	<property name="username" value="scott"></property>
-	<property name="password" value="TIGER"></property>
 	
 	</bean>
 	
 
-	<!--Database Connection-->
-	<!-- 		
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- 
 	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 	<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 	<property name="username" value="morymaster"></property>
 	<property name="password" value="mory2017"></property>
-		 -->
-
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
+	</bean> -->
 		<bean id="mainDAO" class="com.kh.mory.Setup_DAO.Setup_MainDAO">
 			<property name="dataSource" ref="remoteDataSource"></property>
 		</bean>
@@ -90,7 +52,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 			<property name="profileDAO" ref="profileDAO"></property>
 		</bean>
 		
-		
 		<bean name="/setrhmanagement.do"  class="com.kh.mory.SetupController.Setup_Realation_Management_Controller">
 			<property name="neighbotDAO" ref="neighbotDAO"></property>
 		</bean>
@@ -99,7 +60,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<bean name="/setreportlist.do"    class="com.kh.mory.SetupController.Setup_Report_List_Controller"></bean>
 		
 
-		
 		<bean name="/setcsfna.do"		  class="com.kh.mory.SetupController.Setup_Fna_Controller"></bean>
 		
 		<bean name="/setcsqna.do"  		  class="com.kh.mory.SetupController.Setup_Qna_Controller"></bean>
@@ -119,7 +79,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- 박아영 컨트롤러 -->
-	ㅋ
+	
 	<!-- 멤버 초대 -->
 	<bean id="memberDAO" class="com.kh.mory.Setup_DAO.Setup_Family_ManagementDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
@@ -169,7 +129,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 
-
 	<!-- 뉴스피드 컨트롤러 -->
 	<bean id="feedDao" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
@@ -186,7 +145,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="feed_recommentDAO" class="com.kh.mory.newsfeed.Newsfeed_NewsfeedDAO">
 		<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>
-	
 	<!-- 아영이 트롤 -->
 	<!-- 뉴스피드 댓글 입력 컨트롤러 -->
 	<bean name="/feed_commentinsert.do" class="com.kh.mory.newsfeed.Newsfeed_CommentInsertController">
@@ -217,7 +175,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<property name="feedDao" ref="feedDao"></property>
 	</bean>
 		
-	
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
@@ -235,7 +192,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="Admin_QuestionDAO" class="com.kh.mory.Dao.Admin_QuestionDAO">
 			<property name="dataSource" ref="remoteDataSource"></property>
 	</bean>		
-	
 	
 	<!-- DAO 생성 부분 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑  -->
 	
@@ -260,8 +216,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean name="/usermodify.do" class="com.kh.mory.Controller.Admin_UserModifyController">
 		 <property name="dao" ref="Admin_userDAO"></property> 
  	</bean> 
- 	
- 	
  	<!-- 신고조회 뉴스피드 -->
  	<bean name="/declarationnewspeeduserlist.do" class="com.kh.mory.Controller.Admin_DeclarationNewSpeedUserListController">
  		<property name="dao" ref="Admin_DeclarationuserDAO"></property>
@@ -287,7 +241,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  			<property name="dao" ref="Admin_DeclarationuserDAO"></property>
  	</bean>
  	
- 	
  	<!-- 고객센터 카테고리  -->
  	
  	<!-- 블라인드 조회-->
@@ -304,7 +257,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  	<bean name="/bliddetailcommunity.do" class="com.kh.mory.Controller.Admin_BlidDetailCommunityController">
  			<property name="dao" ref="Admin_DeclarationuserDAO"></property>
  	</bean>
- 	
  	
  	<!-- 1:1문의 조회-->
  	<bean name="/question.do" class="com.kh.mory.Controller.Admin_QuestionController">
